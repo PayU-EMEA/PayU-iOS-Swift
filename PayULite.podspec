@@ -1,10 +1,10 @@
 Pod::Spec.new do |s|  
     s.name              = 'PayULite'
-    s.version           = '0.0.1'
+    s.version           = '0.0.2'
     s.summary           = 'PayU mobile SDK for iOS'
     s.homepage          = 'http://developers.payu.com/en/mobile_sdk.html'
 
-    s.author            = { 'Piotr Gorzelany' => 'piotr.gorzelany@payu.com' }
+    s.author            = { 'PayU' => 'itsupport@payu.pl' }
     s.license           = { :type => 'Apache License Version 2.0', :file => 'LICENSE' }
 
     s.platform          = :ios
