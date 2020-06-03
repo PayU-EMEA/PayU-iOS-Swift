@@ -26,6 +26,6 @@ Once you integrated the pod you can use it in your project by adding the import 
 import PayU_SDK_Lite
 ```
 
-## Documentation
+## Usage documentation
 
-You can find the documentation for the release in the docs folder.
+You can find the documentation [here](docs/markup/README.md) or in the docs folder.
