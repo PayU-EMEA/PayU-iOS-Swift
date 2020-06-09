@@ -25,9 +25,17 @@ No external dependencies are used in the SDK.
 #### After Tests
 * Archive UniversalLib target
 * Distribute Content (docs, changelog)
-* Upload archive to Google Drive
+* Upload archive to Google Drive / Distribute through Cocoapods (see steps below)
 * Update Demo App
 * Notify release alias by email: mobile_sdk_release@payu.pl
+
+#### Cocoapods distribution
+* Push the PayU_SDK_Lite.framework, trimSymbols.sh and doc files into the Github repo (https://github.com/PayU-EMEA/PayU-iOS).
+* Change the version in the PayULite.podspec file
+* Commit and tag the release with the version number
+* Establish a session with the Cocoapods trunk repository by running the command: `pod trunk register mobile_sdk_objectivity@payu.pl 'PayU Mobile SDK'`
+* Confirm the session using the link send to the mobile team email address
+* Release the pod by running the command `pod repo push PayULite.podspec`
 
 ## Useful links
 - https://payu21.docs.apiary.io/#reference/api-endpoints - interactive API docs

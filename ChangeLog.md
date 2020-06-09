@@ -1,5 +1,10 @@
 # PayU SDK Lite Change Log
 
+## Release 0.9.1
+Prepared on Mon, 08/06/2020
+### Changes:
+* add new PBL values to accept EURO
+
 ## Release 0.9.0
 Prepared on Thu, 30/04/2020
 ### Changes:
