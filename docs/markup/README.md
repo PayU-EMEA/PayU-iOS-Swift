@@ -45,7 +45,6 @@ With the PayU SDK Lite for iOS, you can build apps that target native devices ru
 Supported languages: English, Polish, German, Czech, Hungarian
 
 ## Integration
-
 To add the PayU Lite iOS SDK to your Xcode project you have to:
 - extract downloaded package in your local ﬁle system
 - add the PayU_SDK_Lite.framework to your Xcode project:
@@ -82,6 +81,13 @@ Each module can be configured to utilize defined by merchants colors and other p
 @property (strong, nonatomic) PUVisualStyleElement *secondaryHeadingStyle; // secondary heading text style used for ex. in `PUAddCardService` module
 @property (strong, nonatomic) PUVisualStyleElement *primaryTextStyle; // primary text style used for ex. in `PUAboutViewController`
 @property (strong, nonatomic) PUVisualStyleElement *secondaryTextStyle;  // secondary text style used for ex. in `PUAboutViewController`
+
+/**
+ This property is used to set the `titleView` for `navigationBar` for viewControllers where it is available (for ex. 'PUPaymentMethodListViewController').
+ To use custom logo, provide instance of `PUBrandImageProvider` class. Loaded image should be placed in UIImageView with size CGSizeMake(70, 35)
+ By default, it should show `PayU` logo.
+*/
+@property (strong, nonatomic) PUBrandImageProvider* logoImageProvider;
 
 + (instancetype)defaultStyle;
 ```
@@ -230,12 +236,13 @@ This module contains objects:
 	@protocol PUAuthorizationDelegate
 	- (void)authorizationRequest:(id<PUAuthorizationRequest>)request
 	         didFinishWithResult:(PUAuthorizationResult)result
-	                       error:(nullable NSError *)error;
+	                    userInfo:(nullable NSDictionary*)userInfo;
 	@end
 	```
 - `PUAuthorizationResult` - webPayment method status with possible values:
-	- when `PUAuthorizationResultContinueCVV` received payment requires authorization with CVVAuthorization module
-    - when `PUAuthorizationResultFailure`  additional information will be propagated by error  object
+	- `PUAuthorizationResultSuccess` - `userInfo` should be empty
+	- `PUAuthorizationResultContinueCVV` - `userInfo` should contain `refReqId` value for key `PUAuthorizationResultRefReqIdUserInfoKey`. After you receive this result, there is needed an additional action to authorize CVV via `PUCVVAuthorizationHandler`
+	- `PUAuthorizationResultFailure` - `userInfo` should contain detailed NSError value for key `PUAuthorizationResultErrorUserInfoKey`
 	```objc
 	typedef NS_ENUM(NSInteger, PUAuthorizationResult) {
 	    PUAuthorizationResultSuccess,
@@ -252,8 +259,8 @@ This module contains objects:
     PUPayByLinkAuthorizationRequest *request = [[PUPayByLinkAuthorizationRequest alloc] 
 						   initWithOrderId:@"orderID" 
 							extOrderId:@"externalOrderID" 
-							redirectUri:[NSURL URLWithString:@"redirectURIString"] 
-							continueUrl:[NSURL URLWithString:@"continueURLString"]]; 
+						       redirectUri:[NSURL URLWithString:@"redirectURIString"] 
+						       continueUrl:[NSURL URLWithString:@"continueURLString"]]; 
 	PUWebAuthorizationViewController *webAuthorizationViewController = [[PUWebAuthorizationBuilder alloc] viewControllerForPayByLinkAuthorizationRequest:request visualStyle:uiStyle];
 	```
 - implement `PUAuthorizationDelegate`
@@ -304,6 +311,13 @@ Sample use case for PaymentMethod & PaymentWidget module:
 ![Payments Flow](documentation-resources/payment-methods-and-payment-widget-flow.png)
 
 This module contains objects:
+- `PUPaymentMethodParser` - default json parser for payment methods. Data parsed by this parser should be fetch from the paymethods API endpoint. Available error codes are: `PUPaymentMethodParserMissingKeyErrorCode`, `PUPaymentMethodParserInvalidStatusErrorCode`.
+	```objc
+	- (PUPayByLink *)parsePayByLinkMethodFromJSONData:(NSData *)data error:(NSError **)error;
+	- (PUCardToken *)parseCardTokenMethodFromJSONData:(NSData *)data error:(NSError **)error;
+	- (PUPexToken *)parsePexTokenMethodFromJSONData:(NSData *)data error:(NSError **)error;
+	- (PUBlikToken *)parseBlikTokenMethodFromJSONData:(NSData *)data error:(NSError **)error;
+	```
 - `PUPaymentWidgetService` - provides PaymentWidget for merchant and handle whole interaction
 - `PUPaymentWidgetServiceDelegate`- protocol to be implemented by PUPaymentWidgetService delegate to receive payment method select status
 	```objc
@@ -332,6 +346,8 @@ This module contains objects:
 	@property (nonatomic) BOOL showAddCard; // Describes whether Add Card action should be presented in PaymentMethodListViewController
 	@property (nonatomic) BOOL showPayByLinks; // Describes whether Bank Transfer action should be presented in PaymentMethodListViewController
 	@property (nonatomic) BOOL isBlikEnabled; // Describes whether BLIK payment method should be available. Requires POS with configured BLIK payment method.
+	@property (nullable, strong, nonatomic) PUBrandImageProvider* cardBrandImageProvider; // Custom image for 'Card' method payment in `PUPaymentMethodListViewController`
+	@property (nullable, strong, nonatomic) PUBrandImageProvider* bankBrandImageProvider; // Custom image for 'Bank' method payment in `PUPaymentMethodListViewController`
 	@end
     ```
     

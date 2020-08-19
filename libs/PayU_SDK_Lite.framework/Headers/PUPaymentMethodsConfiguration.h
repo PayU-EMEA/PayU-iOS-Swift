@@ -9,6 +9,7 @@
 #import "PUBlikToken.h"
 #import "PUPexToken.h"
 #import "PUEnvironment.h"
+#import "PUBrandImageProvider.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -44,6 +45,22 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// Describes whether BLIK payment method should be available. Requires POS with configured BLIK payment method.
 @property (nonatomic) BOOL isBlikEnabled;
+
+/**
+ This property is used to set the custom image for 'Card' method payment in 'PUPaymentMethodListViewController'.
+ To use custom icon, provide instance of `PUBrandImageProvider` class. Loaded image should be placed in UIImageView with size CGSizeMake(49, 29).
+ In case when 'PUBrandImageProvider' instance should be initialized with only brandImageURL, white background in imageView should appear in dark mode.
+ To remove imageView backgroundColor, provide both `lightBrandImageURL` and `darkBrandImageURL`.
+*/
+@property (nullable, strong, nonatomic) PUBrandImageProvider* cardBrandImageProvider;
+
+/**
+ This property is used to set the custom image for 'Bank' method payment in 'PUPaymentMethodListViewController'.
+ To use custom icon, provide instance of `PUBrandImageProvider` class. Loaded image should be placed in UIImageView with size CGSizeMake(49, 29).
+ In case when 'PUBrandImageProvider' instance should be initialized with only brandImageURL, white background in imageView should appear in dark mode.
+ To remove imageView backgroundColor, provide both `lightBrandImageURL` and `darkBrandImageURL`.
+*/
+@property (nullable, strong, nonatomic) PUBrandImageProvider* bankBrandImageProvider;
 
 
 @end

@@ -12,7 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (copy, readonly, nonatomic) NSString *orderId;
 @property (copy, readonly, nonatomic) NSString *extOrderId;
 @property (copy, readonly, nonatomic) NSURL *redirectUri;
-@property (copy, readonly, nonatomic) NSString *refReqId;
 
 - (instancetype)initWithOrderId:(NSString *)orderId
                      extOrderId:(NSString *)extOrderId

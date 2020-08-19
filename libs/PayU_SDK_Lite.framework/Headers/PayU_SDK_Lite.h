@@ -27,6 +27,7 @@ FOUNDATION_EXPORT const unsigned char PayU_SDK_LiteVersionString[];
 #import <PayU_SDK_Lite/PUCustomFooterAddCardViewController.h>
 
 #import <PayU_SDK_Lite/PUPaymentMethod.h>
+#import <PayU_SDK_Lite/PUPaymentMethodParser.h>
 #import <PayU_SDK_Lite/PUCardToken.h>
 #import <PayU_SDK_Lite/PUPayByLink.h>
 #import <PayU_SDK_Lite/PUBlikCode.h>

@@ -7,6 +7,7 @@
 #import "PUCardVisualStyle.h"
 #import "PUInputVisualStyle.h"
 #import "PUButtonVisualStyle.h"
+#import "PUBrandImageProvider.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -69,6 +70,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong, nonatomic) PUVisualStyleElement *primaryTextStyle;
 @property (strong, nonatomic) PUVisualStyleElement *secondaryTextStyle;
+
+/**
+ This property is used to set the `titleView` for `navigationBar` for viewControllers where it is available (for ex. 'PUPaymentMethodListViewController').
+ To use custom logo, provide instance of `PUBrandImageProvider` class. Loaded image should be placed in UIImageView with size CGSizeMake(70, 35)
+ By default, it should show `PayU` logo.
+*/
+@property (strong, nonatomic) PUBrandImageProvider* logoImageProvider;
 
 /**
  default UI style created by PayU
