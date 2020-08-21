@@ -1,5 +1,17 @@
 # PayU SDK Lite Change Log
 
+## Release 0.9.2
+Prepared on Wed, 19/08/2020
+### Changes:
+* add `PUPaymentMethodParser` to parse payment methods
+* make `brand` property on PUCardToken deprecated, merchants should use 'scheme' instead
+* replace `refReqId` property with `userInfo` in `PUAuthorizationDelegate` method which might contain error or refReqId
+* add  `logoImageProvider` property to `PUVisualStyle` instance to give merchants ability to customize SDK logo in navigationBar
+* replace 'MM/YYYY' with 'MM/YY' placeholder in `PUAddCardService`
+* add `PUCardExpirationDateValidator` class to validate inputed card expiration date (supports both 'MM/YY' and 'MM/YYYY' formats)
+* add `PUActivityIndicatorView` instance to `PUWebAuthorizationViewController` to indicate webView loading state.  
+* add `cardBrandImageProvider` and `bankBrandImageProvider` properties to  `PUPaymentMethodsConfiguration` to add ability to change 'card' and 'bank' icons in the `PUPaymentMethodsViewController`
+
 ## Release 0.9.1
 Prepared on Mon, 08/06/2020
 ### Changes:
