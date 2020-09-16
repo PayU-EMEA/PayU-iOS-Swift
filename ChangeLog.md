@@ -1,5 +1,11 @@
 # PayU SDK Lite Change Log
 
+## Release 0.9.3
+Prepared on Wed, 16/09/2020
+### Changes:
+* invalid SSL certificates removed
+* fix issue with BLIK logo dissapear in `PUPaymentWidget` in case when there are no `blikTokens` provided to `PUPaymentMethodsConfiguration` instance
+
 ## Release 0.9.2
 Prepared on Wed, 19/08/2020
 ### Changes:
