@@ -13,5 +13,6 @@ Describes authorization results/status.
 typedef NS_ENUM(NSInteger, PUAuthorizationResult) {
     PUAuthorizationResultSuccess,
     PUAuthorizationResultFailure,
-    PUAuthorizationResultContinueCvv
+    PUAuthorizationResultContinueCvv,
+    PUAuthorizationResultExternalApplication,
 };

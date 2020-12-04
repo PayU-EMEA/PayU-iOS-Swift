@@ -1,5 +1,12 @@
 # PayU SDK Lite Change Log
 
+## Release 0.9.4
+Prepared on Wed, 03/12/2020
+### Changes:
+* Added `PUAuthorizationResultExternalApplication` value to `PUAuthorizationResult`
+* Added automatic 3rd part applications open for `PEX` and `PBL` payment methods
+* `trimSymbols.sh`  has been removed from source files and need to be added [manually](https://github.com/PayU-EMEA/PayU-iOS). 
+
 ## Release 0.9.3
 Prepared on Wed, 16/09/2020
 ### Changes:
