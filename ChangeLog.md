@@ -1,11 +1,17 @@
 # PayU SDK Lite Change Log
 
+## Release 0.9.5
+Prepared on Wed, 09/03/2020
+### Changes:
+* Added `PUCardBrandImageProvider` class so from now there is ability to get default brand image providers for `MasterCard`, `Maestro`, `Visa` payment methods. Local stored images for these providers has been removed. 
+* Convert fat `.framework` to `.xcframework`
+
 ## Release 0.9.4
 Prepared on Wed, 03/12/2020
 ### Changes:
 * Added `PUAuthorizationResultExternalApplication` value to `PUAuthorizationResult`
 * Added automatic 3rd part applications open for `PEX` and `PBL` payment methods
-* `trimSymbols.sh`  has been removed from source files and need to be added [manually](https://github.com/PayU-EMEA/PayU-iOS). 
+* `trimSymbols.sh`  has been removed from source files and need to be added [manually](https://github.com/PayU-EMEA/PayU-iOS).
 
 ## Release 0.9.3
 Prepared on Wed, 16/09/2020
