@@ -1,5 +1,10 @@
 # PayU SDK Lite Change Log
 
+## Release 0.9.6
+Prepared on Wed, 23/03/2020
+### Changes:
+* Updated resources URL for  `PUCardBrandImageProvider`
+
 ## Release 0.9.5
 Prepared on Wed, 09/03/2020
 ### Changes:
