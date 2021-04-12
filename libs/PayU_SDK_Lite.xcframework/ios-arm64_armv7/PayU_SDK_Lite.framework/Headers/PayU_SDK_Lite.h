@@ -24,12 +24,21 @@ FOUNDATION_EXPORT const unsigned char PayU_SDK_LiteVersionString[];
 
 #import <PayU_SDK_Lite/PUCardBrandImageProvider.h>
 #import <PayU_SDK_Lite/PUAddCardService.h>
+#import <PayU_SDK_Lite/PUAddCardConfiguration.h>
 #import <PayU_SDK_Lite/PUAddCardViewController.h>
+#import <PayU_SDK_Lite/PUCardRecognizerService.h>
+#import <PayU_SDK_Lite/PUCameraAuthorizationError.h>
 #import <PayU_SDK_Lite/PUCustomFooterAddCardViewController.h>
 
 #import <PayU_SDK_Lite/PUPaymentMethod.h>
 #import <PayU_SDK_Lite/PUPaymentMethodParser.h>
 #import <PayU_SDK_Lite/PUCardToken.h>
+#import <PayU_SDK_Lite/PUCardTokenizer.h>
+#import <PayU_SDK_Lite/PUTokenizedCardData.h>
+#import <PayU_SDK_Lite/PUTokenizeRequestConfig.h>
+#import <PayU_SDK_Lite/PUCardTokenizerBuilder.h>
+#import <PayU_SDK_Lite/PUCardData.h>
+#import <PayU_SDK_Lite/PUAPICallStatus.h>
 #import <PayU_SDK_Lite/PUPayByLink.h>
 #import <PayU_SDK_Lite/PUBlikCode.h>
 #import <PayU_SDK_Lite/PUBlikToken.h>

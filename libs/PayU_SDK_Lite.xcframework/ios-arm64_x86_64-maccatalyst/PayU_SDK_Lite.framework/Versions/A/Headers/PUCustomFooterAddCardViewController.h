@@ -12,7 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PUCustomFooterAddCardViewController : PUAddCardViewController
 
 /*! @brief WARNING: By using this class YOU take the full responsibility of presenting the TERMS OF SERVICE to the user. It is advised not to use it unless you contacted PayU before. */
-+ (instancetype)addCardViewControllerWithVisualStyle:(PUVisualStyle *)visualStyle posID:(NSString *)posID environment:(PUEnvironment)environment footerView:(UIView *) footerView;
++ (instancetype)addCardViewControllerWithVisualStyle:(PUVisualStyle *)visualStyle
+                                       configuration:(PUAddCardConfiguration *)configuration
+                                          footerView:(UIView *)footerView;
 
 @end
 

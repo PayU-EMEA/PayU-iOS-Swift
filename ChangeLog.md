@@ -1,5 +1,14 @@
 # PayU SDK Lite Change Log
 
+## Release 0.9.7
+Prepared on Wed, 12/04/2020
+### Changes:
+* Added ability to scan card during add card flow
+* Added `isCardScanningEnabled` property to `PUPaymentMethodsConfiguration` class
+* `PUAddCardConfiguration` instantiation parameters `posID` and `environment` changed to `configuration`
+* Added optional method `didFailToScanCardWithError` to `PUAddCardViewControllerDelegate`
+* Added `PUCardRecognizerService`class to trigger card scanning process form custom views
+
 ## Release 0.9.6
 Prepared on Wed, 23/03/2020
 ### Changes:

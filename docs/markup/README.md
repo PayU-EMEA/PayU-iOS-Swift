@@ -3,7 +3,7 @@ New PayU SDK Lite (aka: Fronts SDK Mobile) is younger brother of PayTouch SDK. P
 
 The whole process shopping looks like that:
 
-![Shopping Process](documentation-resources/payu-shopping-process.png)
+![Shopping Process](resources/payu-shopping-process.png)
 
 PayU SDK Lite is created for more advanced merchants and consist 
 of components that could be used **almost independent**:
@@ -36,6 +36,7 @@ This module supports Pay By Links, 3DS and PEX (PayU Express) payments which req
 This module adding/removing card for user on PayU backend. Adding card means collect all required data from user and convert (with usage of PayU backend) to card token which can be used to trigger payment process
 - `PUAddCardService`
 - `PUAddCardViewController`
+- `PUCardRecognizerService`
 
 ## Technical details
 PayU SDK Lite is provieded as iOS Framework (fat/Universal - which can be used either on physical device or simulator). Due to compatibility reasons framework is written in Objective-C but without any changes can be integrated into Swift based app.
@@ -48,13 +49,13 @@ Supported languages: English, Polish, German, Czech, Hungarian
 To add the PayU Lite iOS SDK to your Xcode project you have to:
 - extract downloaded package in your local ﬁle system
 - add the PayU_SDK_Lite.framework to your Xcode project:
-	- click on your app target and choose the "General" tab
+    - click on your app target and choose the "General" tab
     - ﬁnd the section called "Embedded Binaries", click the plus (+) sign, and then click the "Add Other" button
-    	- from the ﬁle dialog box, select the "PayU_SDK_Lite.framework" folder (ensure that the "Copy items if needed" and "Create folder reference" options are selected)
-	- click Finish
+        - from the ﬁle dialog box, select the "PayU_SDK_Lite.framework" folder (ensure that the "Copy items if needed" and "Create folder reference" options are selected)
+    - click Finish
 - ensure (see next image) that PayU_SDK_Lite.framework appears in the "Embedded Binaries" and the "Linked Frameworks and Libraries" sections
 
-![Integration Process](documentation-resources/xcode-project-intagrated-framework.png)
+![Integration Process](resources/xcode-project-intagrated-framework.png)
 
 Note: this SDK version allows merchant to debug with XCode app during development process.
 
@@ -191,7 +192,7 @@ PUAboutViewController *aboutViewController = [PUAboutViewController aboutViewCon
 ```
 | Light | Dark |
 | ----------- | ----------- |
-| ![About Screen Light](documentation-resources/about-light.png) | ![About Screen Dark](documentation-resources/about-dark.png) |
+| ![About Screen Light](resources/about-light.png) | ![About Screen Dark](resources/about-dark.png) |
 
 
 ## WebPayments
@@ -212,75 +213,77 @@ Sample use case for WebPayments module - handling PBL payment:
 This module contains objects:
 - `PUWebAuthorizationViewController` - presents for user PayByLink process and handle whole interaction
 - `PUWebAuthorizationBuilder` - creates `PUWebAuthorizationViewController` with provided request and UI style.
-	```objc
-	- (PUWebAuthorizationViewController *)viewControllerForPayByLinkAuthorizationRequest:(PUPayByLinkAuthorizationRequest *)request
-	                                                                         visualStyle:(PUVisualStyle *)style;
-	
-	- (PUWebAuthorizationViewController *)viewControllerFor3dsAuthorizationRequest:(PU3dsAuthorizationRequest *)request
-	                                                                   visualStyle:(PUVisualStyle *)style;
-	
-	- (PUWebAuthorizationViewController *)viewControllerForPexAuthorizationRequest:(PUPexAuthorizationRequest *)request
-	                                                                   visualStyle:(PUVisualStyle *)style);
-	```
+    ```objc
+    - (PUWebAuthorizationViewController *)viewControllerForPayByLinkAuthorizationRequest:(PUPayByLinkAuthorizationRequest *)request
+                                                                             visualStyle:(PUVisualStyle *)style;
+    
+    - (PUWebAuthorizationViewController *)viewControllerFor3dsAuthorizationRequest:(PU3dsAuthorizationRequest *)request
+                                                                       visualStyle:(PUVisualStyle *)style;
+    
+    - (PUWebAuthorizationViewController *)viewControllerForPexAuthorizationRequest:(PUPexAuthorizationRequest *)request
+                                                                       visualStyle:(PUVisualStyle *)style);
+    ```
 - `PUPayByLinkAuthorizationRequest` - represents PayByLink request with order IDs, redirect URIs - all expected ﬁelds are initialized by designated initializer:
-	```objc
-	- (instancetype)initWithOrderId:(NSString *)orderId
-	                     extOrderId:(NSString *)extOrderId
-	                    redirectUri:(NSURL *)redirectUri
-	                    continueUrl:(NSURL *)continueUrl;
-		// continueUrl needed for PAY_BY_LINK payments, this URL could be obtained 
-        	// from `OrderCreateResponse` or it is a shop page that was verﬁed by PayU Administrators.                    
-	```
+    ```objc
+    - (instancetype)initWithOrderId:(NSString *)orderId
+                         extOrderId:(NSString *)extOrderId
+                        redirectUri:(NSURL *)redirectUri
+                        continueUrl:(NSURL *)continueUrl;
+        // continueUrl needed for PAY_BY_LINK payments, this URL could be obtained 
+            // from `OrderCreateResponse` or it is a shop page that was verﬁed by PayU Administrators.                    
+    ```
 - `PUAuthorizationDelegate` - protocol to be implemented by `PUWebAuthorizationViewController` delegate to receive payment status.
-	```objc
-	@protocol PUAuthorizationDelegate
-	- (void)authorizationRequest:(id<PUAuthorizationRequest>)request
-	         didFinishWithResult:(PUAuthorizationResult)result
-	                    userInfo:(nullable NSDictionary*)userInfo;
-	@end
-	```
+    ```objc
+    @protocol PUAuthorizationDelegate
+    - (void)authorizationRequest:(id<PUAuthorizationRequest>)request
+             didFinishWithResult:(PUAuthorizationResult)result
+                        userInfo:(nullable NSDictionary*)userInfo;
+    @end
+    ```
 - `PUAuthorizationResult` - webPayment method status with possible values:
-	- `PUAuthorizationResultSuccess` - `userInfo` should be empty
-	- `PUAuthorizationResultContinueCVV` - `userInfo` should contain `refReqId` value for key `PUAuthorizationResultRefReqIdUserInfoKey`. After you receive this result, there is needed an additional action to authorize CVV via `PUCVVAuthorizationHandler`
-	- `PUAuthorizationResultFailure` - `userInfo` should contain detailed NSError value for key `PUAuthorizationResultErrorUserInfoKey`
-	```objc
-	typedef NS_ENUM(NSInteger, PUAuthorizationResult) {
-	    PUAuthorizationResultSuccess,
-	    PUAuthorizationResultFailure,
-	    PUAuthorizationResultContinueCvv
-	};
-	```
+    - `PUAuthorizationResultSuccess` - `userInfo` should be empty
+    - `PUAuthorizationResultContinueCVV` - `userInfo` should contain `refReqId` value for key `PUAuthorizationResultRefReqIdUserInfoKey`. After you receive this result, there is needed an additional action to authorize CVV via `PUCVVAuthorizationHandler`
+    - `PUAuthorizationResultFailure` - `userInfo` should contain detailed NSError value for key `PUAuthorizationResultErrorUserInfoKey`
+    - `PUAuthorizationResultExternalApplication` - when user was redirected to the extenal application application. This flow can appear in two cases. The first case is when `PUPexAuthorizationRequest` or `PUPayByLinkAuthorizationRequest` instance contains `redirectUri` value as an application redirect scheme (for ex. `app://scheme?param=value`). The second case is when during the web authorization process user should tap on any button which contains internal app `url` (for ex. `app://scheme?param=value`).  `userInfo` should be empty
+    ```objc
+    typedef NS_ENUM(NSInteger, PUAuthorizationResult) {
+        PUAuthorizationResultSuccess,
+        PUAuthorizationResultFailure,
+        PUAuthorizationResultContinueCvv,
+        PUAuthorizationResultExternalApplication
+    };
+    ```
  To use WebPayment method module (PayByLink) you have to:
  - Initial condition - create order on PayU backend with PayByLink or 3DS payment (documentation link: https://payu21.docs.apiary.io/#reference/api-endpoints/order-api-endpoint/create-a-new-order)
  - create `PUPayByLinkAuthorizationRequest` and ﬁll all necessary ﬁelds (the only required ﬁeld is redirectUri, all others optional and can be used by merchant when authorization result receive)
  - create `PUWebAuthorizationViewController` with help of `PUWebAuthorizationBuilder` (`PUVisualStyle` injected)
-	```objc
+    ```objc
     PUVisualStyle *uiStyle = [PUVisualStyle defaultStyle]; 
     PUPayByLinkAuthorizationRequest *request = [[PUPayByLinkAuthorizationRequest alloc] 
-						   initWithOrderId:@"orderID" 
-							extOrderId:@"externalOrderID" 
-						       redirectUri:[NSURL URLWithString:@"redirectURIString"] 
-						       continueUrl:[NSURL URLWithString:@"continueURLString"]]; 
-	PUWebAuthorizationViewController *webAuthorizationViewController = [[PUWebAuthorizationBuilder alloc] viewControllerForPayByLinkAuthorizationRequest:request visualStyle:uiStyle];
-	```
+                           initWithOrderId:@"orderID" 
+                            extOrderId:@"externalOrderID" 
+                               redirectUri:[NSURL URLWithString:@"redirectURIString"] 
+                               continueUrl:[NSURL URLWithString:@"continueURLString"]]; 
+    PUWebAuthorizationViewController *webAuthorizationViewController = [[PUWebAuthorizationBuilder alloc] viewControllerForPayByLinkAuthorizationRequest:request visualStyle:uiStyle];
+    ```
 - implement `PUAuthorizationDelegate`
-	```objc
-	webAuthorizationViewController.delegate = self;
-	UINavigationController *navigationController = [[UINavigationController alloc] 		
-				initWithRootViewController:webAuthorizationViewController];
-	[navigationController presentViewController:navigation animated:YES completion:nil];
-	```
+    ```objc
+    webAuthorizationViewController.delegate = self;
+    UINavigationController *navigationController = [[UINavigationController alloc]         
+                initWithRootViewController:webAuthorizationViewController];
+    [navigationController presentViewController:navigation animated:YES completion:nil];
+    ```
 | Light | Dark |
 | ----------- | ----------- |
-| ![About Screen Light](documentation-resources/web-auth-light.png) | ![About Screen Dark](documentation-resources/web-auth-dark.png) |
+| ![About Screen Light](resources/web-auth-light.png) | ![About Screen Dark](resources/web-auth-dark.png) |
 
 To use WebPayment method module with 3DS you have to change (in above example):
 ```objc
 PUPexAuthorizationRequest *request = [[PUPexAuthorizationRequest alloc] 
-		initWithOrderId:@"orderID"
+        initWithOrderId:@"orderID"
                      extOrderId:@"externalOrderID"
-		    redirectUri:[NSURL URLWithString:@"redirectURIString"]
-		    continueUrl:[NSURL URLWithString:@"continueURLString"]];
+            redirectUri:[NSURL URLWithString:@"redirectURIString"]
+            continueUrl:[NSURL URLWithString:@"continueURLString"]];
     
     PUWebAuthorizationViewController *webAuthorizationViewController = [[PUWebAuthorizationBuilder alloc]
                                                                         viewControllerForPexAuthorizationRequest:request
@@ -290,10 +293,10 @@ PUPexAuthorizationRequest *request = [[PUPexAuthorizationRequest alloc]
 To use WebPayment method module with PEX you have to change (in above example):
 ```objc
 PUPexAuthorizationRequest *request = [PUPexAuthorizationRequest alloc] 
-		initWithOrderId:@"orderID"
-		     extOrderId:@"externalOrderID"
+        initWithOrderId:@"orderID"
+             extOrderId:@"externalOrderID"
                     redirectUri:[NSURL URLWithString:@"redirectURIString"] 
-		    continueUrl:[NSURL URLWithString:@"continueURLString"]];
+            continueUrl:[NSURL URLWithString:@"continueURLString"]];
 PUWebAuthorizationViewController *webAuthorizationViewController = [[PUWebAuthorizationBuilder alloc] viewControllerForPexAuthorizationRequest:request visualStyle:uiStyle];
 ```
 
@@ -308,56 +311,57 @@ Sample use case for PaymentMethod & PaymentWidget module:
 - Select Payment Method - end user will select payment method Select
 - Payment Method - return to mobile/local checkout
 
-![Payments Flow](documentation-resources/payment-methods-and-payment-widget-flow.png)
+![Payments Flow](resources/payment-methods-and-payment-widget-flow.png)
 
 This module contains objects:
 - `PUPaymentMethodParser` - default json parser for payment methods. Data parsed by this parser should be fetch from the paymethods API endpoint. Available error codes are: `PUPaymentMethodParserMissingKeyErrorCode`, `PUPaymentMethodParserInvalidStatusErrorCode`.
-	```objc
-	- (PUPayByLink *)parsePayByLinkMethodFromJSONData:(NSData *)data error:(NSError **)error;
-	- (PUCardToken *)parseCardTokenMethodFromJSONData:(NSData *)data error:(NSError **)error;
-	- (PUPexToken *)parsePexTokenMethodFromJSONData:(NSData *)data error:(NSError **)error;
-	- (PUBlikToken *)parseBlikTokenMethodFromJSONData:(NSData *)data error:(NSError **)error;
-	```
+    ```objc
+    - (PUPayByLink *)parsePayByLinkMethodFromJSONData:(NSData *)data error:(NSError **)error;
+    - (PUCardToken *)parseCardTokenMethodFromJSONData:(NSData *)data error:(NSError **)error;
+    - (PUPexToken *)parsePexTokenMethodFromJSONData:(NSData *)data error:(NSError **)error;
+    - (PUBlikToken *)parseBlikTokenMethodFromJSONData:(NSData *)data error:(NSError **)error;
+    ```
 - `PUPaymentWidgetService` - provides PaymentWidget for merchant and handle whole interaction
 - `PUPaymentWidgetServiceDelegate`- protocol to be implemented by PUPaymentWidgetService delegate to receive payment method select status
-	```objc
+    ```objc
     @protocol PUPaymentWidgetServiceDelegate
-	- (void)paymentWidgetService:(PUPaymentWidgetService *)paymentWidgetService didSelectCardToken:(PUCardToken *)cardToken;
-	- (void)paymentWidgetService:(PUPaymentWidgetService *)paymentWidgetService didSelectPayByLink:(PUPayByLink *)payByLink;
-	- (void)paymentWidgetService:(PUPaymentWidgetService *)paymentWidgetService didSelectApplePay:(PUApplePay *)applePay;
-	- (void)paymentWidgetService:(PUPaymentWidgetService *)paymentWidgetService didSelectBlikCode:(PUBlikCode *)blikCode;
-	- (void)paymentWidgetService:(PUPaymentWidgetService *)paymentWidgetService didSelectBlikToken:(PUBlikToken *)blikToken;
-	- (void)paymentWidgetService:(PUPaymentWidgetService *)paymentWidgetService didSelectPexToken:(PUPexToken *)pexToken;
-	- (void)paymentWidgetServiceDidDeselectPaymentMethod:(PUPaymentWidgetService *)paymentWidgetService;
-	- (void)paymentWidgetService:(PUPaymentWidgetService *)paymentWidgetService didDeleteCardToken:(PUCardToken *)cardToken;
-	- (void)paymentWidgetService:(PUPaymentWidgetService *)paymentWidgetService didDeletePexToken:(PUPexToken *)pexToken;
-	@end
+    - (void)paymentWidgetService:(PUPaymentWidgetService *)paymentWidgetService didSelectCardToken:(PUCardToken *)cardToken;
+    - (void)paymentWidgetService:(PUPaymentWidgetService *)paymentWidgetService didSelectPayByLink:(PUPayByLink *)payByLink;
+    - (void)paymentWidgetService:(PUPaymentWidgetService *)paymentWidgetService didSelectApplePay:(PUApplePay *)applePay;
+    - (void)paymentWidgetService:(PUPaymentWidgetService *)paymentWidgetService didSelectBlikCode:(PUBlikCode *)blikCode;
+    - (void)paymentWidgetService:(PUPaymentWidgetService *)paymentWidgetService didSelectBlikToken:(PUBlikToken *)blikToken;
+    - (void)paymentWidgetService:(PUPaymentWidgetService *)paymentWidgetService didSelectPexToken:(PUPexToken *)pexToken;
+    - (void)paymentWidgetServiceDidDeselectPaymentMethod:(PUPaymentWidgetService *)paymentWidgetService;
+    - (void)paymentWidgetService:(PUPaymentWidgetService *)paymentWidgetService didDeleteCardToken:(PUCardToken *)cardToken;
+    - (void)paymentWidgetService:(PUPaymentWidgetService *)paymentWidgetService didDeletePexToken:(PUPexToken *)pexToken;
+    @end
     ```
 - `PUPaymentWidget` - `UIView` for `PUPaymentWidget`
 - `PUPaymentMethodsConfiguration` - configuration object.
-	```objc
+    ```objc
     @interface PUPaymentMethodsConfiguration : NSObject
-	@property (copy, nonatomic) NSString *posID; // Describes MerchantID
-	@property (nonatomic) PUEnvironment environment; // Describes which environment should be used for network calls
-	@property (copy, nonatomic) NSArray <PUCardToken *> *cardTokens; // CardTokens retrived for user from PayU backend
-	@property (copy, nonatomic) NSArray <PUBlikToken *> *blikTokens; // BlikTokens retrived for user from PayU backend
-	@property (copy, nonatomic) NSArray <PUPayByLink *> *payByLinks; // PayByLinks retrived for user from PayU backend
-	@property (copy, nonatomic) NSArray <PUPexToken *> *pexTokens; // PEX Tokens retrived for user from PayU backend
-	@property (nonatomic) BOOL showAddCard; // Describes whether Add Card action should be presented in PaymentMethodListViewController
-	@property (nonatomic) BOOL showPayByLinks; // Describes whether Bank Transfer action should be presented in PaymentMethodListViewController
-	@property (nonatomic) BOOL isBlikEnabled; // Describes whether BLIK payment method should be available. Requires POS with configured BLIK payment method.
-	@property (nullable, strong, nonatomic) PUBrandImageProvider* cardBrandImageProvider; // Custom image for 'Card' method payment in `PUPaymentMethodListViewController`
-	@property (nullable, strong, nonatomic) PUBrandImageProvider* bankBrandImageProvider; // Custom image for 'Bank' method payment in `PUPaymentMethodListViewController`
-	@end
+    @property (copy, nonatomic) NSString *posID; // Describes MerchantID
+    @property (nonatomic) PUEnvironment environment; // Describes which environment should be used for network calls
+    @property (copy, nonatomic) NSArray <PUCardToken *> *cardTokens; // CardTokens retrived for user from PayU backend
+    @property (copy, nonatomic) NSArray <PUBlikToken *> *blikTokens; // BlikTokens retrived for user from PayU backend
+    @property (copy, nonatomic) NSArray <PUPayByLink *> *payByLinks; // PayByLinks retrived for user from PayU backend
+    @property (copy, nonatomic) NSArray <PUPexToken *> *pexTokens; // PEX Tokens retrived for user from PayU backend
+    @property (nonatomic) BOOL showAddCard; // Describes whether Add Card action should be presented in PaymentMethodListViewController
+    @property (assign, nonatomic) BOOL isCardScanningEnabled; // Available from iOS 13 - Enable / disable card scanning option during Add Card process. Default is `NO`.
+    @property (nonatomic) BOOL showPayByLinks; // Describes whether Bank Transfer action should be presented in PaymentMethodListViewController
+    @property (nonatomic) BOOL isBlikEnabled; // Describes whether BLIK payment method should be available. Requires POS with configured BLIK payment method.
+    @property (nullable, strong, nonatomic) PUBrandImageProvider* cardBrandImageProvider; // Custom image for 'Card' method payment in `PUPaymentMethodListViewController`
+    @property (nullable, strong, nonatomic) PUBrandImageProvider* bankBrandImageProvider; // Custom image for 'Bank' method payment in `PUPaymentMethodListViewController`
+    @end
     ```
     
 To use `PUAddCardService` you have to:
 - create `PUPaymentWidgetService`
-	```objc
+    ```objc
     PUPaymentWidgetService *paymentWidgetService = [[PUPaymentWidgetService alloc] init];
     ```
 - create and fill `PUPaymentMethodsConfiguration`
-	```objc
+    ```objc
     PUPaymentMethodsConfiguration *configuration = [[PUPaymentMethodsConfiguration alloc] init]; 
     configuration.posId = @"posID_merchantID";
     configuration.environment = PUEnvironmentSandbox; // or PUEnvironmentProduction for production 
@@ -365,24 +369,25 @@ To use `PUAddCardService` you have to:
     configuration.pexTokens = received_pexTokens; // assign parsed pexToken objects received from PayU backend 
     configuration.payByLinks = received_payByLinks; // assign parsed payByLink objects received from PayU backend
     configuration.showAddCard = YES; // or NO if end user shouldn't have possibility to add new card
+    configuration.isCardScanningEnabled = YES;
     ```
  - implement & set `PUPaymentWidgetServiceDelegate`
-	```objc
-	paymentWidgetService.delegate = self;
+    ```objc
+    paymentWidgetService.delegate = self;
     ```
 - grab `PUPaymentWidget` from `PUPaymentWidgetService` and present it to end user according to your strategy
-	```objc
-	PUPaymentWidget *paymentWidget = [paymentWidgetService getWidgetWithStyle:uiStyle configuration:configuration];
+    ```objc
+    PUPaymentWidget *paymentWidget = [paymentWidgetService getWidgetWithStyle:uiStyle configuration:configuration];
     ```
 - during the lifetime of `PUPaymentWidgetService` you still can update configuration attached to it without need to recreat whole object
-	```objc
-	PUPaymentMethodsConfiguration *newConfiguration = [[PUPaymentMethodsConfiguration alloc] init];
-	// ... update all needed fields ...
-	[paymentWidgetService updateWithConfiguration:newConfiguration];
+    ```objc
+    PUPaymentMethodsConfiguration *newConfiguration = [[PUPaymentMethodsConfiguration alloc] init];
+    // ... update all needed fields ...
+    [paymentWidgetService updateWithConfiguration:newConfiguration];
     ```
 - and you can also clear all cache (provided payment methods (pbls, cards & pex) and selected payment method) for `PUPaymentWidgetService`
-	```objc
-	[paymentWidgetService clearCache]
+    ```objc
+    [paymentWidgetService clearCache]
     ```
 
 #### Note
@@ -395,7 +400,7 @@ which should be handle on PayU backend according to documentation: https://payu2
 
 |  |  |  |  |
 | ----------- | ----------- | ----------- | ----------- |
-|![](documentation-resources/widget-payment-not-selected-light.png)|![](documentation-resources/widget-payment-mbank-selected-light.png)|![](documentation-resources/methods-list-light.png)|![](documentation-resources/methods-list-light-delete.png)|
+|![](resources/widget-payment-not-selected-light.png)|![](resources/widget-payment-mbank-selected-light.png)|![](resources/methods-list-light.png)|![](resources/methods-list-light-delete.png)|
 
 ## AddCard
 
@@ -405,71 +410,104 @@ AddCard module is used to add new payment card by the user to PayU endpoint. Sam
 - Request add new Card - Tokenize sended card on PayU backend
 - Request add new Card/Return Card token - Send token to merchant mobile App
 
-![Add Card Flow](documentation-resources/add-card-flow.png)
+![Add Card Flow](resources/add-card-flow.png)
 
 Embedding AddCard form on screen is on merchant side.
 
 This module contains objects:
 - `PUAddCardService` - provides AddCard form for merchant and handle whole interaction. Requires from merchant to provide buttons to trigger action
-	- Use - this action will use card one (create one time token) - will not store this card in PayU backend
-	- Save & Use - this action will save (after 1st correct payment) card on PayU backend (card will be available in retreive payment methods)
+    - Use - this action will use card one (create one time token) - will not store this card in PayU backend
+    - Save & Use - this action will save (after 1st correct payment) card on PayU backend (card will be available in retreive payment methods)
 - `PUAddCardViewController` - presents for user all screen AddCard form and handle whole interaction.
 - `PUAddCardViewControllerDelegate` - protocol to be implemented by `PUAddCardViewController` delegate to receive add card status.
-	```objc
-	@protocol PUAddCardViewControllerDelegate
-    - (void)addCardViewController:(PUAddCardViewController *)viewController didAddCardWithCardToken:(PUCardToken *)cardToken;
-    - (void)addCardViewController:(PUAddCardViewController *)viewController didFailToAddCardWithError:(NSError *)error;
+    ```objc
+    @protocol PUAddCardViewControllerDelegate
+  
+    @required
+    - (void)addCardViewController:(PUAddCardViewController *)viewController
+          didAddCardWithCardToken:(PUCardToken *)cardToken;
+
+    - (void)addCardViewController:(PUAddCardViewController *)viewController
+        didFailToAddCardWithError:(NSError *)error;
+
+    @optional
+    - (void)addCardViewController:(PUAddCardViewController *)viewController
+           didFailToScanCardWithError:(NSError *)error; 
+    // For more info about `error` check `PUCameraAuthorizationError` documentation
+
+  
     @end
-	```
+    ```
 
 #### PUAddCardService
 To use `PUAddCardService` you have to:
 - create `PUAddCardService`
-	```objc
-	PUAddCardService *addCardService = [[PUAddCardService alloc] init];
+    ```objc
+    PUAddCardService *addCardService = [[PUAddCardService alloc] init];
     ```
 - grab AddCardWidget from PUAddCardService and layout it in parent view
-	```objc
-	PUVisualStyle *uiStyle = [PUVisualStyle defaultStyle];
-	UIView *addCardWidget = [addCardService addCardViewWithStyle:uiStyle]; 
+    ```objc
+    PUVisualStyle *uiStyle = [PUVisualStyle defaultStyle];
+    UIView *addCardWidget = [addCardService addCardViewWithStyle:uiStyle]; 
     // add addCardWidget to parent view & layout
     ```
 - add action buttons with action triggering
-	```objc
-	- (void)addCardAndSave:(BOOL)save
-    	             posID:(NSString *)posID
-	           environment:(PUEnvironment)environment
-    	           success:(PUAddCardSuccesAction)successAction
-        	       failure:(PUAddCardFailureAction)failureAction;
+    ```objc
+    - (void)addCardAndSave:(BOOL)save
+                     posID:(NSString *)posID
+               environment:(PUEnvironment)environment
+                   success:(PUAddCardSuccesAction)successAction
+                   failure:(PUAddCardFailureAction)failureAction;
     ```
 - present View/ViewController to user according to your strategy
 
 | Light | Dark |
 | ----------- | ----------- |
-| ![Light](documentation-resources/add-card-widget-light.png) | ![Dark](documentation-resources/add-card-widget-dark.png) |
+| ![Light](resources/add-card-widget-light.png) | ![Dark](resources/add-card-widget-dark.png) |
 
 #### PUAddCardViewController
 This module can be used when merchant doesn't want to apply custom branding for add card form and still want to be able to provide user possibility to add new card for payment. `PUAddCardViewController` is presented by SDK for add card action from PaymentMethod List
 
 To use `PUAddCardViewController` you have to:
 - create `PUAddCardViewController`
-	```objc
-	PUVisualStyle *uiStyle = [PUVisualStyle defaultStyle]; 
-    PUAddCardViewController *addCardViewController = [PUAddCardViewController addCardViewControllerWithVisualStyle:uiStyle merchantID:@"merchantID"];
+    ```objc
+    PUVisualStyle* visualStyle = [PUVisualStyle defaultStyle];
+    PUAddCardConfiguration* configuration = [[PUAddCardConfiguration alloc] initWithPosID:@"pos_id" environment:PUEnvironment isCardScanningEnabled:YES];
+    PUAddCardViewController* viewController = [PUAddCardViewController addCardViewControllerWithVisualStyle:visualStyle configuration:configuration];
     ```
 - implement & set `PUAddCardViewControllerDelegate`
-	```objc
-	addCardViewController.addCardDelegate = self;
+    ```objc
+    viewController.delegate = self;
     ```
 - present `PUAddCardViewController`
-	```objc
-	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:addCardViewController];
+    ```objc
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
     [navigationController presentViewController:navigation animated:YES completion:nil];
     ```
 
+To enable scan card feature:
+- If you use add card view controller as a part of `Payment Methods` flow, please set property `isCardScanningEnabled` value of `PUPaymentMethodsConfiguration` instance to `YES`
+- If you use add card view controller as a separate flow, please set property `isCardScanningEnabled` value of `PUAddCardConfiguration` instance to `YES`
+
+Also you need to do additional steps:
+- add NSCameraUsageDescription in your application’s plist - a message that tells the user why the app is requesting access to the device’s camera.
+- handle user's camera authorization status. Framework should ask for the permission for the first time. In case of any errors (denied, restricted, etc.) it should throw an error via the `PUAddCardViewControllerDelegate` delegate method.
+
+#### PUCardRecognizerService
+This class allows to open scan card controller triggering from anywhere. 
+To use it:
+1. Creare instance of `PUCardRecognizerService`
+2. Add for ex. button which will trigger action to open card scanner
+3. Call method `recognizeCard...` of `PUCardRecognizerService` class instance
+4. Handle result of card scanning. 
+
+Notes:
+- Implementing this functionality you must handle all cases and flows regarding camera permissions.
+- Card Expiration Date should be passed in completion handler as string. It might take 2 types: `MM/yy` or `MM/yyyy`.
+
 | Light | Dark |
 | ----------- | ----------- |
-| ![Light](documentation-resources/add-card-view-controller-light.png) | ![Dark](documentation-resources/add-card-view-controller-dark.png) |
+| ![Light](resources/add-card-view-controller-light.png) | ![Dark](resources/add-card-view-controller-dark.png) |
 
 > NOTE: AddCard functionality implements SSL certificate pinning. Listening to network traffic using an untrusted certificate will end with `NSURLErrorCancelled` (-999).
 
@@ -483,30 +521,30 @@ CVVAuthorization module is used to authorize card payment with CVV code (provide
 This module contains objects:
 - `PUCVVAuthorizationHandler` - Provides form to user & handles authorization process on backend side.
 - `PUCVVAuthorizationResult` - CVV Authorization status with possible values:
-	```objc
-	typedef NS_ENUM(NSInteger, PUCVVAuthorizationResult) { 
-    	PUCVVAuthorizationStatusCanceled = 0, 
+    ```objc
+    typedef NS_ENUM(NSInteger, PUCVVAuthorizationResult) { 
+        PUCVVAuthorizationStatusCanceled = 0, 
         PUCVVAuthorizationStatusFailure, 
         PUCVVAuthorizationStatusSuccess
-	};
+    };
     ```
 To use PUCVVAuthorizationHandler you have to: 
 - create `PUCVVAuthorizationHandler` 
-	```objc
-	PUVisualStyle *uiStyle = [PUVisualStyle defaultStyle];
-	PUCVVAuthorizationHandler *cvvAuthorizationHandler = [[PUCVVAuthorizationHandler alloc] initWithVisualStyle:uiStyle 
-    																								   UIparent:parentViewController 
+    ```objc
+    PUVisualStyle *uiStyle = [PUVisualStyle defaultStyle];
+    PUCVVAuthorizationHandler *cvvAuthorizationHandler = [[PUCVVAuthorizationHandler alloc] initWithVisualStyle:uiStyle 
+                                                                                                       UIparent:parentViewController 
                                                                                                     environment:PUEnvironmentSandbox];
     ```
 - trigger authorization process
-	```objc
-	[cvvAuthorizationHandler authorizeRefReqID:@"refReqID_received_from_PayUBackend" status:^(PUCVVAuthorizationResult authorizationResult) {
-		// implement authorization status change here
-	}];
+    ```objc
+    [cvvAuthorizationHandler authorizeRefReqID:@"refReqID_received_from_PayUBackend" status:^(PUCVVAuthorizationResult authorizationResult) {
+        // implement authorization status change here
+    }];
     ```
 | Light | Dark |
 | ----------- | ----------- |
-| ![CVV Light](documentation-resources/cvv-light.png) | ![CVV Dark](documentation-resources/cvv-dark.png) |
+| ![CVV Light](resources/cvv-light.png) | ![CVV Dark](resources/cvv-dark.png) |
 
 ## New BLIK payments
 
@@ -522,7 +560,7 @@ This payment will differ from previous BLIK payment. To unlock new payment type 
 
 | Light | Dark |
 | ----------- | ----------- |
-| ![BLIK Light](documentation-resources/blik-payments-light.png) | ![BLIK Dark](documentation-resources/blik-payments-dark.png) |
+| ![BLIK Light](resources/blik-payments-light.png) | ![BLIK Dark](resources/blik-payments-dark.png) |
 
 #### Setup on Mobile
 To turn on new BLIK please set the new flag in `PUPaymentMethodsConfiguration` object:
@@ -543,24 +581,24 @@ config.blikTokens = @[[[PUBlikToken alloc]
 `PUBlikCode` is a Payment when user does not store any BLIK payments in PayU environment so in this case user is required to input 6 digit code.
 | Light | Dark |
 | ----------- | ----------- |
-| ![BLIK Light](documentation-resources/blik-payment-enter-code-light.png) | ![BLIK Dark](documentation-resources/blik-payment-enter-code-dark.png) |
+| ![BLIK Light](resources/blik-payment-enter-code-light.png) | ![BLIK Dark](resources/blik-payment-enter-code-dark.png) |
 
 Handling generic BLIK CODE and BLIK TOKEN payments selection:
 ```objc
 @interface ViewController () <PUPaymentWidgetServiceDelegate> @end
 @implementation ViewController
 - (void) paymentWidgetService:(PUPaymentWidgetService *)paymentWidgetService didSelectBlikCode:(PUBlikCode *)blikCode {
-	// handle selection here
+    // handle selection here
 }
 - (void) paymentWidgetService:(PUPaymentWidgetService *)paymentWidgetService didSelectBlikToken:(PUBlikToken *)blikToken { 
-	// handle selection here
+    // handle selection here
 }
 @end
 ```
 Widget automatically validates user input. It does not allow to enter non-digit characters. Characters count must equal 6. If these conditions are not satisfied, `blikAuthorizationCode` will return nil.
 ```objc
 if (paymentWidgetService.isBlikAuthorizationCodeRequired) { 
-	NSString *code = paymentWidgetService.blikAuthorizationCode;
+    NSString *code = paymentWidgetService.blikAuthorizationCode;
     // use code here
 }
 ```
@@ -584,7 +622,7 @@ navigationVC.modalPresentationStyle = UIModalPresentationCurrentContext;
 
 | Light | Dark |
 | ----------- | ----------- |
-| ![BLIK Light](documentation-resources/blik-alternatives-light.png) | ![BLIK Dark](documentation-resources/blik-alternatives-dark.png) |
+| ![BLIK Light](resources/blik-alternatives-light.png) | ![BLIK Dark](resources/blik-alternatives-dark.png) |
 
 Handling BLIK ALTERNATIVE selection:
 ```objc
@@ -616,4 +654,4 @@ PUFooterView *footerView = [PUFooterView footerViewWithUIParent:self];
 ```
 | Light | Dark |
 | ----------- | ----------- |
-| ![Footer Light](documentation-resources/footer-light.png) | ![Footer Dark](documentation-resources/footer-dark.png) |
+| ![Footer Light](resources/footer-light.png) | ![Footer Dark](resources/footer-dark.png) |

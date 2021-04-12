@@ -40,6 +40,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// Describes whether Add Card action should be presented in PaymentMethodListViewController
 @property (nonatomic) BOOL showAddCard;
 
+/// Enable / disable card scanning option during Add Card process. If `yes`
+/// and camera is available, it should show additional button `Scan Card` under
+/// input fields on the Add Card Screen.
+@property (assign, nonatomic) BOOL isCardScanningEnabled API_AVAILABLE(ios(13.0)); 
+
 /// Describes whether Bank Transfer action should be presented in PaymentMethodListViewController
 @property (nonatomic) BOOL showPayByLinks;
 
