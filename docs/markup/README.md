@@ -279,15 +279,12 @@ This module contains objects:
 
 To use WebPayment method module with 3DS you have to change (in above example):
 ```objc
-PUPexAuthorizationRequest *request = [[PUPexAuthorizationRequest alloc] 
-        initWithOrderId:@"orderID"
-                     extOrderId:@"externalOrderID"
-            redirectUri:[NSURL URLWithString:@"redirectURIString"]
-            continueUrl:[NSURL URLWithString:@"continueURLString"]];
+    PU3dsAuthorizationRequest *request = [[PU3dsAuthorizationRequest alloc]
+            initWithOrderId:@"orderId"
+                 extOrderId:@"extOrderId"
+                redirectUri:[NSURL URLWithString:@"redirectUri"]];
     
-    PUWebAuthorizationViewController *webAuthorizationViewController = [[PUWebAuthorizationBuilder alloc]
-                                                                        viewControllerForPexAuthorizationRequest:request
-                                                                        visualStyle:style];
+    PUWebAuthorizationViewController *webAuthorizationViewController = [[PUWebAuthorizationBuilder alloc] viewControllerFor3dsAuthorizationRequest:request visualStyle:visualStyle];
 ```
 
 To use WebPayment method module with PEX you have to change (in above example):
