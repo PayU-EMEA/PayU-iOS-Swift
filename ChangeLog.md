@@ -1,7 +1,12 @@
 # PayU SDK Lite Change Log
 
+## Release 0.9.8
+Prepared on Wed, 05/05/2021
+### Changes:
+* Added ability to handle `3DS Soft Accept` flow
+
 ## Release 0.9.7
-Prepared on Wed, 12/04/2020
+Prepared on Wed, 12/04/2021
 ### Changes:
 * Added ability to scan card during add card flow
 * Added `isCardScanningEnabled` property to `PUPaymentMethodsConfiguration` class
@@ -10,12 +15,12 @@ Prepared on Wed, 12/04/2020
 * Added `PUCardRecognizerService`class to trigger card scanning process form custom views
 
 ## Release 0.9.6
-Prepared on Wed, 23/03/2020
+Prepared on Wed, 23/03/2021
 ### Changes:
 * Updated resources URL for  `PUCardBrandImageProvider`
 
 ## Release 0.9.5
-Prepared on Wed, 09/03/2020
+Prepared on Wed, 09/03/2021
 ### Changes:
 * Added `PUCardBrandImageProvider` class so from now there is ability to get default brand image providers for `MasterCard`, `Maestro`, `Visa` payment methods. Local stored images for these providers has been removed. 
 * Convert fat `.framework` to `.xcframework`

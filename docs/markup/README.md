@@ -297,6 +297,30 @@ PUPexAuthorizationRequest *request = [PUPexAuthorizationRequest alloc]
 PUWebAuthorizationViewController *webAuthorizationViewController = [[PUWebAuthorizationBuilder alloc] viewControllerForPexAuthorizationRequest:request visualStyle:uiStyle];
 ```
 
+#### 3DS (Soft Accept)
+
+To use WebPayment method module with 3DS (Soft Accept):
+
+- Create `redirectUri` URL instance
+- Create `PU3DSSoftAcceptRequest` instance passing `PUEnvironment` value and `redirectUri` value
+- Create `PU3DSSoftAcceptRequestPerformer` instance. This object should be responsible for handling of `3DS` processes.
+- Create `delegate` object (or it can be as usually `self`) so your class could implement 2 methods from `PU3DSSoftAcceptRequestPerformerDelegate` protocol. This will let you know when performing did start or end with status. In this case there is an ability to implement custom UI to handle loading process, for ex. start showing activity indicator view on start and hide it on complete.
+- Call `perform` so it will start `3DS Soft Accept` processing.
+
+```objc
+    NSURL* redirectUri = [NSURL URLWithString:@"value"];
+    PU3DSSoftAcceptRequest* request = [[PU3DSSoftAcceptRequest alloc] initWithEnvironment:environment redirectUri:redirectUri];
+    PU3DSSoftAcceptRequestPerformer* performer = [[PU3DSSoftAcceptRequestPerformer alloc] initWithRequest:request];
+    performer.delegate = delegate;
+    [performer perform];
+```
+
+For more information please visit: [developers.payu.com](https://developers.payu.com/en/3ds_2.html#handling_iframe)
+
+The diagram of Soft Accept process is below: 
+
+![3DS (Soft Accept)](resources/3ds-soft-accept.png)
+
 ## PaymentMethods & PaymentWidget
 
 #### Introduction
