@@ -32,6 +32,9 @@ typedef NS_ENUM(NSUInteger, PUCountryCode) {
     PUCountryCodeSE,
     PUCountryCodeNO,
     PUCountryCodeDK,
+    PUCountryCodeLT,
+    PUCountryCodeLV,
+    PUCountryCodeSK,
 };
 
 @interface PUApplePayTransaction : NSObject

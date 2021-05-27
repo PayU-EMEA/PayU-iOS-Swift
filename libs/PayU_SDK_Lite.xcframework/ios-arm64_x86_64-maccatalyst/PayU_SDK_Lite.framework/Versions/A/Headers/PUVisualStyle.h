@@ -65,9 +65,7 @@ NS_ASSUME_NONNULL_BEGIN
  'inactiveButtonStyle' is used for inactive buttons
 */
 @property (strong, nonatomic) PUButtonVisualStyle *inactiveButtonStyle;
-
 @property (strong, nonatomic) PUVisualStyleElement *secondaryHeadingStyle;
-
 @property (strong, nonatomic) PUVisualStyleElement *primaryTextStyle;
 @property (strong, nonatomic) PUVisualStyleElement *secondaryTextStyle;
 

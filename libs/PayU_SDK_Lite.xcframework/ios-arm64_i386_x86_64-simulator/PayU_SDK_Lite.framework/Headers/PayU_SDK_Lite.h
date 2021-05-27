@@ -65,3 +65,9 @@ FOUNDATION_EXPORT const unsigned char PayU_SDK_LiteVersionString[];
 #import <PayU_SDK_Lite/PUFooterView.h>
 
 #import <PayU_SDK_Lite/PUBlikAlternativesViewController.h>
+
+#import <PayU_SDK_Lite/PUMastercardInstallmentOrder.h>
+#import <PayU_SDK_Lite/PUMastercardInstallmentOption.h>
+#import <PayU_SDK_Lite/PUMastercardInstallmentOptionFormat.h>
+#import <PayU_SDK_Lite/PUMastercardInstallmentsRouter.h>
+

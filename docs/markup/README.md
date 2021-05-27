@@ -38,8 +38,17 @@ This module adding/removing card for user on PayU backend. Adding card means col
 - `PUAddCardViewController`
 - `PUCardRecognizerService`
 
+#### Pay in installments with Mastercard:
+"Pay in installments with Mastercard" is a service that allows Mastercard card holders to split payments into monthly installments. You can find more details on https://www.mastercard.pl/raty
+
+"Pay in installments with Mastercard" service is enabled by default for all merchants, there are no additional charges to use this service.
+
+- `PUMastercardInstallmentOrder`
+- `PUMastercardInstallmentOption`
+- `PUMastercardInstallmentsRouter`
+
 ## Technical details
-PayU SDK Lite is provieded as iOS Framework (fat/Universal - which can be used either on physical device or simulator). Due to compatibility reasons framework is written in Objective-C but without any changes can be integrated into Swift based app.
+Due to compatibility reasons framework is written in Objective-C but without any changes can be integrated into Swift based app.
 
 ## Supported platforms and languages
 With the PayU SDK Lite for iOS, you can build apps that target native devices running iOS 10.0 and later. Developing an application with the PayU SDK Lite for iOS requires at least Xcode 9.0.
@@ -531,6 +540,64 @@ Notes:
 | ![Light](resources/add-card-view-controller-light.png) | ![Dark](resources/add-card-view-controller-dark.png) |
 
 > NOTE: AddCard functionality implements SSL certificate pinning. Listening to network traffic using an untrusted certificate will end with `NSURLErrorCancelled` (-999).
+
+## Pay in installments with Mastercard
+
+#### Introduction
+"Pay in installments with Mastercard" is a service that allows Mastercard card holders to split payments into monthly installments. You can find more details on https://www.mastercard.pl/raty. "Pay in installments with Mastercard" service is enabled by default for all merchants, there are no additional charges to use this service.
+
+For more detailed information on how to setup models please visit: [developers.payu.com](https://developers.payu.com/en/3ds_2.html#handling_iframe)
+
+#### PUMastercardInstallmentOrder
+This class represents single proposal order which contains main information related to order, such as: `installmentOptionFormat`, `currencyCode` etc.
+
+#### PUMastercardInstallmentOption
+This class represents single installment option which contains main information related to option, such as: `interestRate`, `annualPercentageRate` etc.
+
+#### PUMastercardInstallmentsRouter
+This class allows you to run "Pay in installments with Mastercard" flow from your view controller and it should automatically handle all possible cases during user intercats with proposed offers.
+
+#### How to use?
+1. Determine if payment can be split into installments
+2. Fetch installment proposal
+3. Run router and handle user interactions in the delegate methods.
+
+Code Example: 
+    
+```objc 
+    // 1. Create reference to PUMastercardInstallmentsRouter
+    @property(strong, nonatomic) PUMastercardInstallmentsRouter *mastercardInstallmentsRouter;
+
+    // 2. Create options instances for installments:
+    PUMastercardInstallmentOption *option = [[PUMastercardInstallmentOption alloc] initWithWithIdentifier: // your details here ];
+
+    // 3. Create  order instance. Please note, based on `installmentOptionFormat` you have to set or nor additional properties for 
+    // `PUMastercardInstallmentOption` instances (for details please visit: 
+    PUMastercardInstallmentOrder *order = [[PUMastercardInstallmentOrder alloc] initWithWithIdentifier: // your details here ];
+
+    // 4. Create router
+    self.mastercardInstallmentsRouter = [[PUMastercardInstallmentsRouter alloc] initWithVisualStyle:visualStyle order:order];
+    self.mastercardInstallmentsRouter.delegate = self;
+
+    // 5. Run router passing view controller from which you would like to present flow
+    [self.mastercardInstallmentsRouter runFromRootViewController: // yourViewContoller  ];
+```
+
+
+Example:
+
+1. Offer
+2. VARYING_NUMBER_OF_OPTIONS
+3. VARYING_NUMBER_OF_INSTALLMENTS
+
+|  |  |  |
+| ----------- | ----------- | ----------- |
+| ![Offer](resources/mi_offer_light.png) | ![VARYING_NUMBER_OF_OPTIONS](resources/mi_options_light.png) | ![VARYING_NUMBER_OF_INSTALLMENTS](resources/mi_installments_light.png) |
+
+|  |  |  |
+| ----------- | ----------- | ----------- |
+| ![Offer](resources/mi_offer_dark.png) | ![VARYING_NUMBER_OF_OPTIONS](resources/mi_options_dark.png) | ![VARYING_NUMBER_OF_INSTALLMENTS](resources/mi_installments_dark.png) |
+
 
 ## CVV Authorization
 

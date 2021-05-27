@@ -1,5 +1,11 @@
 # PayU SDK Lite Change Log
 
+## Release 1.0.0
+Prepared on Thu, 27/05/2021
+### Changes:
+* Added `Pay in installments with Mastercard`
+* Added `LT`, `LV`, `SK` to the list of supported countries
+
 ## Release 0.9.8
 Prepared on Wed, 05/05/2021
 ### Changes:

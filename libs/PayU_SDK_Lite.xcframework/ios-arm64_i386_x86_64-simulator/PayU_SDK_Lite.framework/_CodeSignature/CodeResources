@@ -62,7 +62,7 @@
 		</data>
 		<key>Headers/PUApplePayTransaction.h</key>
 		<data>
-		c2essvPxRcgLEVl3qNs8ujoOg4I=
+		S+wc3eld+Nr1sjnF7Z7zaiQ5a7c=
 		</data>
 		<key>Headers/PUAuthorizationDelegate.h</key>
 		<data>
@@ -152,6 +152,26 @@
 		<data>
 		h7uSziAN9Bv7YUAZF8KpV0F2Qhg=
 		</data>
+		<key>Headers/PUMastercardInstallmentOption.h</key>
+		<data>
+		jLpLJSKgOrqVGsA3MDPT4MbCDDY=
+		</data>
+		<key>Headers/PUMastercardInstallmentOptionFormat.h</key>
+		<data>
+		rSD7sg9TrRhaH2+wAWlK/eciilk=
+		</data>
+		<key>Headers/PUMastercardInstallmentOrder.h</key>
+		<data>
+		MN8MFTpsOfhLO9Lcisp+enH0kas=
+		</data>
+		<key>Headers/PUMastercardInstallmentsMobileOfferViewController.h</key>
+		<data>
+		dk7Fp7q1eCqaud6jjyGuu+YqAH4=
+		</data>
+		<key>Headers/PUMastercardInstallmentsRouter.h</key>
+		<data>
+		53DsHMJm1jVfhRP4FybD+uVFPw4=
+		</data>
 		<key>Headers/PUPayByLink.h</key>
 		<data>
 		RmXppHZhI8l7M+k15W8QAT9MXzo=
@@ -206,7 +226,7 @@
 		</data>
 		<key>Headers/PUVisualStyle.h</key>
 		<data>
-		Q2boldDY3egfGdcQpbASJ+f/uRQ=
+		goH4srrKkTeBSnLA0pwNgcue9y4=
 		</data>
 		<key>Headers/PUVisualStyleElement.h</key>
 		<data>
@@ -226,7 +246,7 @@
 		</data>
 		<key>Headers/PayU_SDK_Lite.h</key>
 		<data>
-		vEAQCc2r3Yv8YI9qMN034oHN6HM=
+		Ftfw1rQi4bV0UdBU2H0YTrGSFrI=
 		</data>
 		<key>Headers/UIButton+PUVisualStyle.h</key>
 		<data>
@@ -238,7 +258,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		4SoLiMD0zcewJVyZqzuGsWibRAw=
+		uMq4JJM7JTlc/K0b54ymIcPkEvM=
 		</data>
 		<key>LICENSE.txt</key>
 		<data>
@@ -294,19 +314,19 @@
 		</data>
 		<key>PUAboutViewController.storyboardc/PUAboutViewController.nib/objects-11.0+.nib</key>
 		<data>
-		QhixeX0pAXVHk3tK/XmaQghhA3M=
+		8nlr0B6hgUVITqbT2CEHGpAmkms=
 		</data>
 		<key>PUAboutViewController.storyboardc/PUAboutViewController.nib/runtime.nib</key>
 		<data>
-		nZauNnvLmTcO936TJKXXrJ57hmQ=
+		puPE9jndE66qAFy6hmuc4o7S3LU=
 		</data>
 		<key>PUAboutViewController.storyboardc/aJe-Zx-ICj-view-1gH-gV-PRr.nib/objects-11.0+.nib</key>
 		<data>
-		Xe+dY+2kJmJwQCVmyfMf1gT2HJ0=
+		0P3Am0UzN9xjgWzJVzQOmOwp9c0=
 		</data>
 		<key>PUAboutViewController.storyboardc/aJe-Zx-ICj-view-1gH-gV-PRr.nib/runtime.nib</key>
 		<data>
-		sw3+8ZJlElhEVvF6ReMXzQ2gCDs=
+		Vja76AAjN1NLS14k+1Z5TYFnB48=
 		</data>
 		<key>PUBankTransferListViewController.storyboardc/Info.plist</key>
 		<data>
@@ -314,27 +334,27 @@
 		</data>
 		<key>PUBankTransferListViewController.storyboardc/UIViewController-bCN-S8-pyl.nib/objects-11.0+.nib</key>
 		<data>
-		kWZsh0K00mUzyV356WirGvcfipw=
+		FsM/w+474YT6eoLR2Vvkxb512S4=
 		</data>
 		<key>PUBankTransferListViewController.storyboardc/UIViewController-bCN-S8-pyl.nib/objects-12.3+.nib</key>
 		<data>
-		XZaSFVgPz/Z1WlNiQjm+NEmEu0Y=
+		tTRF+87U/MhVypBqcl9hL/ys7HA=
 		</data>
 		<key>PUBankTransferListViewController.storyboardc/UIViewController-bCN-S8-pyl.nib/runtime.nib</key>
 		<data>
-		VD07RkGKZ8BprX8OxMpOX6/H4Qc=
+		ea68GndRoCHENVDC2OgxwIyVviQ=
 		</data>
 		<key>PUBankTransferListViewController.storyboardc/bCN-S8-pyl-view-4ks-Rn-Phq.nib/objects-11.0+.nib</key>
 		<data>
-		sR0la87T5areby8vVKYlryU0mcs=
+		RH2l1Uq23QgBddk6kMy7m+eq1+w=
 		</data>
 		<key>PUBankTransferListViewController.storyboardc/bCN-S8-pyl-view-4ks-Rn-Phq.nib/objects-12.3+.nib</key>
 		<data>
-		17VDMKCyyY4hF6ZCX1HdgizUzD4=
+		Y5K3c8Lp0+vwN4/I7OW68q8Onj8=
 		</data>
 		<key>PUBankTransferListViewController.storyboardc/bCN-S8-pyl-view-4ks-Rn-Phq.nib/runtime.nib</key>
 		<data>
-		UEBFswYAxjE8j0vGaHIXGeJ3A/4=
+		ehZywgYWyO99GIPLRoJTxjeEeuk=
 		</data>
 		<key>PUBlikAlternativesViewController.storyboardc/Info.plist</key>
 		<data>
@@ -342,27 +362,51 @@
 		</data>
 		<key>PUBlikAlternativesViewController.storyboardc/UIViewController-UnB-LQ-I69.nib/objects-11.0+.nib</key>
 		<data>
-		0FdmrrmiGWO0B9p7LOFo5MDRHPE=
+		QYESvBZoayCelfVW3P2UW2ef8jM=
 		</data>
 		<key>PUBlikAlternativesViewController.storyboardc/UIViewController-UnB-LQ-I69.nib/runtime.nib</key>
 		<data>
-		6UYm5ju35ER7/wxvF8notFg9b7E=
+		ntuDOhHr1DlxiINg5S9ZY6PO0Sg=
 		</data>
 		<key>PUBlikAlternativesViewController.storyboardc/UnB-LQ-I69-view-EYX-FP-f3e.nib/objects-11.0+.nib</key>
 		<data>
-		1ikcAUMf5FDSrF2hpLGR7Wb2SLo=
+		kHmMLbZnXXpBrfhL6Ic/xPbzlMw=
 		</data>
 		<key>PUBlikAlternativesViewController.storyboardc/UnB-LQ-I69-view-EYX-FP-f3e.nib/runtime.nib</key>
 		<data>
-		JvTBdptFrD715mDiwErVU4hklG0=
+		m39gmxGuQb4IL3S8wjDG0jSoxZs=
+		</data>
+		<key>PUMastercardInstallmentsHeaderView.nib/objects-11.0+.nib</key>
+		<data>
+		9Uopa5n+NYnZ6e8I8/zomrdSXTc=
+		</data>
+		<key>PUMastercardInstallmentsHeaderView.nib/runtime.nib</key>
+		<data>
+		cxhS78Cnufg9iEsPcudMDp+VG6o=
+		</data>
+		<key>PUMastercardInstallmentsMobileOfferFooterView.nib/objects-11.0+.nib</key>
+		<data>
+		Y+S+XF9FwJDR5RPRRhEfvXDcwUI=
+		</data>
+		<key>PUMastercardInstallmentsMobileOfferFooterView.nib/runtime.nib</key>
+		<data>
+		vBHVfIao4bj6Aj6pkREcRndWgFM=
+		</data>
+		<key>PUMastercardInstallmentsOptionsFooterView.nib</key>
+		<data>
+		oLv+2bYHQ2OFXK/IvUzm8eD+ANI=
+		</data>
+		<key>PUMastercardInstallmentsOptionsTableViewCell.nib</key>
+		<data>
+		tkkbBSyQIV7Npc+dfRN6zASbcWI=
 		</data>
 		<key>PUPaymentMethodListViewController.storyboardc/EQY-qz-8c2-view-ig1-nt-Tm5.nib/objects-11.0+.nib</key>
 		<data>
-		QlyJ/WIC15Q/Luw87ThyLwxNYZY=
+		8oTv7YXcl1XFf9lT6EtUx7mLlAo=
 		</data>
 		<key>PUPaymentMethodListViewController.storyboardc/EQY-qz-8c2-view-ig1-nt-Tm5.nib/runtime.nib</key>
 		<data>
-		dhp7qex/bbipoi2BkjyZTxFxIMo=
+		7px+NjPplUASS5oovAGNcrUQHTM=
 		</data>
 		<key>PUPaymentMethodListViewController.storyboardc/Info.plist</key>
 		<data>
@@ -370,27 +414,27 @@
 		</data>
 		<key>PUPaymentMethodListViewController.storyboardc/UIViewController-EQY-qz-8c2.nib/objects-11.0+.nib</key>
 		<data>
-		ohRJrlLdQSHNWSxxKDIX14GDP/k=
+		W9EMotSZhfj+kyilrARWsW1m0DY=
 		</data>
 		<key>PUPaymentMethodListViewController.storyboardc/UIViewController-EQY-qz-8c2.nib/runtime.nib</key>
 		<data>
-		BPiezSA6syPaxWG6aZgpJMuWP+g=
+		jkYOhV77iRqqHKsAj8pe4EU9jjk=
 		</data>
 		<key>PUPaymentWidget.nib/objects-11.0+.nib</key>
 		<data>
-		yQDjfhS8+sEEEEsxO1j10Qicl3k=
+		+ElfmQQ86acns344j+oz+mScx8o=
 		</data>
 		<key>PUPaymentWidget.nib/runtime.nib</key>
 		<data>
-		xlIE3BzZ3tQpFJ7vye0CfL1oveI=
+		wL6XPvnDBQIMeJOkgfXlQlNZHm8=
 		</data>
 		<key>PUSecureOverlayView.nib/objects-11.0+.nib</key>
 		<data>
-		AtHDUkOtIPp5wi6H5gVrXuoJ0SA=
+		/SbSwX7gMX42hwAA/8oK5ZSAskM=
 		</data>
 		<key>PUSecureOverlayView.nib/runtime.nib</key>
 		<data>
-		VbulugXffo+hXnoek0IzpkKi/Uo=
+		2bXMz822o7QnCI3fCyr0+Ef02u4=
 		</data>
 		<key>PUWebAuthorizationViewController.storyboardc/Info.plist</key>
 		<data>
@@ -398,19 +442,19 @@
 		</data>
 		<key>PUWebAuthorizationViewController.storyboardc/PUWebAuthorizationViewController.nib/objects-11.0+.nib</key>
 		<data>
-		iGSw9LsxcgKYngFOZVyRFPE9ZXY=
+		7zxIFNUcHbYuulAskYn7MbA2d0Y=
 		</data>
 		<key>PUWebAuthorizationViewController.storyboardc/PUWebAuthorizationViewController.nib/runtime.nib</key>
 		<data>
-		JYnMG7s1SnNUKgH4Td4cPdLNQfk=
+		Duht4l7qMEJD24v9vlV+BEOB1HY=
 		</data>
 		<key>PUWebAuthorizationViewController.storyboardc/RCi-1b-hsd-view-erE-KR-O6c.nib/objects-11.0+.nib</key>
 		<data>
-		xx4MG7mOBrhl1N1C+a4ctV5xI5I=
+		R+aURPm9lpn3pPccjVxPvA1ynR8=
 		</data>
 		<key>PUWebAuthorizationViewController.storyboardc/RCi-1b-hsd-view-erE-KR-O6c.nib/runtime.nib</key>
 		<data>
-		y+gDOq8FWu7i3TxC34cvXdK0Hzo=
+		wZnfXFzgVKfQMqFOzzqyNRA1kf0=
 		</data>
 		<key>PayURootCA-01.cer</key>
 		<data>
@@ -433,11 +477,29 @@
 			<key>optional</key>
 			<true/>
 		</dict>
+		<key>cs.lproj/Plurals.stringsdict</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			T/b+Upxu8QuGLqlzPiTiwRFVrv8=
+			</data>
+			<key>optional</key>
+			<true/>
+		</dict>
 		<key>de.lproj/PayU-SDK.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
 			Vh+7W7GjkhD2//bw5coQiMmyYRI=
+			</data>
+			<key>optional</key>
+			<true/>
+		</dict>
+		<key>de.lproj/Plurals.stringsdict</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			T/b+Upxu8QuGLqlzPiTiwRFVrv8=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -450,7 +512,16 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			v2oKvcnOMqNOZqadxedDJjQeyTM=
+			QQWtLJmV6Azmfdwg2gzXkRy4NbI=
+			</data>
+			<key>optional</key>
+			<true/>
+		</dict>
+		<key>en.lproj/Plurals.stringsdict</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			T/b+Upxu8QuGLqlzPiTiwRFVrv8=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -460,6 +531,15 @@
 			<key>hash</key>
 			<data>
 			oFQTxaogi9b8WcaL0ZIfSkSrcog=
+			</data>
+			<key>optional</key>
+			<true/>
+		</dict>
+		<key>hu.lproj/Plurals.stringsdict</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			T/b+Upxu8QuGLqlzPiTiwRFVrv8=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -488,11 +568,32 @@
 		<data>
 		/bu8lat63fVP2q3vzeQthBRnGN0=
 		</data>
+		<key>mastercard_installments@1x.png</key>
+		<data>
+		3zyLBeeroJHHD3f4/p6VFSmS1FE=
+		</data>
+		<key>mastercard_installments@2x.png</key>
+		<data>
+		jyBTN3QUlf93ukCSToyDlkC+cbU=
+		</data>
+		<key>mastercard_installments@3x.png</key>
+		<data>
+		aGFo7ZZwLOatIMPnmz0rA7obMno=
+		</data>
 		<key>pl.lproj/PayU-SDK.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			SR6RRW2mGir+gEUtOAX7V+yRk6o=
+			YjMxyhHGyj6uR4hQAfV/BvxHQ/U=
+			</data>
+			<key>optional</key>
+			<true/>
+		</dict>
+		<key>pl.lproj/Plurals.stringsdict</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			rdlSvlNh0BW0AwthJ/sScNlejeE=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -658,11 +759,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			c2essvPxRcgLEVl3qNs8ujoOg4I=
+			S+wc3eld+Nr1sjnF7Z7zaiQ5a7c=
 			</data>
 			<key>hash2</key>
 			<data>
-			yCpdV2Gysii2Zs7oYCI9i50nDGuq/wQPS2b+qPO+42o=
+			Q/NyZ0LBb0Cx/nF1aacWPVosD+czpWmjYJ7gzLz80fw=
 			</data>
 		</dict>
 		<key>Headers/PUAuthorizationDelegate.h</key>
@@ -907,6 +1008,61 @@
 			bfKM86sNLYj+QKMmQ2UOqI+nnk5cRax/p7lTC2c92/Q=
 			</data>
 		</dict>
+		<key>Headers/PUMastercardInstallmentOption.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			jLpLJSKgOrqVGsA3MDPT4MbCDDY=
+			</data>
+			<key>hash2</key>
+			<data>
+			l7mOg9J5/xDQ3rR+KW8qtkvqaEFJ/I21uU/olnuI7xk=
+			</data>
+		</dict>
+		<key>Headers/PUMastercardInstallmentOptionFormat.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			rSD7sg9TrRhaH2+wAWlK/eciilk=
+			</data>
+			<key>hash2</key>
+			<data>
+			4cTBxYNHBCHzfLdms0cyBq9d0tM5sfVdCnrNz0KIHDU=
+			</data>
+		</dict>
+		<key>Headers/PUMastercardInstallmentOrder.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			MN8MFTpsOfhLO9Lcisp+enH0kas=
+			</data>
+			<key>hash2</key>
+			<data>
+			L9wWJqQ1dUWqhdcTFRbSSMNH4A3r06yK4mCcAZqDNnQ=
+			</data>
+		</dict>
+		<key>Headers/PUMastercardInstallmentsMobileOfferViewController.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			dk7Fp7q1eCqaud6jjyGuu+YqAH4=
+			</data>
+			<key>hash2</key>
+			<data>
+			WixSu90IAfcw4V6QsOUikZ4iWqo7fQOFDemBc9l2Fc8=
+			</data>
+		</dict>
+		<key>Headers/PUMastercardInstallmentsRouter.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			53DsHMJm1jVfhRP4FybD+uVFPw4=
+			</data>
+			<key>hash2</key>
+			<data>
+			ipChpR6kFZrWlzKuBIvJykHjdxxHEa4HOhNncW2B0Ic=
+			</data>
+		</dict>
 		<key>Headers/PUPayByLink.h</key>
 		<dict>
 			<key>hash</key>
@@ -1054,11 +1210,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			Q2boldDY3egfGdcQpbASJ+f/uRQ=
+			goH4srrKkTeBSnLA0pwNgcue9y4=
 			</data>
 			<key>hash2</key>
 			<data>
-			pC9Si0OynJF8OVdq2EqwjEOf5rtyIxeoaLEvu8JgYiE=
+			sSf/HBZhDGu96M0vrIZZlFq1H0bKh2d1WQfmeSdMncE=
 			</data>
 		</dict>
 		<key>Headers/PUVisualStyleElement.h</key>
@@ -1109,11 +1265,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			vEAQCc2r3Yv8YI9qMN034oHN6HM=
+			Ftfw1rQi4bV0UdBU2H0YTrGSFrI=
 			</data>
 			<key>hash2</key>
 			<data>
-			whL/sJNjOF4liECzZf9CUBtjLtK5CF6tIugenOcU+f4=
+			4fj5S7RjY3r4DFfcRBqYr8LOcHoGJ7mUDRB5uPgpVqQ=
 			</data>
 		</dict>
 		<key>Headers/UIButton+PUVisualStyle.h</key>
@@ -1285,44 +1441,44 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			QhixeX0pAXVHk3tK/XmaQghhA3M=
+			8nlr0B6hgUVITqbT2CEHGpAmkms=
 			</data>
 			<key>hash2</key>
 			<data>
-			y7i2+k6rBZcAYpTWzsrO0lS4idh8oXao6a5Q4OmAqfc=
+			ep0MskGh0ujb9JjXFxpoM0vKLMkQgUpGyezugUVHMaM=
 			</data>
 		</dict>
 		<key>PUAboutViewController.storyboardc/PUAboutViewController.nib/runtime.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			nZauNnvLmTcO936TJKXXrJ57hmQ=
+			puPE9jndE66qAFy6hmuc4o7S3LU=
 			</data>
 			<key>hash2</key>
 			<data>
-			flaOR1DjpMou6oAz+P8pwC9mdElb3Bub82YDiPnhRkg=
+			gqjeIDb6jj72suXI/eHnqijZV5Qa0S1rncc45Z9NQec=
 			</data>
 		</dict>
 		<key>PUAboutViewController.storyboardc/aJe-Zx-ICj-view-1gH-gV-PRr.nib/objects-11.0+.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			Xe+dY+2kJmJwQCVmyfMf1gT2HJ0=
+			0P3Am0UzN9xjgWzJVzQOmOwp9c0=
 			</data>
 			<key>hash2</key>
 			<data>
-			orxCLQ4184yMP06IJJqqELQ4tUrmFBtrm8WCqm2es6c=
+			Qh/O9MmDuh8luTOxEWX79PfNWFDBc0vNfOyIm0YLy+M=
 			</data>
 		</dict>
 		<key>PUAboutViewController.storyboardc/aJe-Zx-ICj-view-1gH-gV-PRr.nib/runtime.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			sw3+8ZJlElhEVvF6ReMXzQ2gCDs=
+			Vja76AAjN1NLS14k+1Z5TYFnB48=
 			</data>
 			<key>hash2</key>
 			<data>
-			WZIRRJyvqrVgZmBKXnWYgySj/c69NuKBw1qPdisF7Zg=
+			ueIJ3YDB4vrnmZHY3LJmOXiX320xeVZ1BXy/dXIJluE=
 			</data>
 		</dict>
 		<key>PUBankTransferListViewController.storyboardc/Info.plist</key>
@@ -1340,66 +1496,66 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			kWZsh0K00mUzyV356WirGvcfipw=
+			FsM/w+474YT6eoLR2Vvkxb512S4=
 			</data>
 			<key>hash2</key>
 			<data>
-			gyMm3/f+w9nA1xuYsZgW8Pe3lISHLdlNjiuRFIRIRZA=
+			WXA4OMHs2n8JSlaWz/K2uVgJ4Ee8HNmRSxWL74LgRLI=
 			</data>
 		</dict>
 		<key>PUBankTransferListViewController.storyboardc/UIViewController-bCN-S8-pyl.nib/objects-12.3+.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			XZaSFVgPz/Z1WlNiQjm+NEmEu0Y=
+			tTRF+87U/MhVypBqcl9hL/ys7HA=
 			</data>
 			<key>hash2</key>
 			<data>
-			VruN6sLqcD+cR0optXhxB1jicEhN6eKZd7VIAvm4Qlc=
+			2SZIwgzeqZioOemKfbYIyjfHGWetWgtN+eNjLAaRstk=
 			</data>
 		</dict>
 		<key>PUBankTransferListViewController.storyboardc/UIViewController-bCN-S8-pyl.nib/runtime.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			VD07RkGKZ8BprX8OxMpOX6/H4Qc=
+			ea68GndRoCHENVDC2OgxwIyVviQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			mLtdPzuKzHXhb2IedTgLfbW/gVtagImKD6NM7RRafBQ=
+			Q7/G3+oR3r/2n1+CN5KvfXAZphwwUrTpCL/EZHrOVnc=
 			</data>
 		</dict>
 		<key>PUBankTransferListViewController.storyboardc/bCN-S8-pyl-view-4ks-Rn-Phq.nib/objects-11.0+.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			sR0la87T5areby8vVKYlryU0mcs=
+			RH2l1Uq23QgBddk6kMy7m+eq1+w=
 			</data>
 			<key>hash2</key>
 			<data>
-			9VLqsyNlSuwGZ2vYAwsp0oo4h+aPYlhKLwo6l8vbN64=
+			ZCO+LOKH1c8YFtWXeO5yIKp7/gMVx/w1Tt1IUVj9sfk=
 			</data>
 		</dict>
 		<key>PUBankTransferListViewController.storyboardc/bCN-S8-pyl-view-4ks-Rn-Phq.nib/objects-12.3+.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			17VDMKCyyY4hF6ZCX1HdgizUzD4=
+			Y5K3c8Lp0+vwN4/I7OW68q8Onj8=
 			</data>
 			<key>hash2</key>
 			<data>
-			lkiPv66kVN/QMNz1P0PMe51AEoJrWl0/3F0aIldGY+k=
+			yAi/a3+TgiYkW4yBUK24WayhX5wHRxWKMUzAQeXUaw0=
 			</data>
 		</dict>
 		<key>PUBankTransferListViewController.storyboardc/bCN-S8-pyl-view-4ks-Rn-Phq.nib/runtime.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			UEBFswYAxjE8j0vGaHIXGeJ3A/4=
+			ehZywgYWyO99GIPLRoJTxjeEeuk=
 			</data>
 			<key>hash2</key>
 			<data>
-			jkC0/jBei6icdQBjG8R52vW+89cEgHe2jn/GIFRTC1o=
+			CCBdQmEueRzxZzRZXe8C6aus7wGAy4AyLGV/4J+tElM=
 			</data>
 		</dict>
 		<key>PUBlikAlternativesViewController.storyboardc/Info.plist</key>
@@ -1417,66 +1573,132 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			0FdmrrmiGWO0B9p7LOFo5MDRHPE=
+			QYESvBZoayCelfVW3P2UW2ef8jM=
 			</data>
 			<key>hash2</key>
 			<data>
-			8Xfx2pwo63iKhtdQZ4ErUGtv0UFC4SrVr3hHF21h6q8=
+			r2+NifPhszAtWkAnYSbEbQZULFAlN71HVDYzEsht6/k=
 			</data>
 		</dict>
 		<key>PUBlikAlternativesViewController.storyboardc/UIViewController-UnB-LQ-I69.nib/runtime.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			6UYm5ju35ER7/wxvF8notFg9b7E=
+			ntuDOhHr1DlxiINg5S9ZY6PO0Sg=
 			</data>
 			<key>hash2</key>
 			<data>
-			EkYBd3AQ800w41T28Nczi2khkXXCPr5smXpDXvx8XgU=
+			7rY4vnlKxFzjXZDrMlhZ6Hk46cuZ9SpQQOinUSFljgI=
 			</data>
 		</dict>
 		<key>PUBlikAlternativesViewController.storyboardc/UnB-LQ-I69-view-EYX-FP-f3e.nib/objects-11.0+.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			1ikcAUMf5FDSrF2hpLGR7Wb2SLo=
+			kHmMLbZnXXpBrfhL6Ic/xPbzlMw=
 			</data>
 			<key>hash2</key>
 			<data>
-			73/jjIQZ3Pm6+9pa8UD/wnaUIZEwxflhX5U4whgx+TQ=
+			6aoggg4RlhDv4IfwGWK9SSATLnER+NH2UydUixeGfz0=
 			</data>
 		</dict>
 		<key>PUBlikAlternativesViewController.storyboardc/UnB-LQ-I69-view-EYX-FP-f3e.nib/runtime.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			JvTBdptFrD715mDiwErVU4hklG0=
+			m39gmxGuQb4IL3S8wjDG0jSoxZs=
 			</data>
 			<key>hash2</key>
 			<data>
-			yEowR2wUZwdrIs8oPHD93a4OkYOslxnKJ7uf6GyWAQw=
+			NHDXNhQxmZ8kt3qvGG46gm0e1BlNHhVtPnLu7YKuqcw=
+			</data>
+		</dict>
+		<key>PUMastercardInstallmentsHeaderView.nib/objects-11.0+.nib</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			9Uopa5n+NYnZ6e8I8/zomrdSXTc=
+			</data>
+			<key>hash2</key>
+			<data>
+			gEHf/K+YMQmE9wCQbdxWP9jQvzBjzVxDjzHzrB4B9Bg=
+			</data>
+		</dict>
+		<key>PUMastercardInstallmentsHeaderView.nib/runtime.nib</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			cxhS78Cnufg9iEsPcudMDp+VG6o=
+			</data>
+			<key>hash2</key>
+			<data>
+			fxWfxRfZIDhKPQoZdyRgQ5QrNLCBfDdXCRYy1txdPSg=
+			</data>
+		</dict>
+		<key>PUMastercardInstallmentsMobileOfferFooterView.nib/objects-11.0+.nib</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			Y+S+XF9FwJDR5RPRRhEfvXDcwUI=
+			</data>
+			<key>hash2</key>
+			<data>
+			jXawFeCJ9/iyaWRJd+NiCFCBroH/GKLjkL7K64AnnCY=
+			</data>
+		</dict>
+		<key>PUMastercardInstallmentsMobileOfferFooterView.nib/runtime.nib</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			vBHVfIao4bj6Aj6pkREcRndWgFM=
+			</data>
+			<key>hash2</key>
+			<data>
+			Gn/6B3HtM5yyli6BWb5hWV+bXHFAK+BWbsk0TJR/PEE=
+			</data>
+		</dict>
+		<key>PUMastercardInstallmentsOptionsFooterView.nib</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			oLv+2bYHQ2OFXK/IvUzm8eD+ANI=
+			</data>
+			<key>hash2</key>
+			<data>
+			o2ypmPWu3LD9Loe04CD6lcxq9N7RX145tIlKW7nfs7U=
+			</data>
+		</dict>
+		<key>PUMastercardInstallmentsOptionsTableViewCell.nib</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			tkkbBSyQIV7Npc+dfRN6zASbcWI=
+			</data>
+			<key>hash2</key>
+			<data>
+			9OuWJrg2f+VSOK2RTE5lKPVO82JMzUC5Rm9zSQSG/wM=
 			</data>
 		</dict>
 		<key>PUPaymentMethodListViewController.storyboardc/EQY-qz-8c2-view-ig1-nt-Tm5.nib/objects-11.0+.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			QlyJ/WIC15Q/Luw87ThyLwxNYZY=
+			8oTv7YXcl1XFf9lT6EtUx7mLlAo=
 			</data>
 			<key>hash2</key>
 			<data>
-			7wORO0Ol9VUz5kMcyiHwiVhRA2kdXwFsHylTf8Kqizk=
+			IriDDVICucnswuCfoUlh8zxx8RS9tlaWCqlUu5zljO0=
 			</data>
 		</dict>
 		<key>PUPaymentMethodListViewController.storyboardc/EQY-qz-8c2-view-ig1-nt-Tm5.nib/runtime.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			dhp7qex/bbipoi2BkjyZTxFxIMo=
+			7px+NjPplUASS5oovAGNcrUQHTM=
 			</data>
 			<key>hash2</key>
 			<data>
-			9sr4AYNt0FjTJDBvFAncFuzIPfm8A1yBcu+dqJqNiHw=
+			OHbaIWeJ6q+PWwfvIUsfdLQIUJhiOI3T3tvt4q0N3Qs=
 			</data>
 		</dict>
 		<key>PUPaymentMethodListViewController.storyboardc/Info.plist</key>
@@ -1494,66 +1716,66 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			ohRJrlLdQSHNWSxxKDIX14GDP/k=
+			W9EMotSZhfj+kyilrARWsW1m0DY=
 			</data>
 			<key>hash2</key>
 			<data>
-			qEgCfINoFAeG3C2Su148i6TeIJjOK8j/JXdUZAwWg4w=
+			OveMGNBWwOVosRB1bL2rxFhCtkLQViGBb8d6TmOe7IM=
 			</data>
 		</dict>
 		<key>PUPaymentMethodListViewController.storyboardc/UIViewController-EQY-qz-8c2.nib/runtime.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			BPiezSA6syPaxWG6aZgpJMuWP+g=
+			jkYOhV77iRqqHKsAj8pe4EU9jjk=
 			</data>
 			<key>hash2</key>
 			<data>
-			aJ+sII8TSmLg5IPBwa5FElZfXiEksLoesDKUXStoD4A=
+			GSNCrzpunGYKvpOvZFlIyD75HvVv0Fy0FYr6J8bMeOA=
 			</data>
 		</dict>
 		<key>PUPaymentWidget.nib/objects-11.0+.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			yQDjfhS8+sEEEEsxO1j10Qicl3k=
+			+ElfmQQ86acns344j+oz+mScx8o=
 			</data>
 			<key>hash2</key>
 			<data>
-			dsG+G75RL0UbIOOzEPnpTO5CPA4W2goFVcu9zchsw28=
+			1/JaXc2YkhQkF2M0LtC1Nn1H03YaIl/mfjKt46rXKBc=
 			</data>
 		</dict>
 		<key>PUPaymentWidget.nib/runtime.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			xlIE3BzZ3tQpFJ7vye0CfL1oveI=
+			wL6XPvnDBQIMeJOkgfXlQlNZHm8=
 			</data>
 			<key>hash2</key>
 			<data>
-			zZ1rJjJnTYICJMLQ/sLwvvV4Io9ciz6LC2a4tvn2VWo=
+			dVTyiwovWJ3XEkgm0hl0nZiNhoJFfdN2N7SoCZ70ars=
 			</data>
 		</dict>
 		<key>PUSecureOverlayView.nib/objects-11.0+.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			AtHDUkOtIPp5wi6H5gVrXuoJ0SA=
+			/SbSwX7gMX42hwAA/8oK5ZSAskM=
 			</data>
 			<key>hash2</key>
 			<data>
-			f5si6id66tkko5V6Jg3Uf6iNDOaNKUpb58Gml1T3rmI=
+			xP2fwSsfZC5dg/VKBxfiBrrtGLlaWkmVGqZse0q6T2w=
 			</data>
 		</dict>
 		<key>PUSecureOverlayView.nib/runtime.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			VbulugXffo+hXnoek0IzpkKi/Uo=
+			2bXMz822o7QnCI3fCyr0+Ef02u4=
 			</data>
 			<key>hash2</key>
 			<data>
-			bu+51zsJU5SFGM/qEW9U0m1ruWwLL0vw6VK9rehtfMk=
+			rw+uwUy0c2lUP7LaC6MqNLYRfWmQ64l8OsXtMzdsOrI=
 			</data>
 		</dict>
 		<key>PUWebAuthorizationViewController.storyboardc/Info.plist</key>
@@ -1571,44 +1793,44 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			iGSw9LsxcgKYngFOZVyRFPE9ZXY=
+			7zxIFNUcHbYuulAskYn7MbA2d0Y=
 			</data>
 			<key>hash2</key>
 			<data>
-			bYoEN4d7/MPyAAIPMKC1Jqfk6eKZuRCObq/gsc0jcd4=
+			AniL9qfRV3i3e2pFNb45B4QlJRYZKr5V3MIPqP4Ekus=
 			</data>
 		</dict>
 		<key>PUWebAuthorizationViewController.storyboardc/PUWebAuthorizationViewController.nib/runtime.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			JYnMG7s1SnNUKgH4Td4cPdLNQfk=
+			Duht4l7qMEJD24v9vlV+BEOB1HY=
 			</data>
 			<key>hash2</key>
 			<data>
-			lTkU+HTbZpYnJLCw6Sr0HahQQKrF38d4DjiGydRDxmQ=
+			ZwYlKI1w0Puzu7n3n8iB+AQam5cTpSxU0kUd8FXCj40=
 			</data>
 		</dict>
 		<key>PUWebAuthorizationViewController.storyboardc/RCi-1b-hsd-view-erE-KR-O6c.nib/objects-11.0+.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			xx4MG7mOBrhl1N1C+a4ctV5xI5I=
+			R+aURPm9lpn3pPccjVxPvA1ynR8=
 			</data>
 			<key>hash2</key>
 			<data>
-			4UCzsAnr/gNR9sE1AxjOI1kvv93QdEFCk1wN0cD4i5c=
+			aqOFpGspVZSqpTx5w7U/YcTkAeAt4F5+T9zsXrWUr+0=
 			</data>
 		</dict>
 		<key>PUWebAuthorizationViewController.storyboardc/RCi-1b-hsd-view-erE-KR-O6c.nib/runtime.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			y+gDOq8FWu7i3TxC34cvXdK0Hzo=
+			wZnfXFzgVKfQMqFOzzqyNRA1kf0=
 			</data>
 			<key>hash2</key>
 			<data>
-			QduAgi0IgA4tVsuVfA30VfY8DCszwmaHFnaw8ITRI14=
+			sZjKBksCdayERtWdQhqUtazj+av6RqBsRVNsVuSHR7c=
 			</data>
 		</dict>
 		<key>PayURootCA-01.cer</key>
@@ -1657,6 +1879,19 @@
 			<key>optional</key>
 			<true/>
 		</dict>
+		<key>cs.lproj/Plurals.stringsdict</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			T/b+Upxu8QuGLqlzPiTiwRFVrv8=
+			</data>
+			<key>hash2</key>
+			<data>
+			rGbGxM/XPqpP7TAXLYrk74ZcSvwBOcOz+l3y3caI/XA=
+			</data>
+			<key>optional</key>
+			<true/>
+		</dict>
 		<key>de.lproj/PayU-SDK.strings</key>
 		<dict>
 			<key>hash</key>
@@ -1666,6 +1901,19 @@
 			<key>hash2</key>
 			<data>
 			GDFZSo2H89fdVaSj9woP2ZzICs49lPAhP6dGrOSUtsY=
+			</data>
+			<key>optional</key>
+			<true/>
+		</dict>
+		<key>de.lproj/Plurals.stringsdict</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			T/b+Upxu8QuGLqlzPiTiwRFVrv8=
+			</data>
+			<key>hash2</key>
+			<data>
+			rGbGxM/XPqpP7TAXLYrk74ZcSvwBOcOz+l3y3caI/XA=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -1685,11 +1933,24 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			v2oKvcnOMqNOZqadxedDJjQeyTM=
+			QQWtLJmV6Azmfdwg2gzXkRy4NbI=
 			</data>
 			<key>hash2</key>
 			<data>
-			3qUu6R8Px7sCVcthqkke+v8x5p6DuCmfBxSPmTUf50g=
+			muuo8t1kJSyi0XSE6jCwzc2S+LKDnd72f9UmKsth7uQ=
+			</data>
+			<key>optional</key>
+			<true/>
+		</dict>
+		<key>en.lproj/Plurals.stringsdict</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			T/b+Upxu8QuGLqlzPiTiwRFVrv8=
+			</data>
+			<key>hash2</key>
+			<data>
+			rGbGxM/XPqpP7TAXLYrk74ZcSvwBOcOz+l3y3caI/XA=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -1703,6 +1964,19 @@
 			<key>hash2</key>
 			<data>
 			oxG/lgVo4tRFB9Edp93gDjQGHbhcwf/a5wxe3J2gqI8=
+			</data>
+			<key>optional</key>
+			<true/>
+		</dict>
+		<key>hu.lproj/Plurals.stringsdict</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			T/b+Upxu8QuGLqlzPiTiwRFVrv8=
+			</data>
+			<key>hash2</key>
+			<data>
+			rGbGxM/XPqpP7TAXLYrk74ZcSvwBOcOz+l3y3caI/XA=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -1773,15 +2047,61 @@
 			1ZKdJqPWgvqXb7bDfadZmUS5gthdvtAl4djHDCeD83U=
 			</data>
 		</dict>
+		<key>mastercard_installments@1x.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			3zyLBeeroJHHD3f4/p6VFSmS1FE=
+			</data>
+			<key>hash2</key>
+			<data>
+			2DbXR7MPiJljnafGxvFpjZY8Bu69SRa/NFgLm0pfaC8=
+			</data>
+		</dict>
+		<key>mastercard_installments@2x.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			jyBTN3QUlf93ukCSToyDlkC+cbU=
+			</data>
+			<key>hash2</key>
+			<data>
+			X+6SWM9ZqOawUfrzgQHQRJpPTCMkvb9kpnHNxgEsZWA=
+			</data>
+		</dict>
+		<key>mastercard_installments@3x.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			aGFo7ZZwLOatIMPnmz0rA7obMno=
+			</data>
+			<key>hash2</key>
+			<data>
+			Wm0dlojdMsn3OGp4cwfIMdY8QmW2Ds0IxXeKd8lLfgI=
+			</data>
+		</dict>
 		<key>pl.lproj/PayU-SDK.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			SR6RRW2mGir+gEUtOAX7V+yRk6o=
+			YjMxyhHGyj6uR4hQAfV/BvxHQ/U=
 			</data>
 			<key>hash2</key>
 			<data>
-			tA43xiBtGTPg3CEipHUJTrQj1pqyTnljYH4+NJMDiSE=
+			O/eUEHNbQtOsXe3K1rpZJHf2Eb60SxWmS4mHbkD/5mc=
+			</data>
+			<key>optional</key>
+			<true/>
+		</dict>
+		<key>pl.lproj/Plurals.stringsdict</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			rdlSvlNh0BW0AwthJ/sScNlejeE=
+			</data>
+			<key>hash2</key>
+			<data>
+			HomD810KfGGppiNOzSFX+q9f0AjP6oXxNt5Gehk4jFk=
 			</data>
 			<key>optional</key>
 			<true/>
