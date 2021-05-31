@@ -1,5 +1,10 @@
 # PayU SDK Lite Change Log
 
+## Release 1.0.1
+Prepared on Mon, 31/05/2021
+### Changes:
+* Added `PUEnvironmentProduction` environment matching for `3DS Soft Accept` flow
+
 ## Release 1.0.0
 Prepared on Thu, 27/05/2021
 ### Changes:
