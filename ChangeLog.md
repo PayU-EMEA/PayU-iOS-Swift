@@ -1,5 +1,11 @@
 # PayU SDK Lite Change Log
 
+## Release 1.0.2
+Prepared on Mon, 02/08/2021
+### Changes:
+* Added `Pay in installments` flow for PBL
+* Fixed issue with `.pdf` files opening from web authorization flow 
+
 ## Release 1.0.1
 Prepared on Mon, 31/05/2021
 ### Changes:
