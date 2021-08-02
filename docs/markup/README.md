@@ -47,6 +47,9 @@ This module adding/removing card for user on PayU backend. Adding card means col
 - `PUMastercardInstallmentOption`
 - `PUMastercardInstallmentsRouter`
 
+#### Pay in installments:
+This module allows to handle service installments mechanism.
+
 ## Technical details
 Due to compatibility reasons framework is written in Objective-C but without any changes can be integrated into Swift based app.
 
@@ -231,6 +234,9 @@ This module contains objects:
     
     - (PUWebAuthorizationViewController *)viewControllerForPexAuthorizationRequest:(PUPexAuthorizationRequest *)request
                                                                        visualStyle:(PUVisualStyle *)style);
+
+    - (PUWebAuthorizationViewController *)viewControllerForInstallmentsAuthorizationRequest:(PUInstallmentsAuthorizationRequest *)request
+                                                                            visualStyle:(PUVisualStyle *)style;                                                                   
     ```
 - `PUPayByLinkAuthorizationRequest` - represents PayByLink request with order IDs, redirect URIs - all expected ﬁelds are initialized by designated initializer:
     ```objc
@@ -306,6 +312,12 @@ PUPexAuthorizationRequest *request = [PUPexAuthorizationRequest alloc]
 PUWebAuthorizationViewController *webAuthorizationViewController = [[PUWebAuthorizationBuilder alloc] viewControllerForPexAuthorizationRequest:request visualStyle:uiStyle];
 ```
 
+To use WebPayment method module with installments you have to change (in above example):
+```objc
+    PUInstallmentsAuthorizationRequest *request = [[PUInstallmentsAuthorizationRequest alloc] initWithOrderId: ....]l
+    PUWebAuthorizationViewController *viewController = [[PUWebAuthorizationBuilder alloc] viewControllerForInstallmentsAuthorizationRequest:request visualStyle:uiStyle];
+```
+
 #### 3DS (Soft Accept)
 
 To use WebPayment method module with 3DS (Soft Accept):
@@ -361,6 +373,7 @@ This module contains objects:
     - (void)paymentWidgetService:(PUPaymentWidgetService *)paymentWidgetService didSelectBlikCode:(PUBlikCode *)blikCode;
     - (void)paymentWidgetService:(PUPaymentWidgetService *)paymentWidgetService didSelectBlikToken:(PUBlikToken *)blikToken;
     - (void)paymentWidgetService:(PUPaymentWidgetService *)paymentWidgetService didSelectPexToken:(PUPexToken *)pexToken;
+    - (void)paymentWidgetService:(PUPaymentWidgetService *)paymentWidgetService didSelectInstallment:(PUInstallment *)installment;
     - (void)paymentWidgetServiceDidDeselectPaymentMethod:(PUPaymentWidgetService *)paymentWidgetService;
     - (void)paymentWidgetService:(PUPaymentWidgetService *)paymentWidgetService didDeleteCardToken:(PUCardToken *)cardToken;
     - (void)paymentWidgetService:(PUPaymentWidgetService *)paymentWidgetService didDeletePexToken:(PUPexToken *)pexToken;
@@ -597,6 +610,27 @@ Example:
 |  |  |  |
 | ----------- | ----------- | ----------- |
 | ![Offer](resources/mi_offer_dark.png) | ![VARYING_NUMBER_OF_OPTIONS](resources/mi_options_dark.png) | ![VARYING_NUMBER_OF_INSTALLMENTS](resources/mi_installments_dark.png) |
+
+
+## Pay in installments
+Once there is available PBL passed to `PUPaymentMethodsConfiguration` in `payByLinks` property SDK should automatically place `Installments` payment method in `payment methods`.
+This feature is available for both `widget` and `regular payment methods.
+
+> NOTE: All properties should be overriden by the SDK to lokalise texts for different languages.
+
+| Light | Dark |
+| ----------- | ----------- |
+| ![Light](resources/pu-installments-light.png) | ![Dark](resources/pu-installments-dark.png) |
+
+How to use: (steps 1 - 4 are optional)
+1. Get `installments` payment method and PBL from your backend (it is determined by specified `value` type).
+2. Pass it as a part of PBL list to `PUPaymentMethodsConfiguration` `payByLinks` property.
+3. SDK should display `installents` as the last object is payment methods. 
+4. Once user select `installments`, `PUPaymentMethodListViewControllerDelegate` should inform about it using method `... didSelectInstallment: ...`.
+5. Create `PUInstallmentsAuthorizationRequest` instance.
+6. Create `PUWebAuthorizationViewController` instance using `PUWebAuthorizationBuilder` method and set `authorizationDelegate`.
+7. Wrap created controller into `UINavigationController`.
+7. Present created controller instance and wait for delegate to be triggered.
 
 
 ## CVV Authorization

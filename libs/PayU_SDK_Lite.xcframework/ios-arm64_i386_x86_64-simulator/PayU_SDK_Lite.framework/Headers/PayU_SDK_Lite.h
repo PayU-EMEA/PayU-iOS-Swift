@@ -43,6 +43,7 @@ FOUNDATION_EXPORT const unsigned char PayU_SDK_LiteVersionString[];
 #import <PayU_SDK_Lite/PUBlikCode.h>
 #import <PayU_SDK_Lite/PUBlikToken.h>
 #import <PayU_SDK_Lite/PUApplePay.h>
+#import <PayU_SDK_Lite/PUInstallment.h>
 #import <PayU_SDK_Lite/PUApplePayStatus.h>
 #import <PayU_SDK_Lite/PUApplePayHandler.h>
 #import <PayU_SDK_Lite/PUApplePayTransaction.h>
@@ -55,6 +56,8 @@ FOUNDATION_EXPORT const unsigned char PayU_SDK_LiteVersionString[];
 #import <PayU_SDK_Lite/PUWebAuthorizationBuilder.h>
 #import <PayU_SDK_Lite/PUAuthorizationDelegate.h>
 #import <PayU_SDK_Lite/PU3dsAuthorizationRequest.h>
+#import <PayU_SDK_Lite/PUPexAuthorizationRequest.h>
+#import <PayU_SDK_Lite/PUInstallmentsAuthorizationRequest.h>
 
 #import <PayU_SDK_Lite/PU3DSSoftAcceptRequest.h>
 #import <PayU_SDK_Lite/PU3DSSoftAcceptRequestPerformer.h>

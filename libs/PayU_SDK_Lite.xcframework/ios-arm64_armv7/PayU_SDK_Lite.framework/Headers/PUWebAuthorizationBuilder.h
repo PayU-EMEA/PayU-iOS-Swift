@@ -3,6 +3,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PUInstallmentsAuthorizationRequest.h"
 #import "PUPayByLinkAuthorizationRequest.h"
 #import "PU3dsAuthorizationRequest.h"
 #import "PUPexAuthorizationRequest.h"
@@ -22,6 +23,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (PUWebAuthorizationViewController *)viewControllerForPexAuthorizationRequest:(PUPexAuthorizationRequest *)request
                                                                    visualStyle:(PUVisualStyle *)style NS_SWIFT_NAME(viewController(for:visualStyle:));
+
+- (PUWebAuthorizationViewController *)viewControllerForInstallmentsAuthorizationRequest:(PUInstallmentsAuthorizationRequest *)request
+                                                                            visualStyle:(PUVisualStyle *)style NS_SWIFT_NAME(viewController(for:visualStyle:));
 
 @end
 

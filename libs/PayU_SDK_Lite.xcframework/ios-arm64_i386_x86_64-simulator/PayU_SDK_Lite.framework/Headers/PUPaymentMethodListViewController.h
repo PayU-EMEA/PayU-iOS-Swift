@@ -6,6 +6,7 @@
 #import "PUVisualStyle.h"
 #import "PUPaymentMethod.h"
 #import "PUApplePay.h"
+#import "PUInstallment.h"
 #import "PUPaymentMethodsConfiguration.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -22,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)paymentMethodListViewController:(PUPaymentMethodListViewController *)paymentMethodListViewController didSelectBlikToken:(PUBlikToken *)blikToken;
 - (void)paymentMethodListViewController:(PUPaymentMethodListViewController *)paymentMethodListViewController didSelectApplePay:(PUApplePay *)applePay;
 - (void)paymentMethodListViewController:(PUPaymentMethodListViewController *)paymentMethodListViewController didSelectPexToken:(PUPexToken *)pexToken;
+- (void)paymentMethodListViewController:(PUPaymentMethodListViewController *)paymentMethodListViewController didSelectInstallment:(PUInstallment *)installment;
 - (void)paymentMethodListViewControllerDidDeselectPaymentMethod:(PUPaymentMethodListViewController *)paymentMethodListViewController;
 - (void)paymentMethodListViewController:(PUPaymentMethodListViewController *)paymentMethodListViewController didDeleteCardToken:(PUCardToken *)cardToken;
 - (void)paymentMethodListViewController:(PUPaymentMethodListViewController *)paymentMethodListViewController didDeletePexToken:(PUPexToken *)pexToken;
