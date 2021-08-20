@@ -15,4 +15,5 @@ typedef NS_ENUM(NSInteger, PUAuthorizationResult) {
     PUAuthorizationResultFailure,
     PUAuthorizationResultContinueCvv,
     PUAuthorizationResultExternalApplication,
+    PUAuthorizationResultExternalBrowser,
 };

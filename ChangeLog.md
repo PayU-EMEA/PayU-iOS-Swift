@@ -1,5 +1,12 @@
 # PayU SDK Lite Change Log
 
+## Release 1.0.3
+Prepared on Fri, 20/08/2021
+### Changes:
+* Added `isGuestModeEnabled` to `PUPaymentMethodsConfiguration`
+* Added `PUAuthorizationResultExternalBrowser` as a result of installments redirections
+* Fixes issue with incorrect web payments internal redirects
+
 ## Release 1.0.2
 Prepared on Mon, 02/08/2021
 ### Changes:

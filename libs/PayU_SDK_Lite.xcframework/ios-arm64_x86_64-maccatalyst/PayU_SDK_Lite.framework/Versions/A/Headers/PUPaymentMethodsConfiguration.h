@@ -40,6 +40,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// Describes whether Add Card action should be presented in PaymentMethodListViewController
 @property (nonatomic) BOOL showAddCard;
 
+/// Based on this property `Save & Use` button should be presented (isGuestModeEnabled = NO)
+/// or hidden (isGuestModeEnabled = YES) for `Add Card` flow. Default value is `NO`
+@property (assign, nonatomic) BOOL isGuestModeEnabled;
+
 /// Enable / disable card scanning option during Add Card process. If `yes`
 /// and camera is available, it should show additional button `Scan Card` under
 /// input fields on the Add Card Screen.

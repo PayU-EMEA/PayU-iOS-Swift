@@ -260,12 +260,14 @@ This module contains objects:
     - `PUAuthorizationResultContinueCVV` - `userInfo` should contain `refReqId` value for key `PUAuthorizationResultRefReqIdUserInfoKey`. After you receive this result, there is needed an additional action to authorize CVV via `PUCVVAuthorizationHandler`
     - `PUAuthorizationResultFailure` - `userInfo` should contain detailed NSError value for key `PUAuthorizationResultErrorUserInfoKey`
     - `PUAuthorizationResultExternalApplication` - when user was redirected to the extenal application application. This flow can appear in two cases. The first case is when `PUPexAuthorizationRequest` or `PUPayByLinkAuthorizationRequest` instance contains `redirectUri` value as an application redirect scheme (for ex. `app://scheme?param=value`). The second case is when during the web authorization process user should tap on any button which contains internal app `url` (for ex. `app://scheme?param=value`).  `userInfo` should be empty
+    - `PUAuthorizationResultExternalBrowser` - `userInfo` should be empty
     ```objc
     typedef NS_ENUM(NSInteger, PUAuthorizationResult) {
         PUAuthorizationResultSuccess,
         PUAuthorizationResultFailure,
         PUAuthorizationResultContinueCvv,
-        PUAuthorizationResultExternalApplication
+        PUAuthorizationResultExternalApplication,
+        PUAuthorizationResultExternalBrowser
     };
     ```
  To use WebPayment method module (PayByLink) you have to:
@@ -614,7 +616,7 @@ Example:
 
 ## Pay in installments
 Once there is available PBL passed to `PUPaymentMethodsConfiguration` in `payByLinks` property SDK should automatically place `Installments` payment method in `payment methods`.
-This feature is available for both `widget` and `regular payment methods.
+This feature is available for both `widget` and regular payment methods.
 
 > NOTE: All properties should be overriden by the SDK to lokalise texts for different languages.
 
@@ -628,9 +630,12 @@ How to use: (steps 1 - 4 are optional)
 3. SDK should display `installents` as the last object is payment methods. 
 4. Once user select `installments`, `PUPaymentMethodListViewControllerDelegate` should inform about it using method `... didSelectInstallment: ...`.
 5. Create `PUInstallmentsAuthorizationRequest` instance.
-6. Create `PUWebAuthorizationViewController` instance using `PUWebAuthorizationBuilder` method and set `authorizationDelegate`.
+6. Create `PUWebAuthorizationViewController` instance using `PUWebAuthorizationBuilder` method `viewControllerForInstallmentsAuthorizationRequest` and set `authorizationDelegate`.
 7. Wrap created controller into `UINavigationController`.
 7. Present created controller instance and wait for delegate to be triggered.
+8. There are 2 possible scenarious of installments completion:
+    - when user cancel flow, `authorizationDelegate` will complete with `PUAuthorizationResultFailure` result (please check `userInfo` for more details)
+    - when user accept flow, `authorizationDelegate` will complete with `PUAuthorizationResultExternalBrowser` result. It means that user was redirected to browser to complete installments details.
 
 
 ## CVV Authorization
