@@ -10,7 +10,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PUBlikCode : NSObject <PUPaymentMethod>
 
 @property (copy, readonly, nonatomic) NSString *name;
-@property (copy, readonly, nonatomic) NSString *value;
 @property (copy, readonly, nonatomic) PUBrandImageProvider* brandImageProvider;
 @property (readonly, nonatomic) BOOL isEnabled;
 

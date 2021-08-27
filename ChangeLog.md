@@ -1,11 +1,16 @@
 # PayU SDK Lite Change Log
 
+## Release 1.0.4
+Prepared on Fri, 27/08/2021
+### Changes:
+* Fixed issue with incorrect `selectedPaymentMethod` type for BLIK pbl in `PUPaymentWidget`
+
 ## Release 1.0.3
 Prepared on Fri, 20/08/2021
 ### Changes:
 * Added `isGuestModeEnabled` to `PUPaymentMethodsConfiguration`
 * Added `PUAuthorizationResultExternalBrowser` as a result of installments redirections
-* Fixes issue with incorrect web payments internal redirects
+* Fixed issue with incorrect web payments internal redirects
 
 ## Release 1.0.2
 Prepared on Mon, 02/08/2021
