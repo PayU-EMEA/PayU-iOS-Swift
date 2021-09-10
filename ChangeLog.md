@@ -1,5 +1,10 @@
 # PayU SDK Lite Change Log
 
+## Release 1.0.5
+Prepared on Fri, 10/09/2021
+### Changes:
+* Improved redirects mechanism in webView payments
+
 ## Release 1.0.4
 Prepared on Fri, 27/08/2021
 ### Changes:
