@@ -8,11 +8,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PUCardBrandImageProvider : NSObject
-
 + (PUBrandImageProvider *)maestro;
 + (PUBrandImageProvider *)mastercard;
 + (PUBrandImageProvider *)visa;
-
 @end
 
 NS_ASSUME_NONNULL_END

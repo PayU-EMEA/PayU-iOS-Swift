@@ -36,7 +36,6 @@ This module supports Pay By Links, 3DS and PEX (PayU Express) payments which req
 This module adding/removing card for user on PayU backend. Adding card means collect all required data from user and convert (with usage of PayU backend) to card token which can be used to trigger payment process
 - `PUAddCardService`
 - `PUAddCardViewController`
-- `PUCardRecognizerService`
 
 #### Pay in installments with Mastercard:
 "Pay in installments with Mastercard" is a service that allows Mastercard card holders to split payments into monthly installments. You can find more details on https://www.mastercard.pl/raty
@@ -56,20 +55,6 @@ Due to compatibility reasons framework is written in Objective-C but without any
 ## Supported platforms and languages
 With the PayU SDK Lite for iOS, you can build apps that target native devices running iOS 10.0 and later. Developing an application with the PayU SDK Lite for iOS requires at least Xcode 9.0.
 Supported languages: English, Polish, German, Czech, Hungarian
-
-## Integration
-To add the PayU Lite iOS SDK to your Xcode project you have to:
-- extract downloaded package in your local ﬁle system
-- add the PayU_SDK_Lite.framework to your Xcode project:
-    - click on your app target and choose the "General" tab
-    - ﬁnd the section called "Embedded Binaries", click the plus (+) sign, and then click the "Add Other" button
-        - from the ﬁle dialog box, select the "PayU_SDK_Lite.framework" folder (ensure that the "Copy items if needed" and "Create folder reference" options are selected)
-    - click Finish
-- ensure (see next image) that PayU_SDK_Lite.framework appears in the "Embedded Binaries" and the "Linked Frameworks and Libraries" sections
-
-![Integration Process](resources/xcode-project-intagrated-framework.png)
-
-Note: this SDK version allows merchant to debug with XCode app during development process.
 
 ## Core
 
@@ -157,6 +142,8 @@ Class to define visual style for inputView (textField). Used for ex. in `PUAddCa
 @property (strong, nonatomic) UIFont* inputBottomTextFont;
 @property (assign, nonatomic) UIEdgeInsets contentInsets;
 @property (assign, nonatomic) CGFloat height;
+@property (strong, nonatomic) UIColor *labelColor;
+@property (strong, nonatomic) UIFont *labelFont;
 
 /**
  Initializes an `PUInputVisualStyle` object with default parameters
@@ -400,7 +387,7 @@ This module contains objects:
     @end
     ```
     
-To use `PUAddCardService` you have to:
+To use `PUPaymentWidgetService` you have to:
 - create `PUPaymentWidgetService`
     ```objc
     PUPaymentWidgetService *paymentWidgetService = [[PUPaymentWidgetService alloc] init];
@@ -488,13 +475,13 @@ This module contains objects:
 To use `PUAddCardService` you have to:
 - create `PUAddCardService`
     ```objc
-    PUAddCardService *addCardService = [[PUAddCardService alloc] init];
+    PUAddCardService *service = [[PUAddCardService alloc] init];
     ```
 - grab AddCardWidget from PUAddCardService and layout it in parent view
     ```objc
-    PUVisualStyle *uiStyle = [PUVisualStyle defaultStyle];
-    UIView *addCardWidget = [addCardService addCardViewWithStyle:uiStyle]; 
-    // add addCardWidget to parent view & layout
+    PUAddCardViewConfiguration *configuration = [[PUAddCardViewConfiguration alloc] init];
+    UIView *widget = [service addCardViewWithVisualStyle:style viewConfiguration:configuration presentingViewController:self];
+    // add widget to parent view & layout
     ```
 - add action buttons with action triggering
     ```objc
@@ -537,18 +524,6 @@ To enable scan card feature:
 Also you need to do additional steps:
 - add NSCameraUsageDescription in your application’s plist - a message that tells the user why the app is requesting access to the device’s camera.
 - handle user's camera authorization status. Framework should ask for the permission for the first time. In case of any errors (denied, restricted, etc.) it should throw an error via the `PUAddCardViewControllerDelegate` delegate method.
-
-#### PUCardRecognizerService
-This class allows to open scan card controller triggering from anywhere. 
-To use it:
-1. Creare instance of `PUCardRecognizerService`
-2. Add for ex. button which will trigger action to open card scanner
-3. Call method `recognizeCard...` of `PUCardRecognizerService` class instance
-4. Handle result of card scanning. 
-
-Notes:
-- Implementing this functionality you must handle all cases and flows regarding camera permissions.
-- Card Expiration Date should be passed in completion handler as string. It might take 2 types: `MM/yy` or `MM/yyyy`.
 
 | Light | Dark |
 | ----------- | ----------- |

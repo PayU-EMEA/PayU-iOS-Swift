@@ -60,6 +60,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign, nonatomic) CGFloat height;
 
 /**
+ label color in case when labels are displayed in add card widget
+*/
+@property (strong, nonatomic) UIColor *labelColor;
+
+/**
+ label font in case when labels are displayed in add card widget
+*/
+@property (strong, nonatomic) UIFont *labelFont;
+
+/**
  Initializes an `PUInputVisualStyle` object with default parameters
  Instance is adopted for Dark Appearance
  @return The newly-initialized PUInputVisualStyle instance

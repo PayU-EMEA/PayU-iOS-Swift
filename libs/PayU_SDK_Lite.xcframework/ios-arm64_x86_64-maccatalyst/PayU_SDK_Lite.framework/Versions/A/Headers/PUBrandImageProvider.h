@@ -24,22 +24,21 @@ NS_ASSUME_NONNULL_BEGIN
  @param  lightBrandImageURL image URL for application light mode
  @param  darkBrandImageURL image URL for application dark mode
  */
-- (instancetype)initWithLightBrandImageURL:(NSURL*) lightBrandImageURL
-                         darkBrandImageURL:(NSURL *) darkBrandImageURL;
+- (instancetype)initWithLightBrandImageURL:(NSURL*)lightBrandImageURL darkBrandImageURL:(NSURL *)darkBrandImageURL;
 
 /*!
  This method returns preferred imageURL for image
  @param  traitCollection  Current UITraitCollection instance
  @return NSURL branding image URL. Should return 'darkBrandImageURL' for dark mode (if exist), otherwise - 'lightBrandImageURL'
  */
-- (NSURL*)brandImageURLForTraitCollection: (UITraitCollection*) traitCollection;
+- (NSURL*)brandImageURLForTraitCollection:(UITraitCollection *)traitCollection;
 
 /*!
  This method returns preferred backgroundColor for brand imageView
  @param  traitCollection  Current UITraitCollection instance
  @return UIColor - backgroundColor for brand imageView
  */
-- (UIColor*)brandImageBackgroundColorForTraitCollection: (UITraitCollection*) traitCollection;
+- (UIColor*)brandImageBackgroundColorForTraitCollection:(UITraitCollection*)traitCollection;
 
 @end
 

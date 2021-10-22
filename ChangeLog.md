@@ -1,5 +1,11 @@
 # PayU SDK Lite Change Log
 
+## Release 1.0.6
+Prepared on Fri, 22/10/2021
+### Changes:
+* Added `PUAddCardViewConfiguration` to customise add card widget
+* Removed card scanner feature from public usage
+
 ## Release 1.0.5
 Prepared on Fri, 10/09/2021
 ### Changes:

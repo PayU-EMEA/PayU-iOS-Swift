@@ -8,7 +8,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PUFooterView : UIView
 @property (weak, nonatomic) UIViewController *UIParent;
-
 + (instancetype)footerViewWithUIParent:(UIViewController *)UIParent;
 @end
 
