@@ -8,6 +8,9 @@ The whole process shopping looks like that:
 PayU SDK Lite is created for more advanced merchants and consist 
 of components that could be used **almost independent**:
 
+#### Config
+This class configuration is optional.
+ - `languageCode`
 
 #### Core
 - `PUVisualStyle`
@@ -49,12 +52,26 @@ This module adding/removing card for user on PayU backend. Adding card means col
 #### Pay in installments:
 This module allows to handle service installments mechanism.
 
+#### Marketplace B2B / B2C:
+Technical details about this feature can be found: [Marketplace B2C C2C](https://developers.payu.com/en/marketplace_b2c_c2c.html#marketplace_regulations_acceptance)
+- Regulations acceptance
+
 ## Technical details
 Due to compatibility reasons framework is written in Objective-C but without any changes can be integrated into Swift based app.
 
 ## Supported platforms and languages
 With the PayU SDK Lite for iOS, you can build apps that target native devices running iOS 10.0 and later. Developing an application with the PayU SDK Lite for iOS requires at least Xcode 9.0.
 Supported languages: English, Polish, German, Czech, Hungarian
+
+## Config
+Configuration must be prepared before SDK initialization (for ex. in `AppDelegate`).
+
+#### languageCode
+Allows to set the primary language code for SDK manually. Default languageCode is getting from the device preferences. Full list of supported `languageCode` is available in the `PUSDKConfiguration` class. 
+```objc
+PUSDKConfiguration *configuration = [PUSDKConfiguration instance];
+configuration.languageCode = @"en";
+```
 
 ## Core
 
@@ -286,7 +303,8 @@ To use WebPayment method module with 3DS you have to change (in above example):
     PU3dsAuthorizationRequest *request = [[PU3dsAuthorizationRequest alloc]
             initWithOrderId:@"orderId"
                  extOrderId:@"extOrderId"
-                redirectUri:[NSURL URLWithString:@"redirectUri"]];
+                redirectUri:[NSURL URLWithString:@"redirectUri"],
+                continueUrl:[NSURL URLWithString:@"continueUrl"]];
     
     PUWebAuthorizationViewController *webAuthorizationViewController = [[PUWebAuthorizationBuilder alloc] viewControllerFor3dsAuthorizationRequest:request visualStyle:visualStyle];
 ```
@@ -612,6 +630,43 @@ How to use: (steps 1 - 4 are optional)
     - when user cancel flow, `authorizationDelegate` will complete with `PUAuthorizationResultFailure` result (please check `userInfo` for more details)
     - when user accept flow, `authorizationDelegate` will complete with `PUAuthorizationResultExternalBrowser` result. It means that user was redirected to browser to complete installments details.
 
+
+## Marketplace B2B / B2C
+
+#### Regulations acceptance
+The following methods allow to generate checkbox for accepting regulations. 
+Code example to create `Regulations acceptance` autosizing widget, which can be added to any view. 
+1. Get `verificationId` from your backend
+2. Create `PURegulationsAcceptance` instance and pass your `verificationId`, `title`, `subtitle` and `linkText` values;
+    ```swift
+    let acceptanceModel = PURegulationsAcceptance(
+        verificationId: "AWESOME_VERIFICATION_ID", 
+        title: "Accept regulations", 
+        subtitle: "Accept Terms and Conditions", 
+        linkText: "(open)")
+    ```
+3. Create `PURegulationsAcceptanceConfig` instance, where:
+    - `presentingViewController` - viewController, from which SDK will open regulations webView
+    ```swift
+    let acceptanceConfig = PURegulationsAcceptanceConfig(
+        visualStyle: visualStyle, 
+        environment: environment, 
+        model: acceptanceModel, 
+        presentingViewController: presentingViewController)
+    ```
+4. Create `acceptanceView` using `PURegulationsAcceptanceBuilder`, where: 
+    - `onAccept` - closure, which will be triggered, if user accepts regulations
+    ```swift
+    let acceptanceBuilder = PURegulationsAcceptanceBuilder()
+    let acceptanceView = acceptanceBuilder.build(
+        config: acceptanceConfig, 
+        onAccept: {  })
+    ```
+5. Add created view to your views hierarchy and setup constraits to it:
+    ```swift
+    awesomeView.addSubview(acceptanceView)
+    // add constraints to `acceptanceView`
+    ```
 
 ## CVV Authorization
 

@@ -4,3 +4,8 @@ framework module PayU_SDK_Lite {
   export *
   module * { export * }
 }
+
+module PayU_SDK_Lite.Swift {
+    header "PayU_SDK_Lite-Swift.h"
+    requires objc
+}

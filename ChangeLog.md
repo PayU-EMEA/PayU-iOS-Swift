@@ -1,5 +1,13 @@
 # PayU SDK Lite Change Log
 
+## Release 1.0.7
+Prepared on Fri, 08/12/2021
+### Changes:
+* Added ability to set SDK locale using `PUSDKConfiguration` class
+* Added ability to present `Regulations acceptace` widget independently
+* Fixed issue with missing `continueUrl` in `PU3DSAuthorizationRequest` class
+* Fixed issue with incorrect `scheme` value in `PUCardToken` class
+
 ## Release 1.0.6
 Prepared on Fri, 22/10/2021
 ### Changes:

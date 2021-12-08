@@ -1,0 +1,26 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.4.2 effective-4.1.50 (swiftlang-1205.0.28.2 clang-1205.0.19.57)
+// swift-module-flags: -target armv7-apple-ios10.0 -enable-objc-interop -enable-library-evolution -swift-version 4 -enforce-exclusivity=checked -O -module-name PayU_SDK_Lite
+import Foundation
+@_exported import PayU_SDK_Lite
+import SafariServices
+import Swift
+@objc @objcMembers final public class PURegulationsAcceptanceConfig : ObjectiveC.NSObject {
+  @objc public init(visualStyle: PayU_SDK_Lite.PUVisualStyle, environment: PayU_SDK_Lite.PUEnvironment, model: PayU_SDK_Lite.PURegulationsAcceptance, presentingViewController: UIKit.UIViewController)
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers final public class PURegulationsAcceptanceBuilder : ObjectiveC.NSObject {
+  @objc final public func build(config: PayU_SDK_Lite.PURegulationsAcceptanceConfig, onAccept: (() -> Swift.Void)?) -> UIKit.UIView
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @objcMembers public class PURegulationsAcceptance : ObjectiveC.NSObject {
+  @objc final public let verificationId: Swift.String
+  @objc final public let title: Swift.String
+  @objc final public let subtitle: Swift.String
+  @objc final public let linkText: Swift.String
+  @objc public init(verificationId: Swift.String, title: Swift.String, subtitle: Swift.String, linkText: Swift.String)
+  @objc override dynamic public init()
+  @objc deinit
+}

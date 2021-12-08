@@ -12,6 +12,8 @@ FOUNDATION_EXPORT const unsigned char PayU_SDK_LiteVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <PayU_SDK_Lite/PublicHeader.h>
 
+#import <PayU_SDK_Lite/PUSDKConfiguration.h>
+
 #import <PayU_SDK_Lite/PUVisualStyle.h>
 #import <PayU_SDK_Lite/PUVisualStyleElement.h>
 

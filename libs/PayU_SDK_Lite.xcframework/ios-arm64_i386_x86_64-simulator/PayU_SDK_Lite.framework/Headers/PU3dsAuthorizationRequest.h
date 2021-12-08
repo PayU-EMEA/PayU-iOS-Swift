@@ -12,10 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (copy, readonly, nonatomic) NSString *orderId;
 @property (copy, readonly, nonatomic) NSString *extOrderId;
 @property (copy, readonly, nonatomic) NSURL *redirectUri;
+@property (copy, readonly, nonatomic) NSURL *continueUrl;
 
 - (instancetype)initWithOrderId:(NSString *)orderId
                      extOrderId:(NSString *)extOrderId
-                    redirectUri:(NSURL *)redirectUri NS_DESIGNATED_INITIALIZER;
+                    redirectUri:(NSURL *)redirectUri
+                    continueUrl:(NSURL *)continueUrl NS_DESIGNATED_INITIALIZER NS_SWIFT_NAME(init(orderId:extOrderId:redirectUri:continueUrl:));
 
 - (instancetype)init NS_UNAVAILABLE;
 
