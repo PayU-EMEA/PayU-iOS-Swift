@@ -1,5 +1,10 @@
 # PayU SDK Lite Change Log
 
+## Release 1.0.8
+Prepared on Wed, 05/01/2022
+### Changes:
+* Fixed issue with missing `PU3DSSoftAcceptRequestPerformer` where completion methods were not called
+
 ## Release 1.0.7
 Prepared on Fri, 08/12/2021
 ### Changes:
