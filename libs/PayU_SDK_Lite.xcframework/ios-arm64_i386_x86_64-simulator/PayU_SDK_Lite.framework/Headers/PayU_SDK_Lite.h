@@ -58,10 +58,6 @@ FOUNDATION_EXPORT const unsigned char PayU_SDK_LiteVersionString[];
 #import <PayU_SDK_Lite/PUPexAuthorizationRequest.h>
 #import <PayU_SDK_Lite/PUInstallmentsAuthorizationRequest.h>
 
-#import <PayU_SDK_Lite/PU3DSSoftAcceptRequest.h>
-#import <PayU_SDK_Lite/PU3DSSoftAcceptRequestPerformer.h>
-#import <PayU_SDK_Lite/PU3DSSoftAcceptRequestStatus.h>
-
 #import <PayU_SDK_Lite/PUPaymentWidgetService.h>
 
 #import <PayU_SDK_Lite/PUFooterView.h>

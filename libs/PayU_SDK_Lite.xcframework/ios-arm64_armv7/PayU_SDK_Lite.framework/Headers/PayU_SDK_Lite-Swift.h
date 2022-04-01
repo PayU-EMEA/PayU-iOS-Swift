@@ -191,6 +191,7 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #pragma clang diagnostic ignored "-Watimport-in-framework-header"
 #endif
 @import ObjectiveC;
+@import WebKit;
 #endif
 
 #import <PayU_SDK_Lite/PayU_SDK_Lite.h>
@@ -209,6 +210,47 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 # pragma clang attribute push(__attribute__((external_source_symbol(language="Swift", defined_in="PayU_SDK_Lite",generated_declaration))), apply_to=any(function,enum,objc_interface,objc_category,objc_protocol))
 # pragma pop_macro("any")
 #endif
+
+@class NSURL;
+
+SWIFT_CLASS("_TtC13PayU_SDK_Lite22PU3DSSoftAcceptRequest")
+@interface PU3DSSoftAcceptRequest : NSObject
+@property (nonatomic, readonly) PUEnvironment environment;
+@property (nonatomic, readonly, copy) NSURL * _Nonnull redirectUri;
+- (nonnull instancetype)initWithEnvironment:(PUEnvironment)environment redirectUri:(NSURL * _Nonnull)redirectUri OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_DEPRECATED_MSG("-init is unavailable");
+@end
+
+@protocol PU3DSSoftAcceptRequestPerformerDelegate;
+@class WKUserContentController;
+@class WKScriptMessage;
+
+SWIFT_CLASS("_TtC13PayU_SDK_Lite31PU3DSSoftAcceptRequestPerformer")
+@interface PU3DSSoftAcceptRequestPerformer : NSObject <WKScriptMessageHandler>
+@property (nonatomic, weak) id <PU3DSSoftAcceptRequestPerformerDelegate> _Nullable delegate;
+- (nonnull instancetype)initWithRequest:(PU3DSSoftAcceptRequest * _Nonnull)request OBJC_DESIGNATED_INITIALIZER;
+- (void)perform;
+- (void)userContentController:(WKUserContentController * _Nonnull)userContentController didReceiveScriptMessage:(WKScriptMessage * _Nonnull)message;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_DEPRECATED_MSG("-init is unavailable");
+@end
+
+enum PU3DSSoftAcceptRequestStatus : NSInteger;
+
+SWIFT_PROTOCOL("_TtP13PayU_SDK_Lite39PU3DSSoftAcceptRequestPerformerDelegate_")
+@protocol PU3DSSoftAcceptRequestPerformerDelegate <NSObject>
+- (void)performerDidStart:(PU3DSSoftAcceptRequestPerformer * _Nonnull)performer;
+- (void)performer:(PU3DSSoftAcceptRequestPerformer * _Nonnull)performer didCompleteWith:(enum PU3DSSoftAcceptRequestStatus)status;
+@end
+
+typedef SWIFT_ENUM(NSInteger, PU3DSSoftAcceptRequestStatus, open) {
+  PU3DSSoftAcceptRequestStatusDisplayFrame = 0,
+  PU3DSSoftAcceptRequestStatusAuthenticationNotRequired = 1,
+  PU3DSSoftAcceptRequestStatusAuthenticationSuccessful = 2,
+  PU3DSSoftAcceptRequestStatusAuthenticationCancelled = 3,
+  PU3DSSoftAcceptRequestStatusUnexpected = 4,
+};
 
 @class NSString;
 
@@ -440,6 +482,7 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #pragma clang diagnostic ignored "-Watimport-in-framework-header"
 #endif
 @import ObjectiveC;
+@import WebKit;
 #endif
 
 #import <PayU_SDK_Lite/PayU_SDK_Lite.h>
@@ -458,6 +501,47 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 # pragma clang attribute push(__attribute__((external_source_symbol(language="Swift", defined_in="PayU_SDK_Lite",generated_declaration))), apply_to=any(function,enum,objc_interface,objc_category,objc_protocol))
 # pragma pop_macro("any")
 #endif
+
+@class NSURL;
+
+SWIFT_CLASS("_TtC13PayU_SDK_Lite22PU3DSSoftAcceptRequest")
+@interface PU3DSSoftAcceptRequest : NSObject
+@property (nonatomic, readonly) PUEnvironment environment;
+@property (nonatomic, readonly, copy) NSURL * _Nonnull redirectUri;
+- (nonnull instancetype)initWithEnvironment:(PUEnvironment)environment redirectUri:(NSURL * _Nonnull)redirectUri OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_DEPRECATED_MSG("-init is unavailable");
+@end
+
+@protocol PU3DSSoftAcceptRequestPerformerDelegate;
+@class WKUserContentController;
+@class WKScriptMessage;
+
+SWIFT_CLASS("_TtC13PayU_SDK_Lite31PU3DSSoftAcceptRequestPerformer")
+@interface PU3DSSoftAcceptRequestPerformer : NSObject <WKScriptMessageHandler>
+@property (nonatomic, weak) id <PU3DSSoftAcceptRequestPerformerDelegate> _Nullable delegate;
+- (nonnull instancetype)initWithRequest:(PU3DSSoftAcceptRequest * _Nonnull)request OBJC_DESIGNATED_INITIALIZER;
+- (void)perform;
+- (void)userContentController:(WKUserContentController * _Nonnull)userContentController didReceiveScriptMessage:(WKScriptMessage * _Nonnull)message;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_DEPRECATED_MSG("-init is unavailable");
+@end
+
+enum PU3DSSoftAcceptRequestStatus : NSInteger;
+
+SWIFT_PROTOCOL("_TtP13PayU_SDK_Lite39PU3DSSoftAcceptRequestPerformerDelegate_")
+@protocol PU3DSSoftAcceptRequestPerformerDelegate <NSObject>
+- (void)performerDidStart:(PU3DSSoftAcceptRequestPerformer * _Nonnull)performer;
+- (void)performer:(PU3DSSoftAcceptRequestPerformer * _Nonnull)performer didCompleteWith:(enum PU3DSSoftAcceptRequestStatus)status;
+@end
+
+typedef SWIFT_ENUM(NSInteger, PU3DSSoftAcceptRequestStatus, open) {
+  PU3DSSoftAcceptRequestStatusDisplayFrame = 0,
+  PU3DSSoftAcceptRequestStatusAuthenticationNotRequired = 1,
+  PU3DSSoftAcceptRequestStatusAuthenticationSuccessful = 2,
+  PU3DSSoftAcceptRequestStatusAuthenticationCancelled = 3,
+  PU3DSSoftAcceptRequestStatusUnexpected = 4,
+};
 
 @class NSString;
 

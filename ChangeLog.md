@@ -1,5 +1,13 @@
 # PayU SDK Lite Change Log
 
+## Release 1.0.9
+Prepared on Fri, 01/04/2022
+### Changes:
+* Added `uk` (Ukrainian) langauge support
+* Added `sk` (Slovak) langauge support
+* Removed `PUCurrencyCode` - use the three-letter ISO 4217 currency code.
+* Removed `PUCountryCode` - use the two-letter ISO 3166 country code.
+
 ## Release 1.0.8
 Prepared on Wed, 05/01/2022
 ### Changes:
