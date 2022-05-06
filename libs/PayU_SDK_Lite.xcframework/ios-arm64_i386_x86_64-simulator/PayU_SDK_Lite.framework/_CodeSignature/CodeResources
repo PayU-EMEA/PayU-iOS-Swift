@@ -198,7 +198,7 @@
 		</data>
 		<key>Headers/PUSDKConfiguration.h</key>
 		<data>
-		IuK9nlKDxjeNqvgyVBXLpsCJXD4=
+		OCF1iaIL12oFt3YVEhzI8r/OtTU=
 		</data>
 		<key>Headers/PUSecondaryHeading.h</key>
 		<data>
@@ -250,7 +250,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		QMxBaI/uAT3R7i+27dLRZ0C1oGg=
+		Vq2Js+w/LEE1g/cc83h4nboak+o=
 		</data>
 		<key>LICENSE.txt</key>
 		<data>
@@ -486,11 +486,11 @@
 		</data>
 		<key>PUPaymentWidget.nib/objects-11.0+.nib</key>
 		<data>
-		RF9o1V7xbN1xMzc+1hQRrEOM6UY=
+		C7amhQccoPnpAVsEyACAdPFxgXU=
 		</data>
 		<key>PUPaymentWidget.nib/runtime.nib</key>
 		<data>
-		AYM4k+NHi+Al5lnQfQKcrMWtn2k=
+		S337VYiInQ1trwXKn8DoYAowG8U=
 		</data>
 		<key>PUSecureOverlayView.nib/objects-11.0+.nib</key>
 		<data>
@@ -556,7 +556,7 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			EZXxGUj7GqupVKIJKKyZbGKMIi4=
+			a74ZrNZ72LUGjrPjNAICklzoar4=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -574,7 +574,7 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			OeUImCb9s8lF5nEkVZIwKB88Scc=
+			ZFZlU8GSxeoa0/nAudFrlZx95Q8=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -596,7 +596,7 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			3n3GofKaG0OEE4IXQ1yilojOQpI=
+			reB2AXeGpNSEzIl5Q7Z/h5N3q3w=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -610,11 +610,29 @@
 			<key>optional</key>
 			<true/>
 		</dict>
+		<key>es.lproj/PayU-SDK.strings</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			Ymf6gZOY0BtcXSuu/re6Np/VFn0=
+			</data>
+			<key>optional</key>
+			<true/>
+		</dict>
+		<key>es.lproj/Plurals.stringsdict</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			T/b+Upxu8QuGLqlzPiTiwRFVrv8=
+			</data>
+			<key>optional</key>
+			<true/>
+		</dict>
 		<key>hu.lproj/PayU-SDK.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			7pb9HCZZHIUqndHTHjMOhYp06aY=
+			56RVbdK4V4JTdyBB5bacHJ4IAVY=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -720,7 +738,7 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			xMdoT7Yu7yrkacWUyz92LF1QlqU=
+			WVD4adqAQB2c9MBMtKCN/dd0f5Y=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -738,7 +756,7 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			icNv5bIEHnYEbnzn4KrtaaogwLQ=
+			Z0OaStk2CXdqPHCbJ0oc/xSEpb8=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -756,7 +774,7 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			PyKhkEQExQOGxTWHzddAnW6ZWL4=
+			SBkRbNCmXXdpmOYbSva3QiS6SI0=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -1313,11 +1331,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			IuK9nlKDxjeNqvgyVBXLpsCJXD4=
+			OCF1iaIL12oFt3YVEhzI8r/OtTU=
 			</data>
 			<key>hash2</key>
 			<data>
-			Y64fzpqL9KVpUGy53i/2YWA6mbz8kAwgcbs+l27mYi8=
+			8AFxxVK5BrhHw6Xt9PXd+YiemdeJxQDy6zK908slHfY=
 			</data>
 		</dict>
 		<key>Headers/PUSecondaryHeading.h</key>
@@ -2094,22 +2112,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			RF9o1V7xbN1xMzc+1hQRrEOM6UY=
+			C7amhQccoPnpAVsEyACAdPFxgXU=
 			</data>
 			<key>hash2</key>
 			<data>
-			K2SHKSeG866U7D3WKYGZtIMPjq/u6ZNAtfi5e/fwbUk=
+			AbWOanufWito96M/mHcCQhby0St8STxpGGBSQi+MiYA=
 			</data>
 		</dict>
 		<key>PUPaymentWidget.nib/runtime.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			AYM4k+NHi+Al5lnQfQKcrMWtn2k=
+			S337VYiInQ1trwXKn8DoYAowG8U=
 			</data>
 			<key>hash2</key>
 			<data>
-			CkrTxY14e0iKZCg5t3HxS0imXsv70a59dr25VmfPSbI=
+			6FK+xJmzC2Zfm+/l6BejFE1euhtGc1+GsgD2pohFS7g=
 			</data>
 		</dict>
 		<key>PUSecureOverlayView.nib/objects-11.0+.nib</key>
@@ -2281,11 +2299,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			EZXxGUj7GqupVKIJKKyZbGKMIi4=
+			a74ZrNZ72LUGjrPjNAICklzoar4=
 			</data>
 			<key>hash2</key>
 			<data>
-			Gkb78xhYkBR0cJUscgLA2nmexoWQehTOjakjw/L7thA=
+			GJFzgARELko2X7uLBZzenY6fPN3T43NOPtRgetLLieY=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -2307,11 +2325,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			OeUImCb9s8lF5nEkVZIwKB88Scc=
+			ZFZlU8GSxeoa0/nAudFrlZx95Q8=
 			</data>
 			<key>hash2</key>
 			<data>
-			ZTVCGT5mXlEbMSzbmyJJIKWppMpbbABQesmK+Mnte3c=
+			ZJlRyo07rHFYQBvAZLM3NVyQhIPQOqYxh7jljxsE7zw=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -2344,11 +2362,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			3n3GofKaG0OEE4IXQ1yilojOQpI=
+			reB2AXeGpNSEzIl5Q7Z/h5N3q3w=
 			</data>
 			<key>hash2</key>
 			<data>
-			XCeiKWQqy6IjT/XyZ5FICkaiUwAa1IRdKObGO/0GsB4=
+			4AiWgc3clV799elrqIZ+ByoKXLI/3ff5w8cKs5m0CQc=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -2366,15 +2384,41 @@
 			<key>optional</key>
 			<true/>
 		</dict>
+		<key>es.lproj/PayU-SDK.strings</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			Ymf6gZOY0BtcXSuu/re6Np/VFn0=
+			</data>
+			<key>hash2</key>
+			<data>
+			zlxsXh9ZmGzTpnVuXZ0N2P4IYNKeEUy/KMNs94eqAw4=
+			</data>
+			<key>optional</key>
+			<true/>
+		</dict>
+		<key>es.lproj/Plurals.stringsdict</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			T/b+Upxu8QuGLqlzPiTiwRFVrv8=
+			</data>
+			<key>hash2</key>
+			<data>
+			rGbGxM/XPqpP7TAXLYrk74ZcSvwBOcOz+l3y3caI/XA=
+			</data>
+			<key>optional</key>
+			<true/>
+		</dict>
 		<key>hu.lproj/PayU-SDK.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			7pb9HCZZHIUqndHTHjMOhYp06aY=
+			56RVbdK4V4JTdyBB5bacHJ4IAVY=
 			</data>
 			<key>hash2</key>
 			<data>
-			TC8lY57nJfZO8aGg7CiciOTg1G136SRIDRgvWDOH83c=
+			HrXWU29sUyKrYVT8HHGjwPS7KKd9N6gIjMAkaD2DW0k=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -2638,11 +2682,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			xMdoT7Yu7yrkacWUyz92LF1QlqU=
+			WVD4adqAQB2c9MBMtKCN/dd0f5Y=
 			</data>
 			<key>hash2</key>
 			<data>
-			TZWtee0MhH+NjT8gUNXOBlxIZjIa/qpBj1Ed21+DG5Q=
+			RuD81QeD13Pq+dJxA55tAkYLB2uoaE9qI3sPvLrJTVw=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -2664,11 +2708,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			icNv5bIEHnYEbnzn4KrtaaogwLQ=
+			Z0OaStk2CXdqPHCbJ0oc/xSEpb8=
 			</data>
 			<key>hash2</key>
 			<data>
-			K1qwh64XO8rdyoeAcVyjQRtGYN7dwLyRk89hd8qEx2I=
+			yTIkzDT/wBfcJ42gX4StPSpAbsO5vG5STJybT0hzFXQ=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -2690,11 +2734,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			PyKhkEQExQOGxTWHzddAnW6ZWL4=
+			SBkRbNCmXXdpmOYbSva3QiS6SI0=
 			</data>
 			<key>hash2</key>
 			<data>
-			ASpt2qbJ9+Jtesi5e3jxRVRYOhXSGYXy7/rp0FpPp10=
+			CONqQkgktt+0FrhKFWySKVOTIRn1KeGe8mVYLsPd854=
 			</data>
 			<key>optional</key>
 			<true/>

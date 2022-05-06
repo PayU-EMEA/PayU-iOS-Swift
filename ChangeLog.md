@@ -1,5 +1,10 @@
 # PayU SDK Lite Change Log
 
+## Release 1.0.10
+Prepared on Fri, 06/05/2022
+### Changes:
+* Added `es` (Spanish) langauge support
+
 ## Release 1.0.9
 Prepared on Fri, 01/04/2022
 ### Changes:

@@ -9,7 +9,15 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PUSDKConfiguration : NSObject
 
 /// Primary language to be used for PayU SDK texts
-/// Available codes: cs (Czech), de (German), en (English), hu (Hungarian), pl (Polish), uk (Ukrainian), sk (Slovak)
+/// Available codes:
+///   - cs (Czech),
+///   - de (German),
+///   - en (English),
+///   - es (Spanish),
+///   - hu (Hungarian),
+///   - pl (Polish),
+///   - sk (Slovak)
+///   - uk (Ukrainian),
 /// If provided languageCode is not available - default system Locale should be used.
 @property (strong, nonatomic, nullable) NSString *languageCode;
 
