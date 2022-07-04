@@ -3,16 +3,23 @@
 PayU mobile SDK for iOS.
 Supports: iOS 10.x and above
 
-## Integration using Cocoapods
+## Adding the CocoaPods dependency
 
-PayU SDK for iOS is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+Add dependency to `Podfile`:
 
 ```
 pod "PayULite"
 ```
 
-Once you integrated the pod you can use it in your project by adding the import statement:
+## Adding the SPM (Swift Package Manager) dependency
+
+Add dependency to `Package.swift` into `dependencies` section:
+
+```swift
+.package(url: "https://github.com/PayU-EMEA/PayU-iOS.git", .upToNextMajor(from: "1.0.10")),
+```
+
+## Importing the SDK
 
 ```
 import PayU_SDK_Lite
