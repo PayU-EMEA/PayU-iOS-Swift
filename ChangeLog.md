@@ -1,5 +1,10 @@
 # PayU SDK Lite Change Log
 
+## Release 1.0.11
+Prepared on Thu, 14/07/2022
+### Changes:
+* Added additional installments banks support
+
 ## Release 1.0.10
 Prepared on Fri, 06/05/2022
 ### Changes:
