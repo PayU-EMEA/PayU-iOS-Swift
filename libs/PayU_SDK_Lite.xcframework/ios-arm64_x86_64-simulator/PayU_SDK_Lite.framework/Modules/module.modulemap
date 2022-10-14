@@ -1,0 +1,11 @@
+framework module PayU_SDK_Lite {
+  umbrella header "PayU_SDK_Lite.h"
+
+  export *
+  module * { export * }
+}
+
+module PayU_SDK_Lite.Swift {
+  header "PayU_SDK_Lite-Swift.h"
+  requires objc
+}
