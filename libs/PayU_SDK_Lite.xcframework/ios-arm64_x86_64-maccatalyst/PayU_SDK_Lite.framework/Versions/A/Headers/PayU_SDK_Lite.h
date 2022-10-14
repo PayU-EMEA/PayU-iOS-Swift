@@ -24,6 +24,8 @@ FOUNDATION_EXPORT const unsigned char PayU_SDK_LiteVersionString[];
 
 #import <PayU_SDK_Lite/PUAboutViewController.h>
 
+#import <PayU_SDK_Lite/PUAboutViewController.h>
+
 #import <PayU_SDK_Lite/PUCardBrandImageProvider.h>
 #import <PayU_SDK_Lite/PUAddCardService.h>
 #import <PayU_SDK_Lite/PUAddCardConfiguration.h>

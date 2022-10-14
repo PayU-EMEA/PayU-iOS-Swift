@@ -3,6 +3,7 @@
 // 
 
 #import <Foundation/Foundation.h>
+#import "PUCardRecognizerOption.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -24,6 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSString *cardCVVLabel;
 @property (strong, nonatomic) NSString *cardCVVPlaceholder;
 @property (strong, nonatomic) NSString *cardCVVAction;
+
+@property (assign, nonatomic) PUCardRecognizerOption option;
 
 @end
 

@@ -1,5 +1,10 @@
 # PayU SDK Lite Change Log
 
+## Release 1.0.12
+Prepared on Fri, 14/10/2022
+### Changes:
+* Added `PUCardRecognizerOption` to allow merchants enable / disable card scanning fields
+
 ## Release 1.0.11
 Prepared on Thu, 14/07/2022
 ### Changes:
