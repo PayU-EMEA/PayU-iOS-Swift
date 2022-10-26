@@ -1,5 +1,10 @@
 # PayU SDK Lite Change Log
 
+## Release 1.0.13
+Prepared on Wed, 26/10/2022
+### Changes:
+* Added `fr` (French), `lv` (Latvian), `ro` (Romanian), `sl` (Slovenian) langauges support
+
 ## Release 1.0.12
 Prepared on Fri, 14/10/2022
 ### Changes:

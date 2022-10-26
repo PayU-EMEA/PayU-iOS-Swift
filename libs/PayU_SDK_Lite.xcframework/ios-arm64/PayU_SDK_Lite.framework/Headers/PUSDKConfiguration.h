@@ -11,12 +11,16 @@ NS_ASSUME_NONNULL_BEGIN
 /// Primary language to be used for PayU SDK texts
 /// Available codes:
 ///   - cs (Czech),
-///   - de (German),
 ///   - en (English),
-///   - es (Spanish),
+///   - fr (French),
+///   - de (German),
 ///   - hu (Hungarian),
+///   - lv (Latvian),
 ///   - pl (Polish),
-///   - sk (Slovak)
+///   - ro (Romanian),
+///   - sk (Slovak),
+///   - sl (Slovenian),
+///   - es (Spanish),
 ///   - uk (Ukrainian),
 /// If provided languageCode is not available - default system Locale should be used.
 @property (strong, nonatomic, nullable) NSString *languageCode;

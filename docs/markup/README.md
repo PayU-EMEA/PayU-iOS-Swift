@@ -61,7 +61,7 @@ Due to compatibility reasons framework is written in Objective-C but without any
 
 ## Supported platforms and languages
 With the PayU SDK Lite for iOS, you can build apps that target native devices running iOS 10.0 and later. Developing an application with the PayU SDK Lite for iOS requires at least Xcode 9.0.
-Supported languages: English, Polish, German, Czech, Hungarian
+Supported languages: Czech, English, French, German, Hungarian, Latvian, Polish, Romanian, Slovak, Slovenian, Spanish, Ukrainian.
 
 ## Config
 Configuration must be prepared before SDK initialization (for ex. in `AppDelegate`).

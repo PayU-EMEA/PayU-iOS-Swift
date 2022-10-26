@@ -202,7 +202,7 @@
 		</data>
 		<key>Headers/PUSDKConfiguration.h</key>
 		<data>
-		OCF1iaIL12oFt3YVEhzI8r/OtTU=
+		GbNtG5mWemBaK25DDGrSS+TckwI=
 		</data>
 		<key>Headers/PUSecondaryHeading.h</key>
 		<data>
@@ -254,7 +254,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		/fjkjZtx9g+aOg5lsHBXbaONYd0=
+		XhrwUk4ZhF0CIJCvyWeDY4bpCG8=
 		</data>
 		<key>LICENSE.txt</key>
 		<data>
@@ -600,6 +600,24 @@
 			<key>optional</key>
 			<true/>
 		</dict>
+		<key>fr.lproj/PayU-SDK.strings</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			31Ypm1y8nOVacp2ZCufHoHjAtkY=
+			</data>
+			<key>optional</key>
+			<true/>
+		</dict>
+		<key>fr.lproj/Plurals.stringsdict</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			T/b+Upxu8QuGLqlzPiTiwRFVrv8=
+			</data>
+			<key>optional</key>
+			<true/>
+		</dict>
 		<key>hu.lproj/PayU-SDK.strings</key>
 		<dict>
 			<key>hash</key>
@@ -646,6 +664,24 @@
 		<data>
 		/bu8lat63fVP2q3vzeQthBRnGN0=
 		</data>
+		<key>lv.lproj/PayU-SDK.strings</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			AEyWJVuNv4yovdR6CoG4tk31adk=
+			</data>
+			<key>optional</key>
+			<true/>
+		</dict>
+		<key>lv.lproj/Plurals.stringsdict</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			T/b+Upxu8QuGLqlzPiTiwRFVrv8=
+			</data>
+			<key>optional</key>
+			<true/>
+		</dict>
 		<key>maestro_24pt_dark@1x.png</key>
 		<data>
 		SDvb9LQplOD2fBVyNKx63zkfw7w=
@@ -724,6 +760,24 @@
 			<key>optional</key>
 			<true/>
 		</dict>
+		<key>ro.lproj/PayU-SDK.strings</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			4RaYRcQI4YlWk1wYSZTEpB0fhMw=
+			</data>
+			<key>optional</key>
+			<true/>
+		</dict>
+		<key>ro.lproj/Plurals.stringsdict</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			T/b+Upxu8QuGLqlzPiTiwRFVrv8=
+			</data>
+			<key>optional</key>
+			<true/>
+		</dict>
 		<key>sk.lproj/PayU-SDK.strings</key>
 		<dict>
 			<key>hash</key>
@@ -734,6 +788,24 @@
 			<true/>
 		</dict>
 		<key>sk.lproj/Plurals.stringsdict</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			T/b+Upxu8QuGLqlzPiTiwRFVrv8=
+			</data>
+			<key>optional</key>
+			<true/>
+		</dict>
+		<key>sl.lproj/PayU-SDK.strings</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			2JLi61fuqzExQ0M/FeHY2ksAGv8=
+			</data>
+			<key>optional</key>
+			<true/>
+		</dict>
+		<key>sl.lproj/Plurals.stringsdict</key>
 		<dict>
 			<key>hash</key>
 			<data>
@@ -1314,11 +1386,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			OCF1iaIL12oFt3YVEhzI8r/OtTU=
+			GbNtG5mWemBaK25DDGrSS+TckwI=
 			</data>
 			<key>hash2</key>
 			<data>
-			8AFxxVK5BrhHw6Xt9PXd+YiemdeJxQDy6zK908slHfY=
+			uLtqDzwktF6xScQUFtS1uzbtcxMg+zB//q7NaVrZtuo=
 			</data>
 		</dict>
 		<key>Headers/PUSecondaryHeading.h</key>
@@ -2305,6 +2377,32 @@
 			<key>optional</key>
 			<true/>
 		</dict>
+		<key>fr.lproj/PayU-SDK.strings</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			31Ypm1y8nOVacp2ZCufHoHjAtkY=
+			</data>
+			<key>hash2</key>
+			<data>
+			+05CJj6qPXBHElIlszV9s5vlagoIDHN8yLQ93NdvFd4=
+			</data>
+			<key>optional</key>
+			<true/>
+		</dict>
+		<key>fr.lproj/Plurals.stringsdict</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			T/b+Upxu8QuGLqlzPiTiwRFVrv8=
+			</data>
+			<key>hash2</key>
+			<data>
+			rGbGxM/XPqpP7TAXLYrk74ZcSvwBOcOz+l3y3caI/XA=
+			</data>
+			<key>optional</key>
+			<true/>
+		</dict>
 		<key>hu.lproj/PayU-SDK.strings</key>
 		<dict>
 			<key>hash</key>
@@ -2407,6 +2505,32 @@
 			<data>
 			1ZKdJqPWgvqXb7bDfadZmUS5gthdvtAl4djHDCeD83U=
 			</data>
+		</dict>
+		<key>lv.lproj/PayU-SDK.strings</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			AEyWJVuNv4yovdR6CoG4tk31adk=
+			</data>
+			<key>hash2</key>
+			<data>
+			yVkXs1InvJcBpZIm7qmP/jwtHnQB5QamLLoCNHhNXfY=
+			</data>
+			<key>optional</key>
+			<true/>
+		</dict>
+		<key>lv.lproj/Plurals.stringsdict</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			T/b+Upxu8QuGLqlzPiTiwRFVrv8=
+			</data>
+			<key>hash2</key>
+			<data>
+			rGbGxM/XPqpP7TAXLYrk74ZcSvwBOcOz+l3y3caI/XA=
+			</data>
+			<key>optional</key>
+			<true/>
 		</dict>
 		<key>maestro_24pt_dark@1x.png</key>
 		<dict>
@@ -2599,6 +2723,32 @@
 			<key>optional</key>
 			<true/>
 		</dict>
+		<key>ro.lproj/PayU-SDK.strings</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			4RaYRcQI4YlWk1wYSZTEpB0fhMw=
+			</data>
+			<key>hash2</key>
+			<data>
+			C6z4cuksaa3D+ak1QbJ+vqjbp2JW/Qu52HjlSb5Chl8=
+			</data>
+			<key>optional</key>
+			<true/>
+		</dict>
+		<key>ro.lproj/Plurals.stringsdict</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			T/b+Upxu8QuGLqlzPiTiwRFVrv8=
+			</data>
+			<key>hash2</key>
+			<data>
+			rGbGxM/XPqpP7TAXLYrk74ZcSvwBOcOz+l3y3caI/XA=
+			</data>
+			<key>optional</key>
+			<true/>
+		</dict>
 		<key>sk.lproj/PayU-SDK.strings</key>
 		<dict>
 			<key>hash</key>
@@ -2613,6 +2763,32 @@
 			<true/>
 		</dict>
 		<key>sk.lproj/Plurals.stringsdict</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			T/b+Upxu8QuGLqlzPiTiwRFVrv8=
+			</data>
+			<key>hash2</key>
+			<data>
+			rGbGxM/XPqpP7TAXLYrk74ZcSvwBOcOz+l3y3caI/XA=
+			</data>
+			<key>optional</key>
+			<true/>
+		</dict>
+		<key>sl.lproj/PayU-SDK.strings</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			2JLi61fuqzExQ0M/FeHY2ksAGv8=
+			</data>
+			<key>hash2</key>
+			<data>
+			//VyyAFxKk/L/lW2qKturV3EuKKSYjXxI97rsIEyZXE=
+			</data>
+			<key>optional</key>
+			<true/>
+		</dict>
+		<key>sl.lproj/Plurals.stringsdict</key>
 		<dict>
 			<key>hash</key>
 			<data>
