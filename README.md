@@ -49,7 +49,9 @@ Then choose Package Products you want to use:
 
 The SDK contains the `Example` project, where you can find examlpe of how to imppement different feature, such as: [PUApplePay](https://payu-emea.github.io/PayU-iOS/documentation/pusdk/gettingstartedwithapplepay), [PUPaymentCard](https://payu-emea.github.io/PayU-iOS/documentation/pusdk/gettingstartedwithpaymentcard), [PUPaymentMethods](https://payu-emea.github.io/PayU-iOS/documentation/pusdk/gettingstartedwithpaymentmethods), etc. 
 
-1. Clone git repo: `git clone https://github.com/PayU-EMEA/PayU-iOS/tree/release/2.0.0`
-2. Open: `PayU-iOS/Example/Example.xcodeproj`
-3. Update: `Example/Core/Models/Constants.swift`
-4. Once you run the app, add your POS details: `Settings -> Environment -> Create -> (Enter POS details) -> Save`
+1. Clone git repo: `git clone https://github.com/PayU-EMEA/PayU-iOS.git`
+2. Navigate to cloned Folder: `cd PayU-iOS`
+3. Checkout the `release/2.0.0` branch: `git checkout release/2.0.0`
+4. Open: `PayU-iOS/Example/Example.xcodeproj`
+5. Update: `Example/Core/Models/Constants.swift`
+6. Once you run the app, add your POS details: `Settings -> Environment -> Create -> (Enter POS details) -> Save`

@@ -1,8 +1,6 @@
 # https://mockingbirdswift.com/spm-package-quickstart
 
-#!/bin/bash
 set -eu
-cd "$(dirname "$0")"
 swift package describe --type json > project.json
 .build/checkouts/mockingbird/mockingbird generate \
   --project project.json \
@@ -10,9 +8,7 @@ swift package describe --type json > project.json
   --testbundle PUCoreTests \
   --targets PUCore
 
-  #!/bin/bash
 set -eu
-cd "$(dirname "$0")"
 swift package describe --type json > project.json
 .build/checkouts/mockingbird/mockingbird generate \
   --project project.json \
@@ -20,9 +16,7 @@ swift package describe --type json > project.json
   --testbundle PUMastercardInstallmentsTests \
   --targets PUMastercardInstallments
 
-#!/bin/bash
 set -eu
-cd "$(dirname "$0")"
 swift package describe --type json > project.json
 .build/checkouts/mockingbird/mockingbird generate \
   --project project.json \
@@ -30,9 +24,7 @@ swift package describe --type json > project.json
   --testbundle PUPaymentCardTests \
   --targets PUAPI PUCore PUPaymentCard
 
-#!/bin/bash
 set -eu
-cd "$(dirname "$0")"
 swift package describe --type json > project.json
 .build/checkouts/mockingbird/mockingbird generate \
   --project project.json \
@@ -40,9 +32,7 @@ swift package describe --type json > project.json
   --testbundle PUPaymentCardScannerTests \
   --targets PUCore PUPaymentCardScanner
 
-#!/bin/bash
 set -eu
-cd "$(dirname "$0")"
 swift package describe --type json > project.json
 .build/checkouts/mockingbird/mockingbird generate \
   --project project.json \
@@ -50,9 +40,7 @@ swift package describe --type json > project.json
   --testbundle PUPaymentMethodsTests \
   --targets PUApplePay PUCore PUPaymentMethods PUTranslations
 
-#!/bin/bash
 set -eu
-cd "$(dirname "$0")"
 swift package describe --type json > project.json
 .build/checkouts/mockingbird/mockingbird generate \
   --project project.json \
@@ -60,9 +48,7 @@ swift package describe --type json > project.json
   --testbundle PUThreeDSTests \
   --targets PUAPI PUThreeDS
 
-#!/bin/bash
 set -eu
-cd "$(dirname "$0")"
 swift package describe --type json > project.json
 .build/checkouts/mockingbird/mockingbird generate \
   --project project.json \
@@ -70,9 +56,7 @@ swift package describe --type json > project.json
   --testbundle PUTranslationsTests \
   --targets PUCore PUTranslations
 
-#!/bin/bash
 set -eu
-cd "$(dirname "$0")"
 swift package describe --type json > project.json
 .build/checkouts/mockingbird/mockingbird generate \
   --project project.json \

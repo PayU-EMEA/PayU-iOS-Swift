@@ -91,6 +91,7 @@ Pod::Spec.new do |s|
   s.subspec 'PUWebPayments' do |ss|
     ss.source_files       = 'PUWebPayments/Sources/PUWebPayments/**/*'
     ss.framework          = 'WebKit'
+    ss.dependency         'PUSDK/PUAPI'
     ss.dependency         'PUSDK/PUCore'
     ss.dependency         'PUSDK/PUTheme'
     ss.dependency         'PUSDK/PUTranslations'
