@@ -1,0 +1,24 @@
+[
+    {
+      "brandImageUrl": "https://static.payu.com/images/mobile/visa_off.png",
+      "cardBrand": "VISA",
+      "cardExpirationMonth": 1,
+      "cardExpirationYear": 2019,
+      "cardNumberMasked": "401200******1112",
+      "cardScheme": "VS",
+      "preferred": false,
+      "status": "EXPIRED",
+      "value": "TOKC_QPY10DEHHLWPOMJIV5LWUZHG2DG",
+    },
+    {
+      "brandImageUrl": "https://static.payu.com/images/mobile/visa.png",
+      "cardBrand": "VISA",
+      "cardExpirationMonth": 9,
+      "cardExpirationYear": 2024,
+      "cardNumberMasked": "444433******1111",
+      "cardScheme": "VS",
+      "preferred": true,
+      "status": "ACTIVE",
+      "value": "TOKC_2FQKFMYNTLPV1UINCZ9KLEQTMND"
+    }
+]

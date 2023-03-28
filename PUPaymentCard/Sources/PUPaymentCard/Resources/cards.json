@@ -1,0 +1,173 @@
+[
+   {
+      "number":"4444 3333 2222 1111",
+      "expirationMonth":"12",
+      "expirationYear":"29",
+      "cvv":"123",
+      "is3DSecure":"no",
+      "isMastercardInstallments":"n/a",
+      "behavior":"Positive authorization"
+   },
+   {
+      "number":"5434 0210 1682 4014",
+      "expirationMonth":"12",
+      "expirationYear":"29",
+      "cvv":"123",
+      "is3DSecure":"no",
+      "isMastercardInstallments":"yes",
+      "behavior":"Positive authorization"
+   },
+   {
+      "number":"5598 6148 1656 3766",
+      "expirationMonth":"12",
+      "expirationYear":"29",
+      "cvv":"123",
+      "is3DSecure":"no",
+      "isMastercardInstallments":"yes",
+      "behavior":"Positive authorization"
+   },
+   {
+      "number":"5099 8022 1116 5618",
+      "expirationMonth":"12",
+      "expirationYear":"29",
+      "cvv":"123",
+      "is3DSecure":"no",
+      "isMastercardInstallments":"n/a",
+      "behavior":"Positive authorization. CVV is not required in single click payments (PayU | Express)"
+   },
+   {
+      "number":"4012 0010 3714 1112",
+      "expirationMonth":"12",
+      "expirationYear":"29",
+      "cvv":"123",
+      "is3DSecure":"3DS 1",
+      "isMastercardInstallments":"n/a",
+      "behavior":"Positive authorization"
+   },
+   {
+      "number":"5100 0523 8453 6891",
+      "expirationMonth":"12",
+      "expirationYear":"29",
+      "cvv":"123",
+      "is3DSecure":"3DS 1",
+      "isMastercardInstallments":"no",
+      "behavior":"Positive authorization"
+   },
+   {
+      "number":"5150 0300 9005 0083",
+      "expirationMonth":"12",
+      "expirationYear":"29",
+      "cvv":"123",
+      "is3DSecure":"3DS 1",
+      "isMastercardInstallments":"no",
+      "behavior":"Negative  authorization"
+   },
+   {
+      "number":"4012 0010 0700 2005",
+      "expirationMonth":"12",
+      "expirationYear":"29",
+      "cvv":"123",
+      "is3DSecure":"3DS 1",
+      "isMastercardInstallments":"n/a",
+      "behavior":"Negative  authorization"
+   },
+   {
+      "number":"5000 1050 1812 6595",
+      "expirationMonth":"12",
+      "expirationYear":"29",
+      "cvv":"123",
+      "is3DSecure":"no",
+      "isMastercardInstallments":"no",
+      "behavior":"Negative  authorization"
+   },
+   {
+      "number":"4000 3982 8436 0",
+      "expirationMonth":"12",
+      "expirationYear":"29",
+      "cvv":"123",
+      "is3DSecure":"no",
+      "isMastercardInstallments":"n/a",
+      "behavior":"Negative  authorization"
+   },
+   {
+      "number":"4245 7576 6634 9685",
+      "expirationMonth":"12",
+      "expirationYear":"29",
+      "cvv":"123",
+      "is3DSecure":"3DS 2 - challenge required",
+      "isMastercardInstallments":"no",
+      "behavior":"Positive authorization"
+   },
+   {
+      "number":"5150 0300 9035 0186",
+      "expirationMonth":"12",
+      "expirationYear":"29",
+      "cvv":"123",
+      "is3DSecure":"3DS 2 - 3DS Method required",
+      "isMastercardInstallments":"no",
+      "behavior":"Positive authorization"
+   },
+   {
+      "number":"4012 0010 3714 1120",
+      "expirationMonth":"12",
+      "expirationYear":"29",
+      "cvv":"123",
+      "is3DSecure":"3DS 2 - 3DS Method and challenge required",
+      "isMastercardInstallments":"no",
+      "behavior":"Positive authorization"
+   },
+   {
+      "number":"5100 0523 8453 6834",
+      "expirationMonth":"12",
+      "expirationYear":"29",
+      "cvv":"123",
+      "is3DSecure":"3DS 2 - challenge params if sdk object sent in OrderCreateRequest",
+      "isMastercardInstallments":"no",
+      "behavior":"Positive authorization"
+   },
+   {
+      "number":"5100 0523 8453 6818",
+      "expirationMonth":"02",
+      "expirationYear":"32",
+      "cvv":"123",
+      "is3DSecure":"3DS 2 - challenge required / if no 3DS is used, returns soft decline (SSD)",
+      "isMastercardInstallments":"no",
+      "behavior":"Positive authorization"
+   },
+   {
+      "number":"5100 0523 8453 6826",
+      "expirationMonth":"12",
+      "expirationYear":"29",
+      "cvv":"123",
+      "is3DSecure":"3DS 2 - frictionless positive authentication",
+      "isMastercardInstallments":"no",
+      "behavior":"Positive authorization"
+   },
+   {
+      "number":"5521 4551 8657 7727",
+      "expirationMonth":"12",
+      "expirationYear":"29",
+      "cvv":"123",
+      "is3DSecure":"3DS 2 - frictionless negative authentication",
+      "isMastercardInstallments":"no",
+      "behavior":"no authorization (authentication fails)"
+   },
+   {
+      "number":"5405 8609 3727 0285",
+      "expirationMonth":"12",
+      "expirationYear":"29",
+      "cvv":"123",
+      "is3DSecure":"no",
+      "isMastercardInstallments":"no",
+      "behavior":"50% chance for successful authorization"
+   },
+   {
+      "number":"4532 5980 2110 4999",
+      "expirationMonth":"12",
+      "expirationYear":"29",
+      "cvv":"123",
+      "is3DSecure":"no",
+      "isMastercardInstallments":"no",
+      "behavior":"successful authorization only if amount below 1000 minor units of given currency"
+   }
+]
