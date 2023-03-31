@@ -13,18 +13,18 @@ Create branch for feature, bugfix, etc. from `release/2.0.0` branch:
 
 Make changes:
 
-1. make changes in `Sources` folder for package
-2. update `Example` app (optional)
-3. run `Example` app (optional)
-4. push changes to your branch
+1. Make changes in `Sources` folder for package
+2. Update `Example` app (optional)
+3. Run `Example` app (optional)
+4. Push changes to your branch
 
 ### Step 3
 
 Update tests:
 
-1. update tests in `Tests` folder
-2. run tests in `Tests` folder
-3. push changes to your branch
+1. Update tests in `Tests` folder
+2. Run tests in `Tests` folder
+3. Push changes to your branch
 
 ### Step 4
 
@@ -36,7 +36,7 @@ Update documentation:
 4. Update stucture in `PUSDK/Documentation/Documentation` (optional)
 5. Update stucture in `PUSDK/Documentation/Articles/GettingStartedWith{Package}` (optional)
 6. Update stucture in `PUSDK/Documentation/Articles/GettingStartedWith{Package}ExampleOf...` (optional)
-7. push changes to your branch
+7. Push changes to your branch
 
 > Note: Ensure documentation is correct: `XCode > Product > Build Documentation`
 
@@ -63,13 +63,13 @@ Generate documentation:
 1. Open `Terminal` app
 2. Navigate to Project Root Folder, for ex: `cd /Path/To/Project/Root/Folder/`
 3. Run `make generate_documentation` command.
-4. Ensure `docs` folder appears in 
-5. push changes to your branch
+4. Ensure `docs` folder appears in the project root folder 
+5. Push changes to your branch
 
 ## How to make release? 
 
 ### Step 1
 
-1. make pull request into `release/2.0.0` branch from your branch
-2. merge your branch into `release/2.0.0` branch
-3. push `tag` with new version to `release/2.0.0` branch
+1. Make pull request into `release/2.0.0` branch from your branch
+2. Merge your branch into `release/2.0.0` branch
+3. Push `tag` with new version to `release/2.0.0` branch
