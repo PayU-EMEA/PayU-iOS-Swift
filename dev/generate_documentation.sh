@@ -1,7 +1,7 @@
 # https://developer.apple.com/documentation/xcode/distributing-documentation-to-external-developers
 # https://forums.swift.org/t/generate-documentation-failing-on-import-uikit/55202/6
 
-REPOSITORY_NAME="PayU-iOS"
+REPOSITORY_NAME="PayU-iOS-Swift"
 
 XCODE_SCHEME="PUSDK"
 XCODE_DERIVED_DATA_PATH="docc"

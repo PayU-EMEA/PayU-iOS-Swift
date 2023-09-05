@@ -4,7 +4,7 @@
 
 ### Step 1
 
-Create branch for feature, bugfix, etc. from `release/2.0.0` branch:
+Create branch for feature, bugfix, etc. from `main` branch:
 
 * for ex.: `feature/92-add-new-payment-method-support`
 * for ex.: `bugfix/114-the-placeholder-for-card-cvv-is-incorrect`
@@ -70,6 +70,6 @@ Generate documentation:
 
 ### Step 1
 
-1. Make pull request into `release/2.0.0` branch from your branch
-2. Merge your branch into `release/2.0.0` branch
-3. Push `tag` with new version to `release/2.0.0` branch
+1. Make pull request into `main` branch from your branch
+2. Merge your branch into `main` branch
+3. Push `tag` with new version to `main` branch
