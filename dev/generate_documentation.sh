@@ -35,14 +35,6 @@ xcodebuild docbuild \
   -destination "$XCODE_DESTINATION" \
   -quiet
 
-echo "✅ xcodebuild docbuild $XCODE_SCHEME ..."
-# Generate
-xcodebuild docbuild \
-  -scheme "$XCODE_SCHEME" \
-  -derivedDataPath "$XCODE_DERIVED_DATA_PATH" \
-  -destination "$XCODE_DESTINATION" \
-  -quiet
-
 echo "✅ Transforming documentation for static hosting ..."
 # Creates static page for documentation
 cd "$XCODE_DERIVED_DATA_PATH"/Build/Products/Debug-iphoneos
