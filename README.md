@@ -52,8 +52,4 @@ When you want to use single Package:
 
 The SDK contains the `Example` project, where you can find example of how to implement different feature, such as: [PUApplePay](https://payu-emea.github.io/PayU-iOS-Swift/documentation/pusdk/gettingstartedwithapplepay), [PUPaymentCard](https://payu-emea.github.io/PayU-iOS-Swift/documentation/pusdk/gettingstartedwithpaymentcard), [PUPaymentMethods](https://payu-emea.github.io/PayU-iOS-Swift/documentation/pusdk/gettingstartedwithpaymentmethods), etc. 
 
-1. Clone git repo: `git clone https://github.com/PayU-EMEA/PayU-iOS-Swift.git`
-2. Navigate to cloned Folder: `cd PayU-iOS-Swift`
-3. Open: `PayU-iOS-Swift/Example/Example.xcodeproj`
-4. Update: `Example/Core/Models/Constants.swift`
-5. Once you run the app, add your POS details: `Settings -> Environment -> Create -> (Enter POS details) -> Save`
+## [Development](./dev/README.md)

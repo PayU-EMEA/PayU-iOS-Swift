@@ -1,5 +1,13 @@
 # Developers Process
 
+## Running the project
+
+1. Clone git repo: `git clone https://github.com/PayU-EMEA/PayU-iOS-Swift.git`
+2. Navigate to cloned Folder: `cd PayU-iOS-Swift`
+3. Open: `PayU-iOS-Swift/Example/Example.xcodeproj`
+4. Update: `Example/Core/Models/Constants.swift`
+5. Once you run the app, add your POS details: `Settings -> Environment -> Create -> (Enter POS details) -> Save`
+
 ## How to implement bugfix/feature?
 
 ### Step 1
