@@ -15,7 +15,7 @@ enum PaymentMethodsEndpoint {
 
 extension PaymentMethodsEndpoint: HTTPEndpoint {
   var baseURL: URL {
-    return URL(string: "https://secure.snd.payu.com")!
+    return URL(string: "https://secure.sndbeta.payu.com")!
   }
 
   var path: String {

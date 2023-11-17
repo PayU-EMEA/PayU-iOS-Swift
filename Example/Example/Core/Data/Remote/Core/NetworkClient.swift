@@ -106,5 +106,17 @@ class NetworkClient<E: HTTPEndpoint>: NSObject, URLSessionTaskDelegate {
       completionHandler(nil)
   }
 
+    // Handle SSL challenges
+    func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+        guard let serverTrust = challenge.protectionSpace.serverTrust else {
+            completionHandler(.cancelAuthenticationChallenge, nil)
+            return
+        }
+
+        // Always accept the server's certificate without verification
+        let credential = URLCredential(trust: serverTrust)
+        completionHandler(.useCredential, credential)
+    }
+
 }
 
