@@ -6,26 +6,23 @@
     <dict>
         <key>NSAllowsArbitraryLoads</key>
         <true/>
-        <key>NSAppTransportSecurity</key>
+        <key>NSExceptionDomains</key>
+        <dict>
+            <key>playground.klarna.com</key>
             <dict>
-                <key>NSExceptionDomains</key>
-                <dict>
-                    <key>playground.klarna.com</key>
-                    <dict>
-                        <key>NSExceptionAllowsInsecureHTTPLoads</key>
-                        <true/>
-                        <key>NSIncludesSubdomains</key>
-                        <true/>
-                    </dict>
-                    <key>sndbeta.payu.com</key>
-                    <dict>
-                        <key>NSExceptionAllowsInsecureHTTPLoads</key>
-                        <true/>
-                        <key>NSIncludesSubdomains</key>
-                        <true/>
-                    </dict>
-                </dict>
+                <key>NSExceptionAllowsInsecureHTTPLoads</key>
+                <true/>
+                <key>NSIncludesSubdomains</key>
+                <true/>
             </dict>
+            <key>sndbeta.payu.com</key>
+            <dict>
+                <key>NSExceptionAllowsInsecureHTTPLoads</key>
+                <true/>
+                <key>NSIncludesSubdomains</key>
+                <true/>
+            </dict>
+        </dict>
     </dict>
 	<key>NSCameraUsageDescription</key>
 	<string>The app&apos;s Info.plist must contain an NSCameraUsageDescription key with a string value explaining to the user how the app uses this data.</string>
