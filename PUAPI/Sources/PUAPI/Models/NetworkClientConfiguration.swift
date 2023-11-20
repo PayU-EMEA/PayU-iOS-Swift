@@ -11,13 +11,13 @@ import Foundation
 import PUCore
 #endif
 
-struct NetworkClientConfiguration {
+public struct NetworkClientConfiguration {
 
   // MARK: - Public Properties
-  let baseUrl: URL
+  public let baseUrl: URL
 
   // MARK: - Initialization
-  init(environment: Environment) {
+  public init(environment: Environment) {
     switch environment {
       case .production:
         self.init(baseUrl: URL(string: "https://mobilesdk.secure.payu.com")!)

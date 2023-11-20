@@ -7,6 +7,8 @@
 //  
 
 import Foundation
+import PUAPI
+import PUCore
 
 enum OrdersEndpoint {
   case createOrder(OrderCreateRequest)
@@ -14,7 +16,9 @@ enum OrdersEndpoint {
 
 extension OrdersEndpoint: HTTPEndpoint {
   var baseURL: URL {
-    return URL(string: "https://secure.snd.payu.com")!
+    let configuration = NetworkClientConfiguration(environment: PayU.pos.environment)
+
+    return configuration.baseUrl
   }
 
   var path: String {
