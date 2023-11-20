@@ -7,6 +7,8 @@
 //  
 
 import Foundation
+import PUAPI
+import PUCore
 
 enum AuthorizationEndpoint {
   case authorize(AuthorizationBody)
@@ -14,7 +16,9 @@ enum AuthorizationEndpoint {
 
 extension AuthorizationEndpoint: HTTPEndpoint {
   var baseURL: URL {
-    return URL(string: "https://secure.sndbeta.payu.com")!
+    let configuration = NetworkClientConfiguration(environment: PayU.pos.environment)
+
+    return configuration.baseUrl
   }
   
   var path: String {
