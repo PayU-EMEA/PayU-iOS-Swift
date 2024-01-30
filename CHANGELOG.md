@@ -1,3 +1,9 @@
+## Release 2.0.2
+Prepared on 30/01/2024
+### Changes:
+* Fixed of keyboard not hiding
+* Auto focus to next field on card widget
+
 ## Release 2.0.1
 Prepared on 11/01/2024
 ### Changes:
