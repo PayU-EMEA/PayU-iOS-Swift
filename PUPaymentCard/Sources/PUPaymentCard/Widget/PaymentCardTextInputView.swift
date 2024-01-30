@@ -95,6 +95,15 @@ extension PaymentCardTextInputView: UITextFieldDelegate {
 
     textField.text = formattedText
     onTextDidChange?(formattedText)
+
+    if !editedText.isEmpty && (nextActiveResponder != nil) {
+        do {
+          try validator.validate(editedText)
+          nextActiveResponder?.becomeFirstResponder()
+        } catch {
+        }
+    }
+
     return false
   }
 

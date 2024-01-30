@@ -229,6 +229,7 @@ private extension PaymentCardViewController {
 // MARK: - PaymentCardViewModelDelegate
 extension PaymentCardViewController: PaymentCardViewModelDelegate {
   func paymentCardViewModel(_ viewModel: PaymentCardViewModel, didComplete cardToken: CardToken) {
+    view.endEditing(true)
     delegate?.paymentCardViewController(self, didComplete: cardToken)
   }
   
