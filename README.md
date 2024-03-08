@@ -32,8 +32,7 @@ Allows to make payments in PayU ecosystem.
 To add a package dependency to your Xcode project, select File > Add Packages. You can also navigate to your target’s General pane, and in the `Frameworks, Libraries, and Embedded Content` section, click the + button, select `Add Other`, and choose `Add Package Dependency`. 
 
 * Package URL: `https://github.com/PayU-EMEA/PayU-iOS-Swift.git`
-* Dependency Rule: `Branch`
-* Branch: `main`
+* Dependency Rule: `Up To Next Major Version`
 
 Then choose Package Products you want to use:
 
@@ -43,10 +42,10 @@ Then choose Package Products you want to use:
 ### CocoaPods
 
 When you want to use all Packages (PUApplePay, PUPaymentMethods, PUWebPayments, etc.):
-* `pod 'PUSDK', :git => 'https://github.com/PayU-EMEA/PayU-iOS-Swift.git', :branch => 'main'`
+* `pod 'PUSDK', :git => 'https://github.com/PayU-EMEA/PayU-iOS-Swift.git', :tag => 'VERSION'`
 
 When you want to use single Package:
-* `pod 'PUSDK/{PackageName}' , :git => 'https://github.com/PayU-EMEA/PayU-iOS-Swift.git', :branch => 'main'`
+* `pod 'PUSDK/{PackageName}' , :git => 'https://github.com/PayU-EMEA/PayU-iOS-Swift.git', :tag => 'VERSION'`
 
 ## Example
 
