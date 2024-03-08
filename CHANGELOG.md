@@ -1,16 +1,15 @@
-## Release 2.0.2
-Prepared on 30/01/2024
-### Changes:
+## 2.0.3
+* Cleared translations
+* Added new languages - Bulgarian, Greek, Croatian, Russian, Slovak
+* Updated Kingfisher version
+
+## 2.0.2
 * Fixed of keyboard not hiding
 * Auto focus to next field on card widget
 
-## Release 2.0.1
-Prepared on 11/01/2024
-### Changes:
+## 2.0.1
 * Updated links to terms and condition
 
-## Release 2.0.0
-Prepared on Wed, 31/03/2023
-### Changes:
+## 2.0.0
 * Updated source code from Objective-C to Swift
 * Migrated `.xcframework` to `Swift Package`
