@@ -89,7 +89,7 @@ let package = Package(
     // .package(url: /* package url */, from: "1.0.0"),
     .package(
       url: "https://github.com/onevcat/Kingfisher.git",
-      exact: .init(6, 3, 1)
+       .upToNextMinor(from: .init(7, 11, 0))
     ),
     .package(
       url: "https://github.com/birdrides/mockingbird",
