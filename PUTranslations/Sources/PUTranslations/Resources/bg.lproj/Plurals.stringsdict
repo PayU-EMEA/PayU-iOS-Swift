@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>number_of_installments</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@count@</string>
+		<key>count</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>zero</key>
+			<string>%d вноски</string>
+			<key>one</key>
+			<string>1 вноска</string>
+			<key>two</key>
+			<string>%d вноски</string>
+			<key>few</key>
+			<string>%d вноски</string>
+			<key>many</key>
+			<string>%d вноски</string>
+			<key>other</key>
+			<string>%d вноски</string>
+		</dict>
+	</dict>
+</dict>
+</plist>
