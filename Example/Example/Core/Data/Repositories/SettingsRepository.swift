@@ -67,7 +67,7 @@ final class SettingsRepository {
   // languages
 
   func getAvailableLanguageCodes() -> [LanguageCode] {
-    ["cs", "en", "fr", "de", "hu", "lv", "pl", "ro", "sk", "sl", "es", "uk"].sorted()
+    ["bg", "cs", "de", "el", "en", "es", "fr", "hr", "hu", "it", "lv", "pl", "ro", "ru", "sk", "sl", "uk"].sorted()
   }
 
   func getLanguageCode() -> LanguageCode {

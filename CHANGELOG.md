@@ -1,3 +1,6 @@
+## 2.0.4
+* Fixed cs translation
+
 ## 2.0.3
 * Cleared translations
 * Added new languages - Bulgarian, Greek, Croatian, Russian, Slovak
