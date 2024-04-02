@@ -11,6 +11,10 @@ generate_documentation:
 generate_mocks:
 	./dev/generate_mocks.sh
 
-## ➡️  xcodebuild_test: Run all tests
-xcodebuild_test:
+## ➡️  build: Build
+build:
+	./dev/xcodebuild_build.sh
+
+## ➡️  test: Run all tests
+test:
 	./dev/xcodebuild_test.sh

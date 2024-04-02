@@ -1,3 +1,6 @@
+## 2.0.5
+* Added PrivacyInfo
+
 ## 2.0.4
 * Fixed cs translation
 

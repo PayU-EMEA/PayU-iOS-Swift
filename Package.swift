@@ -200,7 +200,8 @@ let package = Package(
         "PUTranslations",
         "PUWebPayments"
       ],
-      path: "PUSDK"
+      path: "PUSDK",
+      resources: [.copy("Resources/PrivacyInfo.xcprivacy")]
     ),
     .target(
       name: "PUTheme",

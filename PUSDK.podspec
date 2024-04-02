@@ -1,12 +1,12 @@
 Pod::Spec.new do |s|  
   s.name      = 'PUSDK'
-  s.version   = '2.0.4'
+  s.version   = '2.0.5'
   s.summary   = 'PayU mobile SDK for iOS'
   s.homepage  = 'http://developers.payu.com/en/mobile_sdk.html'
 
   s.author    = { 'PayU' => 'sdk@payu.com' }
   s.license   = { :type => 'Apache License Version 2.0', :file => 'LICENSE' }
-  s.source    = { :git => 'https://github.com/PayU-EMEA/PayU-iOS-Swift.git', :branch => 'main' }
+  s.source    = { :git => 'https://github.com/PayU-EMEA/PayU-iOS-Swift.git', :tag => s.version }
 
   s.platform              = :ios
   s.swift_version         = '5.3'
@@ -96,5 +96,5 @@ Pod::Spec.new do |s|
     ss.dependency         'PUSDK/PUTheme'
     ss.dependency         'PUSDK/PUTranslations'
   end
-
+  s.resource_bundles = {'PUSDK' => ['PUSDK/Resources/PrivacyInfo.xcprivacy']}
 end
