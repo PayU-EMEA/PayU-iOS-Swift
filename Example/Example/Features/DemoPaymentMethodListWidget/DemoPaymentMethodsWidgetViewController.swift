@@ -60,7 +60,7 @@ final class DemoPaymentMethodsWidgetViewController: ViewController {
     widget.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
 
     payBarButtonItem = UIBarButtonItem(title: "Pay", style: .plain, target: self, action: #selector(actionAdd(_:)))
-    payBarButtonItem.isEnabled = false
+    payBarButtonItem.isEnabled = true
 
     let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
     toolbarItems = [spacer, payBarButtonItem, spacer]
@@ -82,7 +82,6 @@ final class DemoPaymentMethodsWidgetViewController: ViewController {
 // MARK: - PaymentMethodsWidgetDelegate
 extension DemoPaymentMethodsWidgetViewController: PaymentMethodsWidgetDelegate {
   func paymentMethodsWidget(_ widget: PaymentMethodsWidget, didSelect paymentMethod: PaymentMethod) {
-    payBarButtonItem.isEnabled = true
     Console.console.log(paymentMethod)
   }
 

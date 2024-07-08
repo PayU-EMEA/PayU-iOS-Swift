@@ -1,8 +1,7 @@
 //
 //  PaymentMethodsWidget.swift
 //
-//  Created by PayU S.A. on 23/11/2022.
-//  Copyright © 2022 PayU S.A. All rights reserved.
+//  Copyright © PayU S.A. All rights reserved.
 //
 
 import UIKit
@@ -54,7 +53,11 @@ public final class PaymentMethodsWidget: UIView {
       PaymentMethodsWidget(
         viewModel: assembler.makePaymentMethodsWidgetViewModel(
           configuration: configuration,
-          storage: storage))
+          storage: storage),
+        service: assembler.makePaymentMethodsService(
+          storage: storage),
+        configuration: configuration
+        )
     }
   }
 
@@ -68,6 +71,8 @@ public final class PaymentMethodsWidget: UIView {
 
   // MARK: - Private Properties
   private let viewModel: PaymentMethodsWidgetViewModel
+  private let service: PaymentMethodsServiceProtocol
+  private let configuration: PaymentMethodsConfiguration
 
   private let paymentMethodImageView = PUImageView()
   private let paymentMethodTitleLabel = PULabel(style: PUTheme.theme.textTheme.subtitle1)
@@ -77,13 +82,16 @@ public final class PaymentMethodsWidget: UIView {
   private let blikCodeTextField = PUTextField()
 
   // MARK: - Initialization
-  required init(viewModel: PaymentMethodsWidgetViewModel) {
+  required init(viewModel: PaymentMethodsWidgetViewModel, service: PaymentMethodsServiceProtocol, configuration: PaymentMethodsConfiguration) {
     self.viewModel = viewModel
+    self.service = service
+    self.configuration = configuration
+
     super.init(frame: .zero)
 
     setupLayout()
     setupAppearance()
-    setupState(.initial)
+    initState()
     setupViewModel()
   }
 
@@ -106,9 +114,18 @@ public final class PaymentMethodsWidget: UIView {
     blikCodeTextField.delegate = self
   }
 
+  private func initState() {
+    if let paymentMethod = service.getSavedPaymentMethod(for: configuration) {
+      setupState(.paymentMethod(paymentMethod))
+      viewModel.didSelect(paymentMethod)
+    } else {
+      setupState(.initial)
+    }
+  }
+
   private func setupState(_ state: PaymentMethodsWidgetState) {
     let factory = PaymentMethodsWidgetStateDecoratorFactory()
-    let decorator = factory.decorator(viewModel.state)
+    let decorator = factory.decorator(state)
 
     paymentMethodTitleLabel.text = decorator.title
     paymentMethodSubtitleLabel.text = decorator.subtitle
