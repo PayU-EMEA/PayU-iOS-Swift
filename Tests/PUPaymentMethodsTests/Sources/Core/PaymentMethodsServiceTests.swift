@@ -1,8 +1,7 @@
 //
 //  PaymentMethodsServiceTests.swift
-//  
-//  Created by PayU S.A. on 16/03/2023.
-//  Copyright © 2023 PayU S.A. All rights reserved.
+//
+//  Copyright © PayU S.A. All rights reserved.
 //
 
 import XCTest
@@ -253,6 +252,42 @@ final class PaymentMethodsServiceTests: XCTestCase {
 
     let paymentItems = sut.makePaymentMethodItems(for: configuration)
     XCTAssertEqual(paymentItems.first?.value, payByLink.value)
+  }
+
+  func testWhenStorageReturnsNilThenShouldReturnEmptyPaymentMethod() {
+    let payByLink = makePayByLink()
+
+    given(storage.getSelectedPaymentMethodValue()).willReturn(nil)
+
+    let blikTokens: [BlikToken] = [makeBlikToken(), makeBlikToken()]
+    let cardTokens: [CardToken] = [makeCardToken(), makeCardToken()]
+    let payByLinks: [PayByLink] = [makePayByLink(), makePayByLink(), payByLink]
+
+    let configuration = PaymentMethodsConfiguration(
+      blikTokens: blikTokens,
+      cardTokens: cardTokens,
+      payByLinks: payByLinks)
+
+    let paymentMethod = sut.getSavedPaymentMethod(for: configuration)
+    XCTAssertNil(paymentMethod)
+  }
+
+  func testWhenStorageReturnsSelectedPaymentValueThenShouldReturnSavedPaymentMethod() {
+    let payByLink = makePayByLink()
+
+    given(storage.getSelectedPaymentMethodValue()).willReturn(payByLink.value)
+
+    let blikTokens: [BlikToken] = [makeBlikToken(), makeBlikToken()]
+    let cardTokens: [CardToken] = [makeCardToken(), makeCardToken()]
+    let payByLinks: [PayByLink] = [makePayByLink(), makePayByLink(), payByLink]
+
+    let configuration = PaymentMethodsConfiguration(
+      blikTokens: blikTokens,
+      cardTokens: cardTokens,
+      payByLinks: payByLinks)
+
+    let paymentMethod = sut.getSavedPaymentMethod(for: configuration)
+    XCTAssertEqual(paymentMethod?.value, payByLink.value)
   }
 }
 

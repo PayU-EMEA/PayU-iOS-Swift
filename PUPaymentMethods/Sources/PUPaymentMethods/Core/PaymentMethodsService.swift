@@ -1,8 +1,7 @@
 //
 //  PaymentMethodsService.swift
 //
-//  Created by PayU S.A. on 28/11/2022.
-//  Copyright © 2022 PayU S.A. All rights reserved.
+//  Copyright © PayU S.A. All rights reserved.
 //
 
 #if canImport(PUCore)
@@ -12,6 +11,7 @@ import PUCore
 protocol PaymentMethodsServiceProtocol {
   func makePaymentMethodItems(for configuration: PaymentMethodsConfiguration) -> [PaymentMethodsItem]
   func makePayByLinksPaymentMethodItems(for configuration: PaymentMethodsConfiguration) -> [PaymentMethodsItem]
+  func getSavedPaymentMethod(for configuration: PaymentMethodsConfiguration) -> PaymentMethod?
 }
 
 struct PaymentMethodsService: PaymentMethodsServiceProtocol {
@@ -54,6 +54,24 @@ struct PaymentMethodsService: PaymentMethodsServiceProtocol {
     var items: [PaymentMethodsItem] = []
     items.append(contentsOf: makePayByLinks(for: configuration))
     return items
+  }
+
+  func getSavedPaymentMethod(for configuration: PaymentMethodsConfiguration) -> PaymentMethod? {
+    var paymentMethod: PaymentMethod? = nil
+
+    if let storedMethod = storage?.getSelectedPaymentMethodValue() {
+      var items: [PaymentMethodsItem] = []
+
+      items.append(contentsOf: makeAll(for: configuration))
+      items.append(contentsOf: makeBlikCode(for: configuration))
+      items.append(contentsOf: makeBlikTokens(for: configuration))
+      items.append(contentsOf: makeCardTokens(for: configuration))
+
+      paymentMethod = items.filter { $0.value == storedMethod }.first?.paymentMethod
+
+    }
+
+    return paymentMethod
   }
 
   // MARK: - Private Methods
@@ -101,6 +119,14 @@ struct PaymentMethodsService: PaymentMethodsServiceProtocol {
 
     return configuration.payByLinks
       .filter { isAllowedPayByLink($0) }
+      .compactMap { factory.item($0) }
+  }
+
+  private func makeAll(for configuration: PaymentMethodsConfiguration) -> [PaymentMethodsItem] {
+    guard configuration.enablePayByLinks else { return [] }
+
+    return configuration.payByLinks
+      .filter { !isProhibitedPayByLink($0) }
       .compactMap { factory.item($0) }
   }
 
