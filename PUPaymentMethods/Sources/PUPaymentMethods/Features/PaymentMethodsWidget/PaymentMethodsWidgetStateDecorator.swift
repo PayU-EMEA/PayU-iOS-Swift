@@ -69,8 +69,8 @@ private struct BlikCodeStateDecorator: PaymentMethodsWidgetStateDecorator {
   var subtitle: String? { paymentMethod.description }
   var logo: BrandImageProvider? { paymentMethod.brandImageProvider }
 
-  var isBlikTokenButtonVisible: Bool { true }
-  var isBlikCodeTextInputViewVisible: Bool { false }
+  var isBlikTokenButtonVisible: Bool { false }
+  var isBlikCodeTextInputViewVisible: Bool { true }
 
   let paymentMethod: PaymentMethod
 }
@@ -81,8 +81,8 @@ private struct BlikTokenStateDecorator: PaymentMethodsWidgetStateDecorator {
   var subtitle: String? { paymentMethod.description }
   var logo: BrandImageProvider? { paymentMethod.brandImageProvider }
 
-  var isBlikTokenButtonVisible: Bool { false }
-  var isBlikCodeTextInputViewVisible: Bool { true }
+  var isBlikTokenButtonVisible: Bool { true }
+  var isBlikCodeTextInputViewVisible: Bool { false }
 
   let paymentMethod: PaymentMethod
 }

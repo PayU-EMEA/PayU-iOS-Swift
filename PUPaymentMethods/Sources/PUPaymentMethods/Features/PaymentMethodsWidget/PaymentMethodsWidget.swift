@@ -116,7 +116,7 @@ public final class PaymentMethodsWidget: UIView {
 
   private func initState() {
     if let paymentMethod = service.getSavedPaymentMethod(for: configuration) {
-      setupState(.paymentMethod(paymentMethod))
+      setupState(methodToMethodWidgetState(paymentMethod))
       viewModel.didSelect(paymentMethod)
     } else {
       setupState(.initial)
@@ -193,6 +193,17 @@ extension PaymentMethodsWidget: PaymentMethodsViewControllerDelegate {
   public func viewController(_ viewController: PaymentMethodsViewController, didDelete paymentMethod: PaymentMethod) {
     delegate?.paymentMethodsWidget(self, didDelete: paymentMethod)
     viewModel.didDelete(paymentMethod)
+  }
+}
+
+// MARK: - Private Methods
+private func methodToMethodWidgetState(_ method: PaymentMethod) -> PaymentMethodsWidgetState {
+  switch method.value {
+    case PaymentMethodValue.blikCode:
+      return .blikCode(method)
+
+    default:
+      return .paymentMethod(method)
   }
 }
 

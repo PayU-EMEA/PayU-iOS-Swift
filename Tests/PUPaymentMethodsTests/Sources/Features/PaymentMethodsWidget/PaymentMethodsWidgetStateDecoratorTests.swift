@@ -57,8 +57,8 @@ final class PaymentMethodsWidgetStateDecoratorTests: XCTestCase {
     XCTAssertEqual(decorator.isPaymentMethodTitleVisible, decorator.title != nil)
     XCTAssertEqual(decorator.isPaymentMethodSubtitleVisible, decorator.subtitle != nil)
 
-    XCTAssertEqual(decorator.isBlikTokenButtonVisible, true)
-    XCTAssertEqual(decorator.isBlikCodeTextInputViewVisible, false)
+    XCTAssertEqual(decorator.isBlikTokenButtonVisible, false)
+    XCTAssertEqual(decorator.isBlikCodeTextInputViewVisible, true)
   }
 
   func testDecoratorForBlikTokenStateShouldReturnCorrectValues() {
@@ -73,8 +73,8 @@ final class PaymentMethodsWidgetStateDecoratorTests: XCTestCase {
     XCTAssertEqual(decorator.isPaymentMethodTitleVisible, decorator.title != nil)
     XCTAssertEqual(decorator.isPaymentMethodSubtitleVisible, decorator.subtitle != nil)
 
-    XCTAssertEqual(decorator.isBlikTokenButtonVisible, false)
-    XCTAssertEqual(decorator.isBlikCodeTextInputViewVisible, true)
+    XCTAssertEqual(decorator.isBlikTokenButtonVisible, true)
+    XCTAssertEqual(decorator.isBlikCodeTextInputViewVisible, false)
   }
 
   func testDecoratorForPaymentMethodStateShouldReturnCorrectValues() {
