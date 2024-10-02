@@ -39,7 +39,7 @@ final class PaymentMethodsViewModelTests: XCTestCase {
       PaymentMethodItemInstallments(
         installments: Installments(
           payByLink: self.makePayByLink(
-            value: PaymentMethodValue.mastercardInstallments))),
+            value: PaymentMethodValue.installments))),
       PaymentMethodItemPayByLink(payByLink: self.makePayByLink()),
       PaymentMethodItemPayByLink(payByLink: self.makePayByLink())
     ]

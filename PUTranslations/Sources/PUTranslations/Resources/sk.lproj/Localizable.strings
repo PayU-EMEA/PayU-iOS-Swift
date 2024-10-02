@@ -1,4 +1,3 @@
-"1_st_installment" = "1. splátka";
 "attackers_might_be_trying_to_steal_your_information_for_example_passwords_messages_or_credit_cards" = "Útočníci sa môžu pokúšať ukradnúť vaše údaje (napríklad heslá, správy alebo čísla kreditných kariet).";
 "back" = "Späť";
 "bank_transfer" = "Bankový prevod";
@@ -36,7 +35,6 @@
 "saved_blik_payment" = "uložená platba BLIK";
 "scan_card" = "Skenovať kartu";
 "select_payment_method" = "Výber spôsobu platby";
-"split_into_installments" = "Rozdeliť na splátky";
 "the_recipient_will_get_the_total_order_amount" = "Príjemca dostane celkovú sumu objednávky.";
 "this_card_is_not_supported" = "Táto karta nie je podporovaná";
 "total" = "celkom";
@@ -44,6 +42,5 @@
 "use" = "Použiť";
 "use_code_from_your_bank_app" = "použite kód z aplikácie vašej banky";
 "yes_go_back" = "Áno, návrat späť";
-"you_can_split_this_payment_into_installments_with_mastercard" = "Pomocou karty Mastercard si túto platbu môžete rozdeliť na splátky.";
 "your_connection_is_not_secure" = "Vaše pripojenie nie je zabezpečené";
 "your_payment_will_be_canceled_continue" = "Vaša platba sa zruší. Pokračovať?";

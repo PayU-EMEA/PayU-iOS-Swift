@@ -16,7 +16,6 @@ Allows to make payments in PayU ecosystem.
 
 * [PUApplePay](https://payu-emea.github.io/PayU-iOS-Swift/documentation/pusdk/gettingstartedwithapplepay)
 * [PUCore](https://payu-emea.github.io/PayU-iOS-Swift/documentation/pusdk/gettingstartedwithcore)
-* [PUMastercardInstallments](https://payu-emea.github.io/PayU-iOS-Swift/documentation/pusdk/gettingstartedwithmastercardinstallments)
 * [PUPaymentCard](https://payu-emea.github.io/PayU-iOS-Swift/documentation/pusdk/gettingstartedwithpaymentcard)
 * [PUPaymentCardScanner](https://payu-emea.github.io/PayU-iOS-Swift/documentation/pusdk/gettingstartedwithpaymentcardscanner)
 * [PUPaymentMethods](https://payu-emea.github.io/PayU-iOS-Swift/documentation/pusdk/gettingstartedwithpaymentmethods)

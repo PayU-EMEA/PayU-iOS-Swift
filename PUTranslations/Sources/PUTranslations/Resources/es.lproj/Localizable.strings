@@ -1,4 +1,3 @@
-"1_st_installment" = "1ra cuota";
 "attackers_might_be_trying_to_steal_your_information_for_example_passwords_messages_or_credit_cards" = "Los defraudadores pueden estar intentando robar su información (por ejemplo, contraseñas, mensajes o tarjetas de crédito).";
 "back" = "Atras";
 "bank_transfer" = "Transferencia Bancaria";
@@ -36,7 +35,6 @@
 "saved_blik_payment" = "pago BLIK guardado";
 "scan_card" = "Escanear tarjeta";
 "select_payment_method" = "Seleccione el metodo de pago";
-"split_into_installments" = "Dividir en cuotas";
 "the_recipient_will_get_the_total_order_amount" = "El destinatario recibira el importe total del pedido.";
 "this_card_is_not_supported" = "Esta tarjeta no es compatible";
 "total" = "total";
@@ -44,6 +42,5 @@
 "use" = "Usar";
 "use_code_from_your_bank_app" = "use el codigo de la aplicación de su banco";
 "yes_go_back" = "Si, vuelve";
-"you_can_split_this_payment_into_installments_with_mastercard" = "Puedes fraccionar este pago en cuotas con Mastercard.";
 "your_connection_is_not_secure" = "Tu conexion no es segura";
 "your_payment_will_be_canceled_continue" = "Su pago sera cancelado. ¿Continuar?";

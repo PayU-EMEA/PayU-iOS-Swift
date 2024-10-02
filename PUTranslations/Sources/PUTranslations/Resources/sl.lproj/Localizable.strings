@@ -1,4 +1,3 @@
-"1_st_installment" = "1. obrok";
 "attackers_might_be_trying_to_steal_your_information_for_example_passwords_messages_or_credit_cards" = "Napadalci morda poskušajo ukrasti vaše podatke (na primer, gesla, sporočila ali kreditne kartice).";
 "back" = "Nazaj";
 "bank_transfer" = "Bančni transfer";
@@ -36,7 +35,6 @@
 "saved_blik_payment" = "shranjeno plačilo BLIK";
 "scan_card" = "Skeniraj kartico";
 "select_payment_method" = "Izberite način plačila";
-"split_into_installments" = "Razdeli na obroke";
 "the_recipient_will_get_the_total_order_amount" = "Prejemnik bo prejel znesek naročila v celoti.";
 "this_card_is_not_supported" = "Te kartice sistem ne podpira";
 "total" = "skupaj";
@@ -44,6 +42,5 @@
 "use" = "Uporabi";
 "use_code_from_your_bank_app" = "uporabi kodo iz bančne aplik.";
 "yes_go_back" = "Da, pojdi nazaj";
-"you_can_split_this_payment_into_installments_with_mastercard" = "Plačilo lahko razdelite na obroke, s kartico MasterCard.";
 "your_connection_is_not_secure" = "Vaša povezava ni varna";
 "your_payment_will_be_canceled_continue" = "Vaše plačilo bo preklicano. Nadaljuje?";

@@ -141,7 +141,7 @@ struct PaymentMethodsService: PaymentMethodsServiceProtocol {
   }
 
   private func isInstallmentsPayByLink(_ value: PayByLink) -> Bool {
-    value.value == PaymentMethodValue.mastercardInstallments
+    value.value == PaymentMethodValue.installments
   }
 
   private func isProhibitedPayByLink(_ value: PayByLink) -> Bool {

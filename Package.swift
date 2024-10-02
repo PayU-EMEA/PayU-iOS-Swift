@@ -36,12 +36,6 @@ let package = Package(
       ]
     ),
     .library(
-      name: "PUMastercardInstallments",
-      targets: [
-        "PUMastercardInstallments"
-      ]
-    ),
-    .library(
       name: "PUPaymentCard",
       targets: [
         "PUPaymentCard"
@@ -144,15 +138,6 @@ let package = Package(
       ]
     ),
     .target(
-      name: "PUMastercardInstallments",
-      dependencies: [
-        "PUCore",
-        "PUTheme",
-        "PUTranslations"
-      ],
-      path: "PUMastercardInstallments"
-    ),
-    .target(
       name: "PUPaymentCard",
       dependencies: [
         "PUAPI",
@@ -191,7 +176,6 @@ let package = Package(
       dependencies: [
         "PUAPI",
         "PUCore",
-        "PUMastercardInstallments",
         "PUPaymentCard",
         "PUPaymentCardScanner",
         "PUPaymentMethods",
@@ -276,19 +260,6 @@ let package = Package(
       ],
       resources: [
         .process("../PUCoreTests/Data/Files")
-      ]
-    ),
-    .testTarget(
-      name: "PUMastercardInstallmentsTests",
-      dependencies: [
-        "PUMastercardInstallments",
-        .product(
-          name: "Mockingbird",
-          package: "mockingbird"
-        )
-      ],
-      resources: [
-        .process("../PUMastercardInstallmentsTests/Data/Files")
       ]
     ),
     .testTarget(

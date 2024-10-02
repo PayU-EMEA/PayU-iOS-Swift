@@ -1,4 +1,3 @@
-"1_st_installment" = "Prima rată";
 "attackers_might_be_trying_to_steal_your_information_for_example_passwords_messages_or_credit_cards" = "Atacatorii pot încerca să vă fure informaţiile (de ex., parole, mesaje sau carduri de credit).";
 "back" = "Înapoi";
 "bank_transfer" = "Transfer bancar";
@@ -36,7 +35,6 @@
 "saved_blik_payment" = "plată BLIK salvată";
 "scan_card" = "Scanare card";
 "select_payment_method" = "Selectaţi metoda de plată";
-"split_into_installments" = "Scindare în rate";
 "the_recipient_will_get_the_total_order_amount" = "Destinatarul va primi suma totală din comandă.";
 "this_card_is_not_supported" = "Acest card nu este acceptat";
 "total" = "total";
@@ -44,6 +42,5 @@
 "use" = "Utilizare";
 "use_code_from_your_bank_app" = "utilizaţi codul din aplicaţia dvs. bancară";
 "yes_go_back" = "Da, revin";
-"you_can_split_this_payment_into_installments_with_mastercard" = "Puteţi scinda această plată în rate cu Mastercard.";
 "your_connection_is_not_secure" = "Conexiunea dvs. nu este securizată";
 "your_payment_will_be_canceled_continue" = "Plata dvs. va fi anulată. Continuaţi?";

@@ -16,6 +16,5 @@ struct TestPaymentCard: Codable {
   let cvv: String
 
   let is3DSecure: String
-  let isMastercardInstallments: String
   let behavior: String
 }

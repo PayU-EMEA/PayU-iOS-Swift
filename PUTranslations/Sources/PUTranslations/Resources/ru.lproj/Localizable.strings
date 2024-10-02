@@ -1,4 +1,3 @@
-"1_st_installment" = "1-й платеж";
 "attackers_might_be_trying_to_steal_your_information_for_example_passwords_messages_or_credit_cards" = "Злоумышленники могут пытаться украсть вашу информацию (например, пароли, сообщения или данные кредитных карт).";
 "back" = "Назад";
 "bank_transfer" = "Банковский перевод";
@@ -36,7 +35,6 @@
 "saved_blik_payment" = "сохраненный платеж BLIK";
 "scan_card" = "Сканировать карту";
 "select_payment_method" = "Выбрать способ оплаты";
-"split_into_installments" = "Разделить на платежи";
 "the_recipient_will_get_the_total_order_amount" = "Получатель получит всю сумму заказа.";
 "this_card_is_not_supported" = "Эта карта не поддерживается";
 "total" = "всего";
@@ -44,6 +42,5 @@
 "use" = "Использовать";
 "use_code_from_your_bank_app" = "использовать код из банковского приложения";
 "yes_go_back" = "Да, вернуться назад";
-"you_can_split_this_payment_into_installments_with_mastercard" = "Можно разделить этот платеж на части, используя карту Mastercard.";
 "your_connection_is_not_secure" = "Ваше соединение небезопасно";
 "your_payment_will_be_canceled_continue" = "Ваш платеж будет отменен. Продолжить?";

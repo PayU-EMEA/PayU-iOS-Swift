@@ -34,8 +34,6 @@ final class FeatureListViewModel {
 
   private lazy var showDemoApplePayUseCase = ShowDemoApplePayUseCase(presenter: presenter?.presenterViewController)
   private lazy var showDemoCVVAuthorizationUseCase = ShowDemoCVVAuthorizationUseCase(presenter: presenter?.presenterViewController)
-  private lazy var showDemoMastercardInstallmentsVNOIUseCase = ShowDemoMastercardInstallmentsUseCase(presenter: presenter?.presenterViewController, format: .vnoi)
-  private lazy var showDemoMastercardInstallmentsVNOOUseCase = ShowDemoMastercardInstallmentsUseCase(presenter: presenter?.presenterViewController, format: .vnoo)
   private lazy var showDemoPaymentCardScannerUseCase = ShowDemoPaymentCardScannerUseCase(presenter: presenter?.presenterViewController)
   private lazy var showDemoPaymentCardViewControllerUseCase = ShowDemoPaymentCardViewControllerUseCase(presenter: presenter?.presenterViewController)
   private lazy var showDemoPaymentCardWidgetUseCase = ShowDemoPaymentCardWidgetUseCase(presenter: presenter?.presenterViewController)
@@ -70,10 +68,6 @@ extension FeatureListViewModel: FeatureListViewModelProtocol {
         showDemoSoftAcceptUserCase.execute()
       case .demoTheme:
         showDemoThemeUseCase.execute()
-      case .demoVaryingNumberOfInstallments:
-        showDemoMastercardInstallmentsVNOIUseCase.execute()
-      case .demoVaryingNumberOfOptions:
-        showDemoMastercardInstallmentsVNOOUseCase.execute()
       case .demoWebPaymentsSSL:
         showDemoWebPaymentsUseCase.execute()
       case .exampleOrder:

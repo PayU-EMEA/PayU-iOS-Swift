@@ -90,7 +90,6 @@ extension TestPaymentCardsViewController {
     cell.bind(with: TestPaymentCardCell.Content(
       title: "\(item.number) (\(item.expirationMonth)/\(item.expirationYear))",
       subtitle: [
-        "Mastercard Installments: \(item.isMastercardInstallments)",
         "Behavior: \(item.behavior)",
         "3DS: \(item.is3DSecure)"
       ].joined(separator: "\n")))

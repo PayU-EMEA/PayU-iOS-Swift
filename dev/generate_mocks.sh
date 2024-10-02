@@ -12,14 +12,6 @@ set -eu
 swift package describe --type json > project.json
 .build/checkouts/mockingbird/mockingbird generate \
   --project project.json \
-  --output-dir Tests/PUMastercardInstallmentsTests/Mocks \
-  --testbundle PUMastercardInstallmentsTests \
-  --targets PUMastercardInstallments
-
-set -eu
-swift package describe --type json > project.json
-.build/checkouts/mockingbird/mockingbird generate \
-  --project project.json \
   --output-dir Tests/PUPaymentCardTests/Mocks \
   --testbundle PUPaymentCardTests \
   --targets PUAPI PUCore PUPaymentCard
