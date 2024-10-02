@@ -34,7 +34,7 @@ struct Feature: Identifiable {
   static let demoPaymentMethodsWidget = Feature(title: "Demo / PaymentMethodsWidget", type: .demoPaymentWidget)
   static let demoSoftAccept = Feature(title: "Demo / Soft Accept", type: .demoSoftAccept)
   static let demoTheme = Feature(title: "Demo / Theme", type: .demoTheme)
-    static let demoWebPaymentsSSL = Feature(title: "Demo / WebPayments (SSL)", type: .demoWebPaymentsSSL)
+  static let demoWebPaymentsSSL = Feature(title: "Demo / WebPayments (SSL)", type: .demoWebPaymentsSSL)
   static let exampleOrder = Feature(title: "Example / Order", type: .exampleOrder)
 
   static let all: [Feature] = [
