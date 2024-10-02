@@ -329,7 +329,15 @@ private extension PaymentCardWidget {
     stackView.spacing = 16.0
     stackView.distribution = .fill
     stackView.alignment = .fill
-    addSubview(stackView)
+
+    if let secureView = SecureField().secureContainer {
+      secureView.addSubview(stackView)
+      stackView.pinEdges()
+      addSubview(secureView)
+      secureView.pinEdges()
+    } else {
+      addSubview(stackView)
+    }
 
     stackView.translatesAutoresizingMaskIntoConstraints = false
     stackView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
@@ -341,5 +349,25 @@ private extension PaymentCardWidget {
     if configuration.shouldDisplayCardProviders { stackView.addArrangedSubview(makeProvidersView()) }
     stackView.addArrangedSubview(makePaymentCardView())
     if configuration.shouldDisplayTermsAndConditions { stackView.addArrangedSubview(makeTermsAndConditionsView()) }
+  }
+}
+
+extension UIView {
+    func pin(_ type: NSLayoutConstraint.Attribute) {
+      translatesAutoresizingMaskIntoConstraints = false
+      let constraint = NSLayoutConstraint(item: self, attribute: type,
+                                          relatedBy: .equal,
+                                          toItem: superview, attribute: type,
+                                          multiplier: 1, constant: 0)
+
+      constraint.priority = UILayoutPriority.init(999)
+      constraint.isActive = true
+  }
+
+  func pinEdges() {
+      pin(.top)
+      pin(.bottom)
+      pin(.leading)
+      pin(.trailing)
   }
 }

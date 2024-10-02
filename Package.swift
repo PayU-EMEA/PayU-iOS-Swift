@@ -1,4 +1,4 @@
-// swift-tools-version: 5.7
+// swift-tools-version: 5.10
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -7,7 +7,7 @@ let package = Package(
   name: "PUSDK",
   defaultLocalization: "pl",
   platforms: [
-    .iOS(.v11)
+    .iOS(.v12)
   ],
   products: [
     // Products define the executables and libraries a package produces, and make them visible to other packages.
@@ -89,7 +89,7 @@ let package = Package(
     // .package(url: /* package url */, from: "1.0.0"),
     .package(
       url: "https://github.com/onevcat/Kingfisher.git",
-       .upToNextMinor(from: .init(7, 11, 0))
+       .upToNextMinor(from: .init(7, 12, 0))
     ),
     .package(
       url: "https://github.com/birdrides/mockingbird",
