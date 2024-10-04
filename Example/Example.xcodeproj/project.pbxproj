@@ -23,7 +23,6 @@
 		3A27918129CB35CF007F47B3 /* PUAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 3A27918029CB35CF007F47B3 /* PUAPI */; };
 		3A27918329CB35CF007F47B3 /* PUApplePay in Frameworks */ = {isa = PBXBuildFile; productRef = 3A27918229CB35CF007F47B3 /* PUApplePay */; };
 		3A27918529CB35CF007F47B3 /* PUCore in Frameworks */ = {isa = PBXBuildFile; productRef = 3A27918429CB35CF007F47B3 /* PUCore */; };
-		3A27918729CB35CF007F47B3 /* PUMastercardInstallments in Frameworks */ = {isa = PBXBuildFile; productRef = 3A27918629CB35CF007F47B3 /* PUMastercardInstallments */; };
 		3A27918929CB35CF007F47B3 /* PUPaymentCard in Frameworks */ = {isa = PBXBuildFile; productRef = 3A27918829CB35CF007F47B3 /* PUPaymentCard */; };
 		3A27918B29CB35CF007F47B3 /* PUPaymentCardScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 3A27918A29CB35CF007F47B3 /* PUPaymentCardScanner */; };
 		3A27918D29CB35CF007F47B3 /* PUPaymentMethods in Frameworks */ = {isa = PBXBuildFile; productRef = 3A27918C29CB35CF007F47B3 /* PUPaymentMethods */; };
@@ -231,7 +230,6 @@
 				3A27918529CB35CF007F47B3 /* PUCore in Frameworks */,
 				3A27919729CB35CF007F47B3 /* PUWebPayments in Frameworks */,
 				3A27918D29CB35CF007F47B3 /* PUPaymentMethods in Frameworks */,
-				3A27918729CB35CF007F47B3 /* PUMastercardInstallments in Frameworks */,
 				3A27918129CB35CF007F47B3 /* PUAPI in Frameworks */,
 				3A27918F29CB35CF007F47B3 /* PUSDK in Frameworks */,
 				3A27919529CB35CF007F47B3 /* PUTranslations in Frameworks */,
@@ -645,7 +643,6 @@
 				3A27918029CB35CF007F47B3 /* PUAPI */,
 				3A27918229CB35CF007F47B3 /* PUApplePay */,
 				3A27918429CB35CF007F47B3 /* PUCore */,
-				3A27918629CB35CF007F47B3 /* PUMastercardInstallments */,
 				3A27918829CB35CF007F47B3 /* PUPaymentCard */,
 				3A27918A29CB35CF007F47B3 /* PUPaymentCardScanner */,
 				3A27918C29CB35CF007F47B3 /* PUPaymentMethods */,
@@ -1041,10 +1038,6 @@
 		3A27918429CB35CF007F47B3 /* PUCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = PUCore;
-		};
-		3A27918629CB35CF007F47B3 /* PUMastercardInstallments */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = PUMastercardInstallments;
 		};
 		3A27918829CB35CF007F47B3 /* PUPaymentCard */ = {
 			isa = XCSwiftPackageProductDependency;

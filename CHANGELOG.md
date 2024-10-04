@@ -1,3 +1,8 @@
+## 2.1.0
+* [Fix] Hidden card data when screenshot
+* Update iOS version to 12
+* Removed Mastercard Installments
+
 ## 2.0.6
 * [Fix] Show Blick Code input
 * [Fix] Remembering the last selected payment method on Payment Methods Widget
