@@ -30,13 +30,6 @@ Pod::Spec.new do |s|
     ss.resources          = ['PUCore/Resources/*.{xcassets}']
   end
 
-  s.subspec 'PUMastercardInstallments' do |ss|
-    ss.source_files       = 'PUMastercardInstallments/Sources/PUMastercardInstallments/**/*'
-    ss.dependency         'PUSDK/PUCore'
-    ss.dependency         'PUSDK/PUTheme'
-    ss.dependency         'PUSDK/PUTranslations'
-  end
-
   s.subspec 'PUPaymentCard' do |ss|
     ss.source_files       = 'PUPaymentCard/Sources/PUPaymentCard/**/*'
     ss.dependency         'PUSDK/PUAPI'

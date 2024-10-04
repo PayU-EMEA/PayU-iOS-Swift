@@ -12,5 +12,5 @@ public struct PaymentMethodValue {
   public static let applePay = "jp"
   public static let blikCode = "blik_code"
   public static let googlePay = "ap"
-  public static let mastercardInstallments = "ai"
+  public static let installments = "ai"
 }

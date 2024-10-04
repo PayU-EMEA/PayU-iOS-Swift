@@ -22,7 +22,7 @@ final class PaymentMethodValueTests: XCTestCase {
     XCTAssertEqual(PaymentMethodValue.googlePay, "ap")
   }
 
-  func testHasCorrectValueForMastercardInstallments() throws {
-    XCTAssertEqual(PaymentMethodValue.mastercardInstallments, "ai")
+  func testHasCorrectValueForInstallments() throws {
+    XCTAssertEqual(PaymentMethodValue.installments, "ai")
   }
 }

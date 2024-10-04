@@ -20,7 +20,6 @@ public extension Foundation.Bundle {
     case PUTranslations = "PUTranslations"
 
     case PUCoreTests = "PUCoreTests"
-    case PUMastercardInstallmentsTests = "PUMastercardInstallmentsTests"
     case PUPaymentMethodsTests = "PUPaymentMethodsTests"
 
   }

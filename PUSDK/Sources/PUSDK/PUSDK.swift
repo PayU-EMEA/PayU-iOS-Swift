@@ -2,7 +2,6 @@
 
 @_exported import PUApplePay
 @_exported import PUCore
-@_exported import PUMastercardInstallments
 @_exported import PUPaymentCard
 @_exported import PUPaymentCardScanner
 @_exported import PUPaymentMethods

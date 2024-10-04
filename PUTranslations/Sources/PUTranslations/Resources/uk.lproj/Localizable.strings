@@ -1,4 +1,3 @@
-"1_st_installment" = "Перший платіж";
 "attackers_might_be_trying_to_steal_your_information_for_example_passwords_messages_or_credit_cards" = "Зловмисники можуть намагатися викрасти вашу інформацію (наприклад, паролі, повідомлення або кредитні картки).";
 "back" = "Повернутися";
 "bank_transfer" = "Банківський переказ";
@@ -36,7 +35,6 @@
 "saved_blik_payment" = "збережений BLIK платіж";
 "scan_card" = "Сканувати картку";
 "select_payment_method" = "Виберіть спосіб оплати";
-"split_into_installments" = "Я хочу оплатити частинами";
 "the_recipient_will_get_the_total_order_amount" = "Продавець отримає повну суму замовлення.";
 "this_card_is_not_supported" = "Ця карта не підтримується";
 "total" = "разом";
@@ -44,6 +42,5 @@
 "use" = "Використати";
 "use_code_from_your_bank_app" = "оплата кодом з додатку банку";
 "yes_go_back" = "Так, повернутися";
-"you_can_split_this_payment_into_installments_with_mastercard" = "Ви можете оплатити замовлення частинами за допомогою Mastercard.";
 "your_connection_is_not_secure" = "Ваше з'єднання не безпечне";
 "your_payment_will_be_canceled_continue" = "Якщо Ви не здійснили платіж, ваша транзакція буде скасована. Продовжити?";

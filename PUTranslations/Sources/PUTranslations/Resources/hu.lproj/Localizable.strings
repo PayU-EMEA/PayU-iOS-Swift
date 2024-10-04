@@ -1,4 +1,3 @@
-"1_st_installment" = "1st installment";
 "attackers_might_be_trying_to_steal_your_information_for_example_passwords_messages_or_credit_cards" = "Elképzelhető, hogy valaki megpróbálta megszerezni az adataidat (pl. jelszó, üzenetek, bankkártya-adatok";
 "back" = "Vissza";
 "bank_transfer" = "Banki átutalás";
@@ -36,7 +35,6 @@
 "saved_blik_payment" = "A BLIK fizetés elmentve";
 "scan_card" = "Kártya-beolvasás";
 "select_payment_method" = "Válassz fizetési módot";
-"split_into_installments" = "Split into installments";
 "the_recipient_will_get_the_total_order_amount" = "The recipient will get the total order amount.";
 "this_card_is_not_supported" = "ThiEz egy nem támogatott kártya";
 "total" = "total";
@@ -44,6 +42,5 @@
 "use" = "Ezt használom";
 "use_code_from_your_bank_app" = "Használd a kódot a banki appodból";
 "yes_go_back" = "Igen, menjünk vissza";
-"you_can_split_this_payment_into_installments_with_mastercard" = "You can split this payment into installments with Mastercard.";
 "your_connection_is_not_secure" = "YAz internetkapcsolatod nem biztonságos";
 "your_payment_will_be_canceled_continue" = "A fizetési folyamat megszakad. Biztosan megszakítod?";

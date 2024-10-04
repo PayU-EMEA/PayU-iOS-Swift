@@ -101,9 +101,6 @@
 		3ACEF82C292BDAC100D62E9A /* Selectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ACEF82B292BDAC100D62E9A /* Selectable.swift */; };
 		3ACEF82E292BDAF900D62E9A /* SelectableListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ACEF82D292BDAF900D62E9A /* SelectableListViewModel.swift */; };
 		3ACEF830292BDB0700D62E9A /* SelectableListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ACEF82F292BDB0700D62E9A /* SelectableListViewController.swift */; };
-		3AD092B1293E0AF00038DC33 /* mastercard_installments_vnoi.json in Resources */ = {isa = PBXBuildFile; fileRef = 3AD092B0293E0AF00038DC33 /* mastercard_installments_vnoi.json */; };
-		3AD092B3293E0B0A0038DC33 /* mastercard_installments_vnoo.json in Resources */ = {isa = PBXBuildFile; fileRef = 3AD092B2293E0B0A0038DC33 /* mastercard_installments_vnoo.json */; };
-		3AD092B5293E13990038DC33 /* ShowDemoMastercardInstallmentsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD092B4293E13990038DC33 /* ShowDemoMastercardInstallmentsUseCase.swift */; };
 		3AD092BC293E68300038DC33 /* ShowDemoSoftAcceptUserCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD092BB293E68300038DC33 /* ShowDemoSoftAcceptUserCase.swift */; };
 		3AD9EA9D292CB47D00CB71E0 /* EnvironmentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD9EA9C292CB47D00CB71E0 /* EnvironmentListViewController.swift */; };
 		3AD9EA9F292CB48500CB71E0 /* EnvironmentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD9EA9E292CB48500CB71E0 /* EnvironmentListViewModel.swift */; };
@@ -208,9 +205,6 @@
 		3ACEF82B292BDAC100D62E9A /* Selectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selectable.swift; sourceTree = "<group>"; };
 		3ACEF82D292BDAF900D62E9A /* SelectableListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableListViewModel.swift; sourceTree = "<group>"; };
 		3ACEF82F292BDB0700D62E9A /* SelectableListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableListViewController.swift; sourceTree = "<group>"; };
-		3AD092B0293E0AF00038DC33 /* mastercard_installments_vnoi.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = mastercard_installments_vnoi.json; sourceTree = "<group>"; };
-		3AD092B2293E0B0A0038DC33 /* mastercard_installments_vnoo.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = mastercard_installments_vnoo.json; sourceTree = "<group>"; };
-		3AD092B4293E13990038DC33 /* ShowDemoMastercardInstallmentsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDemoMastercardInstallmentsUseCase.swift; sourceTree = "<group>"; };
 		3AD092BB293E68300038DC33 /* ShowDemoSoftAcceptUserCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDemoSoftAcceptUserCase.swift; sourceTree = "<group>"; };
 		3AD9EA9C292CB47D00CB71E0 /* EnvironmentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentListViewController.swift; sourceTree = "<group>"; };
 		3AD9EA9E292CB48500CB71E0 /* EnvironmentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentListViewModel.swift; sourceTree = "<group>"; };
@@ -315,8 +309,6 @@
 				3ACEF7B3292BCECB00D62E9A /* LaunchScreen.storyboard */,
 				3ACEF7AE292BCECA00D62E9A /* Main.storyboard */,
 				3ACEF7B1292BCECB00D62E9A /* Assets.xcassets */,
-				3AD092B0293E0AF00038DC33 /* mastercard_installments_vnoi.json */,
-				3AD092B2293E0B0A0038DC33 /* mastercard_installments_vnoo.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -620,7 +612,6 @@
 			children = (
 				3A2660D929365909008C669A /* ShowDemoApplePayUseCase.swift */,
 				3AF1B83D2951B028003C626A /* ShowDemoCVVAuthorizationUseCase.swift */,
-				3AD092B4293E13990038DC33 /* ShowDemoMastercardInstallmentsUseCase.swift */,
 				3A2B821F29B86D9100FA001A /* ShowDemoPaymentCardScannerUseCase.swift */,
 				3A7CC9D7294727300087A425 /* ShowDemoPaymentCardViewControllerUseCase.swift */,
 				3A4BD09E294B2B35008BFE42 /* ShowDemoPaymentCardWidgetUseCase.swift */,
@@ -709,8 +700,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3ACEF7B5292BCECB00D62E9A /* LaunchScreen.storyboard in Resources */,
-				3AD092B3293E0B0A0038DC33 /* mastercard_installments_vnoo.json in Resources */,
-				3AD092B1293E0AF00038DC33 /* mastercard_installments_vnoi.json in Resources */,
 				3ACEF7B2292BCECB00D62E9A /* Assets.xcassets in Resources */,
 				3ACEF7B0292BCECA00D62E9A /* Main.storyboard in Resources */,
 			);
@@ -801,7 +790,6 @@
 				3AD9EABF292CD8C500CB71E0 /* String+Extensions.swift in Sources */,
 				3A2660DF293671BA008C669A /* ProductListViewModel.swift in Sources */,
 				3A4BD09D294B284E008BFE42 /* DemoPaymentCardWidgetViewModel.swift in Sources */,
-				3AD092B5293E13990038DC33 /* ShowDemoMastercardInstallmentsUseCase.swift in Sources */,
 				3A2660E129367312008C669A /* Product.swift in Sources */,
 				3ACEF7AB292BCECA00D62E9A /* SceneDelegate.swift in Sources */,
 				3A96CFAB29374A6200AAAFF4 /* OrderPaymentMethodListViewModel.swift in Sources */,

@@ -18,8 +18,6 @@ enum FeatureType: String {
   case demoPaymentWidget
   case demoSoftAccept
   case demoTheme
-  case demoVaryingNumberOfInstallments
-  case demoVaryingNumberOfOptions
   case demoWebPaymentsSSL
   case exampleOrder
 }
@@ -36,8 +34,6 @@ struct Feature: Identifiable {
   static let demoPaymentMethodsWidget = Feature(title: "Demo / PaymentMethodsWidget", type: .demoPaymentWidget)
   static let demoSoftAccept = Feature(title: "Demo / Soft Accept", type: .demoSoftAccept)
   static let demoTheme = Feature(title: "Demo / Theme", type: .demoTheme)
-  static let demoVaryingNumberOfInstallments = Feature(title: "Demo / Mastercard Installments", subtitle: "VARYING_NUMBER_OF_INSTALLMENTS", type: .demoVaryingNumberOfInstallments)
-  static let demoVaryingNumberOfOptions = Feature(title: "Demo / Mastercard Installments", subtitle: "VARYING_NUMBER_OF_OPTIONS", type: .demoVaryingNumberOfOptions)
   static let demoWebPaymentsSSL = Feature(title: "Demo / WebPayments (SSL)", type: .demoWebPaymentsSSL)
   static let exampleOrder = Feature(title: "Example / Order", type: .exampleOrder)
 
@@ -51,8 +47,6 @@ struct Feature: Identifiable {
     .demoPaymentMethodsWidget,
     .demoSoftAccept,
     .demoTheme,
-    .demoVaryingNumberOfInstallments,
-    .demoVaryingNumberOfOptions,
     .demoWebPaymentsSSL,
     .exampleOrder
   ]

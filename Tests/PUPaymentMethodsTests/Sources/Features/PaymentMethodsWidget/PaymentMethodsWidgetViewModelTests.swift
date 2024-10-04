@@ -193,7 +193,7 @@ final class PaymentMethodsWidgetViewModelTests: XCTestCase {
     sut.didSelect(cardToken)
     XCTAssertEqual(sut.paymentMethod?.value, cardToken.value)
 
-    let installments = Installments(payByLink: makePayByLink(value: PaymentMethodValue.mastercardInstallments))
+    let installments = Installments(payByLink: makePayByLink(value: PaymentMethodValue.installments))
     sut.didSelect(installments)
     XCTAssertEqual(sut.paymentMethod?.value, installments.value)
 

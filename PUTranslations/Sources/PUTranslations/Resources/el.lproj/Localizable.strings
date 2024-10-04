@@ -1,4 +1,3 @@
-"1_st_installment" = "1η δόση";
 "attackers_might_be_trying_to_steal_your_information_for_example_passwords_messages_or_credit_cards" = "Εισβολείς ενδέχεται να προσπαθήσουν να κλέψουν τις πληροφορίες σας (για παράδειγμα κωδικούς πρόσβασης, μηνύματα ή πιστωτικές κάρτες).";
 "back" = "Επιστροφή";
 "bank_transfer" = "Τραπεζική μεταφορά";
@@ -36,7 +35,6 @@
 "saved_blik_payment" = "αποθηκευμένη πληρωμή BLIK";
 "scan_card" = "Σάρωση κάρτας";
 "select_payment_method" = "Επιλογή μεθόδου πληρωμής";
-"split_into_installments" = "Πληρωμή με δόσεις";
 "the_recipient_will_get_the_total_order_amount" = "Ο παραλήπτης θα λάβει ολόκληρο το ποσό παραγγελίας";
 "this_card_is_not_supported" = "Αυτή η κάρτα δεν υποστηρίζεται";
 "total" = "σύνολο";
@@ -44,6 +42,5 @@
 "use" = "Χρήση";
 "use_code_from_your_bank_app" = "χρήση κωδικού από την εφαρμογή της τράπεζας";
 "yes_go_back" = "Ναι, επιστροφή";
-"you_can_split_this_payment_into_installments_with_mastercard" = "Μπορείτε να πραγματοποιήσετε την πληρωμή σε δόσεις με κάρτα Mastercard.";
 "your_connection_is_not_secure" = "Η σύνδεσή σας δεν είναι ασφαλής";
 "your_payment_will_be_canceled_continue" = "Οι πληρωμές σας θα ακυρωθούν. Θέλετε να συνεχίσετε;";

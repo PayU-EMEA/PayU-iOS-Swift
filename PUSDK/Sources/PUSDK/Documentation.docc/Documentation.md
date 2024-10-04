@@ -9,7 +9,6 @@
 
 - <doc:GettingStartedWithApplePay>
 - <doc:GettingStartedWithCore>
-- <doc:GettingStartedWithMastercardInstallments>
 - <doc:GettingStartedWithPaymentCard>
 - <doc:GettingStartedWithPaymentCardScanner>
 - <doc:GettingStartedWithPaymentMethods>

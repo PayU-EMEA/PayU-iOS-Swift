@@ -1,4 +1,3 @@
-"1_st_installment" = "1a rata";
 "attackers_might_be_trying_to_steal_your_information_for_example_passwords_messages_or_credit_cards" = "Gli hacker potrebbero tentare di rubare i tuoi dati (ad es. password, messaggi o informazioni sulla carta di credito).";
 "back" = "Torna";
 "bank_transfer" = "Autorizza e memorizza il pagamento nell’app della banca";
@@ -36,7 +35,6 @@
 "saved_blik_payment" = "pagamento BLIK salvato";
 "scan_card" = "Scansiona la carta";
 "select_payment_method" = "Seleziona il metodo di pagamento";
-"split_into_installments" = "Riparto il pagamento a rate";
 "the_recipient_will_get_the_total_order_amount" = "Il venditore riceverà l’intero importo dell’ordine.";
 "this_card_is_not_supported" = "Questa carta non è supportata";
 "total" = "totale";
@@ -44,6 +42,5 @@
 "use" = "Utilizza";
 "use_code_from_your_bank_app" = "pagamento con codice dall’app della banca";
 "yes_go_back" = "Sì, torna al negozio";
-"you_can_split_this_payment_into_installments_with_mastercard" = "Puoi utilizzare il servizio Mastercard Paga a rate e rateizzare il pagamento.";
 "your_connection_is_not_secure" = "La connessione non è sicura";
 "your_payment_will_be_canceled_continue" = "Il pagamento sarà annullato. Vuoi continuare?";
