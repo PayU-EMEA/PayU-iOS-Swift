@@ -7,7 +7,7 @@ let package = Package(
   name: "PUSDK",
   defaultLocalization: "pl",
   platforms: [
-    .iOS(.v12)
+    .iOS(.v13)
   ],
   products: [
     // Products define the executables and libraries a package produces, and make them visible to other packages.
@@ -83,7 +83,7 @@ let package = Package(
     // .package(url: /* package url */, from: "1.0.0"),
     .package(
       url: "https://github.com/onevcat/Kingfisher.git",
-       .upToNextMinor(from: .init(7, 12, 0))
+       .upToNextMinor(from: .init(8, 1, 0))
     ),
     .package(
       url: "https://github.com/birdrides/mockingbird",

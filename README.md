@@ -4,7 +4,7 @@ Allows to make payments in PayU ecosystem.
 
 ## Requirements
 
-* iOS 12.0 or higher
+* iOS 13.0 or higher
 
 ## Getting Started
 

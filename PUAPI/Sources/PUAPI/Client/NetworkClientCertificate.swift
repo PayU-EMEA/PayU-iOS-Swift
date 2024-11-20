@@ -42,19 +42,20 @@ struct NetworkClientCertificate {
 
   var publicKey: SecKey? {
     var trust: SecTrust!
-    var status: OSStatus!
-    var result: SecTrustResultType = .invalid
+    var error: CFError?
 
     guard let certificate = certificate else { return nil }
 
-    status = SecTrustCreateWithCertificates(
+    let status = SecTrustCreateWithCertificates(
       certificate,
       SecPolicyCreateBasicX509(),
       &trust)
 
     guard status == noErr else { return nil }
-    status = SecTrustEvaluate(trust, &result)
-    guard status == noErr else { return nil }
+    guard SecTrustEvaluateWithError(trust, &error) else {
+      return nil
+    }
+
     return SecTrustCopyPublicKey(trust)
   }
 }

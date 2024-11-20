@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import WebKit
+@preconcurrency import WebKit
 
 #if canImport(PUCore)
 import PUCore
