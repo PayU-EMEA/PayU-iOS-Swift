@@ -1,3 +1,7 @@
+## 2.2.0
+* Upgrade Kingfisher
+* Update iOS version to 13
+
 ## 2.1.0
 * [Fix] Hidden card data when screenshot
 * Update iOS version to 12
