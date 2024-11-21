@@ -26,7 +26,7 @@ final class PBLPaymentMethodsViewModel {
 
   // MARK: - Public Properties
   weak var delegate: PBLPaymentMethodsViewModelDelegate?
-  private (set) var items: [PaymentMethodItemPayByLink] = []
+  private(set) var items: [PaymentMethodItemPayByLink] = []
   
   // MARK: - Private Properties
   private let configuration: PaymentMethodsConfiguration

@@ -67,20 +67,20 @@ extension NetworkClientAuthenticationChallengeHandler: URLSessionDelegate {
 
 private extension SecTrust {
   var valid: Bool {
-    var result: SecTrustResultType = .invalid
-    var status: OSStatus!
+    var error: CFError?
 
-    status = SecTrustEvaluate(self, &result)
-
-    guard status == noErr else { return false }
-    guard result == .recoverableTrustFailure else { return result == .unspecified || result == .proceed }
+    guard SecTrustEvaluateWithError(self, &error) else {
+      return false
+    }
 
     let exceptions = SecTrustCopyExceptions(self)
     _ = SecTrustSetExceptions(self, exceptions)
-    status = SecTrustEvaluate(self, &result)
 
-    guard status == noErr else { return false }
-    return result == .unspecified || result == .proceed
+    guard SecTrustEvaluateWithError(self, &error) else {
+      return false
+    }
+
+    return true
   }
 
   var publicKeys: [SecKey] {
@@ -91,18 +91,19 @@ private extension SecTrust {
       guard let certificate = SecTrustGetCertificateAtIndex(self, ix) else { continue }
       let certificates = [certificate] as CFArray
 
-      var result: SecTrustResultType = .invalid
       var trust: SecTrust!
-      var status: OSStatus!
+      var error: CFError?
 
-      status = SecTrustCreateWithCertificates(
+      let status = SecTrustCreateWithCertificates(
         certificates,
         SecPolicyCreateBasicX509(),
         &trust)
 
       guard status == noErr else { continue }
-      status = SecTrustEvaluate(trust, &result)
-      guard status == noErr else { continue }
+
+      guard SecTrustEvaluateWithError(trust, &error) else {
+        continue
+      }
 
       guard let publicKey = SecTrustCopyPublicKey(trust) else { continue }
       publicKeys.append(publicKey)

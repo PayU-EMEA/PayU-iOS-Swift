@@ -11,9 +11,9 @@ import UIKit
 final class SelectableListViewController<T: Selectable>: ListViewController<ListViewCell> {
 
   // MARK: - Arguments
-  struct Arguments<T> {
-    let items: [T]
-    let selected: T?
+  struct Arguments<U> {
+    let items: [U]
+    let selected: U?
   }
 
   // MARK: - Public Properties

@@ -13,7 +13,7 @@ final class PKPaymentNetworkExtensionsTests: XCTestCase {
   func testShouldHaveExpectedNetworks() throws {
     let sut = PKPaymentNetwork.networks()
 
-    if #available(iOS 12.0, *) {
+    if #available(iOS 13.0, *) {
       XCTAssertTrue(sut.contains(.maestro))
       XCTAssertTrue(sut.contains(.masterCard))
       XCTAssertTrue(sut.contains(.visa))

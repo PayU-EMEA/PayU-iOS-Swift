@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
 
   s.platform              = :ios
   s.swift_version         = '5.10'
-  s.ios.deployment_target = '12.0'
+  s.ios.deployment_target = '13.0'
 
   s.subspec 'PUAPI' do |ss|
     ss.source_files       = 'PUAPI/Sources/PUAPI/**/*'
@@ -63,7 +63,7 @@ Pod::Spec.new do |s|
     ss.source_files       = 'PUTheme/Sources/PUTheme/**/*'
     ss.resource_bundles   = {'PUTheme' => ['PUTheme/Sources/PUTheme/Resources/Fonts/*.{ttf}']}
     ss.resources          = ['PUTheme/Sources/PUTheme/Resources/Fonts/*.{ttf}']
-    ss.dependency         'Kingfisher', '7.11.0'
+    ss.dependency         'Kingfisher', '8.1.0'
     ss.dependency         'PUSDK/PUCore'
   end
 
