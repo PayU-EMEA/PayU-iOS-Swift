@@ -66,14 +66,19 @@ public final class PaymentCardViewController: UIViewController {
 
     /// Allows to display or hide scan card button (use it for testing). Default is **true**
     public let shouldDisplayScanCardButton: Bool
+
+    /// Token type for **USE** button.  **SINGLE** for true, **SINGLE_LONGTERM** for false.  Default is **false**, but will be changed in future
+    public let shortLifespandForUse: Bool
     
     // MARK: - Initialization
     public init(
       shouldDisplayExampleCards: Bool = false,
-      shouldDisplayScanCardButton: Bool = true
+      shouldDisplayScanCardButton: Bool = true,
+      shortLifespandForUse: Bool = false
     ) {
       self.shouldDisplayExampleCards = shouldDisplayExampleCards
       self.shouldDisplayScanCardButton = shouldDisplayScanCardButton
+      self.shortLifespandForUse = shortLifespandForUse
     }
   }
   
@@ -138,7 +143,7 @@ public final class PaymentCardViewController: UIViewController {
   }
   
   @objc private func actionUse(_ sender: Any) {
-    viewModel.didTapUse()
+    viewModel.didTapUse(shortLifespandForUse: configuration.shortLifespandForUse)
   }
 }
 

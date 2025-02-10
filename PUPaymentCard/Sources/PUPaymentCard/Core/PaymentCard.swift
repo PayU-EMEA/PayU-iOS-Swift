@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PaymentCard: Codable, Equatable {
+public struct PaymentCard: Codable, Equatable {
 
   // MARK: - Public Properties
   let number: String

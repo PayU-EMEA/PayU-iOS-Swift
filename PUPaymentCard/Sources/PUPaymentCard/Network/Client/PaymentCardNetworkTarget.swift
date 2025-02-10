@@ -19,7 +19,7 @@ extension PaymentCardNetworkTarget: NetworkTarget {
   var path: String {
     switch self {
       case .tokenize:
-        return "api/v2/token/token.json"
+        return "api/front/tokens"
     }
   }
 
@@ -33,17 +33,14 @@ extension PaymentCardNetworkTarget: NetworkTarget {
   var httpBody: Data? {
     switch self {
       case .tokenize(let tokenCreateRequest):
-        let tokenCreateRequestData = try! JSONEncoder().encode(tokenCreateRequest)
-        let tokenCreateRequestDataString = String(data: tokenCreateRequestData, encoding: .utf8)!
-        let formattedTokenCreateRequestDataString = "data=\(tokenCreateRequestDataString)"
-        return formattedTokenCreateRequestDataString.data(using: .utf8)
+        return try? JSONEncoder().encode(tokenCreateRequest)
     }
   }
 
   var httpHeaders: Dictionary<String, String> {
     switch self {
       case .tokenize:
-        return ["Content-Type": "application/x-www-form-urlencoded"]
+        return ["Content-Type": "application/json"]
     }
   }
 }

@@ -55,17 +55,17 @@ struct PaymentCardRepository: PaymentCardRepositoryProtocol {
   // MARK: - Private Methods
   private func mapTokenCreateResponseToCardToken(
     tokenCreateRequest: TokenCreateRequest,
-    tokenCreateResponseResult: TokenCreateResponse.Result) -> CardToken {
-      let paymentCardProvider = finder.find(tokenCreateRequest.data.card.number)
+    tokenCreateResponseResult: TokenCreateResponse) -> CardToken {
+      let paymentCardProvider = finder.find(tokenCreateRequest.card.number)
 
       return CardToken(
         brandImageUrl: paymentCardProvider?.brandImageProvider.url ?? "",
-        cardExpirationMonth: Int(tokenCreateRequest.data.card.expirationMonth) ?? 0,
-        cardExpirationYear: Int(tokenCreateRequest.data.card.expirationYear) ?? 0,
-        cardNumberMasked: tokenCreateResponseResult.mask,
+        cardExpirationMonth: Int(tokenCreateRequest.card.expirationMonth) ?? 0,
+        cardExpirationYear: Int(tokenCreateRequest.card.expirationYear) ?? 0,
+        cardNumberMasked: tokenCreateResponseResult.maskedCard,
         cardScheme: paymentCardProvider?.scheme,
         preferred: false,
         status: .active,
-        value: tokenCreateResponseResult.token)
+        value: tokenCreateResponseResult.value)
     }
 }

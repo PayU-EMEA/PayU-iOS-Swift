@@ -15,7 +15,7 @@ protocol PaymentCardViewModelProtocol {
   func didTapOpenTestCards(in presentingViewController: UIViewController)
   func didTapScanCard(in presentingViewController: UIViewController)
   func didTapSaveAndUse()
-  func didTapUse()
+  func didTapUse(shortLifespandForUse: Bool)
 }
 
 protocol PaymentCardViewModelDelegate: AnyObject {
@@ -48,16 +48,16 @@ final class PaymentCardViewModel: PaymentCardViewModelProtocol {
   }
 
   func didTapSaveAndUse() {
-    tokenize(agreement: true)
+    tokenize(type: TokenType.MULTI)
   }
 
-  func didTapUse() {
-    tokenize(agreement: false)
+  func didTapUse(shortLifespandForUse: Bool) {
+    tokenize(type: shortLifespandForUse ? TokenType.SINGLE : TokenType.SINGLE_LONGTERM)
   }
 
   // MARK: - Private Methods
-  private func tokenize(agreement: Bool) {
-    service.tokenize(agreement: agreement) { [weak self] result in
+  private func tokenize(type: TokenType) {
+    service.tokenize(type: type) { [weak self] result in
       guard let self = self else { return }
 
       switch result {

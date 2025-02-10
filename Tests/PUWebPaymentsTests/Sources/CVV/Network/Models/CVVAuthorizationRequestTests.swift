@@ -1,11 +1,9 @@
 //
 //  CVVAuthorizationRequestTests.swift
-//  
-//  Created by PayU S.A. on 14/03/2023.
-//  Copyright © 2023 PayU S.A. All rights reserved.
 //
 
 import XCTest
+
 @testable import PUWebPayments
 
 final class CVVAuthorizationRequestTests: XCTestCase {
@@ -19,10 +17,8 @@ final class CVVAuthorizationRequestTests: XCTestCase {
     refReqId = UUID().uuidString
     cvv = UUID().uuidString
     sut = CVVAuthorizationRequest(
-      data: CVVAuthorizationRequest.Data(
-        refReqId: refReqId,
-        cvv: cvv
-      )
+      cvv: cvv,
+      refReqId: refReqId
     )
   }
 
@@ -34,9 +30,7 @@ final class CVVAuthorizationRequestTests: XCTestCase {
   }
 
   func testMapsCorrectly() throws {
-    XCTAssertEqual(sut.request, "auth.cvv")
-    XCTAssertEqual(sut.data.refReqId, refReqId)
-    XCTAssertEqual(sut.data.cvv, cvv)
+    XCTAssertEqual(sut.refReqId, refReqId)
+    XCTAssertEqual(sut.cvv, cvv)
   }
 }
-
