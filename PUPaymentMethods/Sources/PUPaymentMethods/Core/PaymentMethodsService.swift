@@ -63,6 +63,7 @@ struct PaymentMethodsService: PaymentMethodsServiceProtocol {
       var items: [PaymentMethodsItem] = []
 
       items.append(contentsOf: makeAll(for: configuration))
+      items.append(contentsOf: makeApplePay(for: configuration))
       items.append(contentsOf: makeBlikCode(for: configuration))
       items.append(contentsOf: makeBlikTokens(for: configuration))
       items.append(contentsOf: makeCardTokens(for: configuration))
@@ -126,7 +127,7 @@ struct PaymentMethodsService: PaymentMethodsServiceProtocol {
     guard configuration.enablePayByLinks else { return [] }
 
     return configuration.payByLinks
-      .filter { !isProhibitedPayByLink($0) }
+      .filter { !isProhibitedPayByLink($0) && !isApplePayPayByLink($0)}
       .compactMap { factory.item($0) }
   }
 
