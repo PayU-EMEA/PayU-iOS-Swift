@@ -37,7 +37,7 @@ struct CVVAuthorizationNetworkClient: CVVAuthorizationNetworkClientProtocol {
         type: EmptyResponse.self,
         completionHandler: { response in
           switch response {
-            case .success(let response):
+            case .success(_):
               completionHandler(.success(()))
             case .failure(let error):
               completionHandler(.failure(error))

@@ -106,7 +106,7 @@ final class SettingsRepository {
 
   func setEnvironment(_ environment: EnvironmentModel) {
     database.environment = environment.id
-    PayU.pos = POS(id: environment.id, environment: environment.environmentType.payU)
+    PayU.pos = POS(id: environment.clientId, environment: environment.environmentType.payU)
   }
 
   func getTheme() -> Theme {
