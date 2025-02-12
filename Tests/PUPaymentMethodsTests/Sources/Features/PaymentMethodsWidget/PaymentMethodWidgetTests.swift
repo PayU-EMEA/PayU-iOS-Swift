@@ -34,6 +34,23 @@ final class PaymentMethodWidgetTests: XCTestCase {
 
     XCTAssertEqual(sut.paymentMethod?.value, payByLink.value)
   }
+    
+  func testWhenStorageReturnsApplePayPaymentValueThenShouldReturnCorrectTypeOfApplePay() {
+    let payByLink = makePayByLink(value: "jp")
+    let payByLinks: [PayByLink] = [payByLink]
+
+    configuration = PaymentMethodsConfiguration(
+      payByLinks: payByLinks)
+
+    given(storage.getSelectedPaymentMethodValue()).willReturn(payByLink.value)
+
+    sut = PaymentMethodsWidget.Factory().make(
+      configuration: configuration,
+      storage: storage)
+
+    XCTAssertEqual(sut.paymentMethod?.value, payByLink.value)
+    XCTAssertTrue(sut.paymentMethod is ApplePay)
+  }
 
   func testWhenStorageReturnsEmptyValueThenShouldReturnPaymentMethod() {
     let payByLink = makePayByLink()
