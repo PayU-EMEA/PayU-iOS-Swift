@@ -1,3 +1,8 @@
+## 2.3.0
+* [Add] Explicitly Token type for `PaymentCardService.tokenize`
+* Function `tokenize(type: TokenType, completionHandler: @escaping (Result<CardToken, Error>)` is deprecated. Use the `tokenize(type: TokenType, completionHandler: @escaping (Result<CardToken, Error>)` instead.
+* [Fix] Stored ApplePay method
+
 ## 2.2.0
 * Upgrade Kingfisher
 * Update iOS version to 13

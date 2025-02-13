@@ -2,7 +2,7 @@
 //  TokenizeRequest.swift
 //
 
-public struct TokenCreateRequest: Codable, Equatable {
+struct TokenCreateRequest: Codable, Equatable {
 
   // MARK: - Public Properties
   public let posId: String
