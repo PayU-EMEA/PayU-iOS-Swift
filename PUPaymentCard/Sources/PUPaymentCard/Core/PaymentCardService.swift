@@ -145,6 +145,7 @@ public final class PaymentCardService: PaymentCardServiceProtocol, PaymentCardSe
   }
 
   // MARK: - PaymentCardServiceProtocol
+  @available(*, deprecated, message: "This function is deprecated. Use the tokenize(type: TokenType, completionHandler: @escaping (Result<CardToken, Error>) instead.")
   public func tokenize(agreement: Bool, completionHandler: @escaping (Result<CardToken, Error>) -> Void) {
     tokenize(type: agreement ? TokenType.MULTI : TokenType.SINGLE_LONGTERM, completionHandler: completionHandler)
   }
