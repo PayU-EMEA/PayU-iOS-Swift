@@ -1,53 +1,61 @@
 //
 //  PaymentCardNetworkTargetTests.swift
-//  
-//  Created by PayU S.A. on 15/03/2023.
-//  Copyright © 2023 PayU S.A. All rights reserved.
 //
 
 import XCTest
+
 @testable import PUPaymentCard
 
 final class PaymentCardNetworkTargetTests: XCTestCase {
-  func testShouldHaveCorrectPath() throws {
-    let sut = PaymentCardNetworkTarget.tokenize(makeTokenCreateRequest())
-    XCTAssertEqual(sut.path, "api/v2/token/token.json")
-  }
+  func testShouldHaveCorrectRequest() throws {
+    let httpBody =
+      "{\"posId\":\"453872304\",\"type\":\"SINGLE\",\"card\":{\"cvv\":\"274\",\"number\":\"5434021016824014\",\"expirationMonth\":\"04\",\"expirationYear\":\"2025\"}}"
 
-  func testShouldHaveCorrectHTTPMethod() throws {
     let sut = PaymentCardNetworkTarget.tokenize(makeTokenCreateRequest())
+    XCTAssertEqual(sut.path, "api/front/tokens")
     XCTAssertEqual(sut.httpMethod, "POST")
+    XCTAssertEqual(sut.httpHeaders["Content-Type"], "application/json")
+    XCTAssertEqualJSON(sut.httpBody, httpBody.data(using: .utf8))
   }
 
-  // TODO: fix problem with data order
-  func skipped_testShouldHaveCorrectHTTPBody() throws {
-    let httpBody = """
-data={\"request\":\"TokenCreateRequest\",\"data\":{\"card\":{\"number\":\"5405 8609 3727 0285\",\"expirationYear\":\"2023\",\"expirationMonth\":\"03\",\"cvv\":\"827\"},\"agreement\":true},\"sender\":\"453872304\"}
-"""
-
-    let sut = PaymentCardNetworkTarget.tokenize(makeTokenCreateRequest())
-    XCTAssertEqual(sut.httpBody, httpBody.data(using: .utf8))
-  }
-
-  func testShouldHaveCorrectHTTPHeaders() throws {
-    let sut = PaymentCardNetworkTarget.tokenize(makeTokenCreateRequest())
-    XCTAssertEqual(sut.httpHeaders["Content-Type"], "application/x-www-form-urlencoded")
-  }
 }
 
-private extension PaymentCardNetworkTargetTests {
-  func makeTokenCreateRequest() -> TokenCreateRequest {
+extension PaymentCardNetworkTargetTests {
+  fileprivate func makeTokenCreateRequest() -> TokenCreateRequest {
     TokenCreateRequest(
-      sender: "453872304",
-      data: TokenCreateRequest.Data(
-        agreement: true,
-        card: TokenCreateRequest.Data.Card(
-          number: "5405 8609 3727 0285",
-          expirationMonth: "03",
-          expirationYear: "2023",
-          cvv: "827"
-        )
+      posId: "453872304",
+      type: TokenType.SINGLE.rawValue,
+      card: PaymentCard(
+        number: "5434021016824014",
+        expirationMonth: "04",
+        expirationYear: "2025",
+        cvv: "274"
       )
     )
+  }
+
+  fileprivate func XCTAssertEqualJSON(
+    _ data1: Data?, _ data2: Data?,
+    _ message: @escaping @autoclosure () -> String = "",
+    file: StaticString = #file, line: UInt = #line
+  ) {
+    do {
+      if let data1 = data1, let data2 = data2 {
+        let json1 =
+          try JSONSerialization.jsonObject(with: data1, options: [])
+          as? [String: Any]
+        let json2 =
+          try JSONSerialization.jsonObject(with: data2, options: [])
+          as? [String: Any]
+
+        XCTAssertTrue(
+          NSDictionary(dictionary: json1 ?? [:]).isEqual(to: json2 ?? [:]),
+          message(), file: file, line: line)
+      } else {
+        XCTFail("One of Data is nil.", file: file, line: line)
+      }
+    } catch {
+      XCTFail("JSON parse error: \(error)", file: file, line: line)
+    }
   }
 }

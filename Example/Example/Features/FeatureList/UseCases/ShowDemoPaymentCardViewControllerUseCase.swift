@@ -20,7 +20,9 @@ final class ShowDemoPaymentCardViewControllerUseCase {
   func execute() {
     let configuration = PaymentCardViewController.Configuration(
       shouldDisplayExampleCards: settingsRepository.shouldDisplayExampleCards(),
-      shouldDisplayScanCardButton: settingsRepository.shouldDisplayScanCardButton())
+      shouldDisplayScanCardButton: settingsRepository.shouldDisplayScanCardButton(),
+      shortLifespandForUse: true
+    )
     
     let viewController = PaymentCardViewController.Factory().make(configuration: configuration)
     let navigationController = UINavigationController(rootViewController: viewController)

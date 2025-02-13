@@ -1,12 +1,10 @@
 //
 //  CVVAuthorizationRepositoryTests.swift
-//  
-//  Created by PayU S.A. on 14/03/2023.
-//  Copyright © 2023 PayU S.A. All rights reserved.
 //
 
-import XCTest
 import Mockingbird
+import XCTest
+
 @testable import PUAPI
 @testable import PUWebPayments
 
@@ -35,31 +33,27 @@ final class CVVAuthorizationRepositoryTests: XCTestCase {
     sut = nil
   }
 
-  func testShouldCompleteWithSuccessResultWhenNetworkClientCompleteWithSuccessResult() throws {
+  func
+    testShouldCompleteWithSuccessResultWhenNetworkClientCompleteWithSuccessResult()
+    throws
+  {
     let cvvAuthorizationRequest = CVVAuthorizationRequest(
-      data: CVVAuthorizationRequest.Data(
-        refReqId: refReqId,
-        cvv: cvv
-      )
+      cvv: cvv,
+      refReqId: refReqId
     )
 
-    let cvvAuthorizationResponse = CVVAuthorizationResponse(
-      status: NetworkClientStatus(
-        statusCode: NetworkClientStatus.StatusCode.success,
-        codeLiteral: "codeLiteral",
-        code: "code"
-      )
+    let expectationAuthorizeCVV = XCTestExpectation(
+      description: "expectationAuthorizeCVV"
     )
-
-    let expectationAuthorizeCVV = XCTestExpectation(description: "expectationAuthorizeCVV")
 
     given(
       networkClient
         .authorizeCVV(
           cvvAuthorizationRequest: any(CVVAuthorizationRequest.self),
-          completionHandler: any()))
+          completionHandler: any())
+    )
     .will { cvvAuthorizationRequest, completionHandler in
-      completionHandler(.success(cvvAuthorizationResponse))
+      completionHandler(.success(()))
     }
 
     sut.authorizeCVV(
@@ -67,10 +61,10 @@ final class CVVAuthorizationRepositoryTests: XCTestCase {
       completionHandler: { result in
         XCTAssertNotNil(try? result.get())
         switch result {
-          case .success:
-            expectationAuthorizeCVV.fulfill()
-          default:
-            break
+        case .success:
+          expectationAuthorizeCVV.fulfill()
+        default:
+          break
         }
       }
     )
@@ -79,29 +73,34 @@ final class CVVAuthorizationRepositoryTests: XCTestCase {
       networkClient
         .authorizeCVV(
           cvvAuthorizationRequest: cvvAuthorizationRequest,
-          completionHandler: any()))
+          completionHandler: any())
+    )
     .wasCalled()
 
     wait(for: [expectationAuthorizeCVV], timeout: 1)
   }
 
-  func testShouldCompleteWithFailureResultWhenNetworkClientCompleteWithFailureResult() throws {
-    struct ErrorMock: Error {  }
+  func
+    testShouldCompleteWithFailureResultWhenNetworkClientCompleteWithFailureResult()
+    throws
+  {
+    struct ErrorMock: Error {}
 
     let cvvAuthorizationRequest = CVVAuthorizationRequest(
-      data: CVVAuthorizationRequest.Data(
-        refReqId: refReqId,
-        cvv: cvv
-      )
+      cvv: cvv,
+      refReqId: refReqId
     )
 
-    let expectationAuthorizeCVV = XCTestExpectation(description: "expectationAuthorizeCVV")
+    let expectationAuthorizeCVV = XCTestExpectation(
+      description: "expectationAuthorizeCVV"
+    )
 
     given(
       networkClient
         .authorizeCVV(
           cvvAuthorizationRequest: any(CVVAuthorizationRequest.self),
-          completionHandler: any()))
+          completionHandler: any())
+    )
     .will { cvvAuthorizationRequest, completionHandler in
       completionHandler(.failure(ErrorMock()))
     }
@@ -111,10 +110,10 @@ final class CVVAuthorizationRepositoryTests: XCTestCase {
       completionHandler: { result in
         XCTAssertNil(try? result.get())
         switch result {
-          case .failure:
-            expectationAuthorizeCVV.fulfill()
-          default:
-            break
+        case .failure:
+          expectationAuthorizeCVV.fulfill()
+        default:
+          break
         }
       }
     )
@@ -123,7 +122,8 @@ final class CVVAuthorizationRepositoryTests: XCTestCase {
       networkClient
         .authorizeCVV(
           cvvAuthorizationRequest: cvvAuthorizationRequest,
-          completionHandler: any()))
+          completionHandler: any())
+    )
     .wasCalled()
 
     wait(for: [expectationAuthorizeCVV], timeout: 1)

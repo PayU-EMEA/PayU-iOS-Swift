@@ -1,12 +1,10 @@
 //
 //  PaymentCardViewModelTests.swift
-//  
-//  Created by PayU S.A. on 15/03/2023.
-//  Copyright © 2023 PayU S.A. All rights reserved.
 //
 
-import XCTest
 import Mockingbird
+import XCTest
+
 @testable import PUCore
 @testable import PUPaymentCard
 
@@ -39,7 +37,8 @@ final class PaymentCardViewModelTests: XCTestCase {
       service
         .scan(
           option: .numberAndDate,
-          in: viewController))
+          in: viewController)
+    )
     .wasCalled()
   }
 
@@ -49,20 +48,33 @@ final class PaymentCardViewModelTests: XCTestCase {
     verify(
       service
         .tokenize(
-          agreement: true,
-          completionHandler: any()))
+          type: TokenType.MULTI,
+          completionHandler: any())
+    )
+    .wasCalled()
+  }
+
+  func testDidTapUseShouldCallServiceToTokenizeWithoutAgreementLongTerm() {
+    sut.didTapUse(shortLifespandForUse: false)
+
+    verify(
+      service
+        .tokenize(
+          type: TokenType.SINGLE_LONGTERM,
+          completionHandler: any())
+    )
     .wasCalled()
   }
 
   func testDidTapUseShouldCallServiceToTokenizeWithoutAgreement() {
-    sut.didTapUse()
-    
+    sut.didTapUse(shortLifespandForUse: true)
+
     verify(
       service
         .tokenize(
-          agreement: false,
-          completionHandler: any()))
+          type: TokenType.SINGLE,
+          completionHandler: any())
+    )
     .wasCalled()
   }
-
 }

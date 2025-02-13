@@ -38,16 +38,16 @@ class AwesomeViewController: ViewController {
   // MARK: - Actions
   // 4. Implement actions
   @objc private func actionSaveAndUse(_ sender: Any) {
-    tokenize(agreement: true)
+    tokenize(tokenType: TokenType.MULTI)
   }
 
   @objc private func actionUse(_ sender: Any) {
-    tokenize(agreement: false)
+    tokenize(tokenType: TokenType.SINGLE)
   }
   
   // MARK: - Private Methods
-  private func tokenize(agreement: Bool) {
-    service.tokenize(agreement: agreement) { [weak self] result in
+  private func tokenize(tokenType: TokenType) {
+    service.tokenize(type: tokenType) { [weak self] result in
       guard let self = self else { return }
 
       switch result {

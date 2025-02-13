@@ -97,9 +97,9 @@ public final class CVVAuthorizationService {
   private func didTapAuthorize(refReqId: String, cvv: String) {
     repository.authorizeCVV(
       cvvAuthorizationRequest: CVVAuthorizationRequest(
-        data: CVVAuthorizationRequest.Data(
-          refReqId: refReqId,
-          cvv: cvv)),
+        cvv: cvv,
+        refReqId: refReqId
+      ),
       completionHandler: { [weak self] result in
         guard let self = self else { return }
 

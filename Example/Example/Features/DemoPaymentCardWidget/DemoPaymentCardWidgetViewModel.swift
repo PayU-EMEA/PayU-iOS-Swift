@@ -37,9 +37,9 @@ final class DemoPaymentCardWidgetViewModel {
   }
 
   // MARK: - Public Methods
-  func tokenize(agreement: Bool) {
-    Console.console.log(agreement)
-    service.tokenize(agreement: agreement) { [weak self] result in
+  func tokenize(type: TokenType) {
+    Console.console.log(type.rawValue)
+    service.tokenize(type: type) { [weak self] result in
       guard let self = self else { return }
 
       switch result {

@@ -1,12 +1,10 @@
 //
 //  PaymentCardRepositoryTests.swift
-//  
-//  Created by PayU S.A. on 15/03/2023.
-//  Copyright © 2023 PayU S.A. All rights reserved.
 //
 
-import XCTest
 import Mockingbird
+import XCTest
+
 @testable import PUAPI
 @testable import PUCore
 @testable import PUPaymentCard
@@ -31,7 +29,9 @@ final class PaymentCardRepositoryTests: XCTestCase {
     sut = nil
   }
 
-  func testTokenizeWhenClientCompletesWithSuccessWhenFinderCanFindPaymentCardProviderThenShouldCompleteWithSuccess() {
+  func
+    testTokenizeWhenClientCompletesWithSuccessWhenFinderCanFindPaymentCardProviderThenShouldCompleteWithSuccess()
+  {
     let paymentCardProvider = PaymentCardProvider.mastercard
     let expectation = XCTestExpectation()
 
@@ -39,23 +39,26 @@ final class PaymentCardRepositoryTests: XCTestCase {
       client
         .tokenize(
           tokenCreateRequest: any(),
-          completionHandler: any()))
+          completionHandler: any())
+    )
     .will { tokenCreateRequest, completionHandler in
-      completionHandler(.success(self.makeTokenCreateResponse().data!))
+      completionHandler(.success(self.makeTokenCreateResponse()))
     }
 
     given(
-      finder.find(any()))
+      finder.find(any())
+    )
     .willReturn(paymentCardProvider)
 
     sut.tokenize(
       tokenCreateRequest: makeTokenCreateRequest(),
       completionHandler: { result in
         switch result {
-          case .success(let cardToken) where cardToken == self.makeCardToken(paymentCardProvider):
-            expectation.fulfill()
-          default:
-            break
+        case .success(let cardToken)
+        where cardToken == self.makeCardToken(paymentCardProvider):
+          expectation.fulfill()
+        default:
+          break
         }
       }
     )
@@ -64,18 +67,22 @@ final class PaymentCardRepositoryTests: XCTestCase {
       client
         .tokenize(
           tokenCreateRequest: makeTokenCreateRequest(),
-          completionHandler: any()))
+          completionHandler: any())
+    )
     .wasCalled()
 
     verify(
       finder.find(
-        makeTokenCreateRequest().data.card.number))
+        makeTokenCreateRequest().card.number)
+    )
     .wasCalled()
 
     wait(for: [expectation], timeout: 1)
   }
 
-  func testTokenizeWhenClientCompletesWithSuccessWhenFinderCannotFindPaymentCardProviderThenShouldCompleteWithSuccess() {
+  func
+    testTokenizeWhenClientCompletesWithSuccessWhenFinderCannotFindPaymentCardProviderThenShouldCompleteWithSuccess()
+  {
     let paymentCardProvider: PaymentCardProvider? = nil
     let expectation = XCTestExpectation()
 
@@ -83,23 +90,26 @@ final class PaymentCardRepositoryTests: XCTestCase {
       client
         .tokenize(
           tokenCreateRequest: any(),
-          completionHandler: any()))
+          completionHandler: any())
+    )
     .will { tokenCreateRequest, completionHandler in
-      completionHandler(.success(self.makeTokenCreateResponse().data!))
+      completionHandler(.success(self.makeTokenCreateResponse()))
     }
 
     given(
-      finder.find(any()))
+      finder.find(any())
+    )
     .willReturn(nil)
 
     sut.tokenize(
       tokenCreateRequest: makeTokenCreateRequest(),
       completionHandler: { result in
         switch result {
-          case .success(let cardToken) where cardToken == self.makeCardToken(paymentCardProvider):
-            expectation.fulfill()
-          default:
-            break
+        case .success(let cardToken)
+        where cardToken == self.makeCardToken(paymentCardProvider):
+          expectation.fulfill()
+        default:
+          break
         }
       }
     )
@@ -108,19 +118,22 @@ final class PaymentCardRepositoryTests: XCTestCase {
       client
         .tokenize(
           tokenCreateRequest: makeTokenCreateRequest(),
-          completionHandler: any()))
+          completionHandler: any())
+    )
     .wasCalled()
 
     verify(
       finder.find(
-        makeTokenCreateRequest().data.card.number))
+        makeTokenCreateRequest().card.number)
+    )
     .wasCalled()
 
     wait(for: [expectation], timeout: 1)
   }
 
-  func testTokenizeWhenClientCompletesWithFailureThenShouldCompleteWithFailure() {
-    struct ErrorMock: Error {  }
+  func testTokenizeWhenClientCompletesWithFailureThenShouldCompleteWithFailure()
+  {
+    struct ErrorMock: Error {}
 
     let expectation = XCTestExpectation()
 
@@ -128,7 +141,8 @@ final class PaymentCardRepositoryTests: XCTestCase {
       client
         .tokenize(
           tokenCreateRequest: any(),
-          completionHandler: any()))
+          completionHandler: any())
+    )
     .will { tokenCreateRequest, completionHandler in
       completionHandler(.failure(ErrorMock()))
     }
@@ -137,10 +151,10 @@ final class PaymentCardRepositoryTests: XCTestCase {
       tokenCreateRequest: makeTokenCreateRequest(),
       completionHandler: { result in
         switch result {
-          case .failure:
-            expectation.fulfill()
-          default:
-            break
+        case .failure:
+          expectation.fulfill()
+        default:
+          break
         }
       }
     )
@@ -149,50 +163,44 @@ final class PaymentCardRepositoryTests: XCTestCase {
       client
         .tokenize(
           tokenCreateRequest: makeTokenCreateRequest(),
-          completionHandler: any()))
+          completionHandler: any())
+    )
     .wasCalled()
 
     verify(
-      finder.find(any()))
+      finder.find(any())
+    )
     .wasNeverCalled()
 
     wait(for: [expectation], timeout: 1)
   }
-  
+
 }
 
-private extension PaymentCardRepositoryTests {
-  func makeTokenCreateRequest() -> TokenCreateRequest {
+extension PaymentCardRepositoryTests {
+  fileprivate func makeTokenCreateRequest() -> TokenCreateRequest {
     TokenCreateRequest(
-      sender: "453872304",
-      data: TokenCreateRequest.Data(
-        agreement: true,
-        card: TokenCreateRequest.Data.Card(
-          number: "5405 8609 3727 0285",
-          expirationMonth: "03",
-          expirationYear: "2023",
-          cvv: "827"
-        )
+      posId: "453872304",
+      type: TokenType.MULTI.rawValue,
+      card: PaymentCard(
+        number: "5405 8609 3727 0285",
+        expirationMonth: "03",
+        expirationYear: "2023",
+        cvv: "827"
       )
     )
   }
 
-  func makeTokenCreateResponse() -> TokenCreateResponse {
+  fileprivate func makeTokenCreateResponse() -> TokenCreateResponse {
     TokenCreateResponse(
-      status: NetworkClientStatus(
-        statusCode: NetworkClientStatus.StatusCode.success,
-        codeLiteral: "codeLiteral",
-        code: "code"
-      ),
-      data: TokenCreateResponse.Result(
-        token: "TOKC_QPY10DEHHLWPOMJIV5LWUZHG2DG",
-        mask: "5405 **** **** 0285",
-        type: "MC"
-      )
+      value: "TOKC_QPY10DEHHLWPOMJIV5LWUZHG2DG",
+      maskedCard: "5405 **** **** 0285"
     )
   }
 
-  func makeCardToken(_ paymentCardProvider: PaymentCardProvider?) -> CardToken {
+  fileprivate func makeCardToken(_ paymentCardProvider: PaymentCardProvider?)
+    -> CardToken
+  {
     CardToken(
       brandImageUrl: paymentCardProvider?.brandImageProvider.url ?? "",
       cardExpirationMonth: 3,

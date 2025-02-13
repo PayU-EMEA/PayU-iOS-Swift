@@ -14,7 +14,7 @@ import PUAPI
 protocol CVVAuthorizationNetworkClientProtocol {
   func authorizeCVV(
     cvvAuthorizationRequest: CVVAuthorizationRequest,
-    completionHandler: @escaping (Result<CVVAuthorizationResponse, Error>) -> Void)
+    completionHandler: @escaping (Result<Void, Error>) -> Void)
 }
 
 struct CVVAuthorizationNetworkClient: CVVAuthorizationNetworkClientProtocol {
@@ -30,17 +30,15 @@ struct CVVAuthorizationNetworkClient: CVVAuthorizationNetworkClientProtocol {
   // MARK: - CVVAuthorizationNetworkClientProtocol
   func authorizeCVV(
     cvvAuthorizationRequest: CVVAuthorizationRequest,
-    completionHandler: @escaping (Result<CVVAuthorizationResponse, Error>) -> Void) {
+    completionHandler: @escaping (Result<Void, Error>) -> Void) {
 
       client.request(
         target: CVVAuthorizationNetworkTarget.authorizeCVV(cvvAuthorizationRequest),
-        type: CVVAuthorizationResponse.self,
+        type: EmptyResponse.self,
         completionHandler: { response in
           switch response {
-            case .success(let response):
-              response.status.statusCode == NetworkClientStatus.StatusCode.success
-              ? completionHandler(.success(response))
-              : completionHandler(.failure(NetworkClientError(status: response.status)))
+            case .success(_):
+              completionHandler(.success(()))
             case .failure(let error):
               completionHandler(.failure(error))
           }

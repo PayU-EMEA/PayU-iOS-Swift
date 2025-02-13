@@ -1,16 +1,14 @@
 //
 //  PaymentCardServiceTests.swift
-//  
-//  Created by PayU S.A. on 15/03/2023.
-//  Copyright © 2023 PayU S.A. All rights reserved.
 //
 
-import XCTest
 import Mockingbird
+import XCTest
+
 @testable import PUCore
-@testable import PUTheme
 @testable import PUPaymentCard
 @testable import PUPaymentCardScanner
+@testable import PUTheme
 
 final class PaymentCardServiceTests: XCTestCase {
 
@@ -119,7 +117,8 @@ final class PaymentCardServiceTests: XCTestCase {
   func testDidChangeNumberShouldCallDelegateToUpdateCardProvider() throws {
     given(finder.possible(any())).willReturn(.mastercard)
     sut.didChangeNumber("5434 0210 1682 4014")
-    verify(delegate.paymentCardServiceShouldUpdatePaymentCardProvider(any())).wasCalled()
+    verify(delegate.paymentCardServiceShouldUpdatePaymentCardProvider(any()))
+      .wasCalled()
   }
 
   func testDidChangePaymentCardShouldChangePaymentCard() throws {
@@ -164,7 +163,9 @@ final class PaymentCardServiceTests: XCTestCase {
     verify(delegate.paymentCardServiceShouldValidate(any())).wasCalled()
   }
 
-  func testTokenizeWhenCanValidateThenShouldCallRepositoryToTokenize() throws {
+  func testDeprecatedTokenizeWhenCanValidateThenShouldCallRepositoryToTokenize()
+    throws
+  {
     sut.didChangeNumber("5434 0210 1682 4014")
     sut.didChangeDate("04/2025")
     sut.didChangeCVV("274")
@@ -179,22 +180,53 @@ final class PaymentCardServiceTests: XCTestCase {
       repository
         .tokenize(
           tokenCreateRequest: TokenCreateRequest(
-            sender: pos,
-            data: TokenCreateRequest.Data(
-              agreement: true,
-              card: TokenCreateRequest.Data.Card(
-                number: "5434021016824014",
-                expirationMonth: "04",
-                expirationYear: "2025",
-                cvv: "274"
-              )
+            posId: pos,
+            type: TokenType.MULTI.rawValue,
+            card: PaymentCard(
+              number: "5434021016824014",
+              expirationMonth: "04",
+              expirationYear: "2025",
+              cvv: "274"
             )
           ),
-          completionHandler: any()))
+          completionHandler: any())
+    )
     .wasCalled()
   }
 
-  func testTokenizeWithAgreementWhenCanValidateThenShouldCallRepositoryToTokenizeWithExpectedAgreement() throws {
+  func testTokenizeWhenCanValidateThenShouldCallRepositoryToTokenize() throws {
+    sut.didChangeNumber("5434 0210 1682 4014")
+    sut.didChangeDate("04/2025")
+    sut.didChangeCVV("274")
+
+    given(delegate.paymentCardServiceShouldValidate(any())).willReturn(())
+
+    sut.tokenize(
+      type: TokenType.MULTI,
+      completionHandler: { e in })
+
+    verify(
+      repository
+        .tokenize(
+          tokenCreateRequest: TokenCreateRequest(
+            posId: pos,
+            type: TokenType.MULTI.rawValue,
+            card: PaymentCard(
+              number: "5434021016824014",
+              expirationMonth: "04",
+              expirationYear: "2025",
+              cvv: "274"
+            )
+          ),
+          completionHandler: any())
+    )
+    .wasCalled()
+  }
+
+  func
+    testDeprecatedTokenizeWithAgreementWhenCanValidateThenShouldCallRepositoryToTokenizeWithExpectedAgreement()
+    throws
+  {
     sut.didChangeNumber("5598 6148 1656 3766")
     sut.didChangeDate("04/2025")
     sut.didChangeCVV("274")
@@ -209,22 +241,56 @@ final class PaymentCardServiceTests: XCTestCase {
       repository
         .tokenize(
           tokenCreateRequest: TokenCreateRequest(
-            sender: pos,
-            data: TokenCreateRequest.Data(
-              agreement: true,
-              card: TokenCreateRequest.Data.Card(
-                number: "5598614816563766",
-                expirationMonth: "04",
-                expirationYear: "2025",
-                cvv: "274"
-              )
+            posId: pos,
+            type: TokenType.MULTI.rawValue,
+            card: PaymentCard(
+              number: "5598614816563766",
+              expirationMonth: "04",
+              expirationYear: "2025",
+              cvv: "274"
             )
           ),
-          completionHandler: any()))
+          completionHandler: any())
+    )
     .wasCalled()
   }
 
-  func testTokenizeWithoutAgreementWhenCanValidateThenShouldCallRepositoryToTokenizeWithExpectedAgreement() throws {
+  func
+    testTokenizeWithAgreementWhenCanValidateThenShouldCallRepositoryToTokenizeWithExpectedAgreement()
+    throws
+  {
+    sut.didChangeNumber("5598 6148 1656 3766")
+    sut.didChangeDate("04/2025")
+    sut.didChangeCVV("274")
+
+    given(delegate.paymentCardServiceShouldValidate(any())).willReturn(())
+
+    sut.tokenize(
+      type: TokenType.MULTI,
+      completionHandler: { e in })
+
+    verify(
+      repository
+        .tokenize(
+          tokenCreateRequest: TokenCreateRequest(
+            posId: pos,
+            type: TokenType.MULTI.rawValue,
+            card: PaymentCard(
+              number: "5598614816563766",
+              expirationMonth: "04",
+              expirationYear: "2025",
+              cvv: "274"
+            )
+          ),
+          completionHandler: any())
+    )
+    .wasCalled()
+  }
+
+  func
+    testDeprecatedTokenizeWithoutAgreementWhenCanValidateThenShouldCallRepositoryToTokenizeWithExpectedAgreement()
+    throws
+  {
     sut.didChangeNumber("5598 6148 1656 3766")
     sut.didChangeDate("04/2025")
     sut.didChangeCVV("274")
@@ -239,34 +305,69 @@ final class PaymentCardServiceTests: XCTestCase {
       repository
         .tokenize(
           tokenCreateRequest: TokenCreateRequest(
-            sender: pos,
-            data: TokenCreateRequest.Data(
-              agreement: false,
-              card: TokenCreateRequest.Data.Card(
-                number: "5598614816563766",
-                expirationMonth: "04",
-                expirationYear: "2025",
-                cvv: "274"
-              )
+            posId: pos,
+            type: TokenType.SINGLE_LONGTERM.rawValue,
+            card: PaymentCard(
+              number: "5598614816563766",
+              expirationMonth: "04",
+              expirationYear: "2025",
+              cvv: "274"
             )
           ),
-          completionHandler: any()))
+          completionHandler: any())
+    )
     .wasCalled()
   }
 
-  func testTokenizeWhenCanValidateWhenRepositoryCompleteWithSuccessThenShouldCompleteWithSuccess() throws {
+  func
+    testTokenizeWithoutAgreementWhenCanValidateThenShouldCallRepositoryToTokenizeWithExpectedAgreement()
+    throws
+  {
     sut.didChangeNumber("5598 6148 1656 3766")
     sut.didChangeDate("04/2025")
     sut.didChangeCVV("274")
 
-    let expectationTokenize = XCTestExpectation(description: "expectationTokenize")
+    given(delegate.paymentCardServiceShouldValidate(any())).willReturn(())
+
+    sut.tokenize(
+      type: TokenType.SINGLE_LONGTERM,
+      completionHandler: { e in })
+
+    verify(
+      repository
+        .tokenize(
+          tokenCreateRequest: TokenCreateRequest(
+            posId: pos,
+            type: TokenType.SINGLE_LONGTERM.rawValue,
+            card: PaymentCard(
+              number: "5598614816563766",
+              expirationMonth: "04",
+              expirationYear: "2025",
+              cvv: "274"
+            )
+          ),
+          completionHandler: any())
+    )
+    .wasCalled()
+  }
+  func
+    testTokenizeWhenCanValidateWhenRepositoryCompleteWithSuccessThenShouldCompleteWithSuccess()
+    throws
+  {
+    sut.didChangeNumber("5598 6148 1656 3766")
+    sut.didChangeDate("04/2025")
+    sut.didChangeCVV("274")
+
+    let expectationTokenize = XCTestExpectation(
+      description: "expectationTokenize")
 
     given(delegate.paymentCardServiceShouldValidate(any())).willReturn(())
     given(
       repository
         .tokenize(
           tokenCreateRequest: any(),
-          completionHandler: any()))
+          completionHandler: any())
+    )
     .will { tokenCreateRequest, completionHandler in
       completionHandler(
         .success(
@@ -297,21 +398,26 @@ final class PaymentCardServiceTests: XCTestCase {
     wait(for: [expectationTokenize], timeout: 2)
   }
 
-  func testTokenizeWhenCanValidateWhenRepositoryCompleteWithFailureThenShouldCompleteWithFailure() throws {
-    struct ErrorMock: Error {  }
+  func
+    testTokenizeWhenCanValidateWhenRepositoryCompleteWithFailureThenShouldCompleteWithFailure()
+    throws
+  {
+    struct ErrorMock: Error {}
 
     sut.didChangeNumber("5598 6148 1656 3766")
     sut.didChangeDate("04/2025")
     sut.didChangeCVV("274")
 
-    let expectationTokenize = XCTestExpectation(description: "expectationTokenize")
+    let expectationTokenize = XCTestExpectation(
+      description: "expectationTokenize")
 
     given(delegate.paymentCardServiceShouldValidate(any())).willReturn(())
     given(
       repository
         .tokenize(
           tokenCreateRequest: any(),
-          completionHandler: any()))
+          completionHandler: any())
+    )
     .will { tokenCreateRequest, completionHandler in
       completionHandler(.failure(ErrorMock()))
     }
@@ -327,10 +433,13 @@ final class PaymentCardServiceTests: XCTestCase {
     wait(for: [expectationTokenize], timeout: 2)
   }
 
-  func testTokenizeWhenCannotValidateThenShouldNotCallRepository() throws {
-    struct ErrorMock: Error {  }
+  func testDeprecatedTokenizeWhenCannotValidateThenShouldNotCallRepository()
+    throws
+  {
+    struct ErrorMock: Error {}
 
-    given(delegate.paymentCardServiceShouldValidate(any())).willThrow(ErrorMock())
+    given(delegate.paymentCardServiceShouldValidate(any())).willThrow(
+      ErrorMock())
 
     sut.tokenize(
       agreement: true,
@@ -340,7 +449,27 @@ final class PaymentCardServiceTests: XCTestCase {
       repository
         .tokenize(
           tokenCreateRequest: any(),
-          completionHandler: any()))
+          completionHandler: any())
+    )
+    .wasNeverCalled()
+  }
+
+  func testTokenizeWhenCannotValidateThenShouldNotCallRepository() throws {
+    struct ErrorMock: Error {}
+
+    given(delegate.paymentCardServiceShouldValidate(any())).willThrow(
+      ErrorMock())
+
+    sut.tokenize(
+      type: TokenType.MULTI,
+      completionHandler: { e in })
+
+    verify(
+      repository
+        .tokenize(
+          tokenCreateRequest: any(),
+          completionHandler: any())
+    )
     .wasNeverCalled()
   }
 
@@ -351,18 +480,22 @@ final class PaymentCardServiceTests: XCTestCase {
         .presentPaymentCardScannerViewController(
           option: .number,
           presentingViewController: any(),
-          onComplete: any()))
+          onComplete: any())
+    )
     .wasCalled()
   }
 
-  func testScanWithNumberAndDateOptionShouldCallRepositoryWithTheSameOption() throws {
+  func testScanWithNumberAndDateOptionShouldCallRepositoryWithTheSameOption()
+    throws
+  {
     sut.scan(option: .numberAndDate, in: UIViewController())
     verify(
       presenter
         .presentPaymentCardScannerViewController(
           option: .numberAndDate,
           presentingViewController: any(),
-          onComplete: any()))
+          onComplete: any())
+    )
     .wasCalled()
   }
 
@@ -372,7 +505,8 @@ final class PaymentCardServiceTests: XCTestCase {
         .presentPaymentCardScannerViewController(
           option: any(),
           presentingViewController: any(),
-          onComplete: any()))
+          onComplete: any())
+    )
     .will { option, presentingViewController, onComplete in
       onComplete(
         PaymentCardScannerResult(
@@ -389,13 +523,16 @@ final class PaymentCardServiceTests: XCTestCase {
     XCTAssertEqual(sut.number, "5598 6148 1656 3766")
   }
 
-  func testScanWhenPresenterCompletesWithResultThenShouldCallDelegateToUpdate() throws {
+  func testScanWhenPresenterCompletesWithResultThenShouldCallDelegateToUpdate()
+    throws
+  {
     given(
       presenter
         .presentPaymentCardScannerViewController(
           option: any(),
           presentingViewController: any(),
-          onComplete: any()))
+          onComplete: any())
+    )
     .will { option, presentingViewController, onComplete in
       onComplete(
         PaymentCardScannerResult(

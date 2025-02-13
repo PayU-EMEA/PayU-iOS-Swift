@@ -26,8 +26,14 @@ public protocol PaymentCardServiceProtocol {
   /// - Parameters:
   ///   - agreement: In case you do not want PayU store payment card for future payments, set it to **false**.
   ///   - completionHandler: `completionHandler` which will be called as the result of method
+  @available(*, deprecated, message: "This function is deprecated. Use the tokenize(type: TokenType, completionHandler: @escaping (Result<CardToken, Error>) instead.")
   func tokenize(agreement: Bool, completionHandler: @escaping (Result<CardToken, Error>) -> Void)
 
+  /// Method to tokenize the payment card details entered by user in the ``PaymentCardWidget``
+  /// - Parameters:
+  ///   - type: Type of card token. Default set it to **SINGLE**
+  ///   - completionHandler: `completionHandler` which will be called as the result of method
+  func tokenize(type: TokenType, completionHandler: @escaping (Result<CardToken, Error>) -> Void)
 
   /// Method to scan the payment card details
   /// - Parameters:
@@ -140,9 +146,13 @@ public final class PaymentCardService: PaymentCardServiceProtocol, PaymentCardSe
 
   // MARK: - PaymentCardServiceProtocol
   public func tokenize(agreement: Bool, completionHandler: @escaping (Result<CardToken, Error>) -> Void) {
+    tokenize(type: agreement ? TokenType.MULTI : TokenType.SINGLE_LONGTERM, completionHandler: completionHandler)
+  }
+
+  public func tokenize(type: TokenType = .SINGLE, completionHandler: @escaping (Result<CardToken, Error>) -> Void) {
     do {
       try delegate?.paymentCardServiceShouldValidate(self)
-      let tokenCreateRequest = makeTokenCreateRequest(agreement: agreement)
+      let tokenCreateRequest = TokenCreateRequest.build(posId: PayU.pos.id, tokenType: type, card: makePaymentCard())
 
       repository.tokenize(
         tokenCreateRequest: tokenCreateRequest,
@@ -174,12 +184,4 @@ public final class PaymentCardService: PaymentCardServiceProtocol, PaymentCardSe
     )
   }
 
-  private func makeTokenCreateRequest(agreement: Bool) -> TokenCreateRequest {
-    return TokenCreateRequest(
-      sender: PayU.pos.id,
-      data: TokenCreateRequest.Data(
-        agreement: agreement,
-        card: TokenCreateRequest.Data.Card(
-          paymentCard: makePaymentCard())))
-  }
 }

@@ -18,7 +18,7 @@ import PUCore
 protocol PaymentCardNetworkClientProtocol {
   func tokenize(
     tokenCreateRequest: TokenCreateRequest,
-    completionHandler: @escaping (Result<TokenCreateResponse.Result, Error>) -> Void)
+    completionHandler: @escaping (Result<TokenCreateResponse, Error>) -> Void)
 }
 
 struct PaymentCardNetworkClient: PaymentCardNetworkClientProtocol {
@@ -34,16 +34,14 @@ struct PaymentCardNetworkClient: PaymentCardNetworkClientProtocol {
   // MARK: - PaymentCardNetworkClientProtocol
   func tokenize(
     tokenCreateRequest: TokenCreateRequest,
-    completionHandler: @escaping (Result<TokenCreateResponse.Result, Error>) -> Void) {
+    completionHandler: @escaping (Result<TokenCreateResponse, Error>) -> Void) {
 
       client.request(
         target: PaymentCardNetworkTarget.tokenize(tokenCreateRequest),
         type: TokenCreateResponse.self) { result in
           switch result {
             case .success(let response):
-              response.data != nil
-              ? completionHandler(.success(response.data!))
-              : completionHandler(.failure(NetworkClientError(status: response.status)))
+              completionHandler(.success(response))
 
             case .failure(let error):
               completionHandler(.failure(error))

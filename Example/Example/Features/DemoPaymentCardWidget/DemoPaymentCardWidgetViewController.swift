@@ -66,12 +66,17 @@ final class DemoPaymentCardWidgetViewController: ViewController {
 
   // MARK: - Actions
   @objc private func actionSaveAndUse(_ sender: Any) {
-    viewModel.tokenize(agreement: true)
+    viewModel.tokenize(type: TokenType.MULTI)
     Console.console.log()
   }
 
   @objc private func actionUse(_ sender: Any) {
-    viewModel.tokenize(agreement: false)
+    viewModel.tokenize(type: TokenType.SINGLE)
+    Console.console.log()
+  }
+
+  @objc private func actionUseLongTerm(_ sender: Any) {
+    viewModel.tokenize(type: TokenType.SINGLE_LONGTERM)
     Console.console.log()
   }
 
@@ -115,6 +120,13 @@ private extension DemoPaymentCardWidgetViewController {
       return button
     }
 
+    func makeUseLongTermButtonView() -> UIView {
+      let button = UIButton(type: .system)
+      button.setTitle("Use (long term)", for: .normal)
+      button.addTarget(self, action: #selector(actionUseLongTerm(_:)), for: .touchUpInside)
+      return button
+    }
+
     func makeEmptyView() -> UIView {
       return UIView()
     }
@@ -145,6 +157,7 @@ private extension DemoPaymentCardWidgetViewController {
     stackView.addArrangedSubview(makeWidgetView())
     stackView.addArrangedSubview(makeSaveAndUseButtonView())
     stackView.addArrangedSubview(makeUseButtonView())
+    stackView.addArrangedSubview(makeUseLongTermButtonView())
     stackView.addArrangedSubview(makeEmptyView())
   }
 }
