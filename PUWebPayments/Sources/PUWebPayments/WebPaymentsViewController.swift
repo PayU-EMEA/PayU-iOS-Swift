@@ -96,9 +96,13 @@ public final class WebPaymentsViewController: UIViewController {
 
   private func buildWebView() -> WKWebView {
     let configuration = WKWebViewConfiguration()
+    configuration.allowsInlineMediaPlayback = true
+    configuration.mediaTypesRequiringUserActionForPlayback = []
+
     let webView = WKWebView(frame: .zero, configuration: configuration)
     webView.navigationDelegate = self
     webView.uiDelegate = self
+
     return webView
   }
 
