@@ -1,3 +1,7 @@
+## 2.3.2
+* Adjustments for camera support
+* Upgrade Kingfisher
+
 ## 2.3.1
 * Upgrade Kingfisher
 
