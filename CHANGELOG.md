@@ -1,3 +1,6 @@
+## 2.3.3
+* New certificate for ssl pinning, new sandbox url
+
 ## 2.3.2
 * Adjustments for camera support
 * Upgrade Kingfisher
