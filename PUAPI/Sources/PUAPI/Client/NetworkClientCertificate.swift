@@ -27,7 +27,7 @@ struct NetworkClientCertificate {
   }
 
   static func certificates() -> [NetworkClientCertificate] {
-    let names = ["entrust-root-certificate-authority-G2", "payu-root-ca-01"]
+    let names = ["entrust-root-certificate-authority-G2", "sectigo-R46", "payu-root-ca-01"]
     return names.compactMap { NetworkClientCertificate.certificate(name: $0) }
   }
 
