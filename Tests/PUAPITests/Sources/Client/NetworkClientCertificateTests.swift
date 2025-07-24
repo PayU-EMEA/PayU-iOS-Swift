@@ -26,6 +26,10 @@ final class NetworkClientCertificateTests: XCTestCase {
     XCTAssertTrue(sut.contains(where: { $0.name == "entrust-root-certificate-authority-G2" }))
   }
 
+  func testShouldHaveSectigoCertificate() throws {
+    XCTAssertTrue(sut.contains(where: { $0.name == "sectigo-R46" }))
+  }
+
   func testShouldHaveRootCertificate() throws {
     XCTAssertTrue(sut.contains(where: { $0.name == "payu-root-ca-01" }))
   }
