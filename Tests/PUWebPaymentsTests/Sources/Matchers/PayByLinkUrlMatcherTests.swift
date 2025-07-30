@@ -74,5 +74,17 @@ final class PayByLinkUrlMatcherTests: XCTestCase {
     XCTAssertEqual(sut.matchContinueUrlWithError(URL(string: "https://www.pay.com?error=ERROR_CODE")!), true)
     XCTAssertEqual(sut.matchContinueUrlWithError(URL(string: "https://www.pay.com?failure=FAILURE_CODE")!), true)
   }
+  
+  func testShouldMatchInstallmentsExternalApplicationCorrectly() throws {
+      XCTAssertEqual(sut.result(URL(string: "https://www.wniosek.santanderconsumer.pl/form?a=11111")!), .creditExternalApplication)
+      XCTAssertEqual(sut.result(URL(string: "https://www.pardapu.inbank.pl/form?a=11111")!), .creditExternalApplication)
+      XCTAssertEqual(sut.result(URL(string: "https://www.smartney.pl/form?a=11111")!), .creditExternalApplication)
+      XCTAssertEqual(sut.result(URL(string: "https://www.raty.aliorbank.pl/form?a=11111")!), .creditExternalApplication)
+      XCTAssertEqual(sut.result(URL(string: "https://www.form.mbank.pl/form?a=11111")!), .creditExternalApplication)
+      XCTAssertEqual(sut.result(URL(string: "https://www.ewniosek.credit-agricole.pl/form?a=11111")!), .creditExternalApplication)
+      XCTAssertEqual(sut.result(URL(string: "https://www.bank-simulator-merch-prod.snd.payu.com/simulator/spring/sandbox/utf8/installment/form?a=11111")!), .creditExternalApplication)
+      XCTAssertEqual(sut.result(URL(string: "https://www.smartneydevweb.z6.web.core.windows.net/form?a=11111")!), .creditExternalApplication)
+      XCTAssertEqual(sut.result(URL(string: "https://www.demo-pardapu.inbank.pl/form?a=11111")!), .creditExternalApplication)
+  }
 
 }

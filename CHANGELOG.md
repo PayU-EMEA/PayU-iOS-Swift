@@ -1,3 +1,6 @@
+## 2.3.4
+* Continuation of credit applications in the browser for given providers
+
 ## 2.3.3
 * New certificate for ssl pinning, new sandbox url
 

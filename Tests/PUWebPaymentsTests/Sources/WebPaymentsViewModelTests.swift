@@ -142,6 +142,19 @@ final class WebPaymentsViewModelTests: XCTestCase {
             url: sut.currentUrl)))
     .wasCalled()
   }
+    
+  func testNavigationPolicyForUrlReturnsCancelAndPresentsDialogForInstallmentsExternalApplicationMatcherResult() throws {
+    let url = URL(string: "https://www.payu.com?authenticationId=\(UUID().uuidString)")!
+    given(matcher.result(any())).willReturn(.creditExternalApplication)
+    XCTAssertEqual(sut.navigationPolicy(url), .cancel)
+    verify(matcher.result(url)).wasCalled()
+    verify(
+      delegate
+        .webPaymentsViewModelShouldPresentProviderRedirectDialog(
+          any(),
+          url))
+    .wasCalled()
+  }
 
   func testDidTapBackShouldCallDelegateToPresentBackAlertDialog() throws {
     sut.didTapBack()
@@ -172,5 +185,30 @@ final class WebPaymentsViewModelTests: XCTestCase {
     sut.didFailNavigation(with: ErrorMock.error)
     verify(delegate.webPaymentsViewModel(any(), didUpdate: sut.currentUrl)).wasCalled()
     verify(delegate.webPaymentsViewModelShouldPresentSSLAlertDialog(any())).wasCalled()
+  }
+    
+  func testDidProceedWithInstallmentsExternalApplicationShouldCompleteWithExternalApplicationStatus() throws {
+    let url = URL(string: "https://www.payu.com?authenticationId=\(UUID().uuidString)")!
+    sut.didProceedWithInstallmentsExternalApplication(url)
+      verify(
+        delegate
+          .webPaymentsViewModel(
+            any(),
+            didComplete: WebPaymentsResult(
+              status: .creditExternalApplication,
+              url: sut.currentUrl)))
+      .wasCalled()
+  }
+    
+  func testDidAbortInstallmentsExternalApplicationShouldCompleteWithExternalApplicationStatus() throws {
+    sut.didAbortInstallmentsExternalApplication()
+      verify(
+        delegate
+          .webPaymentsViewModel(
+            any(),
+            didComplete: WebPaymentsResult(
+              status: .cancelled,
+              url: sut.currentUrl)))
+      .wasCalled()
   }
 }

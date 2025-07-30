@@ -14,4 +14,5 @@ enum WebPaymentsUrlMatcherResult {
   case continue3DS
   case continueCvv
   case externalApplication
+  case creditExternalApplication
 }
