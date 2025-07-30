@@ -16,7 +16,7 @@ final class NetworkClientConfigurationTests: XCTestCase {
 
   func testShouldHaveCorrectBaseUrlForSandbox() throws {
     let sut = NetworkClientConfiguration(environment: .sandbox)
-    XCTAssertEqual(sut.baseUrl.absoluteString, "https://mobilesdk.snd.payu.com")
+    XCTAssertEqual(sut.baseUrl.absoluteString, "https://secure.snd.payu.com")
   }
 
   func testShouldHaveCorrectBaseUrlForSandboxBeta() throws {

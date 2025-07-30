@@ -210,6 +210,27 @@ extension WebPaymentsViewController: WebPaymentsViewModelDelegate {
 
     present(alertController, animated: true)
   }
+    
+  func webPaymentsViewModelShouldPresentProviderRedirectDialog(_ viewModel: WebPaymentsViewModel, _ url: URL) {
+      let alertController = UIAlertController(
+        title: "installments_provider_url_redirect".localized(),
+        message: "installments_browser_provider_url_redirect".localized(),
+        preferredStyle: .alert)
+
+      alertController.addAction(
+        UIAlertAction(
+          title: "ok".localized(),
+          style: .destructive,
+          handler: { action in viewModel.didProceedWithInstallmentsExternalApplication(url) }))
+
+      alertController.addAction(
+        UIAlertAction(
+          title: "cancel".localized(),
+          style: .cancel,
+          handler: { action in viewModel.didAbortInstallmentsExternalApplication() }))
+
+      present(alertController, animated: true)
+    }
 }
 
 // MARK: - WKNavigationDelegate

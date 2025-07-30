@@ -14,6 +14,7 @@ protocol WebPaymentsViewModelDelegate: AnyObject {
 
   func webPaymentsViewModelShouldPresentBackAlertDialog(_ viewModel: WebPaymentsViewModel)
   func webPaymentsViewModelShouldPresentSSLAlertDialog(_ viewModel: WebPaymentsViewModel)
+  func webPaymentsViewModelShouldPresentProviderRedirectDialog(_ viewModel: WebPaymentsViewModel, _ url: URL)
 }
 
 final class WebPaymentsViewModel {
@@ -67,6 +68,10 @@ final class WebPaymentsViewModel {
         UIApplication.shared.open(url)
         complete(with: .externalApplication)
         return .cancel
+        
+      case .creditExternalApplication:
+        delegate?.webPaymentsViewModelShouldPresentProviderRedirectDialog(self, url)
+        return .cancel
     }
   }
 
@@ -84,6 +89,15 @@ final class WebPaymentsViewModel {
       delegate?.webPaymentsViewModel(self, didUpdate: currentUrl)
       delegate?.webPaymentsViewModelShouldPresentSSLAlertDialog(self)
     }
+  }
+
+  func didProceedWithInstallmentsExternalApplication(_ url: URL) {
+    UIApplication.shared.open(url)
+    complete(with: .creditExternalApplication)
+  }
+
+  func didAbortInstallmentsExternalApplication() {
+    complete(with: .cancelled)
   }
 
   // MARK: - Private Methods
