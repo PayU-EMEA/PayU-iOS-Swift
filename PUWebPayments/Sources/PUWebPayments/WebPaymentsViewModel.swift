@@ -91,12 +91,12 @@ final class WebPaymentsViewModel {
     }
   }
 
-  func didProceedWithInstallmentsExternalApplication(_ url: URL) {
+  func didProceedWithCreditExternalApplication(_ url: URL) {
     UIApplication.shared.open(url)
-    complete(with: .creditExternalApplication)
+    complete(with: .externalBrowser)
   }
 
-  func didAbortInstallmentsExternalApplication() {
+  func didAbortCreditExternalApplication() {
     complete(with: .cancelled)
   }
 

@@ -189,19 +189,19 @@ final class WebPaymentsViewModelTests: XCTestCase {
     
   func testDidProceedWithInstallmentsExternalApplicationShouldCompleteWithExternalApplicationStatus() throws {
     let url = URL(string: "https://www.payu.com?authenticationId=\(UUID().uuidString)")!
-    sut.didProceedWithInstallmentsExternalApplication(url)
+    sut.didProceedWithCreditExternalApplication(url)
       verify(
         delegate
           .webPaymentsViewModel(
             any(),
             didComplete: WebPaymentsResult(
-              status: .creditExternalApplication,
+              status: .externalBrowser,
               url: sut.currentUrl)))
       .wasCalled()
   }
     
   func testDidAbortInstallmentsExternalApplicationShouldCompleteWithExternalApplicationStatus() throws {
-    sut.didAbortInstallmentsExternalApplication()
+    sut.didAbortCreditExternalApplication()
       verify(
         delegate
           .webPaymentsViewModel(

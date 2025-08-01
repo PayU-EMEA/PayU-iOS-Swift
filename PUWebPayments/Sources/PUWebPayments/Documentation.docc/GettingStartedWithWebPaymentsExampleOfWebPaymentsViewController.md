@@ -120,8 +120,8 @@ extension AwesomeViewController: WebPaymentsViewControllerDelegate {
         case .externalApplication:
           // The transaction was completed with redirection to the external app, for ex: Bank application
 
-        case .creditExternalApplication:
-          // The user was redirected to the browser to continue the application on the provider's form
+        case .externalBrowser:
+          // The user was redirected to the browser to continue the process on the provider's form
       }
     }
   }

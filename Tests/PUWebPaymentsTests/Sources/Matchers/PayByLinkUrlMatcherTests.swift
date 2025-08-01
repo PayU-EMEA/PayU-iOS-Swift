@@ -75,7 +75,7 @@ final class PayByLinkUrlMatcherTests: XCTestCase {
     XCTAssertEqual(sut.matchContinueUrlWithError(URL(string: "https://www.pay.com?failure=FAILURE_CODE")!), true)
   }
   
-  func testShouldMatchInstallmentsExternalApplicationCorrectly() throws {
+  func testShouldMatchCreditExternalApplicationCorrectly() throws {
       XCTAssertEqual(sut.result(URL(string: "https://www.wniosek.santanderconsumer.pl/form?a=11111")!), .creditExternalApplication)
       XCTAssertEqual(sut.result(URL(string: "https://www.pardapu.inbank.pl/form?a=11111")!), .creditExternalApplication)
       XCTAssertEqual(sut.result(URL(string: "https://www.smartney.pl/form?a=11111")!), .creditExternalApplication)

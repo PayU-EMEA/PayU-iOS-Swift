@@ -221,13 +221,13 @@ extension WebPaymentsViewController: WebPaymentsViewModelDelegate {
         UIAlertAction(
           title: "ok".localized(),
           style: .default,
-          handler: { action in viewModel.didProceedWithInstallmentsExternalApplication(url) }))
+          handler: { action in viewModel.didProceedWithCreditExternalApplication(url) }))
 
       alertController.addAction(
         UIAlertAction(
           title: "cancel".localized(),
           style: .destructive,
-          handler: { action in viewModel.didAbortInstallmentsExternalApplication() }))
+          handler: { action in viewModel.didAbortCreditExternalApplication() }))
 
       present(alertController, animated: true)
     }

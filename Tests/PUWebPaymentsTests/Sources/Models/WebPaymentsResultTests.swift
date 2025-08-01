@@ -22,8 +22,8 @@ final class WebPaymentsResultTests: XCTestCase {
     XCTAssertEqual(WebPaymentsResult(status: .externalApplication, url: url).status, .externalApplication)
     XCTAssertEqual(WebPaymentsResult(status: .externalApplication, url: url).url, url)
     
-    XCTAssertEqual(WebPaymentsResult(status: .creditExternalApplication, url: url).status, .creditExternalApplication)
-    XCTAssertEqual(WebPaymentsResult(status: .creditExternalApplication, url: url).url, url)
+    XCTAssertEqual(WebPaymentsResult(status: .externalBrowser, url: url).status, .externalBrowser)
+    XCTAssertEqual(WebPaymentsResult(status: .externalBrowser, url: url).url, url)
   }
 
 }
