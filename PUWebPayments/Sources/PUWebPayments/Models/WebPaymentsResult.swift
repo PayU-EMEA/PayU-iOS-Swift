@@ -32,7 +32,7 @@ public struct WebPaymentsResult: Equatable {
     case externalApplication
     
     /// Credit application will be continued in the browser, on the provider's form
-    case creditExternalApplication
+    case externalBrowser
   }
 
   // MARK: - Public Properties
