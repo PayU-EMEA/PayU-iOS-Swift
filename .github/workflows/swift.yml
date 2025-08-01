@@ -1,0 +1,42 @@
+name: Swift
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+
+    env:
+      XCODE_SCHEME: "PUSDK-Package"
+      XCODE_DESTINATION: "platform=iOS Simulator,OS=18.2,arch=arm64,name=iPhone 16 Pro"
+
+    runs-on: macos-latest
+
+    steps:
+    - uses: swift-actions/setup-swift@v2
+    - name: Checkout the code
+      uses: actions/checkout@v4
+
+    - name: Show eligible build destinations
+      run: xcodebuild -showdestinations -scheme PUSDK-Package
+
+    - name: Show versions
+      run: |
+        swift --version
+        xcodebuild -version
+
+    - name: Build
+      run: |
+        xcodebuild -scheme ${{env.XCODE_SCHEME}} \
+                   -destination '${{env.XCODE_DESTINATION}}' \
+                   build
+
+    - name: Run tests
+      run: |
+        xcodebuild -scheme ${{env.XCODE_SCHEME}} \
+                   -destination '${{env.XCODE_DESTINATION}}' \
+                   -testLanguage en \
+                   -testRegion en_US \
+                   test
