@@ -38,7 +38,7 @@ struct ThreeDSUrlMatcher: WebPaymentsUrlMatcher, Equatable {
 
   // MARK: - WebPaymentsUrlMather
   func result(_ redirectUrl: URL) -> WebPaymentsUrlMatcherResult {
-    if matchAboutBlank(redirectUrl) { return .notMatched }
+    if matchAboutURIScheme(redirectUrl) { return .notMatched }
     if matchExternalScheme(redirectUrl) { return .externalApplication }
     if !matchContinueUrl(redirectUrl, continueUrl) { return .notMatched }
     if matchContinueUrlWithError(redirectUrl) { return .failure }

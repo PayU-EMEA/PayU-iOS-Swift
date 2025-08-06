@@ -9,6 +9,23 @@
 import PUSDK
 
 public struct OrderCreateRequest: Codable {
+  
+  // MARK: - Delivery
+  public struct Delivery: Codable {
+
+    // MARK: - Public Properties
+    public let recipientName: String
+    public let recipientEmail: String
+    public let recipientPhone: String
+    public let addressId: String
+    public let street: String
+    public let postalBox: String
+    public let postalCode: String
+    public let city: String
+    public let state: String
+    public let countryCode: String
+    public let name: String
+  }
 
   // MARK: - Buyer
   public struct Buyer: Codable {
@@ -20,6 +37,7 @@ public struct OrderCreateRequest: Codable {
     public let lastName: String
     public let language: String
     public let extCustomerId: String
+    public let delivery: Delivery
   }
 
   // MARK: - PayMethods
@@ -66,7 +84,19 @@ public struct OrderCreateRequest: Codable {
         firstName: Constants.Buyer.firstName,
         lastName: Constants.Buyer.lastName,
         language: Constants.Buyer.language,
-        extCustomerId: Constants.Buyer.extCustomerId),
+        extCustomerId: Constants.Buyer.extCustomerId,
+        delivery: Delivery(
+          recipientName: Constants.Delivery.recipientName,
+          recipientEmail: Constants.Delivery.recipientEmail,
+          recipientPhone: Constants.Delivery.recipientPhone,
+          addressId: Constants.Delivery.addressId,
+          street: Constants.Delivery.street,
+          postalBox: Constants.Delivery.postalBox,
+          postalCode: Constants.Delivery.postalCode,
+          city: Constants.Delivery.city,
+          state: Constants.Delivery.state,
+          countryCode: Constants.Delivery.countryCode,
+          name: Constants.Delivery.name)),
       products: products
         .filter { $0.quantity > 0 },
       payMethods: PayMethods(

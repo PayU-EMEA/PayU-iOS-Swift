@@ -39,10 +39,14 @@ final class WebPaymentsViewModel {
 
   // MARK: - Public Methods
   @discardableResult
-  func navigationPolicy(_ url: URL) -> WKNavigationActionPolicy {
+  func navigationPolicy(for url: URL, inMainFrame: Bool) -> WKNavigationActionPolicy {
     currentUrl = url
     currentError = nil
-    delegate?.webPaymentsViewModel(self, didUpdate: currentUrl)
+
+    // Don't update the address bar if the navigation occurs outside the main frame, like within iframes
+    if (inMainFrame) {
+      delegate?.webPaymentsViewModel(self, didUpdate: currentUrl)
+    }
 
     switch matcher.result(url) {
       case .notMatched:
