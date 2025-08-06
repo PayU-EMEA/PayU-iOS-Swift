@@ -51,14 +51,14 @@ final class WebPaymentsViewModelTests: XCTestCase {
   func testNavigationPolicyForUrlShouldInformDelegateThatCurrentUrlDidUpdate() throws {
     let url = URL(string: "https://www.payu.com?authenticationId=\(UUID().uuidString)")!
     given(matcher.result(any())).willReturn(.notMatched)
-    _ = sut.navigationPolicy(url)
+    _ = sut.navigationPolicy(for: url, inMainFrame: true)
     verify(delegate.webPaymentsViewModel(any(), didUpdate: url)).wasCalled()
   }
 
   func testNavigationPolicyForUrlReturnsAllowForNotMatchedMatcherResult() throws {
     let url = URL(string: "https://www.payu.com?authenticationId=\(UUID().uuidString)")!
     given(matcher.result(any())).willReturn(.notMatched)
-    XCTAssertEqual(sut.navigationPolicy(url), .allow)
+    XCTAssertEqual(sut.navigationPolicy(for: url, inMainFrame: true), .allow)
     verify(matcher.result(url)).wasCalled()
     verify(
       delegate
@@ -71,7 +71,7 @@ final class WebPaymentsViewModelTests: XCTestCase {
   func testNavigationPolicyForUrlReturnsCancelForSuccessMatcherResult() throws {
     let url = URL(string: "https://www.payu.com?authenticationId=\(UUID().uuidString)")!
     given(matcher.result(any())).willReturn(.success)
-    XCTAssertEqual(sut.navigationPolicy(url), .cancel)
+    XCTAssertEqual(sut.navigationPolicy(for: url, inMainFrame: true), .cancel)
     verify(matcher.result(url)).wasCalled()
     verify(
       delegate
@@ -86,7 +86,7 @@ final class WebPaymentsViewModelTests: XCTestCase {
   func testNavigationPolicyForUrlReturnsCancelForFailureMatcherResult() throws {
     let url = URL(string: "https://www.payu.com?authenticationId=\(UUID().uuidString)")!
     given(matcher.result(any())).willReturn(.failure)
-    XCTAssertEqual(sut.navigationPolicy(url), .cancel)
+    XCTAssertEqual(sut.navigationPolicy(for: url, inMainFrame: true), .cancel)
     verify(matcher.result(url)).wasCalled()
     verify(
       delegate
@@ -101,7 +101,7 @@ final class WebPaymentsViewModelTests: XCTestCase {
   func testNavigationPolicyForUrlReturnsAllowForContinue3DSMatcherResult() throws {
     let url = URL(string: "https://www.payu.com?authenticationId=\(UUID().uuidString)")!
     given(matcher.result(any())).willReturn(.continue3DS)
-    XCTAssertEqual(sut.navigationPolicy(url), .allow)
+    XCTAssertEqual(sut.navigationPolicy(for: url, inMainFrame: true), .allow)
     verify(matcher.result(url)).wasCalled()
     verify(
       delegate
@@ -116,7 +116,7 @@ final class WebPaymentsViewModelTests: XCTestCase {
   func testNavigationPolicyForUrlReturnsAllowForContinueCVVMatcherResult() throws {
     let url = URL(string: "https://www.payu.com?authenticationId=\(UUID().uuidString)")!
     given(matcher.result(any())).willReturn(.continueCvv)
-    XCTAssertEqual(sut.navigationPolicy(url), .allow)
+    XCTAssertEqual(sut.navigationPolicy(for: url, inMainFrame: true), .allow)
     verify(matcher.result(url)).wasCalled()
     verify(
       delegate
@@ -131,7 +131,7 @@ final class WebPaymentsViewModelTests: XCTestCase {
   func testNavigationPolicyForUrlReturnsCancelForExternalApplicationMatcherResult() throws {
     let url = URL(string: "https://www.payu.com?authenticationId=\(UUID().uuidString)")!
     given(matcher.result(any())).willReturn(.externalApplication)
-    XCTAssertEqual(sut.navigationPolicy(url), .cancel)
+    XCTAssertEqual(sut.navigationPolicy(for: url, inMainFrame: true), .cancel)
     verify(matcher.result(url)).wasCalled()
     verify(
       delegate
@@ -143,10 +143,10 @@ final class WebPaymentsViewModelTests: XCTestCase {
     .wasCalled()
   }
     
-  func testNavigationPolicyForUrlReturnsCancelAndPresentsDialogForInstallmentsExternalApplicationMatcherResult() throws {
+  func testNavigationPolicyForUrlReturnsCancelAndPresentsDialogForCreditExternalApplicationMatcherResult() throws {
     let url = URL(string: "https://www.payu.com?authenticationId=\(UUID().uuidString)")!
     given(matcher.result(any())).willReturn(.creditExternalApplication)
-    XCTAssertEqual(sut.navigationPolicy(url), .cancel)
+    XCTAssertEqual(sut.navigationPolicy(for: url, inMainFrame: true), .cancel)
     verify(matcher.result(url)).wasCalled()
     verify(
       delegate
@@ -154,6 +154,19 @@ final class WebPaymentsViewModelTests: XCTestCase {
           any(),
           url))
     .wasCalled()
+  }
+  
+  func testNavigationPolicyForNotMatchedUrlOutsideMainFrameDoesntUpdateAddressBar() throws {
+    let url = URL(string: "https://www.payu.com?authenticationId=\(UUID().uuidString)")!
+    given(matcher.result(any())).willReturn(.notMatched)
+    XCTAssertEqual(sut.navigationPolicy(for: url, inMainFrame: false), .allow)
+    verify(matcher.result(url)).wasCalled()
+    verify(
+      delegate
+        .webPaymentsViewModelShouldPresentProviderRedirectDialog(
+          any(),
+          url))
+    .wasNeverCalled()
   }
 
   func testDidTapBackShouldCallDelegateToPresentBackAlertDialog() throws {

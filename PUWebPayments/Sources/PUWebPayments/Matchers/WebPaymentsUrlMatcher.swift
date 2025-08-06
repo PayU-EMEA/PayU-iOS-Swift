@@ -7,10 +7,14 @@
 
 import Foundation
 
+#if canImport(PUCore)
+import PUCore
+#endif
+
 protocol WebPaymentsUrlMatcher {
   func result(_ url: URL) -> WebPaymentsUrlMatcherResult
 
-  func matchAboutBlank(_ url: URL) -> Bool
+  func matchAboutURIScheme(_ url: URL) -> Bool
   func matchExternalScheme(_ url: URL) -> Bool
   func matchStatusCode(_ url: URL) -> Bool
   func matchContinueUrl(_ url: URL, _ continueUrl: URL) -> Bool
@@ -18,8 +22,8 @@ protocol WebPaymentsUrlMatcher {
 }
 
 extension WebPaymentsUrlMatcher {
-  func matchAboutBlank(_ url: URL) -> Bool {
-    return url.absoluteString == "about:blank"
+  func matchAboutURIScheme(_ url: URL) -> Bool {
+    return url.absoluteString ~= "^about:.+$"
   }
 
   func matchExternalScheme(_ url: URL) -> Bool {

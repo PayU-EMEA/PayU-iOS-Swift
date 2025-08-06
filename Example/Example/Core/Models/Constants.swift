@@ -21,6 +21,20 @@ public struct Constants {
     public static let language = Constants.Locale.defaultLanguageCode
     public static let extCustomerId = "214142532"
   }
+  
+  public struct Delivery {
+    public static let recipientName = "Recipient"
+    public static let recipientEmail = "Testowy"
+    public static let recipientPhone = "+48 123 456 789"
+    public static let addressId = "44"
+    public static let street = "Grunwaldzka 186"
+    public static let postalBox = "Poznań"
+    public static let postalCode = "60-166"
+    public static let city = "Poznań"
+    public static let state = "woj. wielkopolskie"
+    public static let countryCode = "PL"
+    public static let name = "PayU"
+  }
 
   public struct Order {
     public static let customerIP = "127.0.0.1"

@@ -28,6 +28,10 @@ final class PayByLinkUrlMatcherTests: XCTestCase {
   func testWhenUrlIsEmptyRedirectionThenShouldReturnNotMatchedResult() throws {
     XCTAssertEqual(sut.result(URL(string: "about:blank")!), .notMatched)
   }
+  
+  func testWhenUrlIsIframesSrcdocThenShouldReturnNotMatchedResult() throws {
+    XCTAssertEqual(sut.result(URL(string: "about:srcdoc")!), .notMatched)
+  }
 
   func testWhenUrlIsExternalRedirectionThenShouldReturnExternalApplicationResult() throws {
     XCTAssertEqual(sut.result(URL(string: "mtm:another.app/key=value")!), .externalApplication)
@@ -46,8 +50,14 @@ final class PayByLinkUrlMatcherTests: XCTestCase {
   }
 
   func testShouldMatchEmptyRedirectionsCorrectly() throws {
-    XCTAssertEqual(sut.matchAboutBlank(URL(string: "about:blank")!), true)
-    XCTAssertEqual(sut.matchAboutBlank(URL(string: "https://www.pay.com")!), false)
+    XCTAssertEqual(sut.matchAboutURIScheme(URL(string: "about:blank")!), true)
+    XCTAssertEqual(sut.matchAboutURIScheme(URL(string: "about:srcdoc")!), true)
+    XCTAssertEqual(sut.matchAboutURIScheme(URL(string: "about:cache?device=memory")!), true)
+    XCTAssertEqual(sut.matchAboutURIScheme(URL(string: "about:startpage")!), true)
+    XCTAssertEqual(sut.matchAboutURIScheme(URL(string: "https://www.pay.com")!), false)
+    XCTAssertEqual(sut.matchAboutURIScheme(URL(string: "tel:123123123")!), false)
+    XCTAssertEqual(sut.matchAboutURIScheme(URL(string: "app://testapp")!), false)
+    XCTAssertEqual(sut.matchAboutURIScheme(URL(string: "https://about.pl/test?:blank")!), false)
   }
 
   func testShouldMatchExternalSchemeCorrectly() throws {
