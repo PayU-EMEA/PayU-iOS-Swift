@@ -210,13 +210,34 @@ extension WebPaymentsViewController: WebPaymentsViewModelDelegate {
 
     present(alertController, animated: true)
   }
+    
+  func webPaymentsViewModelShouldPresentProviderRedirectDialog(_ viewModel: WebPaymentsViewModel, _ url: URL) {
+      let alertController = UIAlertController(
+        title: "credit_provider_url_redirect".localized(),
+        message: "credit_browser_provider_url_redirect".localized(),
+        preferredStyle: .alert)
+
+      alertController.addAction(
+        UIAlertAction(
+          title: "ok".localized(),
+          style: .default,
+          handler: { action in viewModel.didProceedWithCreditExternalApplication(url) }))
+
+      alertController.addAction(
+        UIAlertAction(
+          title: "cancel".localized(),
+          style: .destructive,
+          handler: { action in viewModel.didAbortCreditExternalApplication() }))
+
+      present(alertController, animated: true)
+    }
 }
 
 // MARK: - WKNavigationDelegate
 extension WebPaymentsViewController: WKNavigationDelegate {
   public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-    guard let url = navigationAction.request.url else { return }
-    let navigationPolicy = viewModel.navigationPolicy(url)
+    guard let url = navigationAction.request.url else { decisionHandler(.cancel); return }
+    let navigationPolicy = viewModel.navigationPolicy(for: url, inMainFrame: navigationAction.targetFrame?.isMainFrame == true)
     decisionHandler(navigationPolicy)
   }
 

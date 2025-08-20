@@ -57,7 +57,7 @@ Ensure all tests passed:
 1. Open `Terminal` app
 2. Navigate to Project Root Folder, for ex: `cd /Path/To/Project/Root/Folder/`
 3. Run `make generate_mocks` command in `Terminal`
-4. Run `make xcodebuild_test` command in `Terminal`
+4. Run `make test` command in `Terminal`
 
 ### Step 2
 

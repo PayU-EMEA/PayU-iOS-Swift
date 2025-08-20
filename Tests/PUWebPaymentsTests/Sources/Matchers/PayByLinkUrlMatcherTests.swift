@@ -28,6 +28,10 @@ final class PayByLinkUrlMatcherTests: XCTestCase {
   func testWhenUrlIsEmptyRedirectionThenShouldReturnNotMatchedResult() throws {
     XCTAssertEqual(sut.result(URL(string: "about:blank")!), .notMatched)
   }
+  
+  func testWhenUrlIsIframesSrcdocThenShouldReturnNotMatchedResult() throws {
+    XCTAssertEqual(sut.result(URL(string: "about:srcdoc")!), .notMatched)
+  }
 
   func testWhenUrlIsExternalRedirectionThenShouldReturnExternalApplicationResult() throws {
     XCTAssertEqual(sut.result(URL(string: "mtm:another.app/key=value")!), .externalApplication)
@@ -46,8 +50,14 @@ final class PayByLinkUrlMatcherTests: XCTestCase {
   }
 
   func testShouldMatchEmptyRedirectionsCorrectly() throws {
-    XCTAssertEqual(sut.matchAboutBlank(URL(string: "about:blank")!), true)
-    XCTAssertEqual(sut.matchAboutBlank(URL(string: "https://www.pay.com")!), false)
+    XCTAssertEqual(sut.matchAboutURIScheme(URL(string: "about:blank")!), true)
+    XCTAssertEqual(sut.matchAboutURIScheme(URL(string: "about:srcdoc")!), true)
+    XCTAssertEqual(sut.matchAboutURIScheme(URL(string: "about:cache?device=memory")!), true)
+    XCTAssertEqual(sut.matchAboutURIScheme(URL(string: "about:startpage")!), true)
+    XCTAssertEqual(sut.matchAboutURIScheme(URL(string: "https://www.pay.com")!), false)
+    XCTAssertEqual(sut.matchAboutURIScheme(URL(string: "tel:123123123")!), false)
+    XCTAssertEqual(sut.matchAboutURIScheme(URL(string: "app://testapp")!), false)
+    XCTAssertEqual(sut.matchAboutURIScheme(URL(string: "https://about.pl/test?:blank")!), false)
   }
 
   func testShouldMatchExternalSchemeCorrectly() throws {
@@ -73,6 +83,18 @@ final class PayByLinkUrlMatcherTests: XCTestCase {
     XCTAssertEqual(sut.matchContinueUrlWithError(URL(string: "https://www.pay.com?invalidStatusCode=STATUS_CODE")!), false)
     XCTAssertEqual(sut.matchContinueUrlWithError(URL(string: "https://www.pay.com?error=ERROR_CODE")!), true)
     XCTAssertEqual(sut.matchContinueUrlWithError(URL(string: "https://www.pay.com?failure=FAILURE_CODE")!), true)
+  }
+  
+  func testShouldMatchCreditExternalApplicationCorrectly() throws {
+      XCTAssertEqual(sut.result(URL(string: "https://www.wniosek.santanderconsumer.pl/form?a=11111")!), .creditExternalApplication)
+      XCTAssertEqual(sut.result(URL(string: "https://www.pardapu.inbank.pl/form?a=11111")!), .creditExternalApplication)
+      XCTAssertEqual(sut.result(URL(string: "https://www.smartney.pl/form?a=11111")!), .creditExternalApplication)
+      XCTAssertEqual(sut.result(URL(string: "https://www.raty.aliorbank.pl/form?a=11111")!), .creditExternalApplication)
+      XCTAssertEqual(sut.result(URL(string: "https://www.form.mbank.pl/form?a=11111")!), .creditExternalApplication)
+      XCTAssertEqual(sut.result(URL(string: "https://www.ewniosek.credit-agricole.pl/form?a=11111")!), .creditExternalApplication)
+      XCTAssertEqual(sut.result(URL(string: "https://www.bank-simulator-merch-prod.snd.payu.com/simulator/spring/sandbox/utf8/installment/form?a=11111")!), .creditExternalApplication)
+      XCTAssertEqual(sut.result(URL(string: "https://www.smartneydevweb.z6.web.core.windows.net/form?a=11111")!), .creditExternalApplication)
+      XCTAssertEqual(sut.result(URL(string: "https://www.demo-pardapu.inbank.pl/form?a=11111")!), .creditExternalApplication)
   }
 
 }

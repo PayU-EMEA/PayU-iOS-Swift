@@ -14,6 +14,7 @@ protocol WebPaymentsViewModelDelegate: AnyObject {
 
   func webPaymentsViewModelShouldPresentBackAlertDialog(_ viewModel: WebPaymentsViewModel)
   func webPaymentsViewModelShouldPresentSSLAlertDialog(_ viewModel: WebPaymentsViewModel)
+  func webPaymentsViewModelShouldPresentProviderRedirectDialog(_ viewModel: WebPaymentsViewModel, _ url: URL)
 }
 
 final class WebPaymentsViewModel {
@@ -38,10 +39,14 @@ final class WebPaymentsViewModel {
 
   // MARK: - Public Methods
   @discardableResult
-  func navigationPolicy(_ url: URL) -> WKNavigationActionPolicy {
+  func navigationPolicy(for url: URL, inMainFrame: Bool) -> WKNavigationActionPolicy {
     currentUrl = url
     currentError = nil
-    delegate?.webPaymentsViewModel(self, didUpdate: currentUrl)
+
+    // Don't update the address bar if the navigation occurs outside the main frame, like within iframes
+    if (inMainFrame) {
+      delegate?.webPaymentsViewModel(self, didUpdate: currentUrl)
+    }
 
     switch matcher.result(url) {
       case .notMatched:
@@ -67,6 +72,10 @@ final class WebPaymentsViewModel {
         UIApplication.shared.open(url)
         complete(with: .externalApplication)
         return .cancel
+        
+      case .creditExternalApplication:
+        delegate?.webPaymentsViewModelShouldPresentProviderRedirectDialog(self, url)
+        return .cancel
     }
   }
 
@@ -84,6 +93,15 @@ final class WebPaymentsViewModel {
       delegate?.webPaymentsViewModel(self, didUpdate: currentUrl)
       delegate?.webPaymentsViewModelShouldPresentSSLAlertDialog(self)
     }
+  }
+
+  func didProceedWithCreditExternalApplication(_ url: URL) {
+    UIApplication.shared.open(url)
+    complete(with: .externalBrowser)
+  }
+
+  func didAbortCreditExternalApplication() {
+    complete(with: .cancelled)
   }
 
   // MARK: - Private Methods

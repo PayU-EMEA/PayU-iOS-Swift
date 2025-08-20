@@ -30,6 +30,9 @@ public struct WebPaymentsResult: Equatable {
 
     /// Transaction will be handled in mobile bank app
     case externalApplication
+    
+    /// The process will be continued in the browser
+    case externalBrowser
   }
 
   // MARK: - Public Properties

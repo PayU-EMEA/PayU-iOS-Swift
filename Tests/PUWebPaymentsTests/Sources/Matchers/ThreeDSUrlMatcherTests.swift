@@ -54,8 +54,8 @@ final class ThreeDSUrlMatcherTests: XCTestCase {
   }
 
   func testShouldMatchEmptyRedirectionsCorrectly() throws {
-    XCTAssertEqual(sut.matchAboutBlank(URL(string: "about:blank")!), true)
-    XCTAssertEqual(sut.matchAboutBlank(URL(string: "https://www.pay.com")!), false)
+    XCTAssertEqual(sut.matchAboutURIScheme(URL(string: "about:blank")!), true)
+    XCTAssertEqual(sut.matchAboutURIScheme(URL(string: "https://www.pay.com")!), false)
   }
 
   func testShouldMatchExternalSchemeCorrectly() throws {

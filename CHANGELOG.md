@@ -1,3 +1,15 @@
+## 2.3.6
+* Fix Sectigo certificate format
+* Upgrade Kingfisher
+
+## 2.3.5
+* Handle WebView navigation actions from within iframes and other about URI scheme matching URLs, like about:srcdoc
+* Don't display URLs from outside the main frame in the WebView's address bar
+* Handle a case where there's no URL in the WebView's navigation action with a .cancel decision
+
+## 2.3.4
+* Continuation of credit applications in the browser for given providers
+
 ## 2.3.3
 * New certificate for ssl pinning, new sandbox url
 

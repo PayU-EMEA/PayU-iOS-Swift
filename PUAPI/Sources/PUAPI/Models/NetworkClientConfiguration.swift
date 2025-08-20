@@ -22,7 +22,7 @@ public struct NetworkClientConfiguration {
       case .production:
         self.init(baseUrl: URL(string: "https://mobilesdk.secure.payu.com")!)
       case .sandbox:
-        self.init(baseUrl: URL(string: "https://secure.snd.payu.com")!)
+        self.init(baseUrl: URL(string: "https://mobilesdk.snd.payu.com")!)
       case .sandboxBeta:
         self.init(baseUrl: URL(string: "https://secure.sndbeta.payu.com")!)
     }

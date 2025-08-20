@@ -115,6 +115,9 @@ extension OrderPaymentMethodListProcessor: WebPaymentsViewControllerDelegate {
 
         case .externalApplication:
           Console.console.log(result)
+        
+        case .externalBrowser:
+          Console.console.log(result)
       }
     }
   }
