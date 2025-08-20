@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|  
   s.name      = 'PUSDK'
-  s.version   = '2.3.5'
+  s.version   = '2.3.6'
   s.summary   = 'PayU mobile SDK for iOS'
   s.homepage  = 'http://developers.payu.com/en/mobile_sdk.html'
 
@@ -63,7 +63,7 @@ Pod::Spec.new do |s|
     ss.source_files       = 'PUTheme/Sources/PUTheme/**/*'
     ss.resource_bundles   = {'PUTheme' => ['PUTheme/Sources/PUTheme/Resources/Fonts/*.{ttf}']}
     ss.resources          = ['PUTheme/Sources/PUTheme/Resources/Fonts/*.{ttf}']
-    ss.dependency         'Kingfisher', '8.4.0'
+    ss.dependency         'Kingfisher', '8.5.0'
     ss.dependency         'PUSDK/PUCore'
   end
 
