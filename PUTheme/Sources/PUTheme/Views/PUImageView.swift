@@ -42,6 +42,10 @@ public class PUImageView: UIImageView {
         self.image = image
         self.tintColor = PUTheme.theme.colorTheme.primary2
         self.contentMode = contentMode
+    case .dynamicAsset(let imageFn, let contentMode):
+        self.image = imageFn();
+        self.tintColor = PUTheme.theme.colorTheme.primary2
+        self.contentMode = contentMode
       case .dynamic:
         guard let url = brandImageProvider.url else { return }
         kf.setImage(with: URL(string: url))
