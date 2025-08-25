@@ -1,7 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "payu.logo.png",
+      "filename" : "logo-payu.svg",
+      "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "logo-payu-white.svg",
       "idiom" : "universal"
     }
   ],
