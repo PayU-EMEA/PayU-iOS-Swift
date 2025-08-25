@@ -1,5 +1,5 @@
 ## 2.3.7
-* Fix Blick code issue
+* Fix Blik code issue
 * Update PayU logo
 
 ## 2.3.6
