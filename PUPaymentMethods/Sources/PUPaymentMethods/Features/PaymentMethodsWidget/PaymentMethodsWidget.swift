@@ -198,13 +198,10 @@ extension PaymentMethodsWidget: PaymentMethodsViewControllerDelegate {
 
 // MARK: - Private Methods
 private func methodToMethodWidgetState(_ method: PaymentMethod) -> PaymentMethodsWidgetState {
-  switch method.value {
-    case PaymentMethodValue.blikCode:
-      return .blikCode(method)
-
-    default:
-      return .paymentMethod(method)
-  }
+    if(PaymentMethodValue.blikCode == method.value){
+        return .blikCode(method)
+    }
+    return .paymentMethod(method)
 }
 
 // MARK: - Layout
