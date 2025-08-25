@@ -1,3 +1,7 @@
+## 2.3.7
+* Fix Blik code issue
+* Update PayU logo
+
 ## 2.3.6
 * Fix Sectigo certificate format
 * Upgrade Kingfisher
