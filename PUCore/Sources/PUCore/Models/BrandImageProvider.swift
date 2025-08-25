@@ -70,7 +70,6 @@ extension BrandImageProvider {
         case .asset, .dynamicAsset:
             return nil
         case .dynamic(let light, let dark):
-            guard #available(iOS 13.0, *) else { return light }
             return UITraitCollection.current.userInterfaceStyle == .light ? light : dark
         case .url(let string):
             return string
