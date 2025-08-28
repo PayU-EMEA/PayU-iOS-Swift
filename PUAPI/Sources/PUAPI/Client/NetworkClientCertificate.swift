@@ -52,8 +52,11 @@ struct NetworkClientCertificate {
       &trust)
 
     guard status == noErr else { return nil }
-    guard SecTrustEvaluateWithError(trust, &error) else {
-      return nil
+
+    if #available(iOS 17.4, *) {
+      guard SecTrustEvaluateWithError(trust, &error) else {
+        return nil
+      }
     }
 
     return SecTrustCopyPublicKey(trust)
