@@ -1,3 +1,6 @@
+## 2.3.8
+* Fix Sectigo certificate for older iOS versions
+
 ## 2.3.7
 * Fix Blik code issue
 * Update PayU logo
