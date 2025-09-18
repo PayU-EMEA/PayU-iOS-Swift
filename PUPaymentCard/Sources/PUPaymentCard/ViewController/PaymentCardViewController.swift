@@ -106,9 +106,9 @@ public final class PaymentCardViewController: UIViewController {
     setupView()
     setupViewModel()
     setupNavigationItems()
+    setupNavigationTitleImage(image: PUImageView(brandImageProvider: .logo))
     
     view.backgroundColor = PUTheme.theme.colorTheme.secondaryGray4
-    navigationItem.titleView = PUImageView(brandImageProvider: .logo)
   }
   
   // MARK: - Privar Methods
