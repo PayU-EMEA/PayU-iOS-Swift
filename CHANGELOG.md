@@ -1,3 +1,6 @@
+## 2.3.9
+* Fix Logo in the navigation bar for iOS 26
+
 ## 2.3.8
 * Fix Sectigo certificate for older iOS versions
 
