@@ -99,4 +99,36 @@ final class DefaultPaymentCardValidatorTests: XCTestCase {
     XCTAssertThrowsError(try numberValidator.validate("")) { e in XCTAssertEqual(e.localizedDescription, "enter_card_number") }
     XCTAssertThrowsError(try numberValidator.validate("6799")) { e in XCTAssertEqual(e.localizedDescription, "enter_valid_card_number") }
   }
+    
+  func testNumberCardValidatorShouldCanBeCompleted() throws {
+    
+    XCTAssertThrowsError(try numberValidator.canBeCompleted("6799")) { e in XCTAssertEqual(e.localizedDescription, "enter_valid_card_number") }
+    given(providerFinder.find(any())).willReturn(.visa)
+    XCTAssertTrue(try numberValidator.canBeCompleted("4012 0010 3714 1112"))
+    XCTAssertFalse(try numberValidator.canBeCompleted("4012 0010 3714 3"))
+      
+    given(providerFinder.find(any())).willReturn(.maestro)
+    XCTAssertTrue(try numberValidator.canBeCompleted("6759 6498 2643 8453"))
+    XCTAssertTrue(try numberValidator.canBeCompleted("6799 9901 0000 0000 019"))
+
+      
+    given(providerFinder.find(any())).willReturn(.mastercard)
+    XCTAssertTrue(try numberValidator.canBeCompleted("5598 6148 1656 3766"))
+    XCTAssertTrue(try numberValidator.canBeCompleted("5555 5555"))
+  }
+    
+  func testCvvValidatorShouldCanBeCompleted() throws {
+      
+      XCTAssertThrowsError(try cvvValidator.validate("12")) { e in XCTAssertEqual(e.localizedDescription, "enter_valid_cvv") }
+      XCTAssertTrue(try cvvValidator.canBeCompleted("123"))
+      XCTAssertTrue(try cvvValidator.canBeCompleted("999"))
+  }
+    
+  func testDateValidatorShouldCanBeCompleted() throws {
+      
+      XCTAssertThrowsError(try dateValidator.canBeCompleted("03")) { e in XCTAssertEqual(e.localizedDescription, "enter_valid_card_date") }
+      
+      given(dateParser.parse(any())).will { self.dateFormatter.date(from: $0) }
+      XCTAssertTrue(try dateValidator.canBeCompleted("03/2035"))
+  }
 }
