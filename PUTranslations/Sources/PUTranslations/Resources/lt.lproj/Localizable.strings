@@ -29,7 +29,7 @@
 "ok" = "Gerai";
 "pay_by_phone" = "Mokėti telefonu";
 "pay_u_payment_terms" = "PayU mokėjimo sąlygos";
-"pay_u_payment_terms_url" = "https://static.payu.com/sites/terms/files/payu_terms_of_service_single_transaction_pl_en.pdf"; // URL pozostaje bez zmian
+"pay_u_payment_terms_url" = "https://static.payu.com/sites/terms/files/payu_terms_of_service_single_transaction_pl_en.pdf";
 "position_your_card_in_this_frame" = "Laikykite kortelę šiame rėmelyje";
 "save_and_use" = "Išsaugoti ir naudoti";
 "scan_card" = "Nuskaityti kortelę";
