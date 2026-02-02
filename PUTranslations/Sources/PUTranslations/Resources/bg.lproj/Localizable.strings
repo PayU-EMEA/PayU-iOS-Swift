@@ -32,13 +32,8 @@
 "pay_u_payment_terms_url" = "https://static.payu.com/sites/terms/files/payu_terms_of_service_single_transaction_pl_en.pdf";
 "position_your_card_in_this_frame" = "Поставете картата си в тази рамка";
 "save_and_use" = "Запазване и използване";
-"saved_blik_payment" = "запазено плащане на BLIK";
 "scan_card" = "Сканиране на картата";
 "select_payment_method" = "Изберете метод на плащане";
-"the_recipient_will_get_the_total_order_amount" = "Получателят ще получи цялата сума на поръчката.";
-"this_card_is_not_supported" = "Тази карта не се поддържа";
-"total" = "общо";
-"transaction_approved" = "Одобрена транзакция";
 "use" = "Използвайте";
 "use_code_from_your_bank_app" = "използвайте код от приложението на вашата банка";
 "yes_go_back" = "Да, върнете се обратно";

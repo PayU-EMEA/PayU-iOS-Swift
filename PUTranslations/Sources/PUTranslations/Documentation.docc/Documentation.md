@@ -17,6 +17,7 @@ Current supported languages:
 * hr (Croatian)
 * hu (Hungarian)
 * it (Italian)
+* lt (Lithuanian)
 * lv (Latvian)
 * pl (Polish)
 * ro (Romanian)

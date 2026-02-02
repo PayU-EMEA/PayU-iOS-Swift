@@ -32,13 +32,8 @@
 "pay_u_payment_terms_url" = "https://static.payu.com/sites/terms/files/payu_terms_of_service_single_transaction_pl_en.pdf";
 "position_your_card_in_this_frame" = "Position your card in this frame";
 "save_and_use" = "Save and use";
-"saved_blik_payment" = "saved BLIK payment";
 "scan_card" = "Scan Card";
 "select_payment_method" = "Select payment method";
-"the_recipient_will_get_the_total_order_amount" = "The recipient will get the total order amount.";
-"this_card_is_not_supported" = "This card is not supported";
-"total" = "total";
-"transaction_approved" = "Transaction approved";
 "use" = "Use";
 "use_code_from_your_bank_app" = "use code from your bank app";
 "yes_go_back" = "Yes, go back";
