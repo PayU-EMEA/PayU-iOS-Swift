@@ -28,24 +28,24 @@ final class StringExtensionsTests: XCTestCase {
     given(languageCodeProvider.languageCode()).willReturn("en")
 
     XCTAssertEqual(
-      "transaction_approved"
+      "card_number"
         .localized(
           numberCategory: .singular,
           languageCodeProvider: languageCodeProvider
         ),
-      "Transaction approved")
+      "Card number")
   }
 
   func testShoudNotReturnSingularTranslationForPluralTableInEnglish() throws {
     given(languageCodeProvider.languageCode()).willReturn("en")
 
     XCTAssertEqual(
-      "transaction_approved"
+      "card_number"
         .localized(
           numberCategory: .plural,
           languageCodeProvider: languageCodeProvider
         ),
-      "transaction_approved")
+      "card_number")
   }
 
 
@@ -53,23 +53,23 @@ final class StringExtensionsTests: XCTestCase {
     given(languageCodeProvider.languageCode()).willReturn("es")
 
     XCTAssertEqual(
-      "transaction_approved"
+      "card_number"
         .localized(
           numberCategory: .singular,
           languageCodeProvider: languageCodeProvider
         ),
-      "Transaccion aprobada")
+      "Numero de tarjeta")
   }
 
   func testShoudNotReturnSingularTranslationForPluralTableInSpanish() throws {
     given(languageCodeProvider.languageCode()).willReturn("es")
 
     XCTAssertEqual(
-      "transaction_approved"
+      "card_number"
         .localized(
           numberCategory: .plural,
           languageCodeProvider: languageCodeProvider
         ),
-      "transaction_approved")
+      "card_number")
   }
 }

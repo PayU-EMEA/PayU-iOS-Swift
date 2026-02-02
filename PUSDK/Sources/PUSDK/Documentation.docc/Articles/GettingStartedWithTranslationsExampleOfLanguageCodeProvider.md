@@ -18,6 +18,6 @@ struct CustomLanguageCodeProvider: LanguageCodeProvider {
 }
 
 // 2. Use it
-let string = "transaction_approved".localized(languageCodeProvider: CustomLanguageCodeProvider())
-print(string) // prints `Transaction approved`
+let string = "card_number".localized(languageCodeProvider: CustomLanguageCodeProvider())
+print(string) // prints `Card number`
 ```

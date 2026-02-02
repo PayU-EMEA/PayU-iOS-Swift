@@ -7,8 +7,8 @@ An example on how to translate strings
 ```swift
 import PUTranslations
 
-let string = "transaction_approved".localized()
-print(string) // prints `Transaction approved`
+let string = "card_number".localized()
+print(string) // prints `Card number
 ```
 
 ## Plural
