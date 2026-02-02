@@ -66,6 +66,6 @@ final class PaymentRequestTests: XCTestCase {
   }
 
   func testShouldHaveExpectedShippingContact() throws {
-    XCTAssertEqual(sut.shippingContact.emailAddress, "email@address.com")
+    XCTAssertEqual(sut.shippingContact?.emailAddress, "email@address.com")
   }
 }

@@ -36,7 +36,8 @@ extension PKPaymentRequest {
     }
 
     @discardableResult
-    func withShippingContact(_ shippingContact: PaymentRequest.Contact) -> Builder {
+    func withShippingContact(_ shippingContact: PaymentRequest.Contact?) -> Builder {
+      guard let shippingContact = shippingContact else { return self }
       let contact = PKContact()
       contact.emailAddress = shippingContact.emailAddress
       request.requiredShippingContactFields = [.emailAddress]
