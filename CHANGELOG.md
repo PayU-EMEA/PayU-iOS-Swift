@@ -1,3 +1,9 @@
+## 2.3.10
+* Add Lithuanian language
+* Do not require ShippingContact for ApplePay
+* Fix problem with switch to the next field in the card input
+
+
 ## 2.3.9
 * Fix Logo in the navigation bar for iOS 26
 
