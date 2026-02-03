@@ -12,4 +12,13 @@ public protocol PaymentCardValidatorProtocol {
   /// Method which validates the payment card property. Throws an instance of ``PaymentCardError``
   /// - Parameter value: payment card property to validate: cvv, date, number
   func validate(_ value: String?) throws
+    
+  func canBeCompleted(_ value: String?) throws -> Bool
+}
+
+extension PaymentCardValidatorProtocol {
+    public func canBeCompleted(_ value: String?) throws -> Bool {
+        try validate(value)
+        return true;
+    }
 }

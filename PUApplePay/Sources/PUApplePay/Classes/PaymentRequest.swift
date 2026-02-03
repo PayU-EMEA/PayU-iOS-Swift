@@ -87,7 +87,7 @@ public struct PaymentRequest: Equatable {
   public let paymentSummaryItems: [SummaryItem]
 
   /// A prepopulated shipping address.
-  public let shippingContact: Contact
+  public let shippingContact: Contact?
 
   // MARK: - Initialization
   public init(
@@ -95,7 +95,7 @@ public struct PaymentRequest: Equatable {
     currencyCode: String,
     merchantIdentifier: String,
     paymentSummaryItems: [SummaryItem],
-    shippingContact: Contact) {
+    shippingContact: Contact?) {
       self.countryCode = countryCode
       self.currencyCode = currencyCode
       self.merchantIdentifier = merchantIdentifier

@@ -23,4 +23,12 @@ struct DefaultPaymentCardNumberValidator: PaymentCardValidatorProtocol {
     let provider = providerFinder.find(value)
     if provider == nil { throw PaymentCardError.invalidNumber }
   }
+    
+  func canBeCompleted(_ value: String?) throws -> Bool{
+      try validate(value);
+      guard let value, let provider = providerFinder.find(value) else {
+          return false
+      }
+      return provider == .visa ? value.digitsOnly.count >= 16 : true;
+    }
 }
