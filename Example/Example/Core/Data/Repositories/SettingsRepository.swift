@@ -144,6 +144,14 @@ final class SettingsRepository {
   func shouldDisplayScanCardButton() -> Bool {
     database.shouldDisplayScanCardButton ?? true
   }
+    
+  func enableBlikCode() -> Bool {
+    database.enableBlikCode ?? false
+  }
+    
+  func mockBlikToken() -> Bool {
+    database.mockBlikToken ?? false
+  }
 
   func setShouldDisplayHeader(_ value: Bool) {
     database.shouldDisplayHeader = value
@@ -167,5 +175,14 @@ final class SettingsRepository {
 
   func setShouldDisplayScanCardButton(_ value: Bool) {
     database.shouldDisplayScanCardButton = value
+  }
+    
+  func setEnableBlikCode(_ value: Bool) {
+    database.enableBlikCode = value
+    PayU.enableBlikCode = value
+  }
+    
+  func setMockBlikToken(_ value: Bool) {
+    database.mockBlikToken = value
   }
 }

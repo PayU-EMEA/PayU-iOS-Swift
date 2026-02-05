@@ -6,6 +6,7 @@
 
 #if canImport(PUCore)
 import PUCore
+import Foundation
 #endif
 
 protocol PaymentMethodsServiceProtocol {
@@ -30,8 +31,7 @@ struct PaymentMethodsService: PaymentMethodsServiceProtocol {
   func makePaymentMethodItems(for configuration: PaymentMethodsConfiguration) -> [PaymentMethodsItem] {
     var items: [PaymentMethodsItem] = []
     items.append(contentsOf: makeApplePay(for: configuration))
-    items.append(contentsOf: makeBlikCode(for: configuration))
-    items.append(contentsOf: makeBlikTokens(for: configuration))
+    items.append(contentsOf: makeBlik(for: configuration))
     items.append(contentsOf: makeCardTokens(for: configuration))
     items.append(contentsOf: makeCard(for: configuration))
     items.append(contentsOf: makeBankTransfer(for: configuration))
@@ -64,8 +64,7 @@ struct PaymentMethodsService: PaymentMethodsServiceProtocol {
 
       items.append(contentsOf: makeAll(for: configuration))
       items.append(contentsOf: makeApplePay(for: configuration))
-      items.append(contentsOf: makeBlikCode(for: configuration))
-      items.append(contentsOf: makeBlikTokens(for: configuration))
+      items.append(contentsOf: makeBlik(for: configuration))
       items.append(contentsOf: makeCardTokens(for: configuration))
 
       paymentMethod = items.filter { $0.value == storedMethod }.first?.paymentMethod
@@ -82,15 +81,22 @@ struct PaymentMethodsService: PaymentMethodsServiceProtocol {
       .map { ApplePay(payByLink: $0) }
       .compactMap { factory.item($0) }
   }
-
-  private func makeBlikCode(for configuration: PaymentMethodsConfiguration) -> [PaymentMethodsItem] {
-    guard let blikTokens = configuration.blikTokens, blikTokens.isEmpty else { return [] }
-    return [BlikCode()].compactMap { factory.item($0) }
-  }
-
-  private func makeBlikTokens(for configuration: PaymentMethodsConfiguration) -> [PaymentMethodsItem] {
-    guard let blikTokens = configuration.blikTokens, !blikTokens.isEmpty else { return [] }
+ 
+  private func makeBlik(for configuration: PaymentMethodsConfiguration) -> [PaymentMethodsItem]{
+    guard let _ = configuration.payByLinks.first( where: { $0.value == "blik" }) else {return []}
+        
+    guard let blikTokens = configuration.blikTokens, !blikTokens.isEmpty else {
+        return makeBlikCode();
+    }
+        
     return blikTokens.compactMap { factory.item($0) }
+  }
+    
+  private func makeBlikCode() -> [PaymentMethodsItem]{
+    if(PayU.enableBlikCode){
+        return [BlikCode()].compactMap { factory.item($0) }
+    }
+    return [];
   }
 
   private func makeCardTokens(for configuration: PaymentMethodsConfiguration) -> [PaymentMethodsItem] {

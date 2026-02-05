@@ -22,6 +22,8 @@ final class FeatureToggleListViewModel {
     toggles.append(.paymentCardShouldDisplayTermsAndConditions(settingsRepository.shouldDisplayTermsAndConditions()))
     toggles.append(.paymentCardShouldDisplayExampleCards(settingsRepository.shouldDisplayExampleCards()))
     toggles.append(.paymentCardShouldDisplayScanCardButton(settingsRepository.shouldDisplayScanCardButton()))
+    toggles.append(.enableBlikCode(settingsRepository.enableBlikCode()))
+    toggles.append(.mockBlikToken(settingsRepository.mockBlikToken()))
   }
 
   // MARK: - Public Methods
@@ -38,6 +40,10 @@ final class FeatureToggleListViewModel {
       case .paymentCardShouldDisplayExampleCards(let isEnabled):
         return isEnabled
       case .paymentCardShouldDisplayScanCardButton(let isEnabled):
+        return isEnabled
+      case .enableBlikCode(let isEnabled):
+        return isEnabled
+      case .mockBlikToken(let isEnabled):
         return isEnabled
     }
   }
@@ -56,6 +62,10 @@ final class FeatureToggleListViewModel {
         settingsRepository.setShouldDisplayExampleCards(!isEnabled)
       case .paymentCardShouldDisplayScanCardButton(let isEnabled):
         settingsRepository.setShouldDisplayScanCardButton(!isEnabled)
+      case .enableBlikCode(let isEnabled):
+        settingsRepository.setEnableBlikCode(!isEnabled)
+      case .mockBlikToken(let isEnabled):
+        settingsRepository.setMockBlikToken(!isEnabled)
     }
   }
 }

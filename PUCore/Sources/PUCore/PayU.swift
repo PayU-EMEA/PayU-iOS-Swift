@@ -46,4 +46,12 @@ public struct PayU {
       Console.console.log(pos)
     }
   }
+
+  /// Enable or disable BlikCode payment method in SDKs.
+  public static var enableBlikCode: Bool! = false {
+    didSet {
+      Console.console.log("Enable blik code: \(String(describing: enableBlikCode))")
+    }
+  }
+        
 }

@@ -63,13 +63,13 @@ final class PaymentMethodsWidgetViewModelTests: XCTestCase {
   }
 
   func testWhenDidTapEnterNewBlikCodeWhenPaymentMethodIsSelectedThenShouldUpdateStateToBlikToken() {
-    let paymentMethod = makeBlikCode()
+    let paymentMethod = makeBlikToken()
     sut.didSelect(paymentMethod)
     sut.didTapEnterNewBlikCode()
     verify(
       delegate.viewModel(
         any(),
-        didUpdateState: .blikToken(paymentMethod)))
+        didUpdateState: .blikCode(paymentMethod)))
     .wasCalled()
   }
 

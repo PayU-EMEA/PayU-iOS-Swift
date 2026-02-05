@@ -51,7 +51,7 @@
 * Removed Mastercard Installments
 
 ## 2.0.6
-* [Fix] Show Blick Code input
+* [Fix] Show Blik Code input
 * [Fix] Remembering the last selected payment method on Payment Methods Widget
 
 ## 2.0.5

@@ -16,6 +16,8 @@ enum FeatureToggle {
 
   case paymentCardShouldDisplayExampleCards(Bool)
   case paymentCardShouldDisplayScanCardButton(Bool)
+  case enableBlikCode(Bool)
+  case mockBlikToken(Bool)
 
   var title: String {
     switch self {
@@ -31,6 +33,10 @@ enum FeatureToggle {
         return "PaymentCardViewController"
       case .paymentCardShouldDisplayScanCardButton:
         return "PaymentCardViewController"
+      case .enableBlikCode:
+        return "EnableBlikCode"
+      case .mockBlikToken:
+        return "MockBlikToken"
     }
   }
 
@@ -48,6 +54,10 @@ enum FeatureToggle {
         return "shouldDisplayExampleCards"
       case .paymentCardShouldDisplayScanCardButton:
         return "shouldDisplayScanCardButton"
+      case .enableBlikCode:
+        return "Enable blik code option in payment list if blik is available and no blik tones are stored"
+      case .mockBlikToken:
+        return "Mock blik token for testing purposes"
     }
   }
 }

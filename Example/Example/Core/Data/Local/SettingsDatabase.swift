@@ -47,4 +47,11 @@ class SettingsDatabase {
 
   @Database(key: "PaymentCard.shouldDisplayScanCardButton")
   var shouldDisplayScanCardButton: Bool?
+  
+  @Database(key: "Blik.enableBlikCode")
+  var enableBlikCode: Bool?
+
+  @Database(key: "Blik.mockBlikToken")
+  var mockBlikToken: Bool?
+  
 }
