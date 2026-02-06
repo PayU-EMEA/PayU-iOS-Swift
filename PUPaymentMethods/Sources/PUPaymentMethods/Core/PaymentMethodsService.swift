@@ -81,20 +81,20 @@ struct PaymentMethodsService: PaymentMethodsServiceProtocol {
       .map { ApplePay(payByLink: $0) }
       .compactMap { factory.item($0) }
   }
- 
+
   private func makeBlik(for configuration: PaymentMethodsConfiguration) -> [PaymentMethodsItem]{
     guard let _ = configuration.payByLinks.first( where: { $0.value == "blik" }) else {return []}
-        
+
     guard let blikTokens = configuration.blikTokens, !blikTokens.isEmpty else {
-        return makeBlikCode();
+      return makeBlikCode();
     }
-        
+
     return blikTokens.compactMap { factory.item($0) }
   }
-    
+
   private func makeBlikCode() -> [PaymentMethodsItem]{
     if(PayU.enableBlikCode){
-        return [BlikCode()].compactMap { factory.item($0) }
+      return [BlikCode()].compactMap { factory.item($0) }
     }
     return [];
   }

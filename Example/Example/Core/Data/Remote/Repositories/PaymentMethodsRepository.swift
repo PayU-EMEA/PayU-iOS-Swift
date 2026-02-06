@@ -30,24 +30,24 @@ final class PaymentMethodsRepository {
 }
 
 extension PaymentMethodsRepository {
-    /// Wraps the completion handler to modify the response by mocking blikTokens before returning.
-    func wrapWithMockedBlikTokens(completionHandler: @escaping (Result<PaymentMethodsResponse, Error>) -> Void) -> (Result<PaymentMethodsResponse, Error>) -> Void {
-        if(settingsRepository.mockBlikToken()){
-            return { result in
-                switch result {
-                case .success(let response):
-                    let mockedResponse = self.mockBlikTokens(response: response)
-                    completionHandler(.success(mockedResponse))
-                case .failure(let error):
-                    completionHandler(.failure(error))
-                }
-            }
+  /// Wraps the completion handler to modify the response by mocking blikTokens before returning.
+  func wrapWithMockedBlikTokens(completionHandler: @escaping (Result<PaymentMethodsResponse, Error>) -> Void) -> (Result<PaymentMethodsResponse, Error>) -> Void {
+    if(settingsRepository.mockBlikToken()){
+      return { result in
+        switch result {
+        case .success(let response):
+          let mockedResponse = self.mockBlikTokens(response: response)
+          completionHandler(.success(mockedResponse))
+        case .failure(let error):
+          completionHandler(.failure(error))
         }
-        return completionHandler;
+      }
     }
-    
-    func mockBlikTokens(response: PaymentMethodsResponse) -> PaymentMethodsResponse {
-        let blikTokenJson = """
+    return completionHandler;
+  }
+  
+  func mockBlikTokens(response: PaymentMethodsResponse) -> PaymentMethodsResponse {
+    let blikTokenJson = """
             [
                 {
                     \"type\": \"token\",
@@ -56,19 +56,19 @@ extension PaymentMethodsRepository {
                 }
             ]
             """.data(using: .utf8)!
-        do {
-            let mockedBlikTokens = try JSONDecoder().decode([BlikToken].self, from: blikTokenJson)
-            var blikTokens = response.blikTokens ?? []
-            
-            blikTokens.append(contentsOf: mockedBlikTokens)
-            
-            return PaymentMethodsResponse(
-                blikTokens: blikTokens,
-                cardTokens: response.cardTokens,
-                payByLinks: response.payByLinks
-            )
-        } catch {}
-        
-        return response;
-    }
+    do {
+      let mockedBlikTokens = try JSONDecoder().decode([BlikToken].self, from: blikTokenJson)
+      var blikTokens = response.blikTokens ?? []
+      
+      blikTokens.append(contentsOf: mockedBlikTokens)
+      
+      return PaymentMethodsResponse(
+        blikTokens: blikTokens,
+        cardTokens: response.cardTokens,
+        payByLinks: response.payByLinks
+      )
+    } catch {}
+    
+    return response;
+  }
 }

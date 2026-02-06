@@ -83,14 +83,14 @@ final class PaymentMethodsWidgetViewModel {
         return blikCode.copyWith(authorizationCode: blikAuthorizationCode)
 
       case is BlikToken:
-        if(state == .blikCode(selectedPaymentMethod)){
-            return BlikCode.init(authorizationCode: blikAuthorizationCode);
+        if(state == .blikCode(selectedPaymentMethod)) {
+          return BlikCode.init(authorizationCode: blikAuthorizationCode);
         }
         return selectedPaymentMethod
-
+  
       default:
         return selectedPaymentMethod
-    }
+      }
   }
 
   private func updatePaymentMethod(_ paymentMethod: PaymentMethod?) {
