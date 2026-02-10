@@ -6,6 +6,8 @@ An example on how to prepare PUCore
 
 To start working with elements, provided by PayU packages, you need to setup the basics of ``PayU``
 
+
+
 ## Example
 
 ```swift

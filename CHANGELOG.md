@@ -1,3 +1,8 @@
+## 2.3.11
+* Fix issue with enter blik code on payment with blik token
+* Allow enable blikCode payment method using PayU configuration class
+* Upgrade Kingfisher 
+
 ## 2.3.10
 * Add Lithuanian language
 * Do not require ShippingContact for ApplePay
