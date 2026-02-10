@@ -83,7 +83,7 @@ let package = Package(
     // .package(url: /* package url */, from: "1.0.0"),
     .package(
       url: "https://github.com/onevcat/Kingfisher.git",
-       .upToNextMinor(from: .init(8, 5, 0))
+      from: "8.5.0"
     ),
     .package(
       url: "https://github.com/birdrides/mockingbird",

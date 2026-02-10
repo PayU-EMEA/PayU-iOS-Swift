@@ -49,7 +49,7 @@ final class PaymentMethodsWidgetViewModel {
 
   func didTapEnterNewBlikCode() {
     guard let paymentMethod = selectedPaymentMethod else { return }
-    updateWidgetState(.blikToken(paymentMethod))
+    updateWidgetState(.blikCode(paymentMethod))
     delegate?.viewModel(self, didUpdateState: state)
   }
 
@@ -79,27 +79,18 @@ final class PaymentMethodsWidgetViewModel {
     guard let selectedPaymentMethod = selectedPaymentMethod else { return nil }
 
     switch selectedPaymentMethod {
-      case is ApplePay:
-        return selectedPaymentMethod
-
       case let blikCode as BlikCode:
         return blikCode.copyWith(authorizationCode: blikAuthorizationCode)
 
       case is BlikToken:
+        if(state == .blikCode(selectedPaymentMethod)) {
+          return BlikCode.init(authorizationCode: blikAuthorizationCode);
+        }
         return selectedPaymentMethod
-
-      case is CardToken:
-        return selectedPaymentMethod
-
-      case is Installments:
-        return selectedPaymentMethod
-
-      case is PayByLink:
-        return selectedPaymentMethod
-
+  
       default:
         return selectedPaymentMethod
-    }
+      }
   }
 
   private func updatePaymentMethod(_ paymentMethod: PaymentMethod?) {

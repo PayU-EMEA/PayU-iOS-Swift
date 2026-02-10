@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     PayU.currencyCode = "PLN"
     PayU.languageCode = "pl"
     PayU.pos = POS(id: "300746", environment: .sandbox)
+    PayU.enableBlikCode = true
 
     // ... Your code goes here
 

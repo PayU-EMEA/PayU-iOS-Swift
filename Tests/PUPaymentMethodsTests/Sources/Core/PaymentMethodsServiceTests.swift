@@ -14,6 +14,7 @@ final class PaymentMethodsServiceTests: XCTestCase {
   private var factory: PaymentMethodsItemFactoryProtocolMock!
   private var storage: PaymentMethodsStorageProtocolMock!
   private var sut: PaymentMethodsService!
+  private var payU: PayU!
 
   override func setUp() {
     super.setUp()
@@ -79,20 +80,73 @@ final class PaymentMethodsServiceTests: XCTestCase {
     XCTAssertEqual(paymentItems.filter { $0 is PaymentMethodItemApplePay }.count, 0)
   }
 
-  func testWhenConfigurationContainsEmptyBlikTokensThenShouldAppendBlikCode() {
-    let blikTokens: [BlikToken] = []
-    let cardTokens: [CardToken] = []
-    let payByLinks: [PayByLink] = [makePayByLink()]
-
-    let configuration = PaymentMethodsConfiguration(
-      blikTokens: blikTokens,
-      cardTokens: cardTokens,
-      payByLinks: payByLinks)
-
-    let paymentItems = sut.makePaymentMethodItems(for: configuration)
-    XCTAssertEqual(paymentItems.filter { $0 is PaymentMethodItemBlikCode }.count, 1)
+  func testWhenBlikCodeIsEnabledThenShouldAppendBlikCode() {
+    assertBlikPaymentMethod(
+        enableBlikCode: true,
+        payByLinkValue: "blik",
+        expectedBlikCodeCount: 1,
+        expectedBlikTokenCount: 0,
+        blikTokens: []
+    )
+    
   }
 
+  func testWhenBlikCodeIsDisabledThenShouldNotAppendBlikCode() {
+    assertBlikPaymentMethod(
+        enableBlikCode: false,
+        payByLinkValue: "blik",
+        expectedBlikCodeCount: 0,
+        expectedBlikTokenCount: 0,
+        blikTokens: []
+    )
+  }
+    
+  func testWhenHasBlikTokenThenShouldNotAppendBlikCode() {
+    assertBlikPaymentMethod(
+        enableBlikCode: true,
+        payByLinkValue: "blik",
+        expectedBlikCodeCount: 0,
+        expectedBlikTokenCount: 1,
+        blikTokens: [makeBlikToken()]
+    )
+  }
+    
+  func testWhenNoBlikPblActiveThenShouldNotAppendBlik() {
+    assertBlikPaymentMethod(
+        enableBlikCode: true,
+        payByLinkValue: nil,
+        expectedBlikCodeCount: 0,
+        expectedBlikTokenCount: 0,
+        blikTokens: [makeBlikToken()]
+    )
+  }
+    
+  private func assertBlikPaymentMethod(
+    enableBlikCode: Bool,
+    payByLinkValue: String?,
+    expectedBlikCodeCount: Int,
+    expectedBlikTokenCount: Int,
+    blikTokens: [BlikToken]? = []
+  ) {
+    let blikTokens: [BlikToken]? = blikTokens
+    let cardTokens: [CardToken] = []
+    let payByLinks: [PayByLink] = [makePayByLink(value: payByLinkValue)]
+
+    let configuration = PaymentMethodsConfiguration(
+        blikTokens: blikTokens,
+        cardTokens: cardTokens,
+        payByLinks: payByLinks
+    )
+          
+    PayU.enableBlikCode = enableBlikCode
+      
+    let paymentItems = sut.makePaymentMethodItems(for: configuration)
+        
+    XCTAssertEqual(paymentItems.filter { $0 is PaymentMethodItemBlikCode }.count, expectedBlikCodeCount)
+    XCTAssertEqual(paymentItems.filter { $0 is PaymentMethodItemBlikToken }.count, expectedBlikTokenCount)
+  }
+    
+    
   func testWhenConfigurationContainsNotEmptyBlikTokensThenShouldNotAppendBlikCode() {
     let blikTokens: [BlikToken] = [makeBlikToken(), makeBlikToken()]
     let cardTokens: [CardToken] = []
@@ -123,7 +177,7 @@ final class PaymentMethodsServiceTests: XCTestCase {
   func testWhenConfigurationContainsBlikTokensThenShouldReturnIt() {
     let blikTokens: [BlikToken] = [makeBlikToken(), makeBlikToken(), makeBlikToken()]
     let cardTokens: [CardToken] = []
-    let payByLinks: [PayByLink] = []
+    let payByLinks: [PayByLink] = [makePayByLink(value: "blik")]
 
     let configuration = PaymentMethodsConfiguration(
       blikTokens: blikTokens,
