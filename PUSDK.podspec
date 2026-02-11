@@ -1,4 +1,4 @@
-Pod::Spec.new do |s|  
+Pod::Spec.new do |s|
   s.name      = 'PUSDK'
   s.version   = '2.3.11'
   s.summary   = 'PayU mobile SDK for iOS'
