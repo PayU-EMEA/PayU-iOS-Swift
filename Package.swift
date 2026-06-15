@@ -83,7 +83,7 @@ let package = Package(
     // .package(url: /* package url */, from: "1.0.0"),
     .package(
       url: "https://github.com/onevcat/Kingfisher.git",
-      from: "8.5.0"
+      from: "8.10.0"
     ),
     .package(
       url: "https://github.com/birdrides/mockingbird",
@@ -100,8 +100,8 @@ let package = Package(
       ],
       path: "PUAPI",
       resources: [
-        .copy("../PUAPI/Sources/PUAPI/Certificates/entrust-root-certificate-authority-G2.cer"),
         .copy("../PUAPI/Sources/PUAPI/Certificates/sectigo-R46.cer"),
+        .copy("../PUAPI/Sources/PUAPI/Certificates/digicert-g2-tls-eu-rsa4096-sha384-2022-ca1.cer"),
         .copy("../PUAPI/Sources/PUAPI/Certificates/payu-root-ca-01.cer")
       ]
     ),

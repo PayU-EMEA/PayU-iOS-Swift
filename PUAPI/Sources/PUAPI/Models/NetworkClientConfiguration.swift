@@ -20,9 +20,9 @@ public struct NetworkClientConfiguration {
   public init(environment: Environment) {
     switch environment {
       case .production:
-        self.init(baseUrl: URL(string: "https://mobilesdk.secure.payu.com")!)
+        self.init(baseUrl: URL(string: "https://mobilesdk.platnosci.pl")!)
       case .sandbox:
-        self.init(baseUrl: URL(string: "https://mobilesdk.snd.payu.com")!)
+        self.init(baseUrl: URL(string: "https://mobilesdk.snd.platnosci.pl")!)
       case .sandboxBeta:
         self.init(baseUrl: URL(string: "https://secure.sndbeta.payu.com")!)
     }

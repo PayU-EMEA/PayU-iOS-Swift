@@ -4,7 +4,7 @@
 //
 //  Created by PayU S.A. on 18/11/2022.
 //  Copyright © 2022 PayU S.A. All rights reserved.
-//  
+//
 
 import Foundation
 import PUSDK
@@ -24,6 +24,19 @@ extension EnvironmentType {
         return .sandbox
       case .sandboxBeta:
         return .sandboxBeta
+    }
+  }
+}
+
+extension Environment {
+  var exampleBaseURL: URL {
+    switch self {
+      case .production:
+        return URL(string: "https://secure.payu.com")!
+      case .sandbox:
+        return URL(string: "https://secure.snd.payu.com")!
+      case .sandboxBeta:
+        return URL(string: "https://secure.sndbeta.payu.com")!
     }
   }
 }

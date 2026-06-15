@@ -1,0 +1,63 @@
+name: Swift
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    env:
+      XCODE_SCHEME: "PUSDK-Package"
+      XCODE_DESTINATION: "platform=iOS Simulator,OS=26.5,arch=arm64,name=iPhone 17 Pro"
+
+    runs-on: macos-26
+
+    steps:
+    - name: Set Xcode version
+      run: sudo xcode-select -s /Applications/Xcode_26.5.app
+
+    - name: Checkout the code
+      uses: actions/checkout@v6
+
+    - name: Show versions
+      run: |
+        swift --version
+        xcodebuild -version
+
+    - name: Build
+      run: |
+        swift package resolve
+        make generate_mocks
+        xcodebuild -scheme ${{env.XCODE_SCHEME}} \
+                   -destination '${{env.XCODE_DESTINATION}}' \
+                   build
+
+  tests:
+    env:
+      XCODE_SCHEME: "PUSDK-Package"
+      XCODE_DESTINATION: "platform=iOS Simulator,OS=26.5,arch=arm64,name=iPhone 17 Pro"
+
+    runs-on: macos-26
+
+    steps:
+    - name: Set Xcode version
+      run: sudo xcode-select -s /Applications/Xcode_26.5.app
+
+    - name: Checkout the code
+      uses: actions/checkout@v6
+
+    - name: Show versions
+      run: |
+        swift --version
+        xcodebuild -version
+
+    - name: Run tests
+      run: |
+        swift package resolve
+        make generate_mocks
+        xcodebuild -scheme ${{env.XCODE_SCHEME}} \
+                   -destination '${{env.XCODE_DESTINATION}}' \
+                   -testLanguage en \
+                   -testRegion en_US \
+                   test                   

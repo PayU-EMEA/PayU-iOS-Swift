@@ -27,7 +27,7 @@ struct NetworkClientCertificate {
   }
 
   static func certificates() -> [NetworkClientCertificate] {
-    let names = ["entrust-root-certificate-authority-G2", "sectigo-R46", "payu-root-ca-01"]
+    let names = ["sectigo-R46", "payu-root-ca-01", "digicert-g2-tls-eu-rsa4096-sha384-2022-ca1"]
     return names.compactMap { NetworkClientCertificate.certificate(name: $0) }
   }
 
@@ -42,7 +42,6 @@ struct NetworkClientCertificate {
 
   var publicKey: SecKey? {
     var trust: SecTrust!
-    var error: CFError?
 
     guard let certificate = certificate else { return nil }
 
@@ -52,12 +51,6 @@ struct NetworkClientCertificate {
       &trust)
 
     guard status == noErr else { return nil }
-
-    if #available(iOS 17.4, *) {
-      guard SecTrustEvaluateWithError(trust, &error) else {
-        return nil
-      }
-    }
 
     return SecTrustCopyPublicKey(trust)
   }

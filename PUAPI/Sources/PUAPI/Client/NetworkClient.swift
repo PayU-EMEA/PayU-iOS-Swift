@@ -49,9 +49,18 @@ public struct NetworkClient: NetworkClientProtocol {
     completionHandler: @escaping (Result<T, Error>) -> Void
   ) where E: NetworkTarget, T: Decodable, T: Encodable {
 
-    var request = URLRequest(
-      url: networkClientConfiguration.baseUrl.appendingPathComponent(
-        target.path))
+    let requestURL = networkClientConfiguration.baseUrl.appendingPathComponent(
+      target.path)
+    let resolvedURL: URL
+
+    if var components = URLComponents(url: requestURL, resolvingAgainstBaseURL: false) {
+      components.queryItems = target.queryItems.isEmpty ? nil : target.queryItems
+      resolvedURL = components.url ?? requestURL
+    } else {
+      resolvedURL = requestURL
+    }
+
+    var request = URLRequest(url: resolvedURL)
     request.httpMethod = target.httpMethod
     request.httpBody = target.httpBody
     target.httpHeaders.forEach {

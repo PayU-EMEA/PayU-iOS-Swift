@@ -11,12 +11,12 @@ import XCTest
 final class NetworkClientConfigurationTests: XCTestCase {
   func testShouldHaveCorrectBaseUrlForProduction() throws {
     let sut = NetworkClientConfiguration(environment: .production)
-    XCTAssertEqual(sut.baseUrl.absoluteString, "https://mobilesdk.secure.payu.com")
+    XCTAssertEqual(sut.baseUrl.absoluteString, "https://mobilesdk.platnosci.pl")
   }
 
   func testShouldHaveCorrectBaseUrlForSandbox() throws {
     let sut = NetworkClientConfiguration(environment: .sandbox)
-    XCTAssertEqual(sut.baseUrl.absoluteString, "https://mobilesdk.snd.payu.com")
+    XCTAssertEqual(sut.baseUrl.absoluteString, "https://mobilesdk.snd.platnosci.pl")
   }
 
   func testShouldHaveCorrectBaseUrlForSandboxBeta() throws {

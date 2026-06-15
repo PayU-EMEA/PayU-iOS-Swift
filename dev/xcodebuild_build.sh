@@ -1,5 +1,5 @@
 XCODE_SCHEME="PUSDK-Package"
-XCODE_DESTINATION="platform=iOS Simulator,OS=18.4,arch=arm64,name=iPhone 16 Pro"
+XCODE_DESTINATION="platform=iOS Simulator,OS=26.5,arch=arm64,name=iPhone 17 Pro"
 
 echo "✅ xcodebuild $XCODE_SCHEME ..."
 xcodebuild \

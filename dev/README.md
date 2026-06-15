@@ -61,8 +61,9 @@ Ensure all tests passed:
 
 ### Step 2
 
-1. Update `README.md` in the project root folder
-2. Update `Changelog.md` in the project root folder
+1. Update version in `PUSDK.podspec` in the project root folder and `PUCore/Sources/PUCore/Models/PUSDKVersion.swift`
+2. Update `README.md` in the project root folder
+3. Update `Changelog.md` in the project root folder
 
 ### Step 3
 
@@ -80,4 +81,4 @@ Generate documentation:
 
 1. Make pull request into `main` branch from your branch
 2. Merge your branch into `main` branch
-3. Push `tag` with new version to `main` branch
+3. Add new release in `GitHub > Releases` with new version and changelog
