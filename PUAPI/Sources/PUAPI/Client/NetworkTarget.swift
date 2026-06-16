@@ -1,6 +1,6 @@
 //
 //  NetworkTarget.swift
-//  
+//
 //  Created by PayU S.A. on 14/12/2022.
 //  Copyright © 2022 PayU S.A. All rights reserved.
 //
@@ -16,4 +16,9 @@ public protocol NetworkTarget {
   var httpMethod: String { get }
   var httpBody: Data? { get }
   var httpHeaders: Dictionary<String, String> { get }
+  var queryItems: [URLQueryItem] { get }
+}
+
+public extension NetworkTarget {
+  var queryItems: [URLQueryItem] { [] }
 }

@@ -4,6 +4,7 @@
 
 import XCTest
 
+@testable import PUCore
 @testable import PUPaymentCard
 
 final class PaymentCardNetworkTargetTests: XCTestCase {
@@ -15,9 +16,13 @@ final class PaymentCardNetworkTargetTests: XCTestCase {
     XCTAssertEqual(sut.path, "api/front/tokens")
     XCTAssertEqual(sut.httpMethod, "POST")
     XCTAssertEqual(sut.httpHeaders["Content-Type"], "application/json")
+    XCTAssertEqual(sut.queryItems.map(\.name), ["from", "sender", "version"])
+    XCTAssertEqual(
+      sut.queryItems.map(\.value),
+      ["mobilesdk", "ios", PUSDKVersion.current]
+    )
     XCTAssertEqualJSON(sut.httpBody, httpBody.data(using: .utf8))
   }
-
 }
 
 extension PaymentCardNetworkTargetTests {

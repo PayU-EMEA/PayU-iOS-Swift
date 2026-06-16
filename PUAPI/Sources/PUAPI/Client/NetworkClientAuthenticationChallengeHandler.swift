@@ -33,7 +33,11 @@ extension NetworkClientAuthenticationChallengeHandler: URLSessionDelegate {
         return
       }
 
-      let hostname = configuration.baseUrl.absoluteString
+      guard let hostname = configuration.baseUrl.host else {
+        completionHandler(.cancelAuthenticationChallenge, nil)
+        return
+      }
+
       let policy = SecPolicyCreateSSL(true, hostname as CFString)
       let policies = NSArray(object: policy)
       let status = SecTrustSetPolicies(serverTrust, policies)
@@ -92,7 +96,6 @@ private extension SecTrust {
       let certificates = [certificate] as CFArray
 
       var trust: SecTrust!
-      var error: CFError?
 
       let status = SecTrustCreateWithCertificates(
         certificates,
@@ -101,9 +104,6 @@ private extension SecTrust {
 
       guard status == noErr else { continue }
 
-      guard SecTrustEvaluateWithError(trust, &error) else {
-        continue
-      }
 
       guard let publicKey = SecTrustCopyPublicKey(trust) else { continue }
       publicKeys.append(publicKey)

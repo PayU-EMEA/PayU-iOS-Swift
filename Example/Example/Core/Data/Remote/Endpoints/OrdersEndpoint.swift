@@ -4,7 +4,7 @@
 //
 //  Created by PayU S.A. on 30/11/2022.
 //  Copyright © 2022 PayU S.A. All rights reserved.
-//  
+//
 
 import Foundation
 import PUAPI
@@ -16,9 +16,7 @@ enum OrdersEndpoint {
 
 extension OrdersEndpoint: HTTPEndpoint {
   var baseURL: URL {
-    let configuration = NetworkClientConfiguration(environment: PayU.pos.environment)
-
-    return configuration.baseUrl
+    return PayU.pos.environment.exampleBaseURL
   }
 
   var path: String {

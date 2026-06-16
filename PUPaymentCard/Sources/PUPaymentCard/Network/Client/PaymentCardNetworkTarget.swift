@@ -1,6 +1,6 @@
 //
 //  PaymentCardNetworkTarget.swift
-//  
+//
 //  Created by PayU S.A. on 14/12/2022.
 //  Copyright © 2022 PayU S.A. All rights reserved.
 //
@@ -9,6 +9,10 @@ import Foundation
 
 #if canImport(PUAPI)
 import PUAPI
+#endif
+
+#if canImport(PUCore)
+import PUCore
 #endif
 
 enum PaymentCardNetworkTarget {
@@ -41,6 +45,17 @@ extension PaymentCardNetworkTarget: NetworkTarget {
     switch self {
       case .tokenize:
         return ["Content-Type": "application/json"]
+    }
+  }
+
+  var queryItems: [URLQueryItem] {
+    switch self {
+      case .tokenize:
+        return [
+          URLQueryItem(name: "from", value: "mobilesdk"),
+          URLQueryItem(name: "sender", value: "ios"),
+          URLQueryItem(name: "version", value: PUSDKVersion.current)
+        ]
     }
   }
 }
