@@ -1,3 +1,9 @@
+## 2.3.12
+* Addesd new certificate for ssl pinning
+* Switched tokenize and save cvv to new domain
+* Added SDK version to tokenize query
+* Upgrade Kingfisher
+
 ## 2.3.11
 * Fix issue with enter blik code on payment with blik token
 * Allow enable blikCode payment method using PayU configuration class
