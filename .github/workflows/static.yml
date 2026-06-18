@@ -1,42 +1,70 @@
 name: Deploy docs to Pages
 
 on:
-  # Runs on pushes targeting the default branch
   push:
-    branches: ["main"]
+    branches: 
+      - main
 
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
 jobs:
-  # Single deploy job since we're just deploying
+  build:
+    env:
+      XCODE_SCHEME: "PUSDK"
+      XCODE_DESTINATION: "generic/platform=iOS"
+      XCODE_DERIVED_DATA_PATH: "docc"
+      XCODE_DOCS_OUTPUT_PATH: "docs "
+      REPOSITORY_NAME: "PayU-iOS-Swift"
+
+    runs-on: macos-26
+
+    steps:
+    - name: Set Xcode version
+      run: sudo xcode-select -s /Applications/Xcode_26.5.app
+
+    - name: Checkout
+      uses: actions/checkout@v6
+
+    - name: Show versions
+      run: |
+        swift --version
+        xcodebuild -version
+
+    - name: Build Docs
+      run: |
+        xcodebuild docbuild \
+          -scheme '${{env.XCODE_SCHEME}}' \
+          -destination '${{env.XCODE_DESTINATION}}' \
+          -derivedDataPath '${{env.XCODE_DERIVED_DATA_PATH}}'
+        $(xcrun --find docc) process-archive transform-for-static-hosting "${{env.XCODE_DERIVED_DATA_PATH}}/Build/Products/Debug-iphoneos/${{env.XCODE_SCHEME}}.doccarchive" \
+          --hosting-base-path '${{env.REPOSITORY_NAME}}' \
+          --output-path '${{env.XCODE_DOCS_OUTPUT_PATH}}'
+        swift package resolve
+
+    - name: Upload artifact
+      id: deployment
+      uses: actions/upload-pages-artifact@v5
+      with:
+        path: '${{env.XCODE_DOCS_OUTPUT_PATH}}'
+
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+
     runs-on: ubuntu-latest
+    needs: build
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          # Upload entire repository
-          path: 'docs'
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v5
