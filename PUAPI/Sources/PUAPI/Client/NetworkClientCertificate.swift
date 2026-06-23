@@ -1,6 +1,6 @@
 //
 //  NetworkClientCertificate.swift
-//  
+//
 //  Created by PayU S.A. on 20/12/2022.
 //  Copyright © 2022 PayU S.A. All rights reserved.
 //
@@ -27,7 +27,7 @@ struct NetworkClientCertificate {
   }
 
   static func certificates() -> [NetworkClientCertificate] {
-    let names = ["sectigo-R46", "payu-root-ca-01", "digicert-global-root-g2"]
+    let names = ["sectigo-R46", "payu-root-ca-01", "digicert-global-root-g2", "digicert-global-root-g3"]
     return names.compactMap { NetworkClientCertificate.certificate(name: $0) }
   }
 

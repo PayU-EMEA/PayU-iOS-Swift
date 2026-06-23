@@ -102,6 +102,7 @@ let package = Package(
       resources: [
         .copy("../PUAPI/Sources/PUAPI/Certificates/sectigo-R46.cer"),
         .copy("../PUAPI/Sources/PUAPI/Certificates/digicert-global-root-g2.cer"),
+        .copy("../PUAPI/Sources/PUAPI/Certificates/digicert-global-root-g3.cer"),
         .copy("../PUAPI/Sources/PUAPI/Certificates/payu-root-ca-01.cer")
       ]
     ),

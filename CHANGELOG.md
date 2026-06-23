@@ -1,5 +1,5 @@
 ## 2.3.12
-* Addesd new certificate for ssl pinning
+* Added new certificate for ssl pinning
 * Switched tokenize and save cvv to new domain
 * Added SDK version to tokenize query
 * Upgrade Kingfisher
