@@ -98,6 +98,8 @@ public final class WebPaymentsViewController: UIViewController {
     let configuration = WKWebViewConfiguration()
     configuration.allowsInlineMediaPlayback = true
     configuration.mediaTypesRequiringUserActionForPlayback = []
+    configuration.defaultWebpagePreferences.preferredContentMode = .mobile
+    configuration.applicationNameForUserAgent = "PayU-mobilesdk-ios/\(PUSDKVersion.current)"
 
     let webView = WKWebView(frame: .zero, configuration: configuration)
     webView.navigationDelegate = self

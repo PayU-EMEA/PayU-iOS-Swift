@@ -101,6 +101,8 @@ public final class SoftAcceptService: NSObject, WKScriptMessageHandler {
   private func buildWebView() -> WKWebView {
     let webViewConfiguration = WKWebViewConfiguration()
     webViewConfiguration.userContentController.add(self, name: configuration.channelName)
+    webViewConfiguration.defaultWebpagePreferences.preferredContentMode = .mobile
+    webViewConfiguration.applicationNameForUserAgent = "PayU-mobilesdk-ios/\(PUSDKVersion.current)"
     return WKWebView(frame: .zero, configuration: webViewConfiguration)
   }
 
