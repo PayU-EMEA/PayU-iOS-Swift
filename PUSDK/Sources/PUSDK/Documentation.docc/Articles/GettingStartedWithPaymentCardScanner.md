@@ -2,7 +2,7 @@
 
 Constains necessary classes, structures, extensions to allow users to scan card details.
 
-> Note: It uses **Vision** framework and available from iOS 13.0
+> Note: It uses **Vision** framework
 
 ## Overview
 
