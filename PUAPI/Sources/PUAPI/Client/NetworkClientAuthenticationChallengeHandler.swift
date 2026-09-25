@@ -89,10 +89,9 @@ private extension SecTrust {
 
   var publicKeys: [SecKey] {
     var publicKeys: [SecKey] = []
-    let count = SecTrustGetCertificateCount(self)
+    let certificateChain = SecTrustCopyCertificateChain(self) as? [SecCertificate] ?? []
 
-    for ix in 0..<count {
-      guard let certificate = SecTrustGetCertificateAtIndex(self, ix) else { continue }
+    for certificate in certificateChain {
       let certificates = [certificate] as CFArray
 
       var trust: SecTrust!
@@ -105,7 +104,7 @@ private extension SecTrust {
       guard status == noErr else { continue }
 
 
-      guard let publicKey = SecTrustCopyPublicKey(trust) else { continue }
+      guard let publicKey = SecTrustCopyKey(trust) else { continue }
       publicKeys.append(publicKey)
     }
     return publicKeys

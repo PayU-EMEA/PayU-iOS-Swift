@@ -1,3 +1,8 @@
+## 3.0.0
+* Raised the minimum deployment target to iOS 15.0
+* Upgrade Kingfisher to 8.13.0, which requires iOS 15.0
+* Removed availability checks which are no longer needed
+
 ## 2.3.12
 * Added new certificate for ssl pinning
 * Switched tokenize and save cvv to new domain

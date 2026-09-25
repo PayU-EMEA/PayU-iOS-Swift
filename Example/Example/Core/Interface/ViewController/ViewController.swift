@@ -18,10 +18,6 @@ class ViewController: UIViewController {
 
   // MARK: - Private Methods
   private func setupBasics() {
-    if #available(iOS 13.0, *) {
-      view.backgroundColor = .systemBackground
-    } else {
-      view.backgroundColor = .white
-    }
+    view.backgroundColor = .systemBackground
   }
 }

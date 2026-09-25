@@ -9,7 +9,6 @@
 import PUCore
 #endif
 
-@available(iOS 13.0, *)
 final class PaymentCardScannerAssembler {
 
   func makePaymentCardDateParser() -> PaymentCardDateParserProtocol {

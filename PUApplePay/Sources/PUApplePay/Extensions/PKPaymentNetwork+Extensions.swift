@@ -9,10 +9,6 @@ import PassKit
 
 extension PKPaymentNetwork {
   static func networks() -> [PKPaymentNetwork] {
-    if #available(iOS 13.0, *) {
-      return [.maestro, .masterCard, .visa]
-    } else {
-      return [.masterCard, .visa]
-    }
+    return [.maestro, .masterCard, .visa]
   }
 }

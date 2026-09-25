@@ -52,6 +52,6 @@ struct NetworkClientCertificate {
 
     guard status == noErr else { return nil }
 
-    return SecTrustCopyPublicKey(trust)
+    return SecTrustCopyKey(trust)
   }
 }

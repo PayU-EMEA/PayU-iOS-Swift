@@ -42,12 +42,10 @@ final class PaymentCardServicePresenter: PaymentCardServicePresenterProtocol {
     self.presentingViewController = presentingViewController
     self.onComplete = onComplete
 
-    if #available(iOS 13.0, *) {
-      let viewController = PaymentCardScannerViewController.Factory().make(option: option)
-      let navigationController = PortraitNavigationController(rootViewController: viewController)
-      presentingViewController.present(navigationController, animated: true)
-      viewController.delegate = self
-    }
+    let viewController = PaymentCardScannerViewController.Factory().make(option: option)
+    let navigationController = PortraitNavigationController(rootViewController: viewController)
+    presentingViewController.present(navigationController, animated: true)
+    viewController.delegate = self
   }
 
   // MARK: - Private Methods
@@ -59,7 +57,6 @@ final class PaymentCardServicePresenter: PaymentCardServicePresenterProtocol {
 }
 
 // MARK: - PaymentCardScannerViewControllerDelegate
-@available(iOS 13.0, *)
 extension PaymentCardServicePresenter: PaymentCardScannerViewControllerDelegate {
   func paymentCardScannerViewController(_ viewController: PaymentCardScannerViewController, didProcess result: PaymentCardScannerResult) {
     viewController.navigationController?.dismiss(animated: true) { [weak self] in

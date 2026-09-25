@@ -11,11 +11,7 @@ import XCTest
 final class PaymentCardScannerTests: XCTestCase {
 
   func testIsAvailableReturnsCorrectValue() throws {
-    if #available(iOS 13, *) {
-      XCTAssertTrue(PaymentCardScanner.isAvailable())
-    } else {
-      XCTAssertFalse(PaymentCardScanner.isAvailable())
-    }
+    XCTAssertTrue(PaymentCardScanner.isAvailable())
   }
 
 }

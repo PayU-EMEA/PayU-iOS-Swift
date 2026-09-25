@@ -24,7 +24,6 @@ import PUTranslations
 #endif
 
 /// Protocol which defines the completion result of ``PaymentCardScannerViewController``
-@available(iOS 13.0, *)
 public protocol PaymentCardScannerViewControllerDelegate: AnyObject {
   /// This method is called when user scanned the payment card
   /// - Parameters:
@@ -45,7 +44,6 @@ public protocol PaymentCardScannerViewControllerDelegate: AnyObject {
 }
 
 /// ViewController which is responsible for payment card scanning
-@available(iOS 13.0, *)
 public final class PaymentCardScannerViewController: UIViewController {
 
   // MARK: - Factory
@@ -328,7 +326,6 @@ public final class PaymentCardScannerViewController: UIViewController {
 }
 
 // MARK: - AVCaptureVideoDataOutputSampleBufferDelegate
-@available(iOS 13.0, *)
 extension PaymentCardScannerViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
   public func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
     let allocator = kCFAllocatorDefault

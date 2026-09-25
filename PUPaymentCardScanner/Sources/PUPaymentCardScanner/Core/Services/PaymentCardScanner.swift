@@ -14,13 +14,9 @@ public struct PaymentCardScanner {
 
 
   /// Allows to understand if the ``PaymentCardScannerViewController`` is available
-  /// - Returns: `true` if iOS version is greater than 13.0
+  /// - Returns: `true`, because the scanner is available on every iOS version supported by the SDK
   public static func isAvailable() -> Bool {
-    if #available(iOS 13, *) {
-      return true
-    } else {
-      return false
-    }
+    return true
   }
 
 }

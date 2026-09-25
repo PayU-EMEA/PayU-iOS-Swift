@@ -16,8 +16,17 @@ extension UIButton {
     self.layer.borderColor = style.borderStyle.color.cgColor
     self.layer.masksToBounds = true
     self.setTitleColor(style.textStyle.color, for: [])
-    self.imageView?.tintColor = style.textStyle.color
-    self.imageEdgeInsets = UIEdgeInsets(top: 0, left: -24, bottom: 0, right: 0)
+
+    var configuration = self.configuration ?? .plain()
+    configuration.contentInsets = .zero
+    configuration.imagePadding = 24
+    configuration.baseForegroundColor = style.textStyle.color
+    configuration.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
+      var outgoing = incoming
+      outgoing.font = style.textStyle.font
+      return outgoing
+    }
+    self.configuration = configuration
   }
 }
 

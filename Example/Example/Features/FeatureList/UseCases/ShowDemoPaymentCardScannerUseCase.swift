@@ -18,19 +18,14 @@ final class ShowDemoPaymentCardScannerUseCase {
   }
 
   func execute() {
-    if #available(iOS 13.0, *) {
-      let viewController = PaymentCardScannerViewController.Factory().make(option: .numberAndDate)
-      let navigationController = PortraitNavigationController(rootViewController: viewController)
-      presenter?.present(navigationController, animated: true)
-      viewController.delegate = self
-    } else {
-      presenter?.dialog(title: "PaymentCardScanner", message: "This feature is available from iOS 13.0")
-    }
+    let viewController = PaymentCardScannerViewController.Factory().make(option: .numberAndDate)
+    let navigationController = PortraitNavigationController(rootViewController: viewController)
+    presenter?.present(navigationController, animated: true)
+    viewController.delegate = self
   }
 }
 
 // MARK: - PaymentCardScannerViewControllerDelegate
-@available(iOS 13.0, *)
 extension ShowDemoPaymentCardScannerUseCase: PaymentCardScannerViewControllerDelegate {
   func paymentCardScannerViewController(_ viewController: PaymentCardScannerViewController, didProcess result: PaymentCardScannerResult) {
     Console.console.log(result)
