@@ -1,3 +1,5 @@
+## 3.0.1
+* Open external application via Universal Link
 ## 3.0.0
 * Raised the minimum deployment target to iOS 15.0
 * Upgrade Kingfisher to 8.13.0, which requires iOS 15.0
