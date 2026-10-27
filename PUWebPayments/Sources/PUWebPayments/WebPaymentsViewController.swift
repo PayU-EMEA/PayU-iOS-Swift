@@ -239,8 +239,10 @@ extension WebPaymentsViewController: WebPaymentsViewModelDelegate {
 extension WebPaymentsViewController: WKNavigationDelegate {
   public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
     guard let url = navigationAction.request.url else { decisionHandler(.cancel); return }
-    let navigationPolicy = viewModel.navigationPolicy(for: url, inMainFrame: navigationAction.targetFrame?.isMainFrame == true)
-    decisionHandler(navigationPolicy)
+    viewModel.navigationPolicy(
+      for: url,
+      inMainFrame: navigationAction.targetFrame?.isMainFrame == true,
+      decisionHandler: decisionHandler)
   }
 
   public func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {

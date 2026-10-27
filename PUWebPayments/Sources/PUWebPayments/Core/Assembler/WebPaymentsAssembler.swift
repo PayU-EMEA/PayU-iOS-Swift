@@ -54,6 +54,11 @@ final class WebPaymentsAssembler {
   func makeWebPaymentsViewModel(request: WebPaymentsRequest) -> WebPaymentsViewModel {
     WebPaymentsViewModel(
       matcher: makeWebPaymentsUrlMatcherFactory().make(for: request),
+      urlOpener: makeWebPaymentsUrlOpener(),
       request: request)
+  }
+
+  func makeWebPaymentsUrlOpener() -> WebPaymentsUrlOpener {
+    WebPaymentsApplicationUrlOpener()
   }
 }

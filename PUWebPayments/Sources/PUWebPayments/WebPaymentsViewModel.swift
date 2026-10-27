@@ -29,17 +29,40 @@ final class WebPaymentsViewModel {
   // MARK: - Private Properties
   private let request: WebPaymentsRequest
   private let matcher: WebPaymentsUrlMatcher
+  private let urlOpener: WebPaymentsUrlOpener
 
   // MARK: - Initialization
-  init(matcher: WebPaymentsUrlMatcher, request: WebPaymentsRequest) {
+  init(matcher: WebPaymentsUrlMatcher, urlOpener: WebPaymentsUrlOpener, request: WebPaymentsRequest) {
     self.matcher = matcher
+    self.urlOpener = urlOpener
     self.request = request
     self.currentUrl = request.redirectUrl
   }
 
   // MARK: - Public Methods
-  @discardableResult
-  func navigationPolicy(for url: URL, inMainFrame: Bool) -> WKNavigationActionPolicy {
+  /// Decides whether `url` should be loaded in the WebView. Before loading a not matched http(s) url in the main frame
+  /// it tries to open it as a universal link (e.g. bank application). If an application handles the link,
+  /// the navigation is cancelled and the payment completes with `externalApplication` status.
+  func navigationPolicy(for url: URL, inMainFrame: Bool, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+    let result = matcher.result(url)
+    let policy = navigationPolicy(for: url, result: result, inMainFrame: inMainFrame)
+
+    guard result == .notMatched, inMainFrame, isUniversalLinkCandidate(url) else {
+      decisionHandler(policy)
+      return
+    }
+
+    urlOpener.openUniversalLink(url) { [weak self] opened in
+      guard opened, let self else {
+        decisionHandler(policy)
+        return
+      }
+      self.complete(with: .externalApplication)
+      decisionHandler(.cancel)
+    }
+  }
+
+  private func navigationPolicy(for url: URL, result: WebPaymentsUrlMatcherResult, inMainFrame: Bool) -> WKNavigationActionPolicy {
     currentUrl = url
     currentError = nil
 
@@ -48,7 +71,7 @@ final class WebPaymentsViewModel {
       delegate?.webPaymentsViewModel(self, didUpdate: currentUrl)
     }
 
-    switch matcher.result(url) {
+    switch result {
       case .notMatched:
         return .allow
 
@@ -69,7 +92,7 @@ final class WebPaymentsViewModel {
         return .allow
 
       case .externalApplication:
-        UIApplication.shared.open(url)
+        urlOpener.open(url)
         complete(with: .externalApplication)
         return .cancel
         
@@ -96,7 +119,7 @@ final class WebPaymentsViewModel {
   }
 
   func didProceedWithCreditExternalApplication(_ url: URL) {
-    UIApplication.shared.open(url)
+    urlOpener.open(url)
     complete(with: .externalBrowser)
   }
 
@@ -105,6 +128,15 @@ final class WebPaymentsViewModel {
   }
 
   // MARK: - Private Methods
+  /// PayU payment pages (`redirectUrl`) and merchant's `continueUrl` are never opened as universal links,
+  /// otherwise e.g. the merchant application could catch its own `continueUrl` and leave the payment flow.
+  private func isUniversalLinkCandidate(_ url: URL) -> Bool {
+    guard let urlComponents = url.components else { return false }
+    guard urlComponents.isHTTP() || urlComponents.isHTTPS() else { return false }
+    guard let host = urlComponents.host else { return false }
+    return host != request.redirectUrl.host && host != request.continueUrl.host
+  }
+
   private func complete(with status: WebPaymentsResult.Status) {
     let result = WebPaymentsResult(status: status, url: currentUrl)
     delegate?.webPaymentsViewModel(self, didComplete: result)
