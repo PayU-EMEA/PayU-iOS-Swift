@@ -7,18 +7,31 @@ on:
 
 jobs:
   build:
+    name: Build (Xcode ${{ matrix.xcode }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - xcode: "26.5"
+            runner: macos-26
+            destination: "platform=iOS Simulator,OS=26.5,arch=arm64,name=iPhone 17 Pro"
+          # `xcode-27` is a preview runner image (macOS 27): https://github.com/actions/runner-images/issues/14404
+          - xcode: "27.1"
+            runner: xcode-27
+            destination: "platform=iOS Simulator,OS=27.0,arch=arm64,name=iPhone 18 Pro"
+
     env:
       XCODE_SCHEME: "PUSDK-Package"
-      XCODE_DESTINATION: "platform=iOS Simulator,OS=26.5,arch=arm64,name=iPhone 17 Pro"
+      XCODE_DESTINATION: ${{ matrix.destination }}
 
-    runs-on: macos-26
+    runs-on: ${{ matrix.runner }}
 
     steps:
     - name: Set Xcode version
-      run: sudo xcode-select -s /Applications/Xcode_26.5.app
+      run: sudo xcode-select -s /Applications/Xcode_${{ matrix.xcode }}.app
 
     - name: Checkout the code
-      uses: actions/checkout@v6
+      uses: actions/checkout@v7
 
     - name: Show versions
       run: |
@@ -34,18 +47,31 @@ jobs:
                    build
 
   tests:
+    name: Tests (Xcode ${{ matrix.xcode }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - xcode: "26.5"
+            runner: macos-26
+            destination: "platform=iOS Simulator,OS=26.5,arch=arm64,name=iPhone 17 Pro"
+          # `xcode-27` is a preview runner image (macOS 27): https://github.com/actions/runner-images/issues/14404
+          - xcode: "27.1"
+            runner: xcode-27
+            destination: "platform=iOS Simulator,OS=27.0,arch=arm64,name=iPhone 18 Pro"
+
     env:
       XCODE_SCHEME: "PUSDK-Package"
-      XCODE_DESTINATION: "platform=iOS Simulator,OS=26.5,arch=arm64,name=iPhone 17 Pro"
+      XCODE_DESTINATION: ${{ matrix.destination }}
 
-    runs-on: macos-26
+    runs-on: ${{ matrix.runner }}
 
     steps:
     - name: Set Xcode version
-      run: sudo xcode-select -s /Applications/Xcode_26.5.app
+      run: sudo xcode-select -s /Applications/Xcode_${{ matrix.xcode }}.app
 
     - name: Checkout the code
-      uses: actions/checkout@v6
+      uses: actions/checkout@v7
 
     - name: Show versions
       run: |
@@ -60,4 +86,4 @@ jobs:
                    -destination '${{env.XCODE_DESTINATION}}' \
                    -testLanguage en \
                    -testRegion en_US \
-                   test                   
+                   test

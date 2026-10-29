@@ -6,6 +6,8 @@
 //
 
 /// The protocol which allows to implement different card formatted mechanisms
+///
+/// <!-- @mockable -->
 public protocol PaymentCardFormatterProtocol {
 
   /// Method to format the input text into formatted text

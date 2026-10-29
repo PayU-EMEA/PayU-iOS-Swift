@@ -6,7 +6,6 @@
 //
 
 import XCTest
-import Mockingbird
 @testable import PUCore
 
 final class PaymentCardProviderFinderTests: XCTestCase {
@@ -16,18 +15,18 @@ final class PaymentCardProviderFinderTests: XCTestCase {
 
   override func setUp() {
     super.setUp()
-    luhnValidator = mock(PaymentCardLuhnValidatorProtocol.self)
+    luhnValidator = PaymentCardLuhnValidatorProtocolMock()
     sut = DefaultPaymentCardProviderFinder(luhnValidator: luhnValidator)
   }
 
   override func tearDown() {
     super.tearDown()
-    reset(luhnValidator)
+    luhnValidator = nil
     sut = nil
   }
 
   func testFindPaymentCardProviderWhenPaymentCardNumberIsCorrect() throws {
-    given(luhnValidator.matches(any())).willReturn(true)
+    luhnValidator.matchesHandler = { _ in true }
 
     XCTAssertEqual(sut.find("4444 3333 2222 1111"), .visa)
     XCTAssertEqual(sut.find("5434 0210 1682 4014"), .mastercard)
@@ -36,7 +35,7 @@ final class PaymentCardProviderFinderTests: XCTestCase {
   }
 
   func testFindNothingWhenPaymentCardNumberIsNotCorrect() throws {
-    given(luhnValidator.matches(any())).willReturn(true)
+    luhnValidator.matchesHandler = { _ in true }
 
     XCTAssertNil(sut.find("4444 3336 2222 111"))
     XCTAssertNil(sut.find("5434 0216 1682 401"))
@@ -45,7 +44,7 @@ final class PaymentCardProviderFinderTests: XCTestCase {
   }
 
   func testFindNothingWhenLuhnValidatorCannotValidatePaymentCardNumber() throws {
-    given(luhnValidator.matches(any())).willReturn(false)
+    luhnValidator.matchesHandler = { _ in false }
 
     XCTAssertNil(sut.find("4444 3333 2222 1111"))
     XCTAssertNil(sut.find("5434 0210 1682 4014"))

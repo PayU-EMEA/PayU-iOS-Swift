@@ -18,6 +18,7 @@ protocol PaymentCardViewModelProtocol {
   func didTapUse(shortLifespandForUse: Bool)
 }
 
+/// @mockable
 protocol PaymentCardViewModelDelegate: AnyObject {
   func paymentCardViewModel(_ viewModel: PaymentCardViewModel, didComplete cardToken: CardToken)
   func paymentCardViewModel(_ viewModel: PaymentCardViewModel, didFail error: Error)

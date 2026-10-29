@@ -2,7 +2,6 @@
 //  PaymentCardViewModelTests.swift
 //
 
-import Mockingbird
 import XCTest
 
 @testable import PUCore
@@ -16,16 +15,16 @@ final class PaymentCardViewModelTests: XCTestCase {
 
   override func setUp() {
     super.setUp()
-    delegate = mock(PaymentCardViewModelDelegate.self)
-    service = mock(PaymentCardServiceProtocol.self)
+    delegate = PaymentCardViewModelDelegateMock()
+    service = PaymentCardServiceProtocolMock()
     sut = PaymentCardViewModel(service: service)
     sut.delegate = delegate
   }
 
   override func tearDown() {
     super.tearDown()
-    reset(delegate)
-    reset(service)
+    delegate = nil
+    service = nil
     sut = nil
   }
 
@@ -33,48 +32,29 @@ final class PaymentCardViewModelTests: XCTestCase {
     let viewController = UIViewController()
     sut.didTapScanCard(in: viewController)
 
-    verify(
-      service
-        .scan(
-          option: .numberAndDate,
-          in: viewController)
-    )
-    .wasCalled()
+    XCTAssertGreaterThan(service.scanCallCount, 0)
+    XCTAssertEqual(service.scanArgValues.last?.option, .numberAndDate)
+    XCTAssertTrue(service.scanArgValues.last?.presentingViewController === viewController)
   }
 
   func testDidTapSaveAndUseShouldCallServiceToTokenizeWithAgreement() {
     sut.didTapSaveAndUse()
 
-    verify(
-      service
-        .tokenize(
-          type: TokenType.MULTI,
-          completionHandler: any())
-    )
-    .wasCalled()
+    XCTAssertGreaterThan(service.tokenizeTypeCallCount, 0)
+    XCTAssertEqual(service.tokenizeTypeArgValues.last, TokenType.MULTI)
   }
 
   func testDidTapUseShouldCallServiceToTokenizeWithoutAgreementLongTerm() {
     sut.didTapUse(shortLifespandForUse: false)
 
-    verify(
-      service
-        .tokenize(
-          type: TokenType.SINGLE_LONGTERM,
-          completionHandler: any())
-    )
-    .wasCalled()
+    XCTAssertGreaterThan(service.tokenizeTypeCallCount, 0)
+    XCTAssertEqual(service.tokenizeTypeArgValues.last, TokenType.SINGLE_LONGTERM)
   }
 
   func testDidTapUseShouldCallServiceToTokenizeWithoutAgreement() {
     sut.didTapUse(shortLifespandForUse: true)
 
-    verify(
-      service
-        .tokenize(
-          type: TokenType.SINGLE,
-          completionHandler: any())
-    )
-    .wasCalled()
+    XCTAssertGreaterThan(service.tokenizeTypeCallCount, 0)
+    XCTAssertEqual(service.tokenizeTypeArgValues.last, TokenType.SINGLE)
   }
 }

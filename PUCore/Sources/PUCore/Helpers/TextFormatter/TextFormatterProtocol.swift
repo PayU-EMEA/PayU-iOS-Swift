@@ -8,6 +8,8 @@
 import Foundation
 
 /// The protocol which allows to format the text into formatted text
+///
+/// <!-- @mockable -->
 public protocol TextFormatterProtocol {
   func formatted(_ text: String) -> String
 }

@@ -6,7 +6,6 @@
 //
 
 import XCTest
-import Mockingbird
 @testable import PUCore
 
 final class DefaultPaymentCardValidatorTests: XCTestCase {
@@ -26,9 +25,9 @@ final class DefaultPaymentCardValidatorTests: XCTestCase {
     dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "MM/yyyy"
 
-    dateParser = mock(PaymentCardDateParserProtocol.self)
-    luhnValidator = mock(PaymentCardLuhnValidatorProtocol.self)
-    providerFinder = mock(PaymentCardProviderFinderProtocol.self)
+    dateParser = PaymentCardDateParserProtocolMock()
+    luhnValidator = PaymentCardLuhnValidatorProtocolMock()
+    providerFinder = PaymentCardProviderFinderProtocolMock()
 
     cvvValidator = DefaultPaymentCardCVVValidator()
     dateValidator = DefaultPaymentCardDateValidator(dateParser: dateParser)
@@ -37,9 +36,9 @@ final class DefaultPaymentCardValidatorTests: XCTestCase {
 
   override func tearDown() {
     super.tearDown()
-    reset(dateParser)
-    reset(luhnValidator)
-    reset(providerFinder)
+    dateParser = nil
+    luhnValidator = nil
+    providerFinder = nil
 
     dateFormatter = nil
     cvvValidator = nil
@@ -60,19 +59,19 @@ final class DefaultPaymentCardValidatorTests: XCTestCase {
   }
 
   func testDateValidatorShouldValidateCorrectDateInFuture() throws {
-    given(dateParser.parse(any())).will { self.dateFormatter.date(from: $0) }
+    dateParser.parseHandler = { self.dateFormatter.date(from: $0) }
     XCTAssertNoThrow(try dateValidator.validate("03/2030"))
     XCTAssertNoThrow(try dateValidator.validate("03/2035"))
   }
 
   func testDateValidatorShouldNotValidateCorrectDateInPast() throws {
-    given(dateParser.parse(any())).will { self.dateFormatter.date(from: $0) }
+    dateParser.parseHandler = { self.dateFormatter.date(from: $0) }
     XCTAssertThrowsError(try dateValidator.validate("03/2000")) { e in XCTAssertEqual(e.localizedDescription, "enter_valid_card_date") }
     XCTAssertThrowsError(try dateValidator.validate("03/2022")) { e in XCTAssertEqual(e.localizedDescription, "enter_valid_card_date") }
   }
 
   func testDateValidatorShouldNotValidateIncorrectDate() throws {
-    given(dateParser.parse(any())).will { self.dateFormatter.date(from: $0) }
+    dateParser.parseHandler = { self.dateFormatter.date(from: $0) }
     XCTAssertThrowsError(try dateValidator.validate(nil)) { e in XCTAssertEqual(e.localizedDescription, "enter_card_date") }
     XCTAssertThrowsError(try dateValidator.validate("")) { e in XCTAssertEqual(e.localizedDescription, "enter_card_date") }
     XCTAssertThrowsError(try dateValidator.validate("03")) { e in XCTAssertEqual(e.localizedDescription, "enter_valid_card_date") }
@@ -81,15 +80,15 @@ final class DefaultPaymentCardValidatorTests: XCTestCase {
 
   func testNumberValidatorShouldValidateCorrectNumber() throws {
 
-    given(providerFinder.find(any())).willReturn(.maestro)
+    providerFinder.findHandler = { _ in .maestro }
     XCTAssertNoThrow(try numberValidator.validate("6759 6498 2643 8453"))
     XCTAssertNoThrow(try numberValidator.validate("6799 9901 0000 0000 019"))
 
-    given(providerFinder.find(any())).willReturn(.mastercard)
+    providerFinder.findHandler = { _ in .mastercard }
     XCTAssertNoThrow(try numberValidator.validate("5598 6148 1656 3766"))
     XCTAssertNoThrow(try numberValidator.validate("5555 5555 5555 4444"))
 
-    given(providerFinder.find(any())).willReturn(.visa)
+    providerFinder.findHandler = { _ in .visa }
     XCTAssertNoThrow(try numberValidator.validate("4012 0010 3714 1112"))
     XCTAssertNoThrow(try numberValidator.validate("4245 7576 6634 9685"))
   }
@@ -103,16 +102,16 @@ final class DefaultPaymentCardValidatorTests: XCTestCase {
   func testNumberCardValidatorShouldCanBeCompleted() throws {
     
     XCTAssertThrowsError(try numberValidator.canBeCompleted("6799")) { e in XCTAssertEqual(e.localizedDescription, "enter_valid_card_number") }
-    given(providerFinder.find(any())).willReturn(.visa)
+    providerFinder.findHandler = { _ in .visa }
     XCTAssertTrue(try numberValidator.canBeCompleted("4012 0010 3714 1112"))
     XCTAssertFalse(try numberValidator.canBeCompleted("4012 0010 3714 3"))
       
-    given(providerFinder.find(any())).willReturn(.maestro)
+    providerFinder.findHandler = { _ in .maestro }
     XCTAssertTrue(try numberValidator.canBeCompleted("6759 6498 2643 8453"))
     XCTAssertTrue(try numberValidator.canBeCompleted("6799 9901 0000 0000 019"))
 
       
-    given(providerFinder.find(any())).willReturn(.mastercard)
+    providerFinder.findHandler = { _ in .mastercard }
     XCTAssertTrue(try numberValidator.canBeCompleted("5598 6148 1656 3766"))
     XCTAssertTrue(try numberValidator.canBeCompleted("5555 5555"))
   }
@@ -128,7 +127,7 @@ final class DefaultPaymentCardValidatorTests: XCTestCase {
       
       XCTAssertThrowsError(try dateValidator.canBeCompleted("03")) { e in XCTAssertEqual(e.localizedDescription, "enter_valid_card_date") }
       
-      given(dateParser.parse(any())).will { self.dateFormatter.date(from: $0) }
+      dateParser.parseHandler = { self.dateFormatter.date(from: $0) }
       XCTAssertTrue(try dateValidator.canBeCompleted("03/2035"))
   }
 }

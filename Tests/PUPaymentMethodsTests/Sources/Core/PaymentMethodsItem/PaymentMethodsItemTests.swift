@@ -6,7 +6,6 @@
 //
 
 import XCTest
-import Mockingbird
 @testable import PUCore
 @testable import PUPaymentMethods
 @testable import PUTranslations
@@ -17,13 +16,13 @@ final class PaymentMethodsItemTests: XCTestCase {
 
   override func setUp() {
     super.setUp()
-    languageCodeProvider = mock(LanguageCodeProvider.self)
-    given(languageCodeProvider.languageCode()).willReturn("en")
+    languageCodeProvider = LanguageCodeProviderMock()
+    languageCodeProvider.languageCodeHandler = { "en" }
   }
 
   override func tearDown() {
     super.tearDown()
-    reset(languageCodeProvider)
+    languageCodeProvider = nil
   }
 
   func testPaymentMethodItemApplePayShouldReturnCorrectValues() {

@@ -9,6 +9,7 @@
 import PUCore
 #endif
 
+/// @mockable
 protocol PaymentMethodsItemFactoryProtocol {
   func item(_ paymentMethod: PaymentMethod) -> PaymentMethodsItem?
 }

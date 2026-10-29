@@ -8,6 +8,8 @@
 import Foundation
 
 /// The protocol which allows to implement different Date parsing mechanisms
+///
+/// <!-- @mockable -->
 public protocol PaymentCardDateParserProtocol {
 
   /// Method to parse the String into Date. For ex: supported formats: "MM/yy", "MM/yyyy"

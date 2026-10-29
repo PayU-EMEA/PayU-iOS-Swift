@@ -15,6 +15,7 @@ import PUCore
 import PUTranslations
 #endif
 
+/// @mockable
 protocol CVVAuthorizationPresenterProtocol {
   func presentCVVAlertViewController(
     from presentingViewController: UIViewController?,

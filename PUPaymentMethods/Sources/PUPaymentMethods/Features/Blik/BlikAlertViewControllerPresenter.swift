@@ -16,6 +16,8 @@ import PUTranslations
 #endif
 
 /// Protocol which defines the behavior of ``BlikAlertViewControllerPresenter``
+///
+/// <!-- @mockable -->
 public protocol BlikAlertViewControllerPresenterProtocol {
 
   /// Call this method when there is a need to display the ``BlikAlertViewControllerPresenter``

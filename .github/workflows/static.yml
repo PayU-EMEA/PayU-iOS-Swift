@@ -22,7 +22,7 @@ jobs:
       XCODE_SCHEME: "PUSDK"
       XCODE_DESTINATION: "generic/platform=iOS"
       XCODE_DERIVED_DATA_PATH: "docc"
-      XCODE_DOCS_OUTPUT_PATH: "docs "
+      XCODE_DOCS_OUTPUT_PATH: "docs"
       REPOSITORY_NAME: "PayU-iOS-Swift"
 
     runs-on: macos-26
@@ -32,7 +32,7 @@ jobs:
       run: sudo xcode-select -s /Applications/Xcode_26.5.app
 
     - name: Checkout
-      uses: actions/checkout@v6
+      uses: actions/checkout@v7
 
     - name: Show versions
       run: |
@@ -48,7 +48,6 @@ jobs:
         $(xcrun --find docc) process-archive transform-for-static-hosting "${{env.XCODE_DERIVED_DATA_PATH}}/Build/Products/Debug-iphoneos/${{env.XCODE_SCHEME}}.doccarchive" \
           --hosting-base-path '${{env.REPOSITORY_NAME}}' \
           --output-path '${{env.XCODE_DOCS_OUTPUT_PATH}}'
-        swift package resolve
 
     - name: Upload artifact
       id: deployment

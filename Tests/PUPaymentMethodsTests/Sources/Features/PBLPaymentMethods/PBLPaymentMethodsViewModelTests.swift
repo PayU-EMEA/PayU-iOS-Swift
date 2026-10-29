@@ -6,7 +6,6 @@
 //
 
 import XCTest
-import Mockingbird
 @testable import PUCore
 @testable import PUPaymentMethods
 
@@ -26,10 +25,11 @@ final class PBLPaymentMethodsViewModelTests: XCTestCase {
     ]
 
     configuration = PaymentMethodsConfiguration()
-    delegate = mock(PBLPaymentMethodsViewModelDelegate.self)
-    service = mock(PaymentMethodsServiceProtocol.self)
+    delegate = PBLPaymentMethodsViewModelDelegateMock()
+    service = PaymentMethodsServiceProtocolMock()
 
-    given(service.makePayByLinksPaymentMethodItems(for: any())).willReturn(items!)
+    let stubbedItems = items!
+    service.makePayByLinksPaymentMethodItemsHandler = { _ in stubbedItems }
     sut = PBLPaymentMethodsViewModel(configuration: configuration, service: service)
 
     sut.delegate = delegate
@@ -43,7 +43,8 @@ final class PBLPaymentMethodsViewModelTests: XCTestCase {
   }
 
   func testWhenInitializedThenShouldCallService() {
-    verify(service.makePayByLinksPaymentMethodItems(for: configuration)).wasCalled()
+    XCTAssertGreaterThan(service.makePayByLinksPaymentMethodItemsCallCount, 0)
+    XCTAssertEqual(service.makePayByLinksPaymentMethodItemsArgValues.last, configuration)
   }
 
   func testNumberOfSectionsReturnsCorrectValue() {
@@ -66,20 +67,16 @@ final class PBLPaymentMethodsViewModelTests: XCTestCase {
 
   func testWhenDidSelectItemAtIndexPathThenShouldInformDelegate() {
     sut.didSelectItem(at: .init(row: 0, section: 0))
-    verify(
-      delegate
-        .paymentMethodsViewModel(
-          any(),
-          didSelect: sut.items[0].paymentMethod as! PayByLink))
-    .wasCalled()
+    XCTAssertGreaterThan(delegate.paymentMethodsViewModelCallCount, 0)
+    XCTAssertEqual(
+      delegate.paymentMethodsViewModelArgValues.last?.payByLink,
+      sut.items[0].paymentMethod as! PayByLink)
 
     sut.didSelectItem(at: .init(row: 1, section: 0))
-    verify(
-      delegate
-        .paymentMethodsViewModel(
-          any(),
-          didSelect: sut.items[1].paymentMethod as! PayByLink))
-    .wasCalled()
+    XCTAssertGreaterThan(delegate.paymentMethodsViewModelCallCount, 0)
+    XCTAssertEqual(
+      delegate.paymentMethodsViewModelArgValues.last?.payByLink,
+      sut.items[1].paymentMethod as! PayByLink)
   }
 }
 

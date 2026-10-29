@@ -15,6 +15,7 @@ import PUAPI
 import PUCore
 #endif
 
+/// @mockable
 protocol PaymentCardNetworkClientProtocol {
   func tokenize(
     tokenCreateRequest: TokenCreateRequest,

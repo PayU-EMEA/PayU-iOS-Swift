@@ -8,6 +8,8 @@
 import Foundation
 
 /// Protocol which allows to define the primary `languageCode` for translations
+///
+/// <!-- @mockable -->
 public protocol LanguageCodeProvider {
 
   /// Method to be implemented by instance

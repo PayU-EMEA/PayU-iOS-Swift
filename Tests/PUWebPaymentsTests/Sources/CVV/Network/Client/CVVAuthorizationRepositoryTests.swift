@@ -2,7 +2,6 @@
 //  CVVAuthorizationRepositoryTests.swift
 //
 
-import Mockingbird
 import XCTest
 
 @testable import PUAPI
@@ -18,7 +17,7 @@ final class CVVAuthorizationRepositoryTests: XCTestCase {
 
   override func setUp() {
     super.setUp()
-    networkClient = mock(CVVAuthorizationNetworkClientProtocol.self)
+    networkClient = CVVAuthorizationNetworkClientProtocolMock()
     sut = CVVAuthorizationRepository(client: networkClient)
 
     refReqId = UUID().uuidString
@@ -27,7 +26,7 @@ final class CVVAuthorizationRepositoryTests: XCTestCase {
 
   override func tearDown() {
     super.tearDown()
-    reset(networkClient)
+    networkClient = nil
     refReqId = nil
     cvv = nil
     sut = nil
@@ -46,13 +45,7 @@ final class CVVAuthorizationRepositoryTests: XCTestCase {
       description: "expectationAuthorizeCVV"
     )
 
-    given(
-      networkClient
-        .authorizeCVV(
-          cvvAuthorizationRequest: any(CVVAuthorizationRequest.self),
-          completionHandler: any())
-    )
-    .will { cvvAuthorizationRequest, completionHandler in
+    networkClient.authorizeCVVHandler = { cvvAuthorizationRequest, completionHandler in
       completionHandler(.success(()))
     }
 
@@ -69,13 +62,10 @@ final class CVVAuthorizationRepositoryTests: XCTestCase {
       }
     )
 
-    verify(
-      networkClient
-        .authorizeCVV(
-          cvvAuthorizationRequest: cvvAuthorizationRequest,
-          completionHandler: any())
+    XCTAssertTrue(
+      networkClient.authorizeCVVArgValues
+        .contains(cvvAuthorizationRequest)
     )
-    .wasCalled()
 
     wait(for: [expectationAuthorizeCVV], timeout: 1)
   }
@@ -95,13 +85,7 @@ final class CVVAuthorizationRepositoryTests: XCTestCase {
       description: "expectationAuthorizeCVV"
     )
 
-    given(
-      networkClient
-        .authorizeCVV(
-          cvvAuthorizationRequest: any(CVVAuthorizationRequest.self),
-          completionHandler: any())
-    )
-    .will { cvvAuthorizationRequest, completionHandler in
+    networkClient.authorizeCVVHandler = { cvvAuthorizationRequest, completionHandler in
       completionHandler(.failure(ErrorMock()))
     }
 
@@ -118,13 +102,10 @@ final class CVVAuthorizationRepositoryTests: XCTestCase {
       }
     )
 
-    verify(
-      networkClient
-        .authorizeCVV(
-          cvvAuthorizationRequest: cvvAuthorizationRequest,
-          completionHandler: any())
+    XCTAssertTrue(
+      networkClient.authorizeCVVArgValues
+        .contains(cvvAuthorizationRequest)
     )
-    .wasCalled()
 
     wait(for: [expectationAuthorizeCVV], timeout: 1)
   }

@@ -8,6 +8,8 @@
 import Foundation
 
 /// Protocol which defines how to save and get the last selected payment method value associated with the user
+///
+/// <!-- @mockable -->
 public protocol PaymentMethodsStorageProtocol {
   /// Allows to get the last selected payment method value associated with the user
   /// - Returns: last selected payment method value

@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// @mockable
 protocol CVVAuthorizationRepositoryProtocol {
   func authorizeCVV(
     cvvAuthorizationRequest: CVVAuthorizationRequest,

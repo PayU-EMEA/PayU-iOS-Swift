@@ -8,6 +8,7 @@
 import Foundation
 import WebKit
 
+/// @mockable
 protocol WebPaymentsViewModelDelegate: AnyObject {
   func webPaymentsViewModel(_ viewModel: WebPaymentsViewModel, didComplete result: WebPaymentsResult)
   func webPaymentsViewModel(_ viewModel: WebPaymentsViewModel, didUpdate currentUrl: URL?)

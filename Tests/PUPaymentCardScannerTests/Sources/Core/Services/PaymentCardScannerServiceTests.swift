@@ -6,7 +6,6 @@
 //
 
 import XCTest
-import Mockingbird
 @testable import PUCore
 @testable import PUPaymentCardScanner
 
@@ -23,19 +22,19 @@ final class PaymentCardScannerServiceTests: XCTestCase {
 
   override func setUp() {
     super.setUp()
-    paymentCardDateFormatter = mock(PaymentCardFormatterProtocol.self)
-    paymentCardDateValidator = mock(PaymentCardValidatorProtocol.self)
-    paymentCardNumberFormatter = mock(PaymentCardFormatterProtocol.self)
-    paymentCardNumberValidator = mock(PaymentCardValidatorProtocol.self)
+    paymentCardDateFormatter = PaymentCardFormatterProtocolMock()
+    paymentCardDateValidator = PaymentCardValidatorProtocolMock()
+    paymentCardNumberFormatter = PaymentCardFormatterProtocolMock()
+    paymentCardNumberValidator = PaymentCardValidatorProtocolMock()
     sut = makePaymentCardScannerService(option: .numberAndDate)
   }
 
   override func tearDown() {
     super.tearDown()
-    reset(paymentCardDateFormatter)
-    reset(paymentCardDateValidator)
-    reset(paymentCardNumberFormatter)
-    reset(paymentCardNumberValidator)
+    paymentCardDateFormatter = nil
+    paymentCardDateValidator = nil
+    paymentCardNumberFormatter = nil
+    paymentCardNumberValidator = nil
     sut = nil
   }
 
@@ -48,11 +47,9 @@ final class PaymentCardScannerServiceTests: XCTestCase {
   }
 
   func testIsProcessedShouldReturnTrueWhenResultIsProcessed() throws {
-    given(paymentCardDateValidator.validate(any())).willReturn(())
-    given(paymentCardDateFormatter.formatted(any())).willReturn(cardExpirationDate)
+    paymentCardDateFormatter.formattedHandler = { _ in self.cardExpirationDate }
 
-    given(paymentCardNumberValidator.validate(any())).willReturn(())
-    given(paymentCardNumberFormatter.formatted(any())).willReturn(cardNumber)
+    paymentCardNumberFormatter.formattedHandler = { _ in self.cardNumber }
 
     sut.process(cardNumber)
     sut.process(cardExpirationDate)
@@ -63,11 +60,11 @@ final class PaymentCardScannerServiceTests: XCTestCase {
   func testIsProcessedShouldReturnTrueWhenResultIsNotProcessed() throws {
     struct ErrorMock: Error {  }
 
-    given(paymentCardDateValidator.validate(any())).willThrow(ErrorMock())
-    given(paymentCardDateFormatter.formatted(any())).willReturn(cardExpirationDate)
+    paymentCardDateValidator.validateHandler = { _ in throw ErrorMock() }
+    paymentCardDateFormatter.formattedHandler = { _ in self.cardExpirationDate }
 
-    given(paymentCardNumberValidator.validate(any())).willThrow(ErrorMock())
-    given(paymentCardNumberFormatter.formatted(any())).willReturn(cardNumber)
+    paymentCardNumberValidator.validateHandler = { _ in throw ErrorMock() }
+    paymentCardNumberFormatter.formattedHandler = { _ in self.cardNumber }
 
     sut.process(cardNumber)
     sut.process(cardExpirationDate)
@@ -78,59 +75,57 @@ final class PaymentCardScannerServiceTests: XCTestCase {
   func testProcessShouldSaveCardNumberIfValid() throws {
     struct ErrorMock: Error {  }
 
-    given(paymentCardDateValidator.validate(any())).willThrow(ErrorMock())
-    given(paymentCardDateFormatter.formatted(any())).willReturn("")
+    paymentCardDateValidator.validateHandler = { _ in throw ErrorMock() }
+    paymentCardDateFormatter.formattedHandler = { _ in "" }
 
-    given(paymentCardNumberValidator.validate(any())).willReturn(())
-    given(paymentCardNumberFormatter.formatted(any())).willReturn(cardNumber)
+    paymentCardNumberFormatter.formattedHandler = { _ in self.cardNumber }
 
     XCTAssertNil(sut.result.cardNumber)
     sut.process(cardNumber)
 
-    verify(paymentCardNumberValidator.validate(cardNumber)).wasCalled()
-    verify(paymentCardNumberFormatter.formatted(cardNumber)).wasCalled()
+    XCTAssertTrue(paymentCardNumberValidator.validateArgValues.contains(cardNumber))
+    XCTAssertTrue(paymentCardNumberFormatter.formattedArgValues.contains(cardNumber))
     XCTAssertEqual(sut.result.cardNumber, cardNumber)
   }
 
   func testProcessShouldNotSaveCardNumberIfNotValid() throws {
     struct ErrorMock: Error {  }
 
-    given(paymentCardDateValidator.validate(any())).willThrow(ErrorMock())
-    given(paymentCardNumberValidator.validate(any())).willThrow(ErrorMock())
+    paymentCardDateValidator.validateHandler = { _ in throw ErrorMock() }
+    paymentCardNumberValidator.validateHandler = { _ in throw ErrorMock() }
 
     sut.process(cardNumber)
 
-    verify(paymentCardDateFormatter.formatted(any())).wasNeverCalled()
-    verify(paymentCardNumberFormatter.formatted(any())).wasNeverCalled()
+    XCTAssertEqual(paymentCardDateFormatter.formattedCallCount, 0)
+    XCTAssertEqual(paymentCardNumberFormatter.formattedCallCount, 0)
     XCTAssertNil(sut.result.cardNumber)
   }
 
   func testProcessShouldSaveCardExpirationDateIfValid() throws {
     struct ErrorMock: Error {  }
 
-    given(paymentCardDateValidator.validate(any())).willReturn(())
-    given(paymentCardDateFormatter.formatted(any())).willReturn(cardExpirationDate)
+    paymentCardDateFormatter.formattedHandler = { _ in self.cardExpirationDate }
 
-    given(paymentCardNumberValidator.validate(any())).willThrow(ErrorMock())
-    given(paymentCardNumberFormatter.formatted(any())).willReturn("")
+    paymentCardNumberValidator.validateHandler = { _ in throw ErrorMock() }
+    paymentCardNumberFormatter.formattedHandler = { _ in "" }
 
     XCTAssertNil(sut.result.cardExpirationDate)
     sut.process(cardExpirationDate)
-    verify(paymentCardDateValidator.validate(cardExpirationDate)).wasCalled()
-    verify(paymentCardDateFormatter.formatted(cardExpirationDate)).wasCalled()
+    XCTAssertTrue(paymentCardDateValidator.validateArgValues.contains(cardExpirationDate))
+    XCTAssertTrue(paymentCardDateFormatter.formattedArgValues.contains(cardExpirationDate))
     XCTAssertEqual(sut.result.cardExpirationDate, cardExpirationDate)
   }
 
   func testProcessShouldNotSaveCardExpirationDateIfNotValid() throws {
     struct ErrorMock: Error {  }
 
-    given(paymentCardDateValidator.validate(any())).willThrow(ErrorMock())
-    given(paymentCardNumberValidator.validate(any())).willThrow(ErrorMock())
+    paymentCardDateValidator.validateHandler = { _ in throw ErrorMock() }
+    paymentCardNumberValidator.validateHandler = { _ in throw ErrorMock() }
 
     sut.process(cardExpirationDate)
 
-    verify(paymentCardDateFormatter.formatted(any())).wasNeverCalled()
-    verify(paymentCardNumberFormatter.formatted(any())).wasNeverCalled()
+    XCTAssertEqual(paymentCardDateFormatter.formattedCallCount, 0)
+    XCTAssertEqual(paymentCardNumberFormatter.formattedCallCount, 0)
     XCTAssertNil(sut.result.cardExpirationDate)
   }
 

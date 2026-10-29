@@ -11,6 +11,7 @@ import UIKit
 import PUCore
 #endif
 
+/// @mockable
 protocol PaymentMethodsWidgetViewModelDelegate: AnyObject {
   func viewModel(_ viewModel: PaymentMethodsWidgetViewModel, didUpdateState state: PaymentMethodsWidgetState)
   func viewModel(_ viewModel: PaymentMethodsWidgetViewModel, shouldPresentPaymentMethods configuration: PaymentMethodsConfiguration, storage: PaymentMethodsStorageProtocol?)

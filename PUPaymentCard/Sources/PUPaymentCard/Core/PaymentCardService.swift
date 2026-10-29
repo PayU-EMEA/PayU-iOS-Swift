@@ -21,6 +21,8 @@ import PUTheme
 #endif
 
 /// The protocol which is the abstraction between user interface and API
+///
+/// <!-- @mockable -->
 public protocol PaymentCardServiceProtocol {
   /// Method to tokenize the payment card details entered by user in the ``PaymentCardWidget``
   /// - Parameters:
@@ -53,6 +55,7 @@ protocol PaymentCardServiceInternalProtocol: PaymentCardServiceProtocol {
   func didTapHintCVV()
 }
 
+/// @mockable
 protocol PaymentCardServiceDelegate: AnyObject {
   func paymentCardServiceShouldValidate(_ service: PaymentCardService) throws
   func paymentCardServiceShouldUpdate(_ service: PaymentCardService)

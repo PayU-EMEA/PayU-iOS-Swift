@@ -2,7 +2,6 @@
 //  PaymentCardRepositoryTests.swift
 //
 
-import Mockingbird
 import XCTest
 
 @testable import PUAPI
@@ -17,15 +16,15 @@ final class PaymentCardRepositoryTests: XCTestCase {
 
   override func setUp() {
     super.setUp()
-    client = mock(PaymentCardNetworkClientProtocol.self)
-    finder = mock(PaymentCardProviderFinderProtocol.self)
+    client = PaymentCardNetworkClientProtocolMock()
+    finder = PaymentCardProviderFinderProtocolMock()
     sut = PaymentCardRepository(client: client, finder: finder)
   }
 
   override func tearDown() {
     super.tearDown()
-    reset(client)
-    reset(finder)
+    client = nil
+    finder = nil
     sut = nil
   }
 
@@ -35,20 +34,11 @@ final class PaymentCardRepositoryTests: XCTestCase {
     let paymentCardProvider = PaymentCardProvider.mastercard
     let expectation = XCTestExpectation()
 
-    given(
-      client
-        .tokenize(
-          tokenCreateRequest: any(),
-          completionHandler: any())
-    )
-    .will { tokenCreateRequest, completionHandler in
+    client.tokenizeHandler = { tokenCreateRequest, completionHandler in
       completionHandler(.success(self.makeTokenCreateResponse()))
     }
 
-    given(
-      finder.find(any())
-    )
-    .willReturn(paymentCardProvider)
+    finder.findHandler = { _ in paymentCardProvider }
 
     sut.tokenize(
       tokenCreateRequest: makeTokenCreateRequest(),
@@ -63,19 +53,13 @@ final class PaymentCardRepositoryTests: XCTestCase {
       }
     )
 
-    verify(
-      client
-        .tokenize(
-          tokenCreateRequest: makeTokenCreateRequest(),
-          completionHandler: any())
-    )
-    .wasCalled()
+    XCTAssertGreaterThan(client.tokenizeCallCount, 0)
+    XCTAssertEqual(
+      client.tokenizeArgValues.last,
+      makeTokenCreateRequest())
 
-    verify(
-      finder.find(
-        makeTokenCreateRequest().card.number)
-    )
-    .wasCalled()
+    XCTAssertGreaterThan(finder.findCallCount, 0)
+    XCTAssertEqual(finder.findArgValues.last, makeTokenCreateRequest().card.number)
 
     wait(for: [expectation], timeout: 1)
   }
@@ -86,20 +70,11 @@ final class PaymentCardRepositoryTests: XCTestCase {
     let paymentCardProvider: PaymentCardProvider? = nil
     let expectation = XCTestExpectation()
 
-    given(
-      client
-        .tokenize(
-          tokenCreateRequest: any(),
-          completionHandler: any())
-    )
-    .will { tokenCreateRequest, completionHandler in
+    client.tokenizeHandler = { tokenCreateRequest, completionHandler in
       completionHandler(.success(self.makeTokenCreateResponse()))
     }
 
-    given(
-      finder.find(any())
-    )
-    .willReturn(nil)
+    finder.findHandler = { _ in nil }
 
     sut.tokenize(
       tokenCreateRequest: makeTokenCreateRequest(),
@@ -114,19 +89,13 @@ final class PaymentCardRepositoryTests: XCTestCase {
       }
     )
 
-    verify(
-      client
-        .tokenize(
-          tokenCreateRequest: makeTokenCreateRequest(),
-          completionHandler: any())
-    )
-    .wasCalled()
+    XCTAssertGreaterThan(client.tokenizeCallCount, 0)
+    XCTAssertEqual(
+      client.tokenizeArgValues.last,
+      makeTokenCreateRequest())
 
-    verify(
-      finder.find(
-        makeTokenCreateRequest().card.number)
-    )
-    .wasCalled()
+    XCTAssertGreaterThan(finder.findCallCount, 0)
+    XCTAssertEqual(finder.findArgValues.last, makeTokenCreateRequest().card.number)
 
     wait(for: [expectation], timeout: 1)
   }
@@ -137,13 +106,7 @@ final class PaymentCardRepositoryTests: XCTestCase {
 
     let expectation = XCTestExpectation()
 
-    given(
-      client
-        .tokenize(
-          tokenCreateRequest: any(),
-          completionHandler: any())
-    )
-    .will { tokenCreateRequest, completionHandler in
+    client.tokenizeHandler = { tokenCreateRequest, completionHandler in
       completionHandler(.failure(ErrorMock()))
     }
 
@@ -159,18 +122,12 @@ final class PaymentCardRepositoryTests: XCTestCase {
       }
     )
 
-    verify(
-      client
-        .tokenize(
-          tokenCreateRequest: makeTokenCreateRequest(),
-          completionHandler: any())
-    )
-    .wasCalled()
+    XCTAssertGreaterThan(client.tokenizeCallCount, 0)
+    XCTAssertEqual(
+      client.tokenizeArgValues.last,
+      makeTokenCreateRequest())
 
-    verify(
-      finder.find(any())
-    )
-    .wasNeverCalled()
+    XCTAssertEqual(finder.findCallCount, 0)
 
     wait(for: [expectation], timeout: 1)
   }

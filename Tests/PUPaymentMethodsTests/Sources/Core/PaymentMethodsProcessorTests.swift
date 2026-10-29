@@ -6,7 +6,6 @@
 //
 
 import XCTest
-import Mockingbird
 @testable import PUApplePay
 @testable import PUCore
 @testable import PUPaymentMethods
@@ -23,11 +22,11 @@ final class PaymentMethodsProcessorTests: XCTestCase {
 
   override func setUp() {
     super.setUp()
-    applePayPaymentRequestProvider = mock(PaymentMethodsProcessorApplePayPaymentRequestProvider.self)
-    blikAuthorizationCodePresenter = mock(PaymentMethodsProcessorBlikAuthorizationCodePresenter.self)
+    applePayPaymentRequestProvider = PaymentMethodsProcessorApplePayPaymentRequestProviderMock()
+    blikAuthorizationCodePresenter = PaymentMethodsProcessorBlikAuthorizationCodePresenterMock()
 
-    applePayService = mock(ApplePayServiceProtocol.self)
-    blikAlertViewControllerPresenter = mock(BlikAlertViewControllerPresenterProtocol.self)
+    applePayService = ApplePayServiceProtocolMock()
+    blikAlertViewControllerPresenter = BlikAlertViewControllerPresenterProtocolMock()
 
     sut = PaymentMethodsProcessor(
       applePayService: applePayService,
@@ -39,11 +38,11 @@ final class PaymentMethodsProcessorTests: XCTestCase {
 
   override func tearDown() {
     super.tearDown()
-    reset(applePayPaymentRequestProvider)
-    reset(blikAuthorizationCodePresenter)
+    applePayPaymentRequestProvider = nil
+    blikAuthorizationCodePresenter = nil
 
-    reset(applePayService)
-    reset(blikAlertViewControllerPresenter)
+    applePayService = nil
+    blikAlertViewControllerPresenter = nil
 
     sut = nil
   }
@@ -51,22 +50,15 @@ final class PaymentMethodsProcessorTests: XCTestCase {
   func testProcessPaymentMethodWhenApplePayThenShouldCallApplePayServiceToAuthorize() {
     let paymentMethod = makeApplePay()
 
-    given(
-      applePayPaymentRequestProvider.paymentRequest())
-    .willReturn(makePaymentRequest())
+    let stubbedPaymentRequest = makePaymentRequest()
+    applePayPaymentRequestProvider.paymentRequestHandler = { stubbedPaymentRequest }
 
     sut.process(
       paymentMethod: paymentMethod,
       onDidProcess: { payMethod in },
       onDidFail: { error in })
 
-    verify(
-      applePayService.makePayment(
-        paymentRequest: any(),
-        onDidAuthorize: any(),
-        onDidCancel: any(),
-        onDidFail: any()))
-    .wasCalled()
+    XCTAssertGreaterThan(applePayService.makePaymentCallCount, 0)
   }
 
   func testProcessPaymentMethodWhenApplePayWhenApplePayServiceDidAuthorizeThenShouldComplete() {
@@ -79,18 +71,10 @@ final class PaymentMethodsProcessorTests: XCTestCase {
       value: PaymentMethodValue.applePay,
       authorizationCode: paymentDataToken)
 
-    given(
-      applePayPaymentRequestProvider.paymentRequest())
-    .willReturn(makePaymentRequest())
+    let stubbedPaymentRequest = makePaymentRequest()
+    applePayPaymentRequestProvider.paymentRequestHandler = { stubbedPaymentRequest }
 
-    given(
-      applePayService
-        .makePayment(
-          paymentRequest: any(),
-          onDidAuthorize: any(),
-          onDidCancel: any(),
-          onDidFail: any()))
-    .will { paymentRequest, onDidAuthorize, onDidCancel, onDidFail in
+    applePayService.makePaymentHandler = { paymentRequest, onDidAuthorize, onDidCancel, onDidFail in
       onDidAuthorize(paymentDataToken)
     }
 
@@ -107,18 +91,10 @@ final class PaymentMethodsProcessorTests: XCTestCase {
     let expectation = XCTestExpectation()
     expectation.isInverted = true
 
-    given(
-      applePayPaymentRequestProvider.paymentRequest())
-    .willReturn(makePaymentRequest())
+    let stubbedPaymentRequest = makePaymentRequest()
+    applePayPaymentRequestProvider.paymentRequestHandler = { stubbedPaymentRequest }
 
-    given(
-      applePayService
-        .makePayment(
-          paymentRequest: any(),
-          onDidAuthorize: any(),
-          onDidCancel: any(),
-          onDidFail: any()))
-    .will { paymentRequest, onDidAuthorize, onDidCancel, onDidFail in
+    applePayService.makePaymentHandler = { paymentRequest, onDidAuthorize, onDidCancel, onDidFail in
       onDidCancel()
     }
 
@@ -136,18 +112,10 @@ final class PaymentMethodsProcessorTests: XCTestCase {
     let paymentMethod = makeApplePay()
     let expectation = XCTestExpectation()
 
-    given(
-      applePayPaymentRequestProvider.paymentRequest())
-    .willReturn(makePaymentRequest())
+    let stubbedPaymentRequest = makePaymentRequest()
+    applePayPaymentRequestProvider.paymentRequestHandler = { stubbedPaymentRequest }
 
-    given(
-      applePayService
-        .makePayment(
-          paymentRequest: any(),
-          onDidAuthorize: any(),
-          onDidCancel: any(),
-          onDidFail: any()))
-    .will { paymentRequest, onDidAuthorize, onDidCancel, onDidFail in
+    applePayService.makePaymentHandler = { paymentRequest, onDidAuthorize, onDidCancel, onDidFail in
       onDidFail(ErrorMock())
     }
 
@@ -163,22 +131,16 @@ final class PaymentMethodsProcessorTests: XCTestCase {
     let paymentMethod = makeBlikCode(authorizationCode: nil)
     let viewController = UIViewController()
 
-    given(
-      blikAuthorizationCodePresenter.presentingViewController())
-    .willReturn(viewController)
+    blikAuthorizationCodePresenter.presentingViewControllerHandler = { viewController }
 
     sut.process(
       paymentMethod: paymentMethod,
       onDidProcess: { payMethod in },
       onDidFail: { error in })
 
-    verify(
-      blikAlertViewControllerPresenter
-        .presentBlikAlertViewController(
-          from: viewController,
-          onDidConfirm: any(),
-          onDidCancel: any()))
-    .wasCalled()
+    XCTAssertGreaterThan(blikAlertViewControllerPresenter.presentBlikAlertViewControllerCallCount, 0)
+    XCTAssertTrue(
+      (blikAlertViewControllerPresenter.presentBlikAlertViewControllerArgValues.last ?? nil) === viewController)
   }
 
   func testProcessPaymentMethodWhenBlikCodeWhenAuthorizationCodeIsNilWhenDidConfirmThenShouldComplete() {
@@ -191,17 +153,9 @@ final class PaymentMethodsProcessorTests: XCTestCase {
       type: .blikToken,
       authorizationCode: authorizationCode)
 
-    given(
-      blikAuthorizationCodePresenter.presentingViewController())
-    .willReturn(viewController)
+    blikAuthorizationCodePresenter.presentingViewControllerHandler = { viewController }
 
-    given(
-      blikAlertViewControllerPresenter
-        .presentBlikAlertViewController(
-          from: any(),
-          onDidConfirm: any(),
-          onDidCancel: any()))
-    .will { from, onDidConfirm, onDidCancel in
+    blikAlertViewControllerPresenter.presentBlikAlertViewControllerHandler = { from, onDidConfirm, onDidCancel in
       onDidConfirm(authorizationCode)
     }
 
@@ -219,17 +173,9 @@ final class PaymentMethodsProcessorTests: XCTestCase {
     let expectation = XCTestExpectation()
     expectation.isInverted = true
 
-    given(
-      blikAuthorizationCodePresenter.presentingViewController())
-    .willReturn(viewController)
+    blikAuthorizationCodePresenter.presentingViewControllerHandler = { viewController }
 
-    given(
-      blikAlertViewControllerPresenter
-        .presentBlikAlertViewController(
-          from: any(),
-          onDidConfirm: any(),
-          onDidCancel: any()))
-    .will { from, onDidConfirm, onDidCancel in
+    blikAlertViewControllerPresenter.presentBlikAlertViewControllerHandler = { from, onDidConfirm, onDidCancel in
       onDidCancel()
     }
 
@@ -251,9 +197,7 @@ final class PaymentMethodsProcessorTests: XCTestCase {
       type: .blikToken,
       authorizationCode: authorizationCode)
 
-    given(
-      blikAuthorizationCodePresenter.presentingViewController())
-    .willReturn(viewController)
+    blikAuthorizationCodePresenter.presentingViewControllerHandler = { viewController }
 
     sut.process(
       paymentMethod: paymentMethod,
