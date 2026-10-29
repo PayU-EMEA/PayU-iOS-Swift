@@ -8,6 +8,8 @@
 import Foundation
 
 /// The protocol which defines the behavior for ApplePayService.
+///
+/// <!-- @mockable -->
 public protocol ApplePayServiceProtocol {
 
   /// Determine whether this device can process payments using *PayU* networks and capabilities bitmask

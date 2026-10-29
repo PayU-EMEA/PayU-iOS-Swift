@@ -2,7 +2,6 @@
 //  CVVAuthorizationNetworkClientTests.swift
 //
 
-import Mockingbird
 import XCTest
 
 @testable import PUAPI
@@ -18,7 +17,7 @@ final class CVVAuthorizationNetworkClientTests: XCTestCase {
 
   override func setUp() {
     super.setUp()
-    networkClient = mock(NetworkClientProtocol.self)
+    networkClient = NetworkClientProtocolMock()
     sut = CVVAuthorizationNetworkClient(client: networkClient)
 
     refReqId = UUID().uuidString
@@ -27,7 +26,7 @@ final class CVVAuthorizationNetworkClientTests: XCTestCase {
 
   override func tearDown() {
     super.tearDown()
-    reset(networkClient)
+    networkClient = nil
     refReqId = nil
     cvv = nil
     sut = nil
@@ -47,15 +46,8 @@ final class CVVAuthorizationNetworkClientTests: XCTestCase {
       description: "expectationAuthorizeCVV"
     )
 
-    given(
-      networkClient
-        .request(
-          target: any(CVVAuthorizationNetworkTarget.self),
-          type: any(type(of: EmptyResponse.self)),
-          completionHandler: any())
-    )
-    .will { target, type, completionHandler in
-      completionHandler(.success(cvvAuthorizationResponse))
+    networkClient.requestHandler = { _, _, completion in
+      (completion as! (Result<EmptyResponse, Error>) -> Void)(.success(cvvAuthorizationResponse))
     }
 
     sut.authorizeCVV(
@@ -71,14 +63,9 @@ final class CVVAuthorizationNetworkClientTests: XCTestCase {
       }
     )
 
-    verify(
-      networkClient
-        .request(
-          target: any(CVVAuthorizationNetworkTarget.self),
-          type: any(type(of: EmptyResponse.self)),
-          completionHandler: any())
-    )
-    .wasCalled()
+    XCTAssertGreaterThan(networkClient.requestCallCount, 0)
+    XCTAssertTrue(networkClient.requestArgValues.last?.target is CVVAuthorizationNetworkTarget)
+    XCTAssertTrue(networkClient.requestArgValues.last?.type is EmptyResponse.Type)
 
     wait(for: [expectationAuthorizeCVV], timeout: 1)
   }
@@ -97,15 +84,8 @@ final class CVVAuthorizationNetworkClientTests: XCTestCase {
       description: "expectationAuthorizeCVV"
     )
 
-    given(
-      networkClient
-        .request(
-          target: any(CVVAuthorizationNetworkTarget.self),
-          type: any(type(of: EmptyResponse.self)),
-          completionHandler: any())
-    )
-    .will { target, type, completionHandler in
-      completionHandler(.failure(ErrorMock()))
+    networkClient.requestHandler = { _, _, completion in
+      (completion as! (Result<EmptyResponse, Error>) -> Void)(.failure(ErrorMock()))
     }
 
     sut.authorizeCVV(
@@ -121,14 +101,9 @@ final class CVVAuthorizationNetworkClientTests: XCTestCase {
       }
     )
 
-    verify(
-      networkClient
-        .request(
-          target: any(CVVAuthorizationNetworkTarget.self),
-          type: any(type(of: EmptyResponse.self)),
-          completionHandler: any())
-    )
-    .wasCalled()
+    XCTAssertGreaterThan(networkClient.requestCallCount, 0)
+    XCTAssertTrue(networkClient.requestArgValues.last?.target is CVVAuthorizationNetworkTarget)
+    XCTAssertTrue(networkClient.requestArgValues.last?.type is EmptyResponse.Type)
 
     wait(for: [expectationAuthorizeCVV], timeout: 1)
   }

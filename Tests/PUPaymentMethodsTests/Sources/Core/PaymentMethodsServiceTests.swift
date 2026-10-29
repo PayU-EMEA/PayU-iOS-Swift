@@ -5,7 +5,6 @@
 //
 
 import XCTest
-import Mockingbird
 @testable import PUCore
 @testable import PUPaymentMethods
 
@@ -18,12 +17,12 @@ final class PaymentMethodsServiceTests: XCTestCase {
 
   override func setUp() {
     super.setUp()
-    factory = mock(PaymentMethodsItemFactoryProtocol.self)
-    storage = mock(PaymentMethodsStorageProtocol.self)
+    factory = PaymentMethodsItemFactoryProtocolMock()
+    storage = PaymentMethodsStorageProtocolMock()
     sut = PaymentMethodsService(factory: factory, storage: storage)
 
     // stubbing
-    given(factory.item(any())).will { paymentMethod in
+    factory.itemHandler = { paymentMethod in
       switch paymentMethod {
         case let applePay as ApplePay:
           return PaymentMethodItemApplePay(applePay: applePay)
@@ -45,8 +44,8 @@ final class PaymentMethodsServiceTests: XCTestCase {
 
   override func tearDown() {
     super.tearDown()
-    reset(factory)
-    reset(storage)
+    factory = nil
+    storage = nil
     sut = nil
   }
 
@@ -293,7 +292,7 @@ final class PaymentMethodsServiceTests: XCTestCase {
   func testWhenStorageReturnsSelectedPaymentValueThenShouldPlaceItAsFirst() {
     let payByLink = makePayByLink()
 
-    given(storage.getSelectedPaymentMethodValue()).willReturn(payByLink.value)
+    storage.getSelectedPaymentMethodValueHandler = { payByLink.value }
 
     let blikTokens: [BlikToken] = [makeBlikToken(), makeBlikToken()]
     let cardTokens: [CardToken] = [makeCardToken(), makeCardToken()]
@@ -311,7 +310,7 @@ final class PaymentMethodsServiceTests: XCTestCase {
   func testWhenStorageReturnsNilThenShouldReturnEmptyPaymentMethod() {
     let payByLink = makePayByLink()
 
-    given(storage.getSelectedPaymentMethodValue()).willReturn(nil)
+    storage.getSelectedPaymentMethodValueHandler = { nil }
 
     let blikTokens: [BlikToken] = [makeBlikToken(), makeBlikToken()]
     let cardTokens: [CardToken] = [makeCardToken(), makeCardToken()]
@@ -329,7 +328,7 @@ final class PaymentMethodsServiceTests: XCTestCase {
   func testWhenStorageReturnsSelectedPaymentValueThenShouldReturnSavedPaymentMethod() {
     let payByLink = makePayByLink()
 
-    given(storage.getSelectedPaymentMethodValue()).willReturn(payByLink.value)
+    storage.getSelectedPaymentMethodValueHandler = { payByLink.value }
 
     let blikTokens: [BlikToken] = [makeBlikToken(), makeBlikToken()]
     let cardTokens: [CardToken] = [makeCardToken(), makeCardToken()]

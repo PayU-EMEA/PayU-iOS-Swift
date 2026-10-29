@@ -6,7 +6,6 @@
 //
 
 import XCTest
-import Mockingbird
 @testable import PUCore
 @testable import PUTranslations
 
@@ -16,16 +15,16 @@ final class StringExtensionsTests: XCTestCase {
 
   override func setUp() {
     super.setUp()
-    languageCodeProvider = mock(LanguageCodeProvider.self)
+    languageCodeProvider = LanguageCodeProviderMock()
   }
 
   override func tearDown() {
     super.tearDown()
-    reset(languageCodeProvider)
+    languageCodeProvider = nil
   }
 
   func testShoudReturnSingularTranslationForSingularTableInEnglish() throws {
-    given(languageCodeProvider.languageCode()).willReturn("en")
+    languageCodeProvider.languageCodeHandler = { "en" }
 
     XCTAssertEqual(
       "card_number"
@@ -37,7 +36,7 @@ final class StringExtensionsTests: XCTestCase {
   }
 
   func testShoudNotReturnSingularTranslationForPluralTableInEnglish() throws {
-    given(languageCodeProvider.languageCode()).willReturn("en")
+    languageCodeProvider.languageCodeHandler = { "en" }
 
     XCTAssertEqual(
       "card_number"
@@ -50,7 +49,7 @@ final class StringExtensionsTests: XCTestCase {
 
 
   func testShoudReturnSingularTranslationForSingularTableInSpanish() throws {
-    given(languageCodeProvider.languageCode()).willReturn("es")
+    languageCodeProvider.languageCodeHandler = { "es" }
 
     XCTAssertEqual(
       "card_number"
@@ -62,7 +61,7 @@ final class StringExtensionsTests: XCTestCase {
   }
 
   func testShoudNotReturnSingularTranslationForPluralTableInSpanish() throws {
-    given(languageCodeProvider.languageCode()).willReturn("es")
+    languageCodeProvider.languageCodeHandler = { "es" }
 
     XCTAssertEqual(
       "card_number"

@@ -37,6 +37,8 @@ public protocol PaymentMethodsProcessorProtocol {
 }
 
 /// Protocol which defines the `paymentRequest` for ``PaymentMethodsProcessor``
+///
+/// <!-- @mockable -->
 public protocol PaymentMethodsProcessorApplePayPaymentRequestProvider: AnyObject {
 
   /// Implementation must return the instance of `PaymentRequest` class. See more details in `PUApplePay` package.
@@ -45,6 +47,8 @@ public protocol PaymentMethodsProcessorApplePayPaymentRequestProvider: AnyObject
 }
 
 /// Protocol which defines the `presentingViewController` for ``PaymentMethodsProcessor``
+///
+/// <!-- @mockable -->
 public protocol PaymentMethodsProcessorBlikAuthorizationCodePresenter: AnyObject {
 
   /// Implementation must return the instance of `UIViewController` class, from which the BLIK alert view controller

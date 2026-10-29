@@ -2,7 +2,6 @@
 //  CVVAuthorizationServiceTests.swift
 //
 
-import Mockingbird
 import XCTest
 
 @testable import PUWebPayments
@@ -16,9 +15,9 @@ final class CVVAuthorizationServiceTests: XCTestCase {
 
   override func setUp() {
     super.setUp()
-    delegate = mock(CVVAuthorizationServiceDelegate.self)
-    presenter = mock(CVVAuthorizationPresenterProtocol.self)
-    repository = mock(CVVAuthorizationRepositoryProtocol.self)
+    delegate = CVVAuthorizationServiceDelegateMock()
+    presenter = CVVAuthorizationPresenterProtocolMock()
+    repository = CVVAuthorizationRepositoryProtocolMock()
 
     sut = CVVAuthorizationService(presenter: presenter, repository: repository)
     sut.delegate = delegate
@@ -28,14 +27,7 @@ final class CVVAuthorizationServiceTests: XCTestCase {
     let refReqId = UUID().uuidString
     sut.authorize(refReqId: refReqId)
 
-    verify(
-      presenter
-        .presentCVVAlertViewController(
-          from: any(),
-          onConfirm: any(),
-          onCancel: any())
-    )
-    .wasCalled()
+    XCTAssertGreaterThan(presenter.presentCVVAlertViewControllerCallCount, 0)
   }
 
   func testWhenAuthorizeWithRefReqIdAndConfirmCVVThenShouldCallRepository()
@@ -44,29 +36,16 @@ final class CVVAuthorizationServiceTests: XCTestCase {
     let refReqId = UUID().uuidString
     let cvv = UUID().uuidString
 
-    given(
-      presenter
-        .presentCVVAlertViewController(
-          from: any(),
-          onConfirm: any(),
-          onCancel: any())
-    )
-    .will { viewController, onConfirm, onCancel in
+    presenter.presentCVVAlertViewControllerHandler = { viewController, onConfirm, onCancel in
       onConfirm(cvv)
     }
 
     sut.authorize(refReqId: refReqId)
 
-    verify(
-      repository
-        .authorizeCVV(
-          cvvAuthorizationRequest: CVVAuthorizationRequest(
-            cvv: cvv,
-            refReqId: refReqId
-          ),
-          completionHandler: any())
+    XCTAssertTrue(
+      repository.authorizeCVVArgValues
+        .contains(CVVAuthorizationRequest(cvv: cvv, refReqId: refReqId))
     )
-    .wasCalled()
   }
 
   func
@@ -76,37 +55,21 @@ final class CVVAuthorizationServiceTests: XCTestCase {
     let refReqId = UUID().uuidString
     let cvv = UUID().uuidString
 
-    given(
-      presenter
-        .presentCVVAlertViewController(
-          from: any(),
-          onConfirm: any(),
-          onCancel: any())
-    )
-    .will { viewController, onConfirm, onCancel in
+    presenter.presentCVVAlertViewControllerHandler = { viewController, onConfirm, onCancel in
       onCancel()
     }
 
     sut.authorize(refReqId: refReqId)
 
-    verify(
-      repository
-        .authorizeCVV(
-          cvvAuthorizationRequest: CVVAuthorizationRequest(
-            cvv: cvv,
-            refReqId: refReqId
-          ),
-          completionHandler: any())
+    XCTAssertFalse(
+      repository.authorizeCVVArgValues
+        .contains(CVVAuthorizationRequest(cvv: cvv, refReqId: refReqId))
     )
-    .wasNeverCalled()
 
-    verify(
-      delegate
-        .cvvAuthorizationService(
-          any(),
-          didComplete: .cancelled)
+    XCTAssertTrue(
+      delegate.cvvAuthorizationServiceArgValues
+        .contains { $0.status == .cancelled }
     )
-    .wasCalled()
   }
 
   func
@@ -116,47 +79,25 @@ final class CVVAuthorizationServiceTests: XCTestCase {
     let refReqId = UUID().uuidString
     let cvv = UUID().uuidString
 
-    given(
-      presenter
-        .presentCVVAlertViewController(
-          from: any(),
-          onConfirm: any(),
-          onCancel: any())
-    )
-    .will { viewController, onConfirm, onCancel in
+    presenter.presentCVVAlertViewControllerHandler = { viewController, onConfirm, onCancel in
       onConfirm(cvv)
     }
 
-    given(
-      repository
-        .authorizeCVV(
-          cvvAuthorizationRequest: any(),
-          completionHandler: any())
-    )
-    .will { cvvAuthorizationRequest, completionHandler in
+    repository.authorizeCVVHandler = { cvvAuthorizationRequest, completionHandler in
       completionHandler(.success(.success))
     }
 
     sut.authorize(refReqId: refReqId)
 
-    verify(
-      repository
-        .authorizeCVV(
-          cvvAuthorizationRequest: CVVAuthorizationRequest(
-            cvv: cvv,
-            refReqId: refReqId
-          ),
-          completionHandler: any())
+    XCTAssertTrue(
+      repository.authorizeCVVArgValues
+        .contains(CVVAuthorizationRequest(cvv: cvv, refReqId: refReqId))
     )
-    .wasCalled()
 
-    verify(
-      delegate
-        .cvvAuthorizationService(
-          any(),
-          didComplete: .success)
+    XCTAssertTrue(
+      delegate.cvvAuthorizationServiceArgValues
+        .contains { $0.status == .success }
     )
-    .wasCalled()
   }
 
   func
@@ -166,48 +107,25 @@ final class CVVAuthorizationServiceTests: XCTestCase {
     let refReqId = UUID().uuidString
     let cvv = UUID().uuidString
 
-    given(
-      presenter
-        .presentCVVAlertViewController(
-          from: any(),
-          onConfirm: any(),
-          onCancel: any())
-    )
-    .will { viewController, onConfirm, onCancel in
+    presenter.presentCVVAlertViewControllerHandler = { viewController, onConfirm, onCancel in
       onConfirm(cvv)
     }
 
-    given(
-      repository
-        .authorizeCVV(
-          cvvAuthorizationRequest: any(),
-          completionHandler: any())
-    )
-    .will { cvvAuthorizationRequest, completionHandler in
+    repository.authorizeCVVHandler = { cvvAuthorizationRequest, completionHandler in
       completionHandler(.success(.cancelled))
     }
 
     sut.authorize(refReqId: refReqId)
 
-    verify(
-      repository
-        .authorizeCVV(
-          cvvAuthorizationRequest: CVVAuthorizationRequest(
-            cvv: cvv,
-            refReqId: refReqId
-
-          ),
-          completionHandler: any())
+    XCTAssertTrue(
+      repository.authorizeCVVArgValues
+        .contains(CVVAuthorizationRequest(cvv: cvv, refReqId: refReqId))
     )
-    .wasCalled()
 
-    verify(
-      delegate
-        .cvvAuthorizationService(
-          any(),
-          didComplete: .cancelled)
+    XCTAssertTrue(
+      delegate.cvvAuthorizationServiceArgValues
+        .contains { $0.status == .cancelled }
     )
-    .wasCalled()
   }
 
   func
@@ -219,46 +137,21 @@ final class CVVAuthorizationServiceTests: XCTestCase {
     let refReqId = UUID().uuidString
     let cvv = UUID().uuidString
 
-    given(
-      presenter
-        .presentCVVAlertViewController(
-          from: any(),
-          onConfirm: any(),
-          onCancel: any())
-    )
-    .will { viewController, onConfirm, onCancel in
+    presenter.presentCVVAlertViewControllerHandler = { viewController, onConfirm, onCancel in
       onConfirm(cvv)
     }
 
-    given(
-      repository
-        .authorizeCVV(
-          cvvAuthorizationRequest: any(),
-          completionHandler: any())
-    )
-    .will { cvvAuthorizationRequest, completionHandler in
+    repository.authorizeCVVHandler = { cvvAuthorizationRequest, completionHandler in
       completionHandler(.failure(ErrorMock()))
     }
 
     sut.authorize(refReqId: refReqId)
 
-    verify(
-      repository
-        .authorizeCVV(
-          cvvAuthorizationRequest: CVVAuthorizationRequest(
-            cvv: cvv,
-            refReqId: refReqId
-          ),
-          completionHandler: any())
+    XCTAssertTrue(
+      repository.authorizeCVVArgValues
+        .contains(CVVAuthorizationRequest(cvv: cvv, refReqId: refReqId))
     )
-    .wasCalled()
 
-    verify(
-      delegate
-        .cvvAuthorizationService(
-          any(),
-          didFail: any())
-    )
-    .wasCalled()
+    XCTAssertGreaterThan(delegate.cvvAuthorizationServiceDidFailCallCount, 0)
   }
 }

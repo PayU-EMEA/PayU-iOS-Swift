@@ -2,7 +2,6 @@
 //  PaymentCardServiceTests.swift
 //
 
-import Mockingbird
 import XCTest
 
 @testable import PUCore
@@ -26,13 +25,13 @@ final class PaymentCardServiceTests: XCTestCase {
 
   override func setUp() {
     super.setUp()
-    delegate = mock(PaymentCardServiceDelegate.self)
-    cvvValidator = mock(PaymentCardValidatorProtocol.self)
-    dateValidator = mock(PaymentCardValidatorProtocol.self)
-    numberValidator = mock(PaymentCardValidatorProtocol.self)
-    finder = mock(PaymentCardProviderFinderProtocol.self)
-    presenter = mock(PaymentCardServicePresenterProtocol.self)
-    repository = mock(PaymentCardRepositoryProtocol.self)
+    delegate = PaymentCardServiceDelegateMock()
+    cvvValidator = PaymentCardValidatorProtocolMock()
+    dateValidator = PaymentCardValidatorProtocolMock()
+    numberValidator = PaymentCardValidatorProtocolMock()
+    finder = PaymentCardProviderFinderProtocolMock()
+    presenter = PaymentCardServicePresenterProtocolMock()
+    repository = PaymentCardRepositoryProtocolMock()
 
     sut = PaymentCardService(
       cvvValidator: cvvValidator,
@@ -50,13 +49,13 @@ final class PaymentCardServiceTests: XCTestCase {
 
   override func tearDown() {
     super.tearDown()
-    reset(delegate)
-    reset(cvvValidator)
-    reset(dateValidator)
-    reset(numberValidator)
-    reset(finder)
-    reset(presenter)
-    reset(repository)
+    delegate = nil
+    cvvValidator = nil
+    dateValidator = nil
+    numberValidator = nil
+    finder = nil
+    presenter = nil
+    repository = nil
     sut = nil
   }
 
@@ -101,24 +100,23 @@ final class PaymentCardServiceTests: XCTestCase {
   }
 
   func testDidChangeNumberShouldSetProviderIfCardNumberIsCorrect() throws {
-    given(finder.possible(any())).willReturn(.mastercard)
+    finder.possibleHandler = { _ in .mastercard }
     sut.didChangeNumber("5434 0210 1682 4014")
     XCTAssertEqual(sut.paymentCardProvider, .mastercard)
 
-    given(finder.possible(any())).willReturn(.maestro)
+    finder.possibleHandler = { _ in .maestro }
     sut.didChangeNumber("5598 6148 1656 3766")
     XCTAssertEqual(sut.paymentCardProvider, .maestro)
 
-    verify(finder.possible("5434 0210 1682 4014")).wasCalled()
-    verify(finder.possible("5598 6148 1656 3766")).wasCalled()
-    verify(finder.find(any())).wasNeverCalled()
+    XCTAssertTrue(finder.possibleArgValues.contains("5434 0210 1682 4014"))
+    XCTAssertTrue(finder.possibleArgValues.contains("5598 6148 1656 3766"))
+    XCTAssertEqual(finder.findCallCount, 0)
   }
 
   func testDidChangeNumberShouldCallDelegateToUpdateCardProvider() throws {
-    given(finder.possible(any())).willReturn(.mastercard)
+    finder.possibleHandler = { _ in .mastercard }
     sut.didChangeNumber("5434 0210 1682 4014")
-    verify(delegate.paymentCardServiceShouldUpdatePaymentCardProvider(any()))
-      .wasCalled()
+    XCTAssertGreaterThan(delegate.paymentCardServiceShouldUpdatePaymentCardProviderCallCount, 0)
   }
 
   func testDidChangePaymentCardShouldChangePaymentCard() throws {
@@ -155,12 +153,12 @@ final class PaymentCardServiceTests: XCTestCase {
         expirationYear: "23",
         cvv: "123")
     )
-    verify(delegate.paymentCardServiceShouldUpdate(any())).wasCalled()
+    XCTAssertGreaterThan(delegate.paymentCardServiceShouldUpdateCallCount, 0)
   }
 
   func testTokenizeShouldCallDelegateToValidate() throws {
     sut.tokenize(agreement: true, completionHandler: { e in })
-    verify(delegate.paymentCardServiceShouldValidate(any())).wasCalled()
+    XCTAssertGreaterThan(delegate.paymentCardServiceShouldValidateCallCount, 0)
   }
 
   func testDeprecatedTokenizeWhenCanValidateThenShouldCallRepositoryToTokenize()
@@ -170,28 +168,24 @@ final class PaymentCardServiceTests: XCTestCase {
     sut.didChangeDate("04/2025")
     sut.didChangeCVV("274")
 
-    given(delegate.paymentCardServiceShouldValidate(any())).willReturn(())
-
     sut.tokenize(
       agreement: true,
       completionHandler: { e in })
 
-    verify(
-      repository
-        .tokenize(
-          tokenCreateRequest: TokenCreateRequest(
-            posId: pos,
-            type: TokenType.MULTI.rawValue,
-            card: PaymentCard(
-              number: "5434021016824014",
-              expirationMonth: "04",
-              expirationYear: "2025",
-              cvv: "274"
-            )
-          ),
-          completionHandler: any())
+    XCTAssertGreaterThan(repository.tokenizeCallCount, 0)
+    XCTAssertEqual(
+      repository.tokenizeArgValues.last,
+      TokenCreateRequest(
+        posId: pos,
+        type: TokenType.MULTI.rawValue,
+        card: PaymentCard(
+          number: "5434021016824014",
+          expirationMonth: "04",
+          expirationYear: "2025",
+          cvv: "274"
+        )
+      )
     )
-    .wasCalled()
   }
 
   func testTokenizeWhenCanValidateThenShouldCallRepositoryToTokenize() throws {
@@ -199,28 +193,24 @@ final class PaymentCardServiceTests: XCTestCase {
     sut.didChangeDate("04/2025")
     sut.didChangeCVV("274")
 
-    given(delegate.paymentCardServiceShouldValidate(any())).willReturn(())
-
     sut.tokenize(
       type: TokenType.MULTI,
       completionHandler: { e in })
 
-    verify(
-      repository
-        .tokenize(
-          tokenCreateRequest: TokenCreateRequest(
-            posId: pos,
-            type: TokenType.MULTI.rawValue,
-            card: PaymentCard(
-              number: "5434021016824014",
-              expirationMonth: "04",
-              expirationYear: "2025",
-              cvv: "274"
-            )
-          ),
-          completionHandler: any())
+    XCTAssertGreaterThan(repository.tokenizeCallCount, 0)
+    XCTAssertEqual(
+      repository.tokenizeArgValues.last,
+      TokenCreateRequest(
+        posId: pos,
+        type: TokenType.MULTI.rawValue,
+        card: PaymentCard(
+          number: "5434021016824014",
+          expirationMonth: "04",
+          expirationYear: "2025",
+          cvv: "274"
+        )
+      )
     )
-    .wasCalled()
   }
 
   func
@@ -231,28 +221,24 @@ final class PaymentCardServiceTests: XCTestCase {
     sut.didChangeDate("04/2025")
     sut.didChangeCVV("274")
 
-    given(delegate.paymentCardServiceShouldValidate(any())).willReturn(())
-
     sut.tokenize(
       agreement: true,
       completionHandler: { e in })
 
-    verify(
-      repository
-        .tokenize(
-          tokenCreateRequest: TokenCreateRequest(
-            posId: pos,
-            type: TokenType.MULTI.rawValue,
-            card: PaymentCard(
-              number: "5598614816563766",
-              expirationMonth: "04",
-              expirationYear: "2025",
-              cvv: "274"
-            )
-          ),
-          completionHandler: any())
+    XCTAssertGreaterThan(repository.tokenizeCallCount, 0)
+    XCTAssertEqual(
+      repository.tokenizeArgValues.last,
+      TokenCreateRequest(
+        posId: pos,
+        type: TokenType.MULTI.rawValue,
+        card: PaymentCard(
+          number: "5598614816563766",
+          expirationMonth: "04",
+          expirationYear: "2025",
+          cvv: "274"
+        )
+      )
     )
-    .wasCalled()
   }
 
   func
@@ -263,28 +249,24 @@ final class PaymentCardServiceTests: XCTestCase {
     sut.didChangeDate("04/2025")
     sut.didChangeCVV("274")
 
-    given(delegate.paymentCardServiceShouldValidate(any())).willReturn(())
-
     sut.tokenize(
       type: TokenType.MULTI,
       completionHandler: { e in })
 
-    verify(
-      repository
-        .tokenize(
-          tokenCreateRequest: TokenCreateRequest(
-            posId: pos,
-            type: TokenType.MULTI.rawValue,
-            card: PaymentCard(
-              number: "5598614816563766",
-              expirationMonth: "04",
-              expirationYear: "2025",
-              cvv: "274"
-            )
-          ),
-          completionHandler: any())
+    XCTAssertGreaterThan(repository.tokenizeCallCount, 0)
+    XCTAssertEqual(
+      repository.tokenizeArgValues.last,
+      TokenCreateRequest(
+        posId: pos,
+        type: TokenType.MULTI.rawValue,
+        card: PaymentCard(
+          number: "5598614816563766",
+          expirationMonth: "04",
+          expirationYear: "2025",
+          cvv: "274"
+        )
+      )
     )
-    .wasCalled()
   }
 
   func
@@ -295,28 +277,24 @@ final class PaymentCardServiceTests: XCTestCase {
     sut.didChangeDate("04/2025")
     sut.didChangeCVV("274")
 
-    given(delegate.paymentCardServiceShouldValidate(any())).willReturn(())
-
     sut.tokenize(
       agreement: false,
       completionHandler: { e in })
 
-    verify(
-      repository
-        .tokenize(
-          tokenCreateRequest: TokenCreateRequest(
-            posId: pos,
-            type: TokenType.SINGLE_LONGTERM.rawValue,
-            card: PaymentCard(
-              number: "5598614816563766",
-              expirationMonth: "04",
-              expirationYear: "2025",
-              cvv: "274"
-            )
-          ),
-          completionHandler: any())
+    XCTAssertGreaterThan(repository.tokenizeCallCount, 0)
+    XCTAssertEqual(
+      repository.tokenizeArgValues.last,
+      TokenCreateRequest(
+        posId: pos,
+        type: TokenType.SINGLE_LONGTERM.rawValue,
+        card: PaymentCard(
+          number: "5598614816563766",
+          expirationMonth: "04",
+          expirationYear: "2025",
+          cvv: "274"
+        )
+      )
     )
-    .wasCalled()
   }
 
   func
@@ -327,28 +305,24 @@ final class PaymentCardServiceTests: XCTestCase {
     sut.didChangeDate("04/2025")
     sut.didChangeCVV("274")
 
-    given(delegate.paymentCardServiceShouldValidate(any())).willReturn(())
-
     sut.tokenize(
       type: TokenType.SINGLE_LONGTERM,
       completionHandler: { e in })
 
-    verify(
-      repository
-        .tokenize(
-          tokenCreateRequest: TokenCreateRequest(
-            posId: pos,
-            type: TokenType.SINGLE_LONGTERM.rawValue,
-            card: PaymentCard(
-              number: "5598614816563766",
-              expirationMonth: "04",
-              expirationYear: "2025",
-              cvv: "274"
-            )
-          ),
-          completionHandler: any())
+    XCTAssertGreaterThan(repository.tokenizeCallCount, 0)
+    XCTAssertEqual(
+      repository.tokenizeArgValues.last,
+      TokenCreateRequest(
+        posId: pos,
+        type: TokenType.SINGLE_LONGTERM.rawValue,
+        card: PaymentCard(
+          number: "5598614816563766",
+          expirationMonth: "04",
+          expirationYear: "2025",
+          cvv: "274"
+        )
+      )
     )
-    .wasCalled()
   }
   func
     testTokenizeWhenCanValidateWhenRepositoryCompleteWithSuccessThenShouldCompleteWithSuccess()
@@ -361,14 +335,7 @@ final class PaymentCardServiceTests: XCTestCase {
     let expectationTokenize = XCTestExpectation(
       description: "expectationTokenize")
 
-    given(delegate.paymentCardServiceShouldValidate(any())).willReturn(())
-    given(
-      repository
-        .tokenize(
-          tokenCreateRequest: any(),
-          completionHandler: any())
-    )
-    .will { tokenCreateRequest, completionHandler in
+    repository.tokenizeHandler = { tokenCreateRequest, completionHandler in
       completionHandler(
         .success(
           CardToken(
@@ -411,14 +378,7 @@ final class PaymentCardServiceTests: XCTestCase {
     let expectationTokenize = XCTestExpectation(
       description: "expectationTokenize")
 
-    given(delegate.paymentCardServiceShouldValidate(any())).willReturn(())
-    given(
-      repository
-        .tokenize(
-          tokenCreateRequest: any(),
-          completionHandler: any())
-    )
-    .will { tokenCreateRequest, completionHandler in
+    repository.tokenizeHandler = { tokenCreateRequest, completionHandler in
       completionHandler(.failure(ErrorMock()))
     }
 
@@ -438,76 +398,48 @@ final class PaymentCardServiceTests: XCTestCase {
   {
     struct ErrorMock: Error {}
 
-    given(delegate.paymentCardServiceShouldValidate(any())).willThrow(
-      ErrorMock())
+    delegate.paymentCardServiceShouldValidateHandler = { _ in throw ErrorMock() }
 
     sut.tokenize(
       agreement: true,
       completionHandler: { e in })
 
-    verify(
-      repository
-        .tokenize(
-          tokenCreateRequest: any(),
-          completionHandler: any())
-    )
-    .wasNeverCalled()
+    XCTAssertEqual(repository.tokenizeCallCount, 0)
   }
 
   func testTokenizeWhenCannotValidateThenShouldNotCallRepository() throws {
     struct ErrorMock: Error {}
 
-    given(delegate.paymentCardServiceShouldValidate(any())).willThrow(
-      ErrorMock())
+    delegate.paymentCardServiceShouldValidateHandler = { _ in throw ErrorMock() }
 
     sut.tokenize(
       type: TokenType.MULTI,
       completionHandler: { e in })
 
-    verify(
-      repository
-        .tokenize(
-          tokenCreateRequest: any(),
-          completionHandler: any())
-    )
-    .wasNeverCalled()
+    XCTAssertEqual(repository.tokenizeCallCount, 0)
   }
 
   func testScanWithNumberOptionShouldCallRepositoryWithTheSameOption() throws {
     sut.scan(option: .number, in: UIViewController())
-    verify(
-      presenter
-        .presentPaymentCardScannerViewController(
-          option: .number,
-          presentingViewController: any(),
-          onComplete: any())
-    )
-    .wasCalled()
+    XCTAssertGreaterThan(presenter.presentPaymentCardScannerViewControllerCallCount, 0)
+    XCTAssertEqual(
+      presenter.presentPaymentCardScannerViewControllerArgValues.last?.option,
+      .number)
   }
 
   func testScanWithNumberAndDateOptionShouldCallRepositoryWithTheSameOption()
     throws
   {
     sut.scan(option: .numberAndDate, in: UIViewController())
-    verify(
-      presenter
-        .presentPaymentCardScannerViewController(
-          option: .numberAndDate,
-          presentingViewController: any(),
-          onComplete: any())
-    )
-    .wasCalled()
+    XCTAssertGreaterThan(presenter.presentPaymentCardScannerViewControllerCallCount, 0)
+    XCTAssertEqual(
+      presenter.presentPaymentCardScannerViewControllerArgValues.last?.option,
+      .numberAndDate)
   }
 
   func testScanWhenPresenterCompletesWithResultThenShouldUpdateData() throws {
-    given(
-      presenter
-        .presentPaymentCardScannerViewController(
-          option: any(),
-          presentingViewController: any(),
-          onComplete: any())
-    )
-    .will { option, presentingViewController, onComplete in
+    presenter.presentPaymentCardScannerViewControllerHandler = {
+      option, presentingViewController, onComplete in
       onComplete(
         PaymentCardScannerResult(
           option: .number,
@@ -526,14 +458,8 @@ final class PaymentCardServiceTests: XCTestCase {
   func testScanWhenPresenterCompletesWithResultThenShouldCallDelegateToUpdate()
     throws
   {
-    given(
-      presenter
-        .presentPaymentCardScannerViewController(
-          option: any(),
-          presentingViewController: any(),
-          onComplete: any())
-    )
-    .will { option, presentingViewController, onComplete in
+    presenter.presentPaymentCardScannerViewControllerHandler = {
+      option, presentingViewController, onComplete in
       onComplete(
         PaymentCardScannerResult(
           option: .number,
@@ -545,6 +471,6 @@ final class PaymentCardServiceTests: XCTestCase {
 
     sut.scan(option: .numberAndDate, in: UIViewController())
 
-    verify(delegate.paymentCardServiceShouldUpdate(any())).wasCalled()
+    XCTAssertGreaterThan(delegate.paymentCardServiceShouldUpdateCallCount, 0)
   }
 }

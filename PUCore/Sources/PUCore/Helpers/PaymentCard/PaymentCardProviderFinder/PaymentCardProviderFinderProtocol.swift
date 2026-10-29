@@ -8,6 +8,8 @@
 import Foundation
 
 /// The protocol which allows to implement different payment card provider search mechanisms
+///
+/// <!-- @mockable -->
 public protocol PaymentCardProviderFinderProtocol {
 
   /// Method which allows to find  the ``PaymentCardProvider``

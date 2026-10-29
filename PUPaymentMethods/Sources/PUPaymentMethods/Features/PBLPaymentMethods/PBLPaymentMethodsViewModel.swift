@@ -18,6 +18,7 @@ protocol PBLPaymentMethodsViewModelProtocol {
   func didSelectItem(at indexPath: IndexPath)
 }
 
+/// @mockable
 protocol PBLPaymentMethodsViewModelDelegate: AnyObject {
   func paymentMethodsViewModel(_ viewModel: PBLPaymentMethodsViewModel, didSelect payByLink: PayByLink)
 }

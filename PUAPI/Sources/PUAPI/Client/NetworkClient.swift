@@ -8,6 +8,7 @@ import Foundation
   import PUCore
 #endif
 
+/// @mockable
 public protocol NetworkClientProtocol {
   func request<E: NetworkTarget, T: Codable>(
     target: E, type: T.Type,

@@ -8,6 +8,8 @@
 import Foundation
 
 /// The protocol which allows to implement service for Luhn validation
+///
+/// <!-- @mockable -->
 public protocol PaymentCardLuhnValidatorProtocol {
 
   /// Method which allows to indicate if `value` card number matches Luhn algorithm

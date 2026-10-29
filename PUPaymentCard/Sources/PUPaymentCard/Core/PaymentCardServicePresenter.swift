@@ -19,6 +19,7 @@ import PUPaymentCardScanner
 import PUTheme
 #endif
 
+/// @mockable
 protocol PaymentCardServicePresenterProtocol {
   func presentPaymentCardScannerViewController(
     option: PaymentCardScannerOption,

@@ -6,7 +6,6 @@
 //
 
 import XCTest
-import Mockingbird
 @testable import PUCore
 @testable import PUPaymentMethods
 
@@ -21,9 +20,9 @@ final class PaymentMethodsWidgetViewModelTests: XCTestCase {
   override func setUp() {
     super.setUp()
     configuration = PaymentMethodsConfiguration()
-    delegate = mock(PaymentMethodsWidgetViewModelDelegate.self)
-    storage = mock(PaymentMethodsStorageProtocol.self)
-    textFormatter = mock(TextFormatterProtocol.self)
+    delegate = PaymentMethodsWidgetViewModelDelegateMock()
+    storage = PaymentMethodsStorageProtocolMock()
+    textFormatter = TextFormatterProtocolMock()
 
     sut = PaymentMethodsWidgetViewModel(
       configuration: configuration,
@@ -35,9 +34,9 @@ final class PaymentMethodsWidgetViewModelTests: XCTestCase {
 
   override func tearDown() {
     super.tearDown()
-    reset(delegate)
-    reset(storage)
-    reset(textFormatter)
+    delegate = nil
+    storage = nil
+    textFormatter = nil
 
     configuration = nil
     sut = nil
@@ -45,52 +44,43 @@ final class PaymentMethodsWidgetViewModelTests: XCTestCase {
 
   func testWhenDidTapWidgetThenShouldPresentPaymentMethods() {
     sut.didTapWidget()
-    verify(
-      delegate.viewModel(
-        any(),
-        shouldPresentPaymentMethods: configuration,
-        storage: any()))
-    .wasCalled()
+    XCTAssertGreaterThan(delegate.viewModelShouldPresentPaymentMethodsCallCount, 0)
+    XCTAssertEqual(delegate.viewModelShouldPresentPaymentMethodsArgValues.last?.configuration, configuration)
   }
 
   func testWhenDidTapEnterNewBlikCodeWhenPaymentMethodIsNotSelectedThenShouldDoNothing() {
     sut.didTapEnterNewBlikCode()
-    verify(
-      delegate.viewModel(
-        any(),
-        didUpdateState: any()))
-    .wasNeverCalled()
+    XCTAssertEqual(delegate.viewModelCallCount, 0)
   }
 
   func testWhenDidTapEnterNewBlikCodeWhenPaymentMethodIsSelectedThenShouldUpdateStateToBlikToken() {
     let paymentMethod = makeBlikToken()
     sut.didSelect(paymentMethod)
     sut.didTapEnterNewBlikCode()
-    verify(
-      delegate.viewModel(
-        any(),
-        didUpdateState: .blikCode(paymentMethod)))
-    .wasCalled()
+    XCTAssertGreaterThan(delegate.viewModelCallCount, 0)
+    XCTAssertTrue(delegate.viewModelArgValues.contains { $0.state == .blikCode(paymentMethod) })
   }
 
   func testWhenDidEnterNewBlikCodeWhenBlikAuthorizationCodeIsBlikCodeThenShouldSaveIt() {
     let blikAuthorizationText = "929600"
     let blikAuthorizationCode = "574987"
 
-    given(textFormatter.formatted(any())).willReturn(blikAuthorizationCode)
+    textFormatter.formattedHandler = { _ in blikAuthorizationCode }
     sut.didEnterNewBlikCode(blikAuthorizationText)
     XCTAssertEqual(sut.blikAuthorizationCode, blikAuthorizationCode)
-    verify(textFormatter.formatted(blikAuthorizationText)).wasCalled()
+    XCTAssertGreaterThan(textFormatter.formattedCallCount, 0)
+    XCTAssertEqual(textFormatter.formattedArgValues.last, blikAuthorizationText)
   }
 
   func testWhenDidEnterNewBlikCodeWhenBlikAuthorizationCodeIsNotBlikCodeThenNotShouldSaveIt() {
     let blikAuthorizationText = "929600"
     let blikAuthorizationCode = "57498"
 
-    given(textFormatter.formatted(any())).willReturn(blikAuthorizationCode)
+    textFormatter.formattedHandler = { _ in blikAuthorizationCode }
     sut.didEnterNewBlikCode(blikAuthorizationText)
     XCTAssertEqual(sut.blikAuthorizationCode, nil)
-    verify(textFormatter.formatted(blikAuthorizationText)).wasCalled()
+    XCTAssertGreaterThan(textFormatter.formattedCallCount, 0)
+    XCTAssertEqual(textFormatter.formattedArgValues.last, blikAuthorizationText)
   }
 
   func testWhenDidSelectPaymentMethodThenShouldUpdateSelectedPaymentMethod() {
@@ -109,7 +99,8 @@ final class PaymentMethodsWidgetViewModelTests: XCTestCase {
 
     let state = PaymentMethodsWidgetState.blikCode(paymentMethod)
     XCTAssertEqual(sut.state, state)
-    verify(delegate.viewModel(any(), didUpdateState: state)).wasCalled()
+    XCTAssertGreaterThan(delegate.viewModelCallCount, 0)
+    XCTAssertTrue(delegate.viewModelArgValues.contains { $0.state == state })
   }
 
   func testWhenDidSelectBlikTokenPaymentMethodThenShouldUpdateStateToBlikToken() {
@@ -118,7 +109,8 @@ final class PaymentMethodsWidgetViewModelTests: XCTestCase {
 
     let state = PaymentMethodsWidgetState.blikToken(paymentMethod)
     XCTAssertEqual(sut.state, state)
-    verify(delegate.viewModel(any(), didUpdateState: state)).wasCalled()
+    XCTAssertGreaterThan(delegate.viewModelCallCount, 0)
+    XCTAssertTrue(delegate.viewModelArgValues.contains { $0.state == state })
   }
 
   func testWhenDidSelectOtherPaymentMethodThenShouldUpdateStateToPaymentMethod() {
@@ -127,7 +119,8 @@ final class PaymentMethodsWidgetViewModelTests: XCTestCase {
 
     let state = PaymentMethodsWidgetState.paymentMethod(paymentMethod)
     XCTAssertEqual(sut.state, state)
-    verify(delegate.viewModel(any(), didUpdateState: state)).wasCalled()
+    XCTAssertGreaterThan(delegate.viewModelCallCount, 0)
+    XCTAssertTrue(delegate.viewModelArgValues.contains { $0.state == state })
   }
 
   func testWhenDidSelectNilPaymentMethodThenShouldUpdateStateToInitial() {
@@ -135,7 +128,8 @@ final class PaymentMethodsWidgetViewModelTests: XCTestCase {
 
     let state = PaymentMethodsWidgetState.initial
     XCTAssertEqual(sut.state, state)
-    verify(delegate.viewModel(any(), didUpdateState: state)).wasCalled()
+    XCTAssertGreaterThan(delegate.viewModelCallCount, 0)
+    XCTAssertTrue(delegate.viewModelArgValues.contains { $0.state == state })
   }
 
   func testWhenDidDeletePaymentMethodWhenPaymentMethodIsSelectedThenShouldResetStateToInitial() {
@@ -145,22 +139,25 @@ final class PaymentMethodsWidgetViewModelTests: XCTestCase {
 
     let state = PaymentMethodsWidgetState.initial
     XCTAssertEqual(sut.state, state)
-    verify(delegate.viewModel(any(), didUpdateState: state)).wasCalled()
+    XCTAssertGreaterThan(delegate.viewModelCallCount, 0)
+    XCTAssertTrue(delegate.viewModelArgValues.contains { $0.state == state })
   }
 
   func testWhenDidDeletePaymentMethodWhenPaymentMethodIsNotSelectedThenShouldNotResetStateToInitial() {
     sut.didDelete(makePayByLink())
-    verify(delegate.viewModel(any(), didUpdateState: any())).wasNeverCalled()
+    XCTAssertEqual(delegate.viewModelCallCount, 0)
   }
 
   func testWhenFormattedBlikCodeThenShouldReturnValueFromTextFormatter() {
-    given(textFormatter.formatted(any())).willReturn("1234")
+    textFormatter.formattedHandler = { _ in "1234" }
     XCTAssertEqual(sut.formattedBlikAuthorizationCode("AAAA"), "1234")
-    verify(textFormatter.formatted("AAAA")).wasCalled()
+    XCTAssertGreaterThan(textFormatter.formattedCallCount, 0)
+    XCTAssertEqual(textFormatter.formattedArgValues.last, "AAAA")
 
-    given(textFormatter.formatted(any())).willReturn("9963")
+    textFormatter.formattedHandler = { _ in "9963" }
     XCTAssertEqual(sut.formattedBlikAuthorizationCode("BBBB"), "9963")
-    verify(textFormatter.formatted("BBBB")).wasCalled()
+    XCTAssertGreaterThan(textFormatter.formattedCallCount, 0)
+    XCTAssertEqual(textFormatter.formattedArgValues.last, "BBBB")
   }
 
   func testWhenPaymentMethodIsCalledWhenSelectedPaymentMethodIsBlikCodeThenShouldReturnItWithBlikAuthorizationCode() {
@@ -171,7 +168,7 @@ final class PaymentMethodsWidgetViewModelTests: XCTestCase {
 
     let blikAuthorizationText = "9 3 6 3 9 9"
     let blikAuthorizationCode = "936399"
-    given(textFormatter.formatted(any())).willReturn(blikAuthorizationCode)
+    textFormatter.formattedHandler = { _ in blikAuthorizationCode }
 
     let blikCodeTwo = makeBlikCode()
     sut.didSelect(blikCodeTwo)

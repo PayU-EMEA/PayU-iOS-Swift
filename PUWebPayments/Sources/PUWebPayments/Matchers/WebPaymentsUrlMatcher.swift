@@ -11,6 +11,7 @@ import Foundation
 import PUCore
 #endif
 
+/// @mockable
 protocol WebPaymentsUrlMatcher {
   func result(_ url: URL) -> WebPaymentsUrlMatcherResult
 

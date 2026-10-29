@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// @mockable
 protocol WebPaymentsUrlOpener {
   func open(_ url: URL)
   func openUniversalLink(_ url: URL, completion: @escaping (Bool) -> Void)

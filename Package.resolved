@@ -1,5 +1,5 @@
 {
-  "originHash" : "ea080ac39cc6eca69fececc3252e40fbf72438bdb88678883834758e8af01930",
+  "originHash" : "f68a76425d009df0b4be777431423654023e8d42be3af13f267adb4f63695c8c",
   "pins" : [
     {
       "identity" : "kingfisher",
@@ -8,15 +8,6 @@
       "state" : {
         "revision" : "8648fe649c5d62be38721110f835821906e9242a",
         "version" : "8.13.0"
-      }
-    },
-    {
-      "identity" : "mockingbird",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/birdrides/mockingbird",
-      "state" : {
-        "revision" : "6e0d473df6b975719e145f6aebf90990c634700e",
-        "version" : "0.20.0"
       }
     }
   ],

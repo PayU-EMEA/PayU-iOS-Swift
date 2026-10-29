@@ -23,6 +23,7 @@ protocol PaymentMethodsViewModelProtocol {
   func didSelectPayByLink(_ payByLink: PayByLink)
 }
 
+/// @mockable
 protocol PaymentMethodsViewModelDelegate: AnyObject {
   func viewModel(_ viewModel: PaymentMethodsViewModel, didComplete paymentMethod: PaymentMethod)
   func viewModel(_ viewModel: PaymentMethodsViewModel, didDelete paymentMethod: PaymentMethod)

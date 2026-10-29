@@ -6,7 +6,6 @@
 //
 
 import XCTest
-import Mockingbird
 @testable import PUAPI
 @testable import PUThreeDS
 
@@ -17,13 +16,13 @@ final class SoftAcceptRepositoryTests: XCTestCase {
 
   override func setUp() {
     super.setUp()
-    self.networkClient = mock(NetworkClientProtocol.self)
+    self.networkClient = NetworkClientProtocolMock()
     self.sut = SoftAcceptRepository(client: networkClient)
   }
 
   override func tearDown() {
     super.tearDown()
-    reset(networkClient)
+    networkClient = nil
     sut = nil
   }
 
@@ -31,14 +30,8 @@ final class SoftAcceptRepositoryTests: XCTestCase {
     let log = SoftAcceptLog(id: ".id", message: ".message")
     let expectationCreate = XCTestExpectation(description: "expectationCreate")
 
-    given(
-      networkClient
-        .request(
-          target: any(SoftAcceptNetworkTarget.self),
-          type: any(SoftAcceptResponse.Type.self),
-          completionHandler: any()))
-    .will { target, type, completionHandler in
-      completionHandler(.success(SoftAcceptResponse()))
+    networkClient.requestHandler = { _, _, completion in
+      (completion as! (Result<SoftAcceptResponse, Error>) -> Void)(.success(SoftAcceptResponse()))
     }
 
     sut.create(log: log) { result in
@@ -46,13 +39,9 @@ final class SoftAcceptRepositoryTests: XCTestCase {
       expectationCreate.fulfill()
     }
 
-    verify(
-      networkClient
-        .request(
-          target: any(SoftAcceptNetworkTarget.self),
-          type: SoftAcceptResponse.self,
-          completionHandler: any()))
-    .wasCalled()
+    XCTAssertGreaterThan(networkClient.requestCallCount, 0)
+    XCTAssertTrue(networkClient.requestArgValues.last?.target is SoftAcceptNetworkTarget)
+    XCTAssertTrue(networkClient.requestArgValues.last?.type is SoftAcceptResponse.Type)
 
     wait(for: [expectationCreate], timeout: 1)
   }
@@ -63,14 +52,8 @@ final class SoftAcceptRepositoryTests: XCTestCase {
     let log = SoftAcceptLog(id: ".id", message: ".message")
     let expectationCreate = XCTestExpectation(description: "expectationCreate")
 
-    given(
-      networkClient
-        .request(
-          target: any(SoftAcceptNetworkTarget.self),
-          type: any(SoftAcceptResponse.Type.self),
-          completionHandler: any()))
-    .will { target, type, completionHandler in
-      completionHandler(.failure(ErrorMock()))
+    networkClient.requestHandler = { _, _, completion in
+      (completion as! (Result<SoftAcceptResponse, Error>) -> Void)(.failure(ErrorMock()))
     }
 
     sut.create(log: log) { result in
@@ -78,13 +61,9 @@ final class SoftAcceptRepositoryTests: XCTestCase {
       expectationCreate.fulfill()
     }
 
-    verify(
-      networkClient
-        .request(
-          target: any(SoftAcceptNetworkTarget.self),
-          type: SoftAcceptResponse.self,
-          completionHandler: any()))
-    .wasCalled()
+    XCTAssertGreaterThan(networkClient.requestCallCount, 0)
+    XCTAssertTrue(networkClient.requestArgValues.last?.target is SoftAcceptNetworkTarget)
+    XCTAssertTrue(networkClient.requestArgValues.last?.type is SoftAcceptResponse.Type)
 
     wait(for: [expectationCreate], timeout: 1)
   }

@@ -11,6 +11,7 @@ import Foundation
 import PUAPI
 #endif
 
+/// @mockable
 protocol CVVAuthorizationNetworkClientProtocol {
   func authorizeCVV(
     cvvAuthorizationRequest: CVVAuthorizationRequest,

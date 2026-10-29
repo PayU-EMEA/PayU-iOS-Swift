@@ -7,7 +7,7 @@ help: Makefile
 generate_documentation:
 	./dev/generate_documentation.sh
 
-## ➡️  generate_mocks: Generate *.mocks
+## ➡️  generate_mocks: Generate test mocks with Mockolo
 generate_mocks:
 	./dev/generate_mocks.sh
 

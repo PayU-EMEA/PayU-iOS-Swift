@@ -6,7 +6,6 @@
 //
 
 import XCTest
-import Mockingbird
 @testable import PUCore
 @testable import PUPaymentMethods
 
@@ -45,11 +44,12 @@ final class PaymentMethodsViewModelTests: XCTestCase {
     ]
 
     configuration = PaymentMethodsConfiguration()
-    delegate = mock(PaymentMethodsViewModelDelegate.self)
-    service = mock(PaymentMethodsServiceProtocol.self)
-    storage = mock(PaymentMethodsStorageProtocol.self)
+    delegate = PaymentMethodsViewModelDelegateMock()
+    service = PaymentMethodsServiceProtocolMock()
+    storage = PaymentMethodsStorageProtocolMock()
 
-    given(service.makePaymentMethodItems(for: any())).willReturn(items!)
+    let stubbedItems = items!
+    service.makePaymentMethodItemsHandler = { _ in stubbedItems }
     sut = PaymentMethodsViewModel(configuration: configuration, service: service,storage: storage)
 
     sut.delegate = delegate
@@ -64,7 +64,8 @@ final class PaymentMethodsViewModelTests: XCTestCase {
   }
 
   func testWhenInitializedThenShouldCallService() {
-    verify(service.makePaymentMethodItems(for: configuration)).wasCalled()
+    XCTAssertGreaterThan(service.makePaymentMethodItemsCallCount, 0)
+    XCTAssertEqual(service.makePaymentMethodItemsArgValues.last, configuration)
   }
 
   func testNumberOfSectionsReturnsCorrectValue() {
@@ -150,7 +151,7 @@ final class PaymentMethodsViewModelTests: XCTestCase {
     let index = items.firstIndex(where: { $0 is PaymentMethodItemCardToken })!
     let indexPath = IndexPath(row: index, section: 0)
     sut.deleteItem(at: indexPath)
-    verify(delegate.viewModel(any(), didDelete: any())).wasCalled()
+    XCTAssertGreaterThan(delegate.viewModelDidDeleteCallCount, 0)
   }
 
   func testWhenDidSelectItemWhenDidSelectApplePayThenShouldComplete() {
@@ -158,8 +159,9 @@ final class PaymentMethodsViewModelTests: XCTestCase {
     let indexPath = IndexPath(row: index, section: 0)
     let item = sut.didSelectItem(at: indexPath)
 
-    verify(storage.saveSelectedPaymentMethodValue(item.value!)).wasCalled()
-    verify(delegate.viewModel(any(), didComplete: any())).wasCalled()
+    XCTAssertGreaterThan(storage.saveSelectedPaymentMethodValueCallCount, 0)
+    XCTAssertEqual(storage.saveSelectedPaymentMethodValueArgValues.last, item.value!)
+    XCTAssertGreaterThan(delegate.viewModelCallCount, 0)
   }
 
   func testWhenDidSelectItemWhenDidSelectBankTransferThenShouldNavigateToBankTransfer() {
@@ -167,7 +169,8 @@ final class PaymentMethodsViewModelTests: XCTestCase {
     let indexPath = IndexPath(row: index, section: 0)
     sut.didSelectItem(at: indexPath)
 
-    verify(delegate.viewModel(any(), shouldNavigateToBankTransfer: configuration)).wasCalled()
+    XCTAssertGreaterThan(delegate.viewModelShouldNavigateToBankTransferCallCount, 0)
+    XCTAssertEqual(delegate.viewModelShouldNavigateToBankTransferArgValues.last?.configuration, configuration)
   }
 
   func testWhenDidSelectItemWhenDidSelectBlikCodeThenShouldComplete() {
@@ -175,8 +178,9 @@ final class PaymentMethodsViewModelTests: XCTestCase {
     let indexPath = IndexPath(row: index, section: 0)
     let item = sut.didSelectItem(at: indexPath)
 
-    verify(storage.saveSelectedPaymentMethodValue(item.value!)).wasCalled()
-    verify(delegate.viewModel(any(), didComplete: any())).wasCalled()
+    XCTAssertGreaterThan(storage.saveSelectedPaymentMethodValueCallCount, 0)
+    XCTAssertEqual(storage.saveSelectedPaymentMethodValueArgValues.last, item.value!)
+    XCTAssertGreaterThan(delegate.viewModelCallCount, 0)
   }
 
   func testWhenDidSelectItemWhenDidSelectBlikTokenThenShouldComplete() {
@@ -184,8 +188,9 @@ final class PaymentMethodsViewModelTests: XCTestCase {
     let indexPath = IndexPath(row: index, section: 0)
     let item = sut.didSelectItem(at: indexPath)
 
-    verify(storage.saveSelectedPaymentMethodValue(item.value!)).wasCalled()
-    verify(delegate.viewModel(any(), didComplete: any())).wasCalled()
+    XCTAssertGreaterThan(storage.saveSelectedPaymentMethodValueCallCount, 0)
+    XCTAssertEqual(storage.saveSelectedPaymentMethodValueArgValues.last, item.value!)
+    XCTAssertGreaterThan(delegate.viewModelCallCount, 0)
   }
 
   func testWhenDidSelectItemWhenDidSelectCardThenShouldNavigateToCard() {
@@ -193,7 +198,7 @@ final class PaymentMethodsViewModelTests: XCTestCase {
     let indexPath = IndexPath(row: index, section: 0)
     sut.didSelectItem(at: indexPath)
 
-    verify(delegate.viewModelShouldNavigateToCard(any())).wasCalled()
+    XCTAssertGreaterThan(delegate.viewModelShouldNavigateToCardCallCount, 0)
   }
 
   func testWhenDidSelectItemWhenDidSelectCardTokenThenShouldNavigateToComplete() {
@@ -201,8 +206,9 @@ final class PaymentMethodsViewModelTests: XCTestCase {
     let indexPath = IndexPath(row: index, section: 0)
     let item = sut.didSelectItem(at: indexPath)
 
-    verify(storage.saveSelectedPaymentMethodValue(item.value!)).wasCalled()
-    verify(delegate.viewModel(any(), didComplete: any())).wasCalled()
+    XCTAssertGreaterThan(storage.saveSelectedPaymentMethodValueCallCount, 0)
+    XCTAssertEqual(storage.saveSelectedPaymentMethodValueArgValues.last, item.value!)
+    XCTAssertGreaterThan(delegate.viewModelCallCount, 0)
   }
 
   func testWhenDidSelectItemWhenDidSelectInstallmentsThenShouldNavigateToComplete() {
@@ -210,8 +216,9 @@ final class PaymentMethodsViewModelTests: XCTestCase {
     let indexPath = IndexPath(row: index, section: 0)
     let item = sut.didSelectItem(at: indexPath)
 
-    verify(storage.saveSelectedPaymentMethodValue(item.value!)).wasCalled()
-    verify(delegate.viewModel(any(), didComplete: any())).wasCalled()
+    XCTAssertGreaterThan(storage.saveSelectedPaymentMethodValueCallCount, 0)
+    XCTAssertEqual(storage.saveSelectedPaymentMethodValueArgValues.last, item.value!)
+    XCTAssertGreaterThan(delegate.viewModelCallCount, 0)
   }
 
   func testWhenDidSelectItemWhenDidSelectPayByLinkThenShouldNavigateToComplete() {
@@ -219,8 +226,9 @@ final class PaymentMethodsViewModelTests: XCTestCase {
     let indexPath = IndexPath(row: index, section: 0)
     let item = sut.didSelectItem(at: indexPath)
 
-    verify(storage.saveSelectedPaymentMethodValue(item.value!)).wasCalled()
-    verify(delegate.viewModel(any(), didComplete: any())).wasCalled()
+    XCTAssertGreaterThan(storage.saveSelectedPaymentMethodValueCallCount, 0)
+    XCTAssertEqual(storage.saveSelectedPaymentMethodValueArgValues.last, item.value!)
+    XCTAssertGreaterThan(delegate.viewModelCallCount, 0)
   }
 
   func testWhenDidSelectCardTokenThenShouldMakeItVisible() {
@@ -228,18 +236,21 @@ final class PaymentMethodsViewModelTests: XCTestCase {
     let updatedConfiguration = configuration.copyWith(cardToken)
     sut.didSelectCardToken(cardToken)
 
-    verify(service.makePaymentMethodItems(for: updatedConfiguration)).wasCalled()
-    verify(delegate.viewModelDidUpdate(any())).wasCalled()
-    verify(storage.saveSelectedPaymentMethodValue(cardToken.value)).wasCalled()
-    verify(delegate.viewModel(any(), didComplete: any())).wasCalled()
+    XCTAssertGreaterThan(service.makePaymentMethodItemsCallCount, 0)
+    XCTAssertEqual(service.makePaymentMethodItemsArgValues.last, updatedConfiguration)
+    XCTAssertGreaterThan(delegate.viewModelDidUpdateCallCount, 0)
+    XCTAssertGreaterThan(storage.saveSelectedPaymentMethodValueCallCount, 0)
+    XCTAssertEqual(storage.saveSelectedPaymentMethodValueArgValues.last, cardToken.value)
+    XCTAssertGreaterThan(delegate.viewModelCallCount, 0)
   }
 
   func testWhenDidSelectPayByLinkThenShouldComplete() {
     let payByLink = makePayByLink()
     sut.didSelectPayByLink(payByLink)
 
-    verify(storage.saveSelectedPaymentMethodValue(payByLink.value)).wasCalled()
-    verify(delegate.viewModel(any(), didComplete: any())).wasCalled()
+    XCTAssertGreaterThan(storage.saveSelectedPaymentMethodValueCallCount, 0)
+    XCTAssertEqual(storage.saveSelectedPaymentMethodValueArgValues.last, payByLink.value)
+    XCTAssertGreaterThan(delegate.viewModelCallCount, 0)
   }
   
 }

@@ -5,7 +5,6 @@
 //
 
 import XCTest
-import Mockingbird
 @testable import PUCore
 @testable import PUPaymentMethods
 
@@ -16,7 +15,7 @@ final class PaymentMethodWidgetTests: XCTestCase {
 
   override func setUp() {
     super.setUp()
-    storage = mock(PaymentMethodsStorageProtocol.self)
+    storage = PaymentMethodsStorageProtocolMock()
   }
 
   func testWhenStorageReturnsSelectedPaymentValueThenShouldReturnPaymentMethod() {
@@ -26,7 +25,7 @@ final class PaymentMethodWidgetTests: XCTestCase {
     configuration = PaymentMethodsConfiguration(
       payByLinks: payByLinks)
 
-    given(storage.getSelectedPaymentMethodValue()).willReturn(payByLink.value)
+    storage.getSelectedPaymentMethodValueHandler = { payByLink.value }
 
     sut = PaymentMethodsWidget.Factory().make(
       configuration: configuration,
@@ -42,7 +41,7 @@ final class PaymentMethodWidgetTests: XCTestCase {
     configuration = PaymentMethodsConfiguration(
       payByLinks: payByLinks)
 
-    given(storage.getSelectedPaymentMethodValue()).willReturn(payByLink.value)
+    storage.getSelectedPaymentMethodValueHandler = { payByLink.value }
 
     sut = PaymentMethodsWidget.Factory().make(
       configuration: configuration,

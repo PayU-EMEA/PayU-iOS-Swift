@@ -85,10 +85,6 @@ let package = Package(
       url: "https://github.com/onevcat/Kingfisher.git",
       from: "8.13.0"
     ),
-    .package(
-      url: "https://github.com/birdrides/mockingbird",
-      .upToNextMinor(from: .init(0, 20, 0))
-    ),
   ],
   targets: [
     // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -214,7 +210,7 @@ let package = Package(
       name: "PUThreeDS",
       dependencies: [
         "PUAPI",
-        "PUCore",
+        "PUCore"
       ],
       path: "PUThreeDS"
     ),
@@ -254,11 +250,7 @@ let package = Package(
     .testTarget(
       name: "PUCoreTests",
       dependencies: [
-        "PUCore",
-        .product(
-          name: "Mockingbird",
-          package: "mockingbird"
-        )
+        "PUCore"
       ],
       resources: [
         .process("../PUCoreTests/Data/Files")
@@ -270,22 +262,14 @@ let package = Package(
         "PUAPI",
         "PUCore",
         "PUPaymentCard",
-        "PUPaymentCardScanner",
-        .product(
-          name: "Mockingbird",
-          package: "mockingbird"
-        )
+        "PUPaymentCardScanner"
       ]
     ),
     .testTarget(
       name: "PUPaymentCardScannerTests",
       dependencies: [
         "PUCore",
-        "PUPaymentCardScanner",
-        .product(
-          name: "Mockingbird",
-          package: "mockingbird"
-        )
+        "PUPaymentCardScanner"
       ]
     ),
     .testTarget(
@@ -295,11 +279,7 @@ let package = Package(
         "PUCore",
         "PUPaymentCard",
         "PUPaymentMethods",
-        "PUTranslations",
-        .product(
-          name: "Mockingbird",
-          package: "mockingbird"
-        ),
+        "PUTranslations"
       ],
       resources: [
         .process("../PUPaymentMethodsTests/Data/Files")
@@ -317,33 +297,21 @@ let package = Package(
         "PUAPI",
         "PUCore",
         "PUTheme",
-        "PUThreeDS",
-        .product(
-          name: "Mockingbird",
-          package: "mockingbird"
-        )
+        "PUThreeDS"
       ]
     ),
     .testTarget(
       name: "PUTranslationsTests",
       dependencies: [
         "PUCore",
-        "PUTranslations",
-        .product(
-          name: "Mockingbird",
-          package: "mockingbird"
-        )
+        "PUTranslations"
       ]
     ),
     .testTarget(
       name: "PUWebPaymentsTests",
       dependencies: [
         "PUAPI",
-        "PUWebPayments",
-        .product(
-          name: "Mockingbird",
-          package: "mockingbird"
-        )
+        "PUWebPayments"
       ]
     )
   ]

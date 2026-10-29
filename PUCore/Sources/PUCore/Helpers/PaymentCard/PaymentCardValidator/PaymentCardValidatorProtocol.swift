@@ -8,6 +8,8 @@
 import Foundation
 
 /// The protocol which allows to declare if the payment card properties are valid
+///
+/// <!-- @mockable -->
 public protocol PaymentCardValidatorProtocol {
   /// Method which validates the payment card property. Throws an instance of ``PaymentCardError``
   /// - Parameter value: payment card property to validate: cvv, date, number

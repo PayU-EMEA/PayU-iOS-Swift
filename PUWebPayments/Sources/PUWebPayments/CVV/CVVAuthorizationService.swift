@@ -20,6 +20,8 @@ import PUTranslations
 #endif
 
 /// Protocol which defines the completion result of ``CVVAuthorizationService``
+///
+/// <!-- @mockable -->
 public protocol CVVAuthorizationServiceDelegate: AnyObject {
 
   /// This method is called when the authorization was success

@@ -2,7 +2,6 @@
 //  PaymentCardNetworkClientTests.swift
 //
 
-import Mockingbird
 import XCTest
 
 @testable import PUAPI
@@ -16,13 +15,13 @@ final class PaymentCardNetworkClientTests: XCTestCase {
 
   override func setUp() {
     super.setUp()
-    client = mock(NetworkClientProtocol.self)
+    client = NetworkClientProtocolMock()
     sut = PaymentCardNetworkClient(client: client)
   }
 
   override func tearDown() {
     super.tearDown()
-    reset(client)
+    client = nil
     sut = nil
   }
 
@@ -31,15 +30,8 @@ final class PaymentCardNetworkClientTests: XCTestCase {
   {
     let expectation = XCTestExpectation()
 
-    given(
-      client
-        .request(
-          target: any(PaymentCardNetworkTarget.self),
-          type: any(type(of: TokenCreateResponse.self)),
-          completionHandler: any())
-    )
-    .will { target, type, completionHandler in
-      completionHandler(.success(self.makeTokenCreateResponse()))
+    client.requestHandler = { _, _, completion in
+      (completion as! (Result<TokenCreateResponse, Error>) -> Void)(.success(self.makeTokenCreateResponse()))
     }
 
     sut.tokenize(
@@ -64,15 +56,8 @@ final class PaymentCardNetworkClientTests: XCTestCase {
 
     let expectation = XCTestExpectation()
 
-    given(
-      client
-        .request(
-          target: any(PaymentCardNetworkTarget.self),
-          type: any(type(of: TokenCreateResponse.self)),
-          completionHandler: any())
-    )
-    .will { target, type, completionHandler in
-      completionHandler(.failure(ErrorMock()))
+    client.requestHandler = { _, _, completion in
+      (completion as! (Result<TokenCreateResponse, Error>) -> Void)(.failure(ErrorMock()))
     }
 
     sut.tokenize(

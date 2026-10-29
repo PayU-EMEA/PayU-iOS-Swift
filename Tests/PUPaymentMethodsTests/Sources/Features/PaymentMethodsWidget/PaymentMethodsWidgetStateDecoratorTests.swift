@@ -6,7 +6,6 @@
 //
 
 import XCTest
-import Mockingbird
 @testable import PUCore
 @testable import PUPaymentMethods
 @testable import PUTranslations
@@ -18,15 +17,15 @@ final class PaymentMethodsWidgetStateDecoratorTests: XCTestCase {
 
   override func setUp() {
     super.setUp()
-    languageCodeProvider = mock(LanguageCodeProvider.self)
+    languageCodeProvider = LanguageCodeProviderMock()
     sut = PaymentMethodsWidgetStateDecoratorFactory()
 
-    given(languageCodeProvider.languageCode()).willReturn("en")
+    languageCodeProvider.languageCodeHandler = { "en" }
   }
 
   override func tearDown() {
     super.tearDown()
-    reset(languageCodeProvider)
+    languageCodeProvider = nil
     sut = nil
   }
 

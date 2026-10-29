@@ -9,6 +9,7 @@ import PUCore
 import Foundation
 #endif
 
+/// @mockable
 protocol PaymentMethodsServiceProtocol {
   func makePaymentMethodItems(for configuration: PaymentMethodsConfiguration) -> [PaymentMethodsItem]
   func makePayByLinksPaymentMethodItems(for configuration: PaymentMethodsConfiguration) -> [PaymentMethodsItem]
