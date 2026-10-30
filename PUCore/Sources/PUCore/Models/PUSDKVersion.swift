@@ -1,4 +1,4 @@
 public enum PUSDKVersion {
   // Keep in sync with `s.version` in `PUSDK.podspec`.
-  public static let current = "3.0.1"
+  public static let current = "3.0.2"
 }
