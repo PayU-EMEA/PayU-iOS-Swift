@@ -99,7 +99,10 @@ let package = Package(
         .copy("../PUAPI/Sources/PUAPI/Certificates/sectigo-R46.cer"),
         .copy("../PUAPI/Sources/PUAPI/Certificates/digicert-global-root-g2.cer"),
         .copy("../PUAPI/Sources/PUAPI/Certificates/digicert-global-root-g3.cer"),
-        .copy("../PUAPI/Sources/PUAPI/Certificates/payu-root-ca-01.cer")
+        .copy("../PUAPI/Sources/PUAPI/Certificates/payu-root-ca-01.cer"),
+        .copy("../PUAPI/Sources/PUAPI/Certificates/digicert-global-root-ca.cer"),
+        .copy("../PUAPI/Sources/PUAPI/Certificates/digicert-tls-ecc-p384-root-g5.cer"),
+        .copy("../PUAPI/Sources/PUAPI/Certificates/digicert-tls-rsa4096-root-g5.cer")
       ]
     ),
     .target(
