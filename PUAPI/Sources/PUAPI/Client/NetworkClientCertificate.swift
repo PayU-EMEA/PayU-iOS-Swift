@@ -27,7 +27,15 @@ struct NetworkClientCertificate {
   }
 
   static func certificates() -> [NetworkClientCertificate] {
-    let names = ["sectigo-R46", "payu-root-ca-01", "digicert-global-root-g2", "digicert-global-root-g3"]
+    let names = [
+      "sectigo-R46",
+      "payu-root-ca-01",
+      "digicert-global-root-ca",
+      "digicert-global-root-g2",
+      "digicert-global-root-g3",
+      "digicert-tls-ecc-p384-root-g5",
+      "digicert-tls-rsa4096-root-g5"
+    ]
     return names.compactMap { NetworkClientCertificate.certificate(name: $0) }
   }
 

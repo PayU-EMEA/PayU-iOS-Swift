@@ -22,6 +22,18 @@ final class NetworkClientCertificateTests: XCTestCase {
     sut = nil
   }
 
+  func testShouldHaveDigicertGlobalRootCACertificate() throws {
+    XCTAssertTrue(sut.contains(where: { $0.name == "digicert-global-root-ca" }))
+  }
+
+  func testShouldHaveDigicertTLSECCP384RootG5Certificate() throws {
+    XCTAssertTrue(sut.contains(where: { $0.name == "digicert-tls-ecc-p384-root-g5" }))
+  }
+
+  func testShouldHaveDigicertTLSRSA4096RootG5Certificate() throws {
+    XCTAssertTrue(sut.contains(where: { $0.name == "digicert-tls-rsa4096-root-g5" }))
+  }
+
   func testShouldHaveDigicertCertificate() throws {
     XCTAssertTrue(sut.contains(where: { $0.name == "digicert-global-root-g2" }))
   }
