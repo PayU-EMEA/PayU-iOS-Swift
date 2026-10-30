@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|  
   s.name      = 'PUSDK'
-  s.version   = '3.0.1'
+  s.version   = '3.0.2'
   s.summary   = 'PayU mobile SDK for iOS'
   s.homepage  = 'http://developers.payu.com/en/mobile_sdk.html'
 
