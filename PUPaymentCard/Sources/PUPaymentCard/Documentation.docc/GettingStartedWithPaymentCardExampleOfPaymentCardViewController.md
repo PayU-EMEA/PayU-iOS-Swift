@@ -1,6 +1,6 @@
 # Getting Started with PaymentCardViewController
 
-An example on how to interact with PaymentCardViewController
+An example of how to interact with PaymentCardViewController
 
 ## Requirements
 

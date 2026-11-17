@@ -1,6 +1,6 @@
 # Getting Started with PaymentCardScannerViewController
 
-An example on how to interact with PaymentCardScannerViewController
+An example of how to interact with PaymentCardScannerViewController
 
 ## Example
 

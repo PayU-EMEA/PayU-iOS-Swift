@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// Represents the Point of Sale. See [developers.payu.com](https://developers.payu.com/en/restapi.html#overview) for more details
+/// Represents the Point of Sale. See [developers.payu.com](https://developers.payu.com/europe/docs/get-started/set-up-account/management-panel/#management-panel-point-of-sale) for more details
 public struct POS {
 
   // MARK: - Public Properties

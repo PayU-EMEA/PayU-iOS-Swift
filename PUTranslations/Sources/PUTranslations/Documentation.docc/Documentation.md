@@ -1,10 +1,10 @@
 # ``PUTranslations``
 
-Allows to translate `String` into different languages. 
+Lets you translate `String` into different languages. 
 
 ## Overview
 
-This package provides resources, services, etc. to allow to translate known strings into provided language. It uses ``DefaultLanguageCodeProvider`` as a default `languageCode` provider. 
+This package provides resources, services, etc. to translate known strings into provided language. It uses ``DefaultLanguageCodeProvider`` as a default `languageCode` provider. 
 
 Current supported languages:
 * bg (Bulgarian)

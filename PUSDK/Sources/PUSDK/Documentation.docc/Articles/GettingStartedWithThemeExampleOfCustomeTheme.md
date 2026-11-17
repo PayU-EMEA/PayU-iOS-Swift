@@ -1,6 +1,6 @@
 # Getting Started with custom PUTheme
 
-An example on how to create custom PUTheme
+An example of how to create custom PUTheme
 
 ### 1. Create `PUTheme`
 

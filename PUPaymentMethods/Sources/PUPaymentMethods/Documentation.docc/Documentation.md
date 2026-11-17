@@ -1,12 +1,12 @@
 # ``PUPaymentMethods``
 
-Constains necessary classes, structures, extensions to allow users to select the payment method from the list. It has the business logic of ordering, etc.
+Contains necessary classes, structures, extensions to allow users to select the payment method from the list. It has the business logic of ordering, etc.
 
 > Important: POS details are required
 
 ## Documentation 
 
-* [Payment methods retrieve](https://developers.payu.com/en/restapi.html#Transparent_retrieve)
+* [Payment methods retrieve](https://developers.payu.com/europe/docs/checkout/payment-methods-retrieve/)
 
 ## Overview
 

@@ -1,6 +1,6 @@
 # Getting Started with CVVAuthorizationService
 
-An example on how to interact with SoftAcceptService
+An example of how to interact with CVVAuthorizationService
 
 ## Example
 

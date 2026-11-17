@@ -1,6 +1,6 @@
 # How to translate String?
 
-An example on how to translate strings
+An example of how to translate strings
 
 ## Singular
 

@@ -23,7 +23,7 @@ public protocol PaymentMethodsWidgetDelegate: AnyObject {
   ///   - paymentMethod: `PaymentMethod` instance which was selected
   func paymentMethodsWidget(_ widget: PaymentMethodsWidget, didSelect paymentMethod: PaymentMethod)
 
-  /// This method is called when user try to delete the `PaymentMethod` (only `CardToken` can be deleted). Remove it on backend as well ([developers.payu.com](https://developers.payu.com/en/card_tokenization.html#deleting_tokens))
+  /// This method is called when user try to delete the `PaymentMethod` (only `CardToken` can be deleted). Remove it on backend as well ([developers.payu.com](https://developers.payu.com/europe/docs/payment-solutions/cards/tokenization/retrieve-and-delete-token/#token-delete))
   /// - Parameters:
   ///   - widget: Instance of ``PaymentMethodsWidget`` from where the action was triggered
   ///   - paymentMethod: `PaymentMethod` instance to delete

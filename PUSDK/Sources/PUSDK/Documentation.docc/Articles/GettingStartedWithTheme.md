@@ -1,6 +1,6 @@
 # PUTheme
 
-Constains necessary classes, structures, views extensions to allow merchants to create their own Theme for visual elements
+Contains necessary classes, structures, views extensions to allow merchants to create their own Theme for visual elements
 
 ## Overview
 

@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// Model which represent the [PayMethod](https://developers.payu.com/en/restapi.html#paymethod) which can be used during the [OrderCreateRequest](https://developers.payu.com/en/restapi.html#creating_new_order_api)
+/// Model which represent the [PayMethod](https://developers.payu.com/europe/api/#tag/Order/operation/create-an-order) which can be used during the [OrderCreateRequest](https://developers.payu.com/europe/docs/payment-flows/auth-and-order/#creating-new-order)
 public struct PayMethod: Codable, Equatable {
 
   // MARK: - PayMethodType

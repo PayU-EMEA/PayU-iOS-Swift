@@ -22,7 +22,7 @@ public protocol PaymentMethod {
   /// Name of payment method set by PayU
   var name: String { get }
 
-  /// payType value. Available values are in the [developers.payu.com](https://developers.payu.com/en/overview.html#paymethods)
+  /// payType value. Available values are in the [developers.payu.com](https://developers.payu.com/europe/docs/get-started/integration-overview/references/#payment-methods-reference)
   var value: String { get }
 }
 

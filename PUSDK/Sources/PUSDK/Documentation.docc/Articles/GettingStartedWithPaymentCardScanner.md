@@ -1,12 +1,12 @@
 # PUPaymentCardScanner
 
-Constains necessary classes, structures, extensions to allow users to scan card details.
+Contains necessary classes, structures, extensions to allow users to scan card details.
 
 > Note: It uses **Vision** framework
 
 ## Overview
 
-This package provides models and UI that allows users scan card details
+This package provides models and UI that allows users to scan card details
 
 | ![](paymentCardScanner.paymentCardScannerViewController) | 
 | -------------------------------------------------------- |

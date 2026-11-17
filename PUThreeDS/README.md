@@ -1,4 +1,3 @@
 # PUThreeDS
 
-A description of this package.
-https://developers.payu.com/en/3ds_2.html
+Handles 3D Secure authentication (Soft Accept) for orders with the `WARNING_CONTINUE_3DS` status. See [3D Secure](https://developers.payu.com/europe/docs/card-payments/threeds/) in the PayU Developer Guide.
