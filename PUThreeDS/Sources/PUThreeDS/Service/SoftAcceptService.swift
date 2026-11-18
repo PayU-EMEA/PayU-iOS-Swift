@@ -28,7 +28,7 @@ public protocol SoftAcceptServiceDelegate: AnyObject {
   func softAcceptService(_ service: SoftAcceptService, didCompleteAuthentication status: SoftAcceptStatus)
 }
 
-/// Service which is responsible for processing of [Authentication](https://developers.payu.com/en/3ds_2.html#auth_page)
+/// Service which is responsible for processing of [Authentication](https://developers.payu.com/europe/docs/card-payments/threeds/auth-page/)
 public final class SoftAcceptService: NSObject, WKScriptMessageHandler {
 
   // MARK: - Factory
@@ -80,7 +80,7 @@ public final class SoftAcceptService: NSObject, WKScriptMessageHandler {
 
   // MARK: - Public Methods
 
-  /// Call this method after you reveice the [OrderCreateResponse](https://developers.payu.com/en/3ds_2.html#api_response) with `WARNING_CONTINUE_3DS`
+  /// Call this method after you reveice the [OrderCreateResponse](https://developers.payu.com/europe/docs/card-payments/threeds/api-enhancements/#api-response) with `WARNING_CONTINUE_3DS`
   /// ``SoftAcceptRequest/redirectUrl`` must contain `authenticationId` query parameter
   public func authenticate(request: SoftAcceptRequest) {
     self.request = request

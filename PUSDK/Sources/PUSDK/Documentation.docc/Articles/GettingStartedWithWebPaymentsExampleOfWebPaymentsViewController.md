@@ -1,6 +1,6 @@
 # Getting Started with WebPaymentsViewController
 
-An example on how to interact with WebPaymentsViewController
+An example of how to interact with WebPaymentsViewController
 
 ## Example
 

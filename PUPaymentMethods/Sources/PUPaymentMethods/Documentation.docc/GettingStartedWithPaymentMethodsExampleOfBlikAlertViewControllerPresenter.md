@@ -1,6 +1,6 @@
 # Getting Started with BlikAlertViewControllerPresenter
 
-An example on how to interact with BlikAlertViewControllerPresenter
+An example of how to interact with BlikAlertViewControllerPresenter
 
 ## Example
 

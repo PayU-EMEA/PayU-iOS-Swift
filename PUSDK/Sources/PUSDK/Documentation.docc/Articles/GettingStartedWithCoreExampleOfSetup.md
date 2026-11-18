@@ -1,10 +1,10 @@
 # Getting Started with PUCore
 
-An example on how to prepare PUCore
+An example of how to prepare PUCore
 
 ## Overview
 
-To start working with elements, provided by PayU packages, you need to setup the basics of ``PayU``
+To start working with elements, provided by PayU packages, you need to set up the basics of ``PayU``
 
 ## Example
 

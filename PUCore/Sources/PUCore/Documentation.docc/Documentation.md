@@ -1,6 +1,6 @@
 # ``PUCore``
 
-Constains necessary classes, structures, extensions to interact between packages.
+Contains necessary classes, structures, extensions to interact between packages.
 
 ## Overview
 

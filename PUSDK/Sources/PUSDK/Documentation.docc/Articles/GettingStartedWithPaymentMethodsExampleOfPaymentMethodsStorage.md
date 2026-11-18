@@ -1,6 +1,6 @@
 # Getting Started with PaymentMethodsStorage
 
-An example on how to interact with PaymentMethodsStorageProtocol
+An example of how to interact with PaymentMethodsStorageProtocol
 
 ## Example
 

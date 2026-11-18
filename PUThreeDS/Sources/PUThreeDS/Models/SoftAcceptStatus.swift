@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// The status if the transaction during the [Handling iframe](https://developers.payu.com/en/3ds_2.html#handling_iframe). The `iframe` may post messages to its parent window with the following values in `message.data` property.
+/// The status if the transaction during the [Handling iframe](https://developers.payu.com/europe/docs/card-payments/threeds/auth-page/#iframe-handling). The `iframe` may post messages to its parent window with the following values in `message.data` property.
 public enum SoftAcceptStatus: String, Codable {
   case displayFrame = "DISPLAY_FRAME"
   case authenticationSuccessful = "AUTHENTICATION_SUCCESSFUL"

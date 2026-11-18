@@ -1,6 +1,6 @@
 # How to translate String?
 
-An example on how to translate strings
+An example of how to translate strings
 
 ## Singular
 
@@ -8,7 +8,7 @@ An example on how to translate strings
 import PUTranslations
 
 let string = "card_number".localized()
-print(string) // prints `Card number
+print(string) // prints `Card number`
 ```
 
 ## Plural
