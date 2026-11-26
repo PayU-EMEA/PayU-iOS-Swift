@@ -90,14 +90,20 @@ final class PUImageLoader {
   }
 
   private func clearDiskIfNeeded() {
-    let files = (try? FileManager.default.contentsOfDirectory(
-      at: directory,
-      includingPropertiesForKeys: [.fileSizeKey]
-    )) ?? []
-    let size = files.reduce(0) { $0 + ((try? $1.resourceValues(forKeys: [.fileSizeKey]).fileSize) ?? 0) }
+    let keys: [URLResourceKey] = [.fileSizeKey, .contentModificationDateKey]
+    let urls = (try? FileManager.default.contentsOfDirectory(at: directory, includingPropertiesForKeys: keys)) ?? []
+    var files = urls.map { url -> (url: URL, size: Int, date: Date) in
+      let values = try? url.resourceValues(forKeys: Set(keys))
+      return (url, values?.fileSize ?? 0, values?.contentModificationDate ?? .distantPast)
+    }
+    var size = files.reduce(0) { $0 + $1.size }
     guard size > Constants.diskSizeLimit else { return }
 
-    try? FileManager.default.removeItem(at: directory)
+    files.sort { $0.date < $1.date }
+    for file in files where size > Constants.diskSizeLimit {
+      try? FileManager.default.removeItem(at: file.url)
+      size -= file.size
+    }
   }
 
   private func writeToDisk(_ data: Data, for url: URL) {

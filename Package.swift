@@ -287,6 +287,12 @@ let package = Package(
       ]
     ),
     .testTarget(
+      name: "PUThemeTests",
+      dependencies: [
+        "PUTheme"
+      ]
+    ),
+    .testTarget(
       name: "PUThreeDSTests",
       dependencies: [
         "PUAPI",
