@@ -5,7 +5,6 @@
 //  Copyright © 2022 PayU S.A. All rights reserved.
 //
 
-import Kingfisher
 import UIKit
 
 #if canImport(PUCore)
@@ -21,6 +20,10 @@ public class PUImageView: UIImageView {
     }
   }
 
+  // MARK: - Private Properties
+  private var downloadTask: URLSessionDataTask?
+  private var currentURL: URL?
+
   // MARK: - Initialization
   public convenience init(brandImageProvider: BrandImageProvider?) {
     self.init(frame: .zero)
@@ -30,10 +33,25 @@ public class PUImageView: UIImageView {
 
   // MARK: - Public Methods
   public func prepareForReuse() {
-    kf.cancelDownloadTask()
+    downloadTask?.cancel()
+    downloadTask = nil
+    currentURL = nil
   }
 
   // MARK: - Private Methods
+  private func loadImage(from urlString: String) {
+    downloadTask?.cancel()
+    downloadTask = nil
+    currentURL = URL(string: urlString)
+    guard let url = currentURL else { return }
+
+    downloadTask = PUImageLoader.shared.loadImage(from: url) { [weak self] image in
+      guard self?.currentURL == url else { return }
+
+      self?.image = image
+    }
+  }
+
   private func setupWithBrandImageProvider() {
     guard let brandImageProvider = brandImageProvider else { return }
 
@@ -48,11 +66,11 @@ public class PUImageView: UIImageView {
         self.contentMode = contentMode
       case .dynamic:
         guard let url = brandImageProvider.url else { return }
-        kf.setImage(with: URL(string: url))
+        loadImage(from: url)
         self.contentMode = .scaleAspectFit
       case .url(let url):
         guard let url = url else { return }
-        kf.setImage(with: URL(string: url))
+        loadImage(from: url)
         self.contentMode = .scaleAspectFit
     }
   }
