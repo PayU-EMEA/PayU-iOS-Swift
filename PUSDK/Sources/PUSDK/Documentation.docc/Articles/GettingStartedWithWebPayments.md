@@ -1,6 +1,6 @@
 # PUWebPayments
 
-Constains necessary classes, structures, extensions to allow users to authorize **WARNING_CONTINUE_CVV**, **WARNING_CONTINUE_3DS**, etc. transactions via WebView or other components.
+Contains necessary classes, structures, extensions to allow users to authorize **WARNING_CONTINUE_CVV**, **WARNING_CONTINUE_3DS**, etc. transactions via WebView or other components.
 
 > Important: POS details are required
 

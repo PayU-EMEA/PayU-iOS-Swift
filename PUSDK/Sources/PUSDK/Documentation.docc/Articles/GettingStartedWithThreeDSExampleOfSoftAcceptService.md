@@ -1,6 +1,6 @@
 # Getting Started with SoftAcceptService
 
-An example on how to interact with SoftAcceptService
+An example of how to interact with SoftAcceptService
 
 ## Example
 

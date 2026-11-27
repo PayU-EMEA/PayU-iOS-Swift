@@ -1,6 +1,6 @@
 # Getting Started with ApplePayService
 
-An example on how to pay via Apple Pay
+An example of how to pay via Apple Pay
 
 ## Overview
 
@@ -8,7 +8,7 @@ To complete payment via Apple Pay, you need to pass ``PaymentRequest`` to ``Appl
 
 ## Backend Integration
 
-* [Documentation](https://developers.payu.com/en/apple_pay.html)
+* [Documentation](https://developers.payu.com/europe/docs/payment-solutions/cards/digital-wallets/apple-pay/)
 
 ## Example
 

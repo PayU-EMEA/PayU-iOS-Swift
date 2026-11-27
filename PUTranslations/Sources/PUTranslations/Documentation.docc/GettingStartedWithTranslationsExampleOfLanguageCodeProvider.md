@@ -1,10 +1,10 @@
 # Getting Started with LanguageCodeProvider
 
-An example on how to use custom ``LanguageCodeProvider``
+An example of how to use custom ``LanguageCodeProvider``
 
 ## Overview
 
-``LanguageCodeProvider`` protocol allows to override default ``DefaultLanguageCodeProvider`` and set custom business logic around `languageCode` for translations.
+``LanguageCodeProvider`` protocol lets you override the default ``DefaultLanguageCodeProvider`` and set custom business logic around `languageCode` for translations.
 
 ## Example
 

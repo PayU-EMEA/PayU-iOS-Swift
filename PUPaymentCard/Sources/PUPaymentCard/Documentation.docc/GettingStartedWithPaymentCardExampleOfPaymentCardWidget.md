@@ -1,6 +1,6 @@
 # Getting Started with PaymentCardWidget
 
-An example on how to interact with PaymentCardWidget
+An example of how to interact with PaymentCardWidget
 
 ## Requirements
 

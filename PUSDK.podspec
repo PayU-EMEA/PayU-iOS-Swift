@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
   s.name      = 'PUSDK'
   s.version   = '3.0.2'
   s.summary   = 'PayU mobile SDK for iOS'
-  s.homepage  = 'http://developers.payu.com/en/mobile_sdk.html'
+  s.homepage  = 'https://developers.payu.com/europe/docs/mobile-sdk/ios/'
 
   s.author    = { 'PayU' => 'sdk@payu.com' }
   s.license   = { :type => 'Apache License Version 2.0', :file => 'LICENSE' }

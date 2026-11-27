@@ -7,12 +7,12 @@
 
 import Foundation
 
-/// Model, which allows to pass the `redirectUri` from   [OrderCreateResponse](https://developers.payu.com/en/3ds_2.html#api_response) directly into the ``SoftAcceptService``
+/// Model, which allows to pass the `redirectUri` from   [OrderCreateResponse](https://developers.payu.com/europe/docs/card-payments/threeds/api-enhancements/#api-response) directly into the ``SoftAcceptService``
 public struct SoftAcceptRequest {
 
   // MARK: - Public Properties
 
-  /// `redirectUri` from   [OrderCreateResponse](https://developers.payu.com/en/3ds_2.html#api_response)
+  /// `redirectUri` from   [OrderCreateResponse](https://developers.payu.com/europe/docs/card-payments/threeds/api-enhancements/#api-response)
   public let redirectUrl: URL
 
   // MARK: - Initialization

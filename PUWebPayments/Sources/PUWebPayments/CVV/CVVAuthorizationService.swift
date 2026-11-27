@@ -37,7 +37,7 @@ public protocol CVVAuthorizationServiceDelegate: AnyObject {
   func cvvAuthorizationService(_ service: CVVAuthorizationService, didFail error: Error)
 }
 
-/// Allows to make [CVV2 Authorization](https://developers.payu.com/en/card_tokenization.html#handling_cvv2). Is shows the `UIAlertViewController` with `textField`.
+/// Allows to make [CVV2 Authorization](https://developers.payu.com/europe/docs/payment-solutions/cards/tokenization/charge-token/#token-charge-handling-cvv). Is shows the `UIAlertViewController` with `textField`.
 public final class CVVAuthorizationService {
 
   // MARK: - Factory

@@ -1,12 +1,12 @@
 # Getting Started with PaymentMethodsViewController
 
-An example on how to interact with PaymentMethodsViewController
+An example of how to interact with PaymentMethodsViewController
 
 > Important: POS details are required
 
 ## Documentation 
 
-* [Payment methods retrieve](https://developers.payu.com/en/restapi.html#Transparent_retrieve)
+* [Payment methods retrieve](https://developers.payu.com/europe/docs/checkout/payment-methods-retrieve/)
 
 | ![](paymentMethods.paymentMethodsViewController) | ![](paymentMethods.PBLPaymentMethodsViewController) |
 | ------------------------------------------------ | --------------------------------------------------- |
