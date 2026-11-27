@@ -34,7 +34,7 @@ public struct PaymentRequest: Equatable {
 
   // MARK: - Contact
 
-  /// A model which represents the buyer contact information
+  /// A model which represents the payer contact information
   public struct Contact: Equatable {
 
     // MARK: - Public Properties
@@ -50,7 +50,7 @@ public struct PaymentRequest: Equatable {
 
   // MARK: - SummaryItem
 
-  /// A model which represents the item, for which buyer is trying to pay
+  /// A model which represents the item, for which the payer is trying to pay
   public struct SummaryItem: Equatable {
 
     // MARK: - Public Properties
